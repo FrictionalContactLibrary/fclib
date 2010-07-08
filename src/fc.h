@@ -58,6 +58,6 @@ double FC_Merit (FC *fc, FC_MERIT merit, double *solution);
 
 /* close file;
  * returns 1 on success, 0 otherwise */
-int FC_Close (FC *dat);
+int FC_Close (FC *fc);
 
 #endif
