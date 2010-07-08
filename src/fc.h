@@ -13,7 +13,7 @@
 
 typedef struct fc FC; /* private structure */
 
-enum fc_merit {MERIT_1, MERIT_2} FC_MERIT; /* merit functions */
+typedef enum fc_merit {MERIT_1, MERIT_2} FC_MERIT; /* merit functions */
 
 /* open for writing;
  * returns NULL on failure */
