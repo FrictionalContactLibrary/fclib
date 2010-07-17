@@ -32,17 +32,17 @@ int FC_Global (FC *fc,
                double **f,
                double **b,
                double **w,
-               double **friction,                       /* 'm' friction coefficients for */
+               double **friction,                       /* 'm' friction coefficients */
                double **guess,                          /* 'm' contact reactions (3-component) followed by 'p' equality constraint reactions (1-component); can be NULL */
                double **solution,                       /* -||-; can be NULL */
                double **points,                         /* spatial points (3-component); can be NULL */
-               double **bases);                         /* spatial bases (9-component); can be NULL */
+               double **bases);                         /* spatial bases (9-component for contacts followed by 3-component for equality constraints); can be NULL */
 
 /* read/write local form;
  * returns 1 on success, 0 otherwise */
 int FC_Local (FC *fc,
-              int blocked,                            /* 1 => compressed block row matrices and use block indexing assumed; otherwise normal CSR */
-              int *n, double **W, int **pW, int **iW, /* 3x3 blocks if blocked */
+              int blocked,                            /* 1 => compressed block row matrices and block indexing assumed; otherwise normal compressed row structure */
+              int *n, double **W, int **pW, int **iW, /* 3x3 (column-wise) blocks if blocked */
               int *m, double **V, int **pV, int **iV, /* 3x1 blocks if blocked */
               int *p, double **R, int **pR, int **iR, /* not blocked */
               double **q,
