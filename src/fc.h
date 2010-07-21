@@ -1,11 +1,7 @@
 /* 
  * fc.h
- * ------------------------------------------------------
- * a simpliest possible interface idea
- * ------------------------------------------------------
- * Authors:
- * --------
- * 2010, Tomasz Koziara
+ * -----------------------------------------
+ * frictional contact library interface ? :)
  */
 
 #ifndef __fc__
@@ -26,7 +22,7 @@ FC* FC_Read (const char *path);
 /* read/write global form;
  * returns 1 on success, 0 otherwise */
 int FC_Global (FC *fc,
-               int *n, double **M, int **pM, int **iM, /* compressed rows (values, row pointers, column indices) */
+               int *n, double **M, int **pM, int **iM, /* compressed rows (values, row pointers, column indices); NULL pM, iM (WRITE) and *pM, *iM (READ) indicate a dense matrix */
                int *m, double **H, int **pH, int **iH,
                int *p, double **G, int **pG, int **iG,
                double **f,
@@ -34,7 +30,7 @@ int FC_Global (FC *fc,
                double **w,
                double **friction,                       /* 'm' friction coefficients */
                double **guess,                          /* 'm' contact reactions (3-component) followed by 'p' equality constraint reactions (1-component); can be NULL */
-               double **solution,                       /* -||-; can be NULL */
+               double **solution,                       /* -||-; can be NULL (i.e. guess == NULL in WRITE mode or *guess == NULL in READ mode) */
                double **points,                         /* spatial points (3-component); can be NULL */
                double **bases);                         /* spatial bases (9-component for contacts followed by 3-component for equality constraints); can be NULL */
 
