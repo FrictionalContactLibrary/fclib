@@ -7,6 +7,25 @@
 #ifndef _fclib_h_
 #define _fclib_h_
 
+
+
+
+struct fclib_info
+{
+  char * title;
+  char * description;
+  char * math_info;
+}
+
+struct fclib_matrix_info 
+{
+  char * comment;
+  double  conditioning;
+  double  sparsity;
+  double determinant;
+  int rank;
+}
+
 struct fclib_matrix   /* matrix in compressed-column or triplet form */
 {
   int nzmax ;	    /* maximum number of entries */
@@ -17,7 +36,8 @@ struct fclib_matrix   /* matrix in compressed-column or triplet form */
   double *x ;	    /* numerical values, size nzmax */
   int nz ;	    /* # of entries in triplet matrix, -1 for compressed-col */
   int csr;
-} ;
+  fclib_matrix_info * info;
+  } ;
 
 struct fclib_global
 {
@@ -28,7 +48,7 @@ struct fclib_global
   double * f;
   double * b;
   double * w;
-  
+  fclib_info * info;
 } ;
 
 struct fclib_local
@@ -38,7 +58,8 @@ struct fclib_local
   fclib_matrix * R;
   double * mu;
   double * q;
-  double * s;
+  double * s; 
+  fclib_info * info;
 } ;
 
 struct fclib_solution
