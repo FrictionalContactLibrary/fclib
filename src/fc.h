@@ -1,59 +1,87 @@
 /* 
- * fc.h
+ * fclib.h
  * -----------------------------------------
  * frictional contact library interface ? :)
  */
 
-#ifndef __fc__
-#define __fc__
+#ifndef _fclib_h_
+#define _fclib_h_
 
-typedef struct fc FC; /* private structure */
+struct fclib_matrix   /* matrix in compressed-column or triplet form */
+{
+  int nzmax ;	    /* maximum number of entries */
+  int m ;	    /* number of rows */
+  int n ;	    /* number of columns */
+  int *p ;	    /* column pointers (size n+1) or col indices (size nzmax) */
+  int *i ;	    /* row indices, size nzmax */
+  double *x ;	    /* numerical values, size nzmax */
+  int nz ;	    /* # of entries in triplet matrix, -1 for compressed-col */
+  int csr;
+} ;
 
-typedef enum fc_merit {MERIT_1, MERIT_2} FC_MERIT; /* merit functions */
+struct fclib_global
+{
+  fclib_matrix * M;
+  fclib_matrix * H;
+  fclib_matrix * G;
+  double * mu;
+  double * f;
+  double * b;
+  double * w;
+  
+} ;
+
+struct fclib_local
+{
+  fclib_matrix * W;
+  fclib_matrix * V;
+  fclib_matrix * R;
+  double * mu;
+  double * q;
+  double * s;
+} ;
+
+struct fclib_solution
+{
+  /* */
+  double * v;   
+  double * u;
+  double * r;
+  double * l;
+} ;
+
+enum fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
+
+/* open for writingn the problem;
+ * returns NULL on failure */
+int fclib_write_global (fclib_global * , const char *path);
+int fclib_write_local  (fclib_local  * , const char *path);
 
 /* open for writing;
  * returns NULL on failure */
-FC* FC_Write (const char *path);
+int fclib_write_solution (fclib_solution * , const char *path);
+
+/* open for writing;
+ * returns NULL on failure */
+int fclib_write_guesses (int number_of_guesses,  fclib_solution * , const char *path);
 
 /* open for reading;
  * returns NULL on failure */
-FC* FC_Read (const char *path);
+fclib_global * fclib_read_global (const char *path);
+fclib_local  * fclib_read_local  (const char *path);
 
-/* read/write global form;
- * returns 1 on success, 0 otherwise */
-int FC_Global (FC *fc,
-               int *n, double **M, int **pM, int **iM, /* compressed rows (values, row pointers, column indices); NULL pM, iM (WRITE) and *pM, *iM (READ) indicate a dense matrix */
-               int *m, double **H, int **pH, int **iH,
-               int *p, double **G, int **pG, int **iG,
-               double **f,
-               double **b,
-               double **w,
-               double **friction,                       /* 'm' friction coefficients */
-               double **guess,                          /* 'm' contact reactions (3-component) followed by 'p' equality constraint reactions (1-component); can be NULL */
-               double **solution,                       /* -||-; can be NULL (i.e. guess == NULL in WRITE mode or *guess == NULL in READ mode) */
-               double **points,                         /* spatial points (3-component); can be NULL */
-               double **bases);                         /* spatial bases (9-component for contacts followed by 3-component for equality constraints); can be NULL */
+/* open for reading;
+ * returns NULL on failure */
+int fclib_read_solution (fclib_solution * , const char *path);
 
-/* read/write local form;
- * returns 1 on success, 0 otherwise */
-int FC_Local (FC *fc,
-              int blocked,                            /* 1 => compressed block row matrices and block indexing assumed; otherwise normal compressed row structure */
-              int *n, double **W, int **pW, int **iW, /* 3x3 (column-wise) blocks if blocked */
-              int *m, double **V, int **pV, int **iV, /* 3x1 blocks if blocked */
-              int *p, double **R, int **pR, int **iR, /* not blocked */
-              double **q,
-              double **s,
-              double **friction,
-              double **guess,
-              double **solution,
-              double **points,
-              double **bases);
+/* open for reading;
+ * returns NULL on failure */
+fclib_solution * fclib_read_guesses (int * number_of_guesses,   const char *path);
 
 /* calculate merit function */
-double FC_Merit (FC *fc, FC_MERIT merit, double *solution);
+double fclib_merit (fclib_global *fc, fclib_merit  merit, fclib_solution *solution);
 
-/* close file;
- * returns 1 on success, 0 otherwise */
-int FC_Close (FC *fc);
+int fclib_delete_global(fclib_global *);
+int fclib_delete_local(fclib_global *);
 
-#endif
+#endif // _fclib_h_
