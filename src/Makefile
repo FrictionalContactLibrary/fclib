@@ -1,9 +1,9 @@
 include Config.mak
 
 ifeq ($(DEBUG),yes)
-  DEBUG =  -W -Wall -Wno-unused-parameter -pedantic -g -DDEBUG
+  DEBUG =  -W -Wall -Wno-unused-parameter -g -DDEBUG # -pedantic
 else
-  DEBUG =  -w -pedantic -O2
+  DEBUG =  -w -O
 endif
 
 CFLAGS = $(STD) $(DEBUG) $(HDF5INC)

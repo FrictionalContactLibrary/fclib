@@ -14,5 +14,5 @@ DEBUG = yes
 # HDF5 library paths
 #
 
-HDF5INC =
-HDF5LIB =
+HDF5INC = -I/opt/local/include
+HDF5LIB = -L/opt/local/lib -lhdf5

@@ -28,8 +28,8 @@ struct fclib_matrix   /* matrix in compressed row/column or triplet form */
   int nzmax ;	    /* maximum number of entries */
   int m ;	    /* number of rows */
   int n ;	    /* number of columns */
-  int *p ;	    /* compressed: row/column pointers (size n+1 or m+1); triplet: row indices */
-  int *i ;	    /* compressed: column/row indices, size nzmax; triplet: column indices */
+  int *p ;	    /* compressed: row (size m+1) or column (size n+1) pointers; triplet: row indices (size nz) */
+  int *i ;	    /* compressed: column or row indices, size nzmax; triplet: column indices (size nz) */
   double *x ;	    /* numerical values, size nzmax */
   int nz ;	    /* # of entries in triplet matrix;
 		       -1 for compressed columns;
