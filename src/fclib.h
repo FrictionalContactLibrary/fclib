@@ -1,7 +1,7 @@
 /* 
  * fclib.h
  * -----------------------------------------
- * frictional contact library interface ? :)
+ * frictional contact library interface
  */
 
 #ifndef _fclib_h_
@@ -97,8 +97,8 @@ struct fclib_global* fclib_read_global (const char *path);
 struct fclib_local* fclib_read_local (const char *path);
 
 /* read solution;
- * return 1 on success, 0 on failure */
-int fclib_read_solution (struct fclib_solution *solution, const char *path);
+ * return solution on success; NULL on failure */
+struct fclib_solution* fclib_read_solution (const char *path);
 
 /* read initial guesses;
  * return vector of guesses on success; NULL on failure;
@@ -111,12 +111,13 @@ double fclib_merit_global (struct fclib_global *problem, enum fclib_merit merit,
 /* calculate merit function for a local problem */
 double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, struct fclib_solution *solution);
 
-/* delete global problem;
- * return 1 on success, 0 on failure */
-int fclib_delete_global (struct fclib_global *problem);
+/* delete global problem */
+void fclib_delete_global (struct fclib_global *problem);
 
-/* delete local problem;
- * return 1 on success, 0 on failure */
-int fclib_delete_local (struct fclib_global *problem);
+/* delete local problem */
+void fclib_delete_local (struct fclib_local *problem);
+
+/* delete solutions or guesses */
+void fclib_delete_solution (struct fclib_solution *data, int count);
 
 #endif /* _fclib_h_ */
