@@ -15,4 +15,4 @@ DEBUG = yes
 #
 
 HDF5INC = -I/opt/local/include
-HDF5LIB = -L/opt/local/lib -lhdf5
+HDF5LIB = -L/opt/local/lib -lhdf5 -lhdf5_hl

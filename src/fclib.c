@@ -6,6 +6,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <hdf5.h>
 #include <hdf5_hl.h>
 #include "fclib.h"
@@ -16,9 +17,11 @@ static hid_t H5Gmake (hid_t loc_id, const char *name)
 {
   hid_t id;
 
-  id = H5Gopen (loc_id, name, H5P_DEFAULT);
-
-  if (id < 0) return H5Gcreate (loc_id, name, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+  if (H5Lexists (loc_id, name, H5P_DEFAULT))
+  {
+    id = H5Gopen (loc_id, name, H5P_DEFAULT);
+  }
+  else return H5Gcreate (loc_id, name, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 
   return id;
 }
@@ -28,44 +31,44 @@ static void write_matrix (hid_t id, struct fclib_matrix *mat)
 {
   hsize_t dim = 1;
 
-  IO (H5LTmake_dataset_int (id, "/nzmax", 1, &dim, &mat->nzmax));
-  IO (H5LTmake_dataset_int (id, "/m", 1, &dim, &mat->m));
-  IO (H5LTmake_dataset_int (id, "/n", 1, &dim, &mat->n));
-  IO (H5LTmake_dataset_int (id, "/nz", 1, &dim, &mat->nz));
+  IO (H5LTmake_dataset_int (id, "nzmax", 1, &dim, &mat->nzmax));
+  IO (H5LTmake_dataset_int (id, "m", 1, &dim, &mat->m));
+  IO (H5LTmake_dataset_int (id, "n", 1, &dim, &mat->n));
+  IO (H5LTmake_dataset_int (id, "nz", 1, &dim, &mat->nz));
 
   if (mat->nz >= 0) /* triplet */
   {
     dim = mat->nz;
-    IO (H5LTmake_dataset_int (id, "/p", 1, &dim, mat->p));
-    IO (H5LTmake_dataset_int (id, "/i", 1, &dim, mat->i));
+    IO (H5LTmake_dataset_int (id, "p", 1, &dim, mat->p));
+    IO (H5LTmake_dataset_int (id, "i", 1, &dim, mat->i));
   }
   else if (mat->nz == -1) /* csc */
   {
     dim = mat->n+1;
-    IO (H5LTmake_dataset_int (id, "/p", 1, &dim, mat->p));
+    IO (H5LTmake_dataset_int (id, "p", 1, &dim, mat->p));
     dim = mat->nzmax;
-    IO (H5LTmake_dataset_int (id, "/i", 1, &dim, mat->i));
+    IO (H5LTmake_dataset_int (id, "i", 1, &dim, mat->i));
   }
   else if (mat->nz == -2) /* csr */
   {
     dim = mat->m+1;
-    IO (H5LTmake_dataset_int (id, "/p", 1, &dim, mat->p));
+    IO (H5LTmake_dataset_int (id, "p", 1, &dim, mat->p));
     dim = mat->nzmax;
-    IO (H5LTmake_dataset_int (id, "/i", 1, &dim, mat->i));
+    IO (H5LTmake_dataset_int (id, "i", 1, &dim, mat->i));
   }
   else ASSERT (0, "ERROR: unkown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
 
   dim = mat->nzmax;
-  IO (H5LTmake_dataset_double (id, "/x", 1, &dim, mat->x));
+  IO (H5LTmake_dataset_double (id, "x", 1, &dim, mat->x));
 
   if (mat->info)
   {
     dim = 1;
-    if (mat->info->comment) IO (H5LTmake_dataset_string (id, "/comment", mat->info->comment));
-    IO (H5LTmake_dataset_double (id, "/conditioning", 1, &dim, &mat->info->conditioning));
-    IO (H5LTmake_dataset_double (id, "/sparsity", 1, &dim, &mat->info->sparsity));
-    IO (H5LTmake_dataset_double (id, "/determinant", 1, &dim, &mat->info->determinant));
-    IO (H5LTmake_dataset_int (id, "/rank", 1, &dim, &mat->info->rank));
+    if (mat->info->comment) IO (H5LTmake_dataset_string (id, "comment", mat->info->comment));
+    IO (H5LTmake_dataset_double (id, "conditioning", 1, &dim, &mat->info->conditioning));
+    IO (H5LTmake_dataset_double (id, "sparsity", 1, &dim, &mat->info->sparsity));
+    IO (H5LTmake_dataset_double (id, "determinant", 1, &dim, &mat->info->determinant));
+    IO (H5LTmake_dataset_int (id, "rank", 1, &dim, &mat->info->rank));
   }
 }
 
@@ -76,55 +79,55 @@ struct fclib_matrix* read_matrix (hid_t id)
 
   MM (mat = malloc (sizeof (struct fclib_matrix)));
  
-  IO (H5LTread_dataset_int (id, "/nzmax", &mat->nzmax));
-  IO (H5LTread_dataset_int (id, "/m", &mat->m));
-  IO (H5LTread_dataset_int (id, "/n", &mat->n));
-  IO (H5LTread_dataset_int (id, "/nz", &mat->nz));
+  IO (H5LTread_dataset_int (id, "nzmax", &mat->nzmax));
+  IO (H5LTread_dataset_int (id, "m", &mat->m));
+  IO (H5LTread_dataset_int (id, "n", &mat->n));
+  IO (H5LTread_dataset_int (id, "nz", &mat->nz));
 
   if (mat->nz >= 0) /* triplet */
   {
     MM (mat->p = malloc (sizeof (int [mat->nz])));
     MM (mat->i = malloc (sizeof (int [mat->nz])));
-    IO (H5LTread_dataset_int (id, "/p", mat->p));
-    IO (H5LTread_dataset_int (id, "/i", mat->i));
+    IO (H5LTread_dataset_int (id, "p", mat->p));
+    IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else if (mat->nz == -1) /* csc */
   {
     MM (mat->p = malloc (sizeof (int [mat->n+1])));
     MM (mat->i = malloc (sizeof (int [mat->nzmax])));
-    IO (H5LTread_dataset_int (id, "/p", mat->p));
-    IO (H5LTread_dataset_int (id, "/i", mat->i));
+    IO (H5LTread_dataset_int (id, "p", mat->p));
+    IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else if (mat->nz == -2) /* csr */
   {
     MM (mat->p = malloc (sizeof (int [mat->m+1])));
     MM (mat->i = malloc (sizeof (int [mat->nzmax])));
-    IO (H5LTread_dataset_int (id, "/p", mat->p));
-    IO (H5LTread_dataset_int (id, "/i", mat->i));
+    IO (H5LTread_dataset_int (id, "p", mat->p));
+    IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else ASSERT (0, "ERROR: unkown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
 
   MM (mat->x = malloc (sizeof (double [mat->nzmax])));
-  IO (H5LTread_dataset_double (id, "/x", mat->x));
+  IO (H5LTread_dataset_double (id, "x", mat->x));
 
-  if (H5LTfind_dataset (id, "/conditioning"))
+  if (H5LTfind_dataset (id, "conditioning"))
   {
     H5T_class_t class_id;
     hsize_t dim;
     size_t size;
 
     MM (mat->info = malloc (sizeof (struct fclib_matrix_info)));
-    if (H5LTfind_dataset (id, "/comment"))
+    if (H5LTfind_dataset (id, "comment"))
     {
-      IO (H5LTget_dataset_info  (id, "/comment", &dim, &class_id, &size));
+      IO (H5LTget_dataset_info  (id, "comment", &dim, &class_id, &size));
       MM (mat->info->comment = malloc (sizeof (char [size])));
-      IO (H5LTread_dataset_string (id, "/comment", mat->info->comment));
+      IO (H5LTread_dataset_string (id, "comment", mat->info->comment));
     }
     else mat->info->comment = NULL;
-    IO (H5LTread_dataset_double (id, "/conditioning", &mat->info->conditioning));
-    IO (H5LTread_dataset_double (id, "/sparsity", &mat->info->sparsity));
-    IO (H5LTread_dataset_double (id, "/determinant", &mat->info->determinant));
-    IO (H5LTread_dataset_int (id, "/rank", &mat->info->rank));
+    IO (H5LTread_dataset_double (id, "conditioning", &mat->info->conditioning));
+    IO (H5LTread_dataset_double (id, "sparsity", &mat->info->sparsity));
+    IO (H5LTread_dataset_double (id, "determinant", &mat->info->determinant));
+    IO (H5LTread_dataset_int (id, "rank", &mat->info->rank));
   }
 
   return mat;
@@ -137,20 +140,20 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
 
   dim = problem->M->m;
   ASSERT (problem->f, "ERROR: f must be given");
-  IO (H5LTmake_dataset_double (id, "/f", 1, &dim, problem->f));
+  IO (H5LTmake_dataset_double (id, "f", 1, &dim, problem->f));
 
   dim = problem->H->n;
-  ASSERT (problem->w && problem->mu, "ERROR: w and mu must be given if H is present");
-  IO (H5LTmake_dataset_double (id, "/w", 1, &dim, problem->w));
-  ASSERT (dim % problem->spacedim == 0, "ERROR: number of H columns not divisble by the spatial dimension");
+  ASSERT (problem->w && problem->mu, "ERROR: w and mu must be given");
+  IO (H5LTmake_dataset_double (id, "w", 1, &dim, problem->w));
+  ASSERT (dim % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
   dim /= problem->spacedim;
-  IO (H5LTmake_dataset_double (id, "/mu", 1, &dim, problem->mu));
+  IO (H5LTmake_dataset_double (id, "mu", 1, &dim, problem->mu));
 
   if (problem->G)
   {
     dim = problem->G->n;
     ASSERT (problem->b, "ERROR: b must be given if G is present");
-    IO (H5LTmake_dataset_double (id, "/b", 1, &dim, problem->b));
+    IO (H5LTmake_dataset_double (id, "b", 1, &dim, problem->b));
   }
 }
 
@@ -158,18 +161,18 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
 static void read_global_vectors (hid_t id, struct fclib_global *problem)
 {
   MM (problem->f = malloc (sizeof (double [problem->M->m])));
-  IO (H5LTread_dataset_double (id, "/f", problem->f));
+  IO (H5LTread_dataset_double (id, "f", problem->f));
 
-  ASSERT (problem->H->n % problem->spacedim == 0, "ERROR: number of H columns not divisble by the spatial dimension");
+  ASSERT (problem->H->n % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
   MM (problem->w = malloc (sizeof (double [problem->H->n])));
   MM (problem->mu = malloc (sizeof (double [problem->H->n / problem->spacedim])));
-  IO (H5LTread_dataset_double (id, "/w", problem->w));
-  IO (H5LTread_dataset_double (id, "/mu", problem->mu));
+  IO (H5LTread_dataset_double (id, "w", problem->w));
+  IO (H5LTread_dataset_double (id, "mu", problem->mu));
 
   if (problem->G)
   {
     MM (problem->b = malloc (sizeof (double [problem->G->n])));
-    IO (H5LTread_dataset_double (id, "/b", problem->b));
+    IO (H5LTread_dataset_double (id, "b", problem->b));
   }
 }
 
@@ -180,17 +183,17 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
 
   dim = problem->W->m;
   ASSERT (problem->q, "ERROR: q must be given");
-  IO (H5LTmake_dataset_double (id, "/a", 1, &dim, problem->q));
+  IO (H5LTmake_dataset_double (id, "q", 1, &dim, problem->q));
 
-  ASSERT (dim % problem->spacedim == 0, "ERROR: number of W rows not divisble by the spatial dimension");
+  ASSERT (dim % problem->spacedim == 0, "ERROR: number of W rows is not divisble by the spatial dimension");
   dim /= problem->spacedim;
-  IO (H5LTmake_dataset_double (id, "/mu", 1, &dim, problem->mu));
+  IO (H5LTmake_dataset_double (id, "mu", 1, &dim, problem->mu));
 
   if (problem->V)
   {
     dim = problem->R->m;
     ASSERT (problem->s, "ERROR: s must be given if R is present");
-    IO (H5LTmake_dataset_double (id, "/s", 1, &dim, problem->s));
+    IO (H5LTmake_dataset_double (id, "s", 1, &dim, problem->s));
   }
 }
 
@@ -198,25 +201,25 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
 static void read_local_vectors (hid_t id, struct fclib_local *problem)
 {
   MM (problem->q = malloc (sizeof (double [problem->W->m])));
-  IO (H5LTread_dataset_double (id, "/q", problem->q));
+  IO (H5LTread_dataset_double (id, "q", problem->q));
 
-  ASSERT (problem->W->m % problem->spacedim == 0, "ERROR: number of W rows not divisble by the spatial dimension");
+  ASSERT (problem->W->m % problem->spacedim == 0, "ERROR: number of W rows is not divisble by the spatial dimension");
   MM (problem->mu = malloc (sizeof (double [problem->W->m / problem->spacedim])));
-  IO (H5LTread_dataset_double (id, "/mu", problem->mu));
+  IO (H5LTread_dataset_double (id, "mu", problem->mu));
 
   if (problem->R)
   {
     MM (problem->s = malloc (sizeof (double [problem->R->m])));
-    IO (H5LTread_dataset_double (id, "/s", problem->s));
+    IO (H5LTread_dataset_double (id, "s", problem->s));
   }
 }
 
 /* write problem info */
 static void write_problem_info (hid_t id, struct fclib_info *info)
 {
-  if (info->title) IO (H5LTmake_dataset_string (id, "/title", info->title));
-  if (info->description) IO (H5LTmake_dataset_string (id, "/description", info->description));
-  if (info->math_info) IO (H5LTmake_dataset_string (id, "/math_info", info->math_info));
+  if (info->title) IO (H5LTmake_dataset_string (id, "title", info->title));
+  if (info->description) IO (H5LTmake_dataset_string (id, "description", info->description));
+  if (info->math_info) IO (H5LTmake_dataset_string (id, "math_info", info->math_info));
 }
 
 /* read problem info */
@@ -229,27 +232,27 @@ static struct fclib_info* read_problem_info (hid_t id)
 
   MM (info = malloc (sizeof (struct fclib_info)));
 
-  if (H5LTfind_dataset (id, "/title"))
+  if (H5LTfind_dataset (id, "title"))
   {
-    IO (H5LTget_dataset_info  (id, "/title", &dim, &class_id, &size));
+    IO (H5LTget_dataset_info  (id, "title", &dim, &class_id, &size));
     MM (info->title = malloc (sizeof (char [size])));
-    IO (H5LTread_dataset_string (id, "/title", info->title));
+    IO (H5LTread_dataset_string (id, "title", info->title));
   }
   else info->title = NULL;
 
-  if (H5LTfind_dataset (id, "/description"))
+  if (H5LTfind_dataset (id, "description"))
   {
-    IO (H5LTget_dataset_info  (id, "/description", &dim, &class_id, &size));
+    IO (H5LTget_dataset_info  (id, "description", &dim, &class_id, &size));
     MM (info->description = malloc (sizeof (char [size])));
-    IO (H5LTread_dataset_string (id, "/description", info->description));
+    IO (H5LTread_dataset_string (id, "description", info->description));
   }
   else info->description = NULL;
 
-  if (H5LTfind_dataset (id, "/math_info"))
+  if (H5LTfind_dataset (id, "math_info"))
   {
-    IO (H5LTget_dataset_info  (id, "/math_info", &dim, &class_id, &size));
+    IO (H5LTget_dataset_info  (id, "math_info", &dim, &class_id, &size));
     MM (info->math_info = malloc (sizeof (char [size])));
-    IO (H5LTread_dataset_string (id, "/math_info", info->math_info));
+    IO (H5LTread_dataset_string (id, "math_info", info->math_info));
   }
   else info->math_info = NULL;
 
@@ -257,66 +260,58 @@ static struct fclib_info* read_problem_info (hid_t id)
 }
 
 /* write solution */
-static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t nv, hsize_t nu, hsize_t nr, hsize_t nl)
+static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t nv, hsize_t nr, hsize_t nl)
 {
-  if (nv) IO (H5LTmake_dataset_double (id, "/v", 1, &nv, solution->v));
-  if (nu) IO (H5LTmake_dataset_double (id, "/u", 1, &nu, solution->u));
-  if (nr) IO (H5LTmake_dataset_double (id, "/r", 1, &nr, solution->r));
-  if (nl) IO (H5LTmake_dataset_double (id, "/l", 1, &nl, solution->l));
+  if (nv) IO (H5LTmake_dataset_double (id, "v", 1, &nv, solution->v));
+  if (nl) IO (H5LTmake_dataset_double (id, "l", 1, &nl, solution->l));
+
+  ASSERT (nr, "ERROR: contact constraints must be present");
+  IO (H5LTmake_dataset_double (id, "u", 1, &nr, solution->u));
+  IO (H5LTmake_dataset_double (id, "r", 1, &nr, solution->r));
 }
 
 /* read solution */
-static void read_solution (hid_t id, hsize_t nv, hsize_t nu, hsize_t nr, hsize_t nl, struct fclib_solution *solution)
+static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct fclib_solution *solution)
 {
   if (nv)
   {
     MM (solution->v = malloc (sizeof (double [nv])));
-    IO (H5LTread_dataset_double (id, "/v", solution->v));
+    IO (H5LTread_dataset_double (id, "v", solution->v));
   }
-
-  if (nu)
-  {
-    MM (solution->u = malloc (sizeof (double [nu])));
-    IO (H5LTread_dataset_double (id, "/u", solution->u));
-  }
-
-  if (nr)
-  {
-    MM (solution->r = malloc (sizeof (double [nr])));
-    IO (H5LTread_dataset_double (id, "/r", solution->r));
-  }
+  else solution->v = NULL;
 
   if (nl)
   {
     MM (solution->l = malloc (sizeof (double [nl])));
-    IO (H5LTread_dataset_double (id, "/l", solution->l));
+    IO (H5LTread_dataset_double (id, "l", solution->l));
   }
+  else solution->l = NULL;
+
+  ASSERT (nr, "ERROR: contact constraints must be present");
+  MM (solution->u = malloc (sizeof (double [nr])));
+  IO (H5LTread_dataset_double (id, "u", solution->u));
+  MM (solution->r = malloc (sizeof (double [nr])));
+  IO (H5LTread_dataset_double (id, "r", solution->r));
 }
 
 /* read solution sizes */
-static int read_nvnunrnl (hid_t file_id, int *nv, int *nu, int *nr, int *nl)
+static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
 {
-  hid_t id;
-
-  if ((id = H5Gopen (file_id, "/fclib_global", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/fclib_global", H5P_DEFAULT))
   {
     IO (H5LTread_dataset_int (file_id, "/fclib_global/M/n", nv));
-    IO (H5LTread_dataset_int (file_id, "/fclib_global/H/n", nu));
-    IO (H5LTread_dataset_int (file_id, "/fclib_global/H/m", nr));
-    IO (H5Gclose (id));
-    if ((id = H5Gopen (file_id, "/fclib_global/G", H5P_DEFAULT)) >= 0)
+    IO (H5LTread_dataset_int (file_id, "/fclib_global/H/n", nr));
+    if (H5Lexists (file_id, "/fclib_global/G", H5P_DEFAULT))
     {
       IO (H5LTread_dataset_int (file_id, "/fclib_global/G/n", nl));
     }
     else *nl = 0;
   }
-  else if ((id = H5Gopen (file_id, "/fclib_local", H5P_DEFAULT)) >= 0)
+  else if (H5Lexists (file_id, "/fclib_local", H5P_DEFAULT))
   {
     *nv = 0;
-    IO (H5LTread_dataset_int (file_id, "/fclib_local/W/m", nu));
     IO (H5LTread_dataset_int (file_id, "/fclib_local/W/n", nr));
-    IO (H5Gclose (id));
-    if ((id = H5Gopen (file_id, "/fclib_local/R", H5P_DEFAULT)) >= 0)
+    if (H5Lexists (file_id, "/fclib_local/R", H5P_DEFAULT))
     {
       IO (H5LTread_dataset_int (file_id, "/fclib_local/R/n", nl));
     }
@@ -324,7 +319,7 @@ static int read_nvnunrnl (hid_t file_id, int *nv, int *nu, int *nr, int *nl)
   }
   else
   {
-    fprintf (stderr, "ERROR: neither global nor local problem has been stored");
+    fprintf (stderr, "ERROR: neither global nor local problem has been stored\n");
     return 0;
   }
 
@@ -373,14 +368,27 @@ int fclib_write_global (struct fclib_global *problem, const char *path)
 {
   hid_t  file_id, main_id, id;
   hsize_t dim = 1;
+  FILE *f;
 
-  if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)  /* overwrite */
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
   {
-    if ((file_id = H5Fcreate (path, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)) < 0) /* cerate */
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
     {
-      fprintf (stderr, "ERROR: creating file failed");
+      fprintf (stderr, "ERROR: opening file failed\n");
       return 0;
     }
+    
+    if (H5Lexists (file_id, "/fclib_global", H5P_DEFAULT)) /* cannot overwrite existing datasets */
+    {
+      fprintf (stderr, "ERROR: a global problem has already been written to this file\n");
+      return 0;
+    }
+  }
+  else if ((file_id = H5Fcreate (path, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)) < 0) /* cerate */
+  {
+    fprintf (stderr, "ERROR: creating file failed\n");
+    return 0;
   }
 
   IO (main_id = H5Gmake (file_id, "/fclib_global"));
@@ -416,7 +424,7 @@ int fclib_write_global (struct fclib_global *problem, const char *path)
     IO (H5Gclose (id));
   }
 
-  IO (H5Fclose (main_id));
+  IO (H5Gclose (main_id));
   IO (H5Fclose (file_id));
 
   return 1;
@@ -428,14 +436,27 @@ int fclib_write_local (struct fclib_local *problem, const char *path)
 {
   hid_t  file_id, main_id, id;
   hsize_t dim = 1;
+  FILE *f;
 
-  if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)  /* overwrite */
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
   {
-    if ((file_id = H5Fcreate (path, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)) < 0) /* cerate */
-    { 
-      fprintf (stderr, "ERROR: creating file failed");
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
+    {
+      fprintf (stderr, "ERROR: opening file failed\n");
       return 0;
     }
+    
+    if (H5Lexists (file_id, "/fclib_local", H5P_DEFAULT)) /* cannot overwrite existing datasets */
+    {
+      fprintf (stderr, "ERROR: a local problem has already been written to this file\n");
+      return 0;
+    }
+  }
+  else if ((file_id = H5Fcreate (path, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)) < 0) /* cerate */
+  {
+    fprintf (stderr, "ERROR: creating file failed\n");
+    return 0;
   }
 
   IO (main_id = H5Gmake (file_id, "/fclib_local"));
@@ -471,7 +492,7 @@ int fclib_write_local (struct fclib_local *problem, const char *path)
     IO (H5Gclose (id));
   }
 
-  IO (H5Fclose (main_id));
+  IO (H5Gclose (main_id));
   IO (H5Fclose (file_id));
 
   return 1;
@@ -482,18 +503,34 @@ int fclib_write_local (struct fclib_local *problem, const char *path)
 int fclib_write_solution (struct fclib_solution *solution, const char *path)
 {
   hid_t  file_id, id;
-  int nv, nu, nr, nl;
+  int nv, nr, nl;
+  FILE *f;
 
-  if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)  /* overwrite */
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
   {
-    fprintf (stderr, "ERROR: opening file failed");
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
+    {
+      fprintf (stderr, "ERROR: opening file failed\n");
+      return 0;
+    }
+    
+    if (H5Lexists (file_id, "/solution", H5P_DEFAULT)) /* cannot overwrite existing datasets */
+    {
+      fprintf (stderr, "ERROR: a solution has already been written to this file\n");
+      return 0;
+    }
+  }
+  else
+  {
+    fprintf (stderr, "ERROR: opening file failed\n");
     return 0;
   }
 
-  if (! read_nvnunrnl (file_id, &nv, &nu, &nr, &nl)) return 0;
+  if (! read_nvnunrnl (file_id, &nv, &nr, &nl)) return 0;
 
   IO (id = H5Gmake (file_id, "/solution"));
-  write_solution (id, solution, nv, nu, nr, nl);
+  write_solution (id, solution, nv, nr, nl);
   IO (H5Gclose (id));
 
   IO (H5Fclose (file_id));
@@ -506,17 +543,33 @@ int fclib_write_solution (struct fclib_solution *solution, const char *path)
 int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path)
 {
   hid_t  file_id, main_id, id;
-  int nv, nu, nr, nl, i;
+  int nv, nr, nl, i;
   hsize_t dim = 1;
   char num [128];
+  FILE *f;
 
-  if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)  /* overwrite */
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
   {
-    fprintf (stderr, "ERROR: opening file failed");
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
+    {
+      fprintf (stderr, "ERROR: opening file failed\n");
+      return 0;
+    }
+    
+    if (H5Lexists (file_id, "/guesses", H5P_DEFAULT)) /* cannot overwrite existing datasets */
+    {
+      fprintf (stderr, "ERROR: some guesses have already been written to this file\n");
+      return 0;
+    }
+  }
+  else
+  {
+    fprintf (stderr, "ERROR: opening file failed\n");
     return 0;
   }
 
-  if (! read_nvnunrnl (file_id, &nv, &nu, &nr, &nl)) return 0;
+  if (! read_nvnunrnl (file_id, &nv, &nr, &nl)) return 0;
 
   IO (main_id = H5Gmake (file_id, "/guesses"));
   IO (H5LTmake_dataset_int (file_id, "/guesses/number_of_guesses", 1, &dim, &number_of_guesses));
@@ -525,7 +578,7 @@ int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses,
   {
     snprintf (num, 128, "/%d", i+1);
     IO (id = H5Gmake (file_id, num));
-    write_solution (id, &guesses [i], nv, nu, nr, nl);
+    write_solution (id, &guesses [i], nv, nr, nl);
     IO (H5Gclose (id));
   }
 
@@ -544,7 +597,7 @@ struct fclib_global* fclib_read_global (const char *path)
 
   if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)
   {
-    fprintf (stderr, "ERROR: opening file failed");
+    fprintf (stderr, "ERROR: opening file failed\n");
     return NULL;
   }
 
@@ -561,8 +614,9 @@ struct fclib_global* fclib_read_global (const char *path)
   problem->H = read_matrix (id);
   IO (H5Gclose (id));
 
-  if ((id = H5Gopen (file_id, "/fclib_global/G", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/fclib_global/G", H5P_DEFAULT))
   {
+    IO (id = H5Gopen (file_id, "/fclib_global/G", H5P_DEFAULT));
     problem->G = read_matrix (id);
     IO (H5Gclose (id));
   }
@@ -571,13 +625,14 @@ struct fclib_global* fclib_read_global (const char *path)
   read_global_vectors (id, problem);
   IO (H5Gclose (id));
 
-  if ((id = H5Gopen (file_id, "/fclib_global/info", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/fclib_global/info", H5P_DEFAULT))
   {
+    IO (id = H5Gopen (file_id, "/fclib_global/info", H5P_DEFAULT));
     problem->info = read_problem_info (id);
     IO (H5Gclose (id));
   }
 
-  IO (H5Fclose (main_id));
+  IO (H5Gclose (main_id));
   IO (H5Fclose (file_id));
 
   return problem;
@@ -592,7 +647,7 @@ struct fclib_local* fclib_read_local (const char *path)
 
   if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)
   {
-    fprintf (stderr, "ERROR: creating file failed");
+    fprintf (stderr, "ERROR: creating file failed\n");
     return 0;
   }
 
@@ -605,8 +660,9 @@ struct fclib_local* fclib_read_local (const char *path)
   problem->W = read_matrix (id);
   IO (H5Gclose (id));
 
-  if ((id = H5Gopen (file_id, "/fclib_local/V", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/fclib_local/V", H5P_DEFAULT))
   {
+    IO (id = H5Gopen (file_id, "/fclib_local/V", H5P_DEFAULT));
     problem->V = read_matrix (id);
     IO (H5Gclose (id));
 
@@ -619,13 +675,14 @@ struct fclib_local* fclib_read_local (const char *path)
   read_local_vectors (id, problem);
   IO (H5Gclose (id));
 
-  if ((id = H5Gopen (file_id, "/fclib_local/info", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/fclib_local/info", H5P_DEFAULT))
   {
+    IO (id = H5Gopen (file_id, "/fclib_local/info", H5P_DEFAULT));
     problem->info = read_problem_info (id);
     IO (H5Gclose (id));
   }
 
-  IO (H5Fclose (main_id));
+  IO (H5Gclose (main_id));
   IO (H5Fclose (file_id));
 
   return problem;
@@ -637,20 +694,20 @@ struct fclib_solution* fclib_read_solution (const char *path)
 {
   struct fclib_solution *solution;
   hid_t  file_id, id;
-  int nv, nu, nr, nl;
+  int nv, nr, nl;
 
   if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)  /* overwrite */
   {
-    fprintf (stderr, "ERROR: opening file failed");
+    fprintf (stderr, "ERROR: opening file failed\n");
     return 0;
   }
 
   MM (solution = malloc (sizeof (struct fclib_solution)));
 
-  if (! read_nvnunrnl (file_id, &nv, &nu, &nr, &nl)) return 0;
+  if (! read_nvnunrnl (file_id, &nv, &nr, &nl)) return 0;
 
   IO (id = H5Gopen (file_id, "/solution", H5P_DEFAULT));
-  read_solution (id, nv, nu, nr, nl, solution);
+  read_solution (id, nv, nr, nl, solution);
   IO (H5Gclose (id));
 
   IO (H5Fclose (file_id));
@@ -665,19 +722,21 @@ struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_gues
 {
   struct fclib_solution *guesses;
   hid_t  file_id, main_id, id;
-  int nv, nu, nr, nl, i;
+  int nv, nr, nl, i;
   char num [128];
 
   if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)  /* overwrite */
   {
-    fprintf (stderr, "ERROR: opening file failed");
+    fprintf (stderr, "ERROR: opening file failed\n");
     return 0;
   }
 
-  if (! read_nvnunrnl (file_id, &nv, &nu, &nr, &nl)) return 0;
+  if (! read_nvnunrnl (file_id, &nv, &nr, &nl)) return 0;
 
-  if ((main_id = H5Gopen (file_id, "/guesses", H5P_DEFAULT)) >= 0)
+  if (H5Lexists (file_id, "/guesses", H5P_DEFAULT))
   {
+    IO (main_id = H5Gopen (file_id, "/guesses", H5P_DEFAULT));
+
     IO (H5LTread_dataset_int (file_id, "/guesses/number_of_guesses", number_of_guesses));
 
     MM (guesses = malloc ((*number_of_guesses) * sizeof (struct fclib_solution)));
@@ -686,7 +745,7 @@ struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_gues
     {
       snprintf (num, 128, "/%d", i+1);
       IO (id = H5Gopen (file_id, num, H5P_DEFAULT));
-      read_solution (id, nv, nu, nr, nl, &guesses [i]);
+      read_solution (id, nv, nr, nl, &guesses [i]);
       IO (H5Gclose (id));
     }
 
@@ -724,7 +783,7 @@ void fclib_delete_local (struct fclib_local *problem)
 }
 
 /* delete solutions or guesses */
-void fclib_delete_solution (struct fclib_solution *data, int count)
+void fclib_delete_solutions (struct fclib_solution *data, int count)
 {
   int i;
 

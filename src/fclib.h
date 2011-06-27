@@ -118,6 +118,6 @@ void fclib_delete_global (struct fclib_global *problem);
 void fclib_delete_local (struct fclib_local *problem);
 
 /* delete solutions or guesses */
-void fclib_delete_solution (struct fclib_solution *data, int count);
+void fclib_delete_solutions (struct fclib_solution *data, int count);
 
 #endif /* _fclib_h_ */
