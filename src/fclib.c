@@ -581,8 +581,8 @@ int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses,
 
   for (i = 0; i < number_of_guesses; i ++)
   {
-    snprintf (num, 128, "/%d", i+1);
-    IO (id = H5Gmake (file_id, num));
+    snprintf (num, 128, "%d", i+1);
+    IO (id = H5Gmake (main_id, num));
     write_solution (id, &guesses [i], nv, nr, nl);
     IO (H5Gclose (id));
   }
@@ -748,8 +748,8 @@ struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_gues
 
     for (i = 0; i < *number_of_guesses; i ++)
     {
-      snprintf (num, 128, "/%d", i+1);
-      IO (id = H5Gopen (file_id, num, H5P_DEFAULT));
+      snprintf (num, 128, "%d", i+1);
+      IO (id = H5Gopen (main_id, num, H5P_DEFAULT));
       read_solution (id, nv, nr, nl, &guesses [i]);
       IO (H5Gclose (id));
     }
