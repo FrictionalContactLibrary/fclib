@@ -18,7 +18,6 @@ struct fclib_matrix_info  /* matrix information */
 {
   char *comment;
   double conditioning;
-  double sparsity;
   double determinant;
   int rank;
 };

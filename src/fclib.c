@@ -71,7 +71,6 @@ static void write_matrix (hid_t id, struct fclib_matrix *mat)
     dim = 1;
     if (mat->info->comment) IO (H5LTmake_dataset_string (id, "comment", mat->info->comment));
     IO (H5LTmake_dataset_double (id, "conditioning", 1, &dim, &mat->info->conditioning));
-    IO (H5LTmake_dataset_double (id, "sparsity", 1, &dim, &mat->info->sparsity));
     IO (H5LTmake_dataset_double (id, "determinant", 1, &dim, &mat->info->determinant));
     IO (H5LTmake_dataset_int (id, "rank", 1, &dim, &mat->info->rank));
   }
@@ -130,7 +129,6 @@ struct fclib_matrix* read_matrix (hid_t id)
     }
     else mat->info->comment = NULL;
     IO (H5LTread_dataset_double (id, "conditioning", &mat->info->conditioning));
-    IO (H5LTread_dataset_double (id, "sparsity", &mat->info->sparsity));
     IO (H5LTread_dataset_double (id, "determinant", &mat->info->determinant));
     IO (H5LTread_dataset_int (id, "rank", &mat->info->rank));
   }

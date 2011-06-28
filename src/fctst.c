@@ -20,7 +20,6 @@ static struct fclib_matrix_info* matrix_info (struct fclib_matrix *mat, char *co
   MM (info->comment = malloc (strlen (comment) + 1));
   strcpy (info->comment, comment);
   info->conditioning = rand ();
-  info->sparsity = (double) mat->nzmax / (double) (mat->m * mat->n);
   info->determinant = rand ();
   info->rank = mat->m;
 
@@ -195,7 +194,6 @@ static int compare_matrix_infos (struct fclib_matrix_info *a, struct fclib_matri
   else if ((a && !b) || (!a && b)) return 0;
   else if (strcmp (a->comment, b->comment) != 0 ||
       a->conditioning != b->conditioning ||
-      a->sparsity != b->sparsity ||
       a->determinant != b->determinant ||
       a->rank != b->rank) return 0;
 
