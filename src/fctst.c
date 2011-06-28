@@ -416,10 +416,10 @@ int main (int argc, char **argv)
       ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
       for (i = 0; i < n; i ++)
       {
-	ASSERT (compare_solutions (guesses+i, g+i, p->M->n, p->H->n, (p->G ? p->G->n : 0)), "ERROR: written/read guess comparison failed");
+        ASSERT (compare_solutions (guesses+i, g+i, p->M->n, p->H->n, (p->G ? p->G->n : 0)), "ERROR: written/read guess comparison failed");
       }
 
-      printf ("All comparions PASSED\n");
+      printf ("All comparisons PASSED\n");
     
       fclib_delete_global (p);
       fclib_delete_solutions (s, 1);
@@ -459,7 +459,7 @@ int main (int argc, char **argv)
       ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
       for (i = 0; i < n; i ++)
       {
-	ASSERT (compare_solutions (guesses+i, g+i, 0, p->W->n, (p->R ? p->R->n : 0)), "ERROR: written/read guess comparison failed");
+        ASSERT (compare_solutions (guesses+i, g+i, 0, p->W->n, (p->R ? p->R->n : 0)), "ERROR: written/read guess comparison failed");
       }
 
       printf ("All comparions PASSED\n");

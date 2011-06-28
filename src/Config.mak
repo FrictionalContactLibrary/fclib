@@ -16,3 +16,11 @@ DEBUG = yes
 
 HDF5INC = -I/opt/local/include
 HDF5LIB = -L/opt/local/lib -lhdf5 -lhdf5_hl
+
+
+#
+# MPI includes may be needed
+#
+
+MPIINC = -I/usr/lib/openmpi/include
+

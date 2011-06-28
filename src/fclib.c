@@ -4,6 +4,10 @@
  * frictional contact library input/output
  */
 
+/* choose api version */
+#define H5Gcreate_vers 2
+#define H5Gopen_vers 2
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,6 +15,7 @@
 #include <hdf5_hl.h>
 #include "fclib.h"
 #include "fcint.h"
+
 
 /* make grourp */
 static hid_t H5Gmake (hid_t loc_id, const char *name)

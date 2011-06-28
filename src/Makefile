@@ -6,9 +6,9 @@ else
   DEBUG =  -w -O
 endif
 
-CFLAGS = $(STD) $(DEBUG) $(HDF5INC)
+CFLAGS = $(STD) $(DEBUG) $(HDF5INC) $(MPIINC)
 
-LIB = $(HDF5LIB)
+LIB = $(HDF5LIB) $(MPILIB)
 
 OBJ =  fclib.o \
        fcmer.o \
@@ -33,3 +33,6 @@ fclib.o: fclib.c fclib.h
 
 fcmer.o: fcmer.c fclib.h
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+test:
+	./fctst
