@@ -36,7 +36,6 @@ macro(install_package _PACK _LIB_NAME _HEADERSLIST)
   # The headers and modules
   install(FILES ${_HEADERS} DESTINATION "${INSTALL_INCLUDE_DIR}")
   
-  install(DIRECTORY ${CMAKE_BINARY_DIR}/Modules DESTINATION "${INSTALL_INCLUDE_DIR}")
   
   export(TARGETS ${_LIB_NAME} FILE "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}LibraryDepends.cmake")
   
