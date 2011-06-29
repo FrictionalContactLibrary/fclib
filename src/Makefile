@@ -13,7 +13,7 @@ LIB = $(HDF5LIB) $(MPILIB)
 OBJ =  fclib.o \
        fcmer.o \
 
-fctst: fctst.o libfclib.a
+./tests/fctst: ./tests/fctst.o libfclib.a
 	$(CC) $(PROFILE) -o $@ $< -L. -lfclib $(LIB)
 
 libfclib.a: $(OBJ)
@@ -21,12 +21,13 @@ libfclib.a: $(OBJ)
 	ranlib $@ 
 
 clean:
-	rm -f fctst
+	rm -f ./tests/fctst
+	rm -f ./tests/*.o
 	rm -f *.o
 	rm -f *.a
 
-fctst.o: fctst.c 
-	$(CC) $(CFLAGS) -c -o $@ $<
+./tests/fctst.o: ./tests/fctst.c 
+	$(CC) $(CFLAGS) -I. -c -o $@ $<
 
 fclib.o: fclib.c fclib.h
 	$(CC) $(CFLAGS) -c -o $@ $<
