@@ -1,0 +1,19 @@
+To compile and install fclib : 
+
+
+cd SOME_BUILD_DIR
+cmake path_to_fclib -DCMAKE_INSTALL_PREFIX=where_to_install_fclib
+make
+make install
+
+
+default value for where_to_install_fclib is /usr/local.
+
+If hdf5 is not in a standard place, just set var HDF5_ROOT before running cmake. 
+For example: 
+export HDF5_ROOT=/home/install/hdf5
+
+
+To run tests :
+
+make test
