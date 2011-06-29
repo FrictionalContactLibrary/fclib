@@ -17,21 +17,21 @@ include(MyTools)
 
 # User defined options
 option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = on" ON)
-option(USE_MPI "compile and link parmes with mpi when this mode is enable. Default = on." OFF)
+option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = on." OFF)
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
 option(WITH_TESTS "Enable testing. Default = on" ON)
 
 # cmake project name
 set(PROJECT_NAME fclib)
 # --- Name for the package ---
-# This name will be used to install Parmes (library, headers, ...) and when another lib or soft will need to search for Parmes.
+# This name will be used to install FCLib (library, headers, ...) and when another lib or soft will need to search for FCLib.
 set(PACKAGE_NAME "FCLib")
 # --- Set a version number for the package ---
 set(${PACKAGE_NAME}_version 1.0.0)
 # --- The name (without extension) of the lib to be created ---
 set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
-# The list of all dirs containing sources to be compiled for the Parmes lib
-# Any file in those dirs will be used to create libparmes
+# The list of all dirs containing sources to be compiled for the fclib lib
+# Any file in those dirs will be used to create libfclib
 set(${PROJECT_LIBRARY_NAME}_SRCDIRS 
   src
   )
@@ -133,8 +133,8 @@ endif(WITH_TESTS)
 # The library, the headers and mod files, the cmake generated files
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
 include(InstallPackage)
-
-install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${${PROJECT_NAME}_HDRS})
+display(${PROJECT_LIBRARY_NAME}_HDRS)
+install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_HDRS)
 
 # ============= RPATH =============
 # Concerning rpath see for example http://www.itk.org/Wiki/CMake_RPATH_handling
