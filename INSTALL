@@ -17,3 +17,17 @@ export HDF5_ROOT=/home/install/hdf5
 To run tests :
 
 make test
+
+
+To use FCLib from another project:
+
+add in CMakeLists.txt of the project:
+
+  find_package(FCLib 1.2 REQUIRED)
+  include_directories(${FCLib_INCLUDE_DIRS})
+  set(LIBS ${LIBS} ${FCLib_LIBRARY})
+
+and run cmake like this:
+
+cmake ... -DFCLib_DIR=where_you_install_fclib/share/CMake/
+
