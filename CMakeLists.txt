@@ -68,8 +68,8 @@ endif(WITH_TESTS)
 # ============= Search for libraries  =============
 # set the compile/link conf (-I and -L opt)
 
-# --- Boost ---
-find_package(HDF5 REQUIRED)
+# --- hdf5 ---
+find_package(HDF5 REQUIRED COMPONENTS HL)
 set(HDF5_INCLUDE_DIRS "/opt/local/include/")
 include_directories(${HDF5_INCLUDE_DIRS})
 
