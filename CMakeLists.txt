@@ -134,11 +134,14 @@ endif()
 # Libs to link with PROJECT__LIBRARY_NAME
 target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
 
+
+
 # ============== Add tests ==============
 if(WITH_TESTS)
+  #  SET(TEST_WRAP)
   message(STATUS "Enable testing ...")
-  begin_test(src/tests/)
-  new_test(test fctst.c)
+  begin_test(src/tests)
+  new_test(fctest1 fctst.c)
   end_test()
 endif(WITH_TESTS)
 

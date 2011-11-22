@@ -472,7 +472,7 @@ int main (int argc, char **argv)
     fclib_delete_solutions (guesses, numguess);
   }
 
-  /* remove ("output_file.hdf5"); */
+   remove ("output_file.hdf5"); 
 
   return 0;
 }
