@@ -15,6 +15,10 @@ include(OutOfSourceBuild)
 # Some usefull macros
 include(MyTools)
 
+IF(APPLE)
+SET (CMAKE_OSX_ARCHITECTURES "i386;x86_64" )
+ENDIF(APPLE)
+
 # User defined options
 option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = on" ON)
 option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = on." OFF)
@@ -47,6 +51,14 @@ set(EXTS_HDRS *.hpp *.h)
 #   - ${PROJECT_NAME}_SOURCE_DIR : where sources (.f and .h and this CMakeLists.txt) are located
 # Note that because of OutOfSourceBuild, binary_dir and source_dir must be different. 
 project(${PROJECT_NAME} C)
+# ============= Doc and website =============
+# Doxygen documentation
+IF(WITH_DOCUMENTATION)
+  INCLUDE(FCLIBDoc)
+ENDIF(WITH_DOCUMENTATION)
+
+
+
 
 # ============= Tests =============
 if(WITH_TESTS)
@@ -58,8 +70,11 @@ endif(WITH_TESTS)
 
 # --- Boost ---
 find_package(HDF5 REQUIRED)
+set(HDF5_INCLUDE_DIRS "/opt/local/include/")
 include_directories(${HDF5_INCLUDE_DIRS})
+
 set(LIBS ${LIBS} ${HDF5_LIBRARIES})
+display(HDF5_INCLUDE_DIRS)
 
 # --- MPI ---
 if(USE_MPI)

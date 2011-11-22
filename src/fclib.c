@@ -322,7 +322,7 @@ static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
   }
   else
   {
-    fprintf (stderr, "ERROR: neither global nor local problem has been stored\n");
+    fprintf (stderr, "ERROR: neither global nor local problem has been stored. Global or local have to be stored before solutions or guesses\n");
     return 0;
   }
 
