@@ -1,9 +1,29 @@
-/** \mainpage FCLIB Documentation
+/** \mainpage Introduction
 
-\section fclibIntro Introduction
+\section whatis What is FCLIB ?
 
-\ref software
+FCLIB is 
+<ul>
+<li> A open source collection of Frictional Contact (FC) problems stored in a specific HDF5 format </li>
+<li> A open source light implementation of Input/Output functions in C Language to read and write problems </li>
+</ul>
 
+\section goals Goals of the project
+
+The goal of this work is to set up a collection of 2D and 3D Frictional Contact (FC) problems in order to
+
+<ul>
+<li> set up a list of benchmarks </li>
+<li> provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems </li>
+<li> share common formulations of problems in order to exchnage data</li>
+</ul>
+ 
+
+\section howtodownload How to download  ?
+
+see \ref download section
+
+\section What is a Frictional contact problem ?
 
 
 */
