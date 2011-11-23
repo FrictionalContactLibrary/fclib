@@ -1,4 +1,8 @@
 * FCLIB TO DO LIST  						      :FCLIB:
+* TODO ask for ftp site ? 
+* Add first problems in the collection
+** TODO add siconos Numerics test collection in fclib
+   DEADLINE: <2011-11-30 Wed>
 * General Development Tasks
 ** TODO Implement the merit function
    DEADLINE: <2011-12-23 Fri>
