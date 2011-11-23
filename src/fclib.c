@@ -15,8 +15,7 @@
  *
  * Contact: fclib-project@lists.gforge.inria.fr   
  */
-/* 
- * fclib.c
+/*!\file fclib.c
  * ----------------------------------------------
  * frictional contact library input/output
  */
@@ -34,7 +33,7 @@
 #include "fcint.h"
 
 
-/* make grourp */
+/** make grourp */
 static hid_t H5Gmake (hid_t loc_id, const char *name)
 {
   hid_t id;
@@ -48,7 +47,7 @@ static hid_t H5Gmake (hid_t loc_id, const char *name)
   return id;
 }
 
-/* write matrix */
+/** write matrix */
 static void write_matrix (hid_t id, struct fclib_matrix *mat)
 {
   hsize_t dim = 1;
@@ -93,7 +92,7 @@ static void write_matrix (hid_t id, struct fclib_matrix *mat)
   }
 }
 
-/* read matrix */
+/** read matrix */
 struct fclib_matrix* read_matrix (hid_t id)
 {
   struct fclib_matrix *mat;
@@ -153,7 +152,7 @@ struct fclib_matrix* read_matrix (hid_t id)
   return mat;
 }
 
-/* write global vectors */
+/** write global vectors */
 static void write_global_vectors (hid_t id, struct fclib_global *problem)
 {
   hsize_t dim;
@@ -177,7 +176,7 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
   }
 }
 
-/* read global vectors */
+/** read global vectors */
 static void read_global_vectors (hid_t id, struct fclib_global *problem)
 {
   MM (problem->f = malloc (sizeof (double [problem->M->m])));
@@ -196,7 +195,7 @@ static void read_global_vectors (hid_t id, struct fclib_global *problem)
   }
 }
 
-/* write local vectors */
+/** write local vectors */
 static void write_local_vectors (hid_t id, struct fclib_local *problem)
 {
   hsize_t dim;
@@ -217,7 +216,7 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
   }
 }
 
-/* read local vectors */
+/** read local vectors */
 static void read_local_vectors (hid_t id, struct fclib_local *problem)
 {
   MM (problem->q = malloc (sizeof (double [problem->W->m])));
@@ -234,7 +233,7 @@ static void read_local_vectors (hid_t id, struct fclib_local *problem)
   }
 }
 
-/* write problem info */
+/** write problem info */
 static void write_problem_info (hid_t id, struct fclib_info *info)
 {
   if (info->title) IO (H5LTmake_dataset_string (id, "title", info->title));
@@ -242,7 +241,7 @@ static void write_problem_info (hid_t id, struct fclib_info *info)
   if (info->math_info) IO (H5LTmake_dataset_string (id, "math_info", info->math_info));
 }
 
-/* read problem info */
+/** read problem info */
 static struct fclib_info* read_problem_info (hid_t id)
 {
   struct fclib_info *info;
@@ -279,7 +278,7 @@ static struct fclib_info* read_problem_info (hid_t id)
   return info;
 }
 
-/* write solution */
+/** write solution */
 static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t nv, hsize_t nr, hsize_t nl)
 {
   if (nv) IO (H5LTmake_dataset_double (id, "v", 1, &nv, solution->v));
@@ -290,7 +289,7 @@ static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t n
   IO (H5LTmake_dataset_double (id, "r", 1, &nr, solution->r));
 }
 
-/* read solution */
+/** read solution */
 static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct fclib_solution *solution)
 {
   if (nv)
@@ -314,7 +313,7 @@ static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct 
   IO (H5LTread_dataset_double (id, "r", solution->r));
 }
 
-/* read solution sizes */
+/** read solution sizes */
 static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
 {
   if (H5Lexists (file_id, "/fclib_global", H5P_DEFAULT))
@@ -346,7 +345,7 @@ static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
   return 1;
 }
 
-/* delete matrix info */
+/** delete matrix info */
 static void delete_matrix_info (struct fclib_matrix_info *info)
 {
   if (info)
@@ -356,7 +355,7 @@ static void delete_matrix_info (struct fclib_matrix_info *info)
   }
 }
 
-/* delete matrix */
+/** delete matrix */
 static void delete_matrix (struct fclib_matrix *mat)
 {
   if (mat)
@@ -369,7 +368,7 @@ static void delete_matrix (struct fclib_matrix *mat)
   }
 }
 
-/* delete problem info */
+/** delete problem info */
 static void delete_info (struct fclib_info *info)
 {
   if (info)
@@ -382,7 +381,7 @@ static void delete_info (struct fclib_info *info)
 
 /* =========================== interface ============================ */
 
-/* write global problem;
+/** write global problem;
  * return 1 on success, 0 on failure */
 int fclib_write_global (struct fclib_global *problem, const char *path)
 {
@@ -450,7 +449,7 @@ int fclib_write_global (struct fclib_global *problem, const char *path)
   return 1;
 }
 
-/* write local problem;
+/** write local problem;
  * return 1 on success, 0 on failure */
 int fclib_write_local (struct fclib_local *problem, const char *path)
 {
@@ -518,7 +517,7 @@ int fclib_write_local (struct fclib_local *problem, const char *path)
   return 1;
 }
 
-/* write solution;
+/** write solution;
  * return 1 on success, 0 on failure */
 int fclib_write_solution (struct fclib_solution *solution, const char *path)
 {
@@ -558,7 +557,7 @@ int fclib_write_solution (struct fclib_solution *solution, const char *path)
   return 1;
 }
 
-/* write initial guesses;
+/** write initial guesses;
  * return 1 on success, 0 on failure */
 int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path)
 {
@@ -608,7 +607,7 @@ int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses,
   return 1;
 }
 
-/* read global problem;
+/** read global problem;
  * return problem on success; NULL on failure */
 struct fclib_global* fclib_read_global (const char *path)
 {
@@ -658,7 +657,7 @@ struct fclib_global* fclib_read_global (const char *path)
   return problem;
 }
 
-/* read local problem;
+/** read local problem;
  * return problem on success; NULL on failure */
 struct fclib_local* fclib_read_local (const char *path)
 {
@@ -708,7 +707,7 @@ struct fclib_local* fclib_read_local (const char *path)
   return problem;
 }
 
-/* read solution;
+/** read solution;
  * return solution on success; NULL on failure */
 struct fclib_solution* fclib_read_solution (const char *path)
 {
@@ -735,7 +734,7 @@ struct fclib_solution* fclib_read_solution (const char *path)
   return solution;
 }
 
-/* read initial guesses;
+/** read initial guesses;
  * return vector of guesses on success; NULL on failure;
  * output numebr of guesses in the variable pointed by 'number_of_guesses' */
 struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses)
@@ -777,7 +776,7 @@ struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_gues
   return guesses;
 }
 
-/* delete global problem */
+/** delete global problem */
 void fclib_delete_global (struct fclib_global *problem)
 {
   delete_matrix (problem->M);
@@ -790,7 +789,7 @@ void fclib_delete_global (struct fclib_global *problem)
   delete_info (problem->info);
 }
 
-/* delete local problem */
+/** delete local problem */
 void fclib_delete_local (struct fclib_local *problem)
 {
   delete_matrix (problem->W);
@@ -802,7 +801,7 @@ void fclib_delete_local (struct fclib_local *problem)
   delete_info (problem->info);
 }
 
-/* delete solutions or guesses */
+/** delete solutions or guesses */
 void fclib_delete_solutions (struct fclib_solution *data, int count)
 {
   int i;
