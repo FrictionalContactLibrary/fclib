@@ -15,7 +15,7 @@ The goal of this work is to set up a collection of 2D and 3D Frictional Contact 
 <ul>
 <li> set up a list of benchmarks </li>
 <li> provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems </li>
-<li> share common formulations of problems in order to exchnage data</li>
+<li> share common formulations of problems in order to exchange data</li>
 </ul>
  
 
@@ -23,7 +23,65 @@ The goal of this work is to set up a collection of 2D and 3D Frictional Contact 
 
 see \ref download section
 
-\section What is a Frictional contact problem ?
+\section Wahtis What is a Frictional contact problem ?
+
+A Frictional contact problem is algebraic problem obtained after possible time and space discretizations of problems of mechanics of solid involving contact and Coulomb's friction.  The mathematical structure of the problem is a second-order cone complementarity problem. For more details, you could have a look to the <a href="doc/FCLib.pdf"> fclib specifications </a>
+
+\subsection Localfclib The local Frictional Contact problem
+ Given
+<ul>
+    <li> a symmetric positive semi--definite  matrix \f${W} \in \nbR^{m \times m} \f$ </li>
+    <li> a vector \f$ {q} \in \nbR^m\f$</li>
+    <li> a vector of coefficients of friction \f$\mu \in\nbR^{n_c}\f$</li>
+</ul>
+ the local FC problem  is to find two vectors \f$u\in{\ensuremath{\mathrm{I\!R}}}^m\f$, the relative local velocity and \f$r\in {\ensuremath{\mathrm{I\!R}}}^m\f$, the contact forces denoted by \f$\mathrm{FC}(W,q,\mu)\f$  such that
+\f{eqnarray*}{
+  \begin{cases}
+     \hat u = W r + q +\left[
+       \left[\begin{array}{c}
+           \mu^\alpha \|u^\alpha_\t\|\\
+          0 \\
+           0
+         \end{array}\right]^T, \alpha = 1 \ldots n_c
+     \right]^T \\ \\
+     C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+  \end{cases}
+\f}
+where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by 
+\f{eqnarray*}{
+  \label{eq:CCC}
+  C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_\t \| \leq \mu^\alpha |r^\alpha_\n| \}
+\f}
+and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
+\subsection globalfclib The Global Frictional Contact problem with equality constraints
+
+We are also dealing with global  FC problem defined by
+
+ Given
+<ul>
+    <li> a symmetric positive definite matrix \f${M} \in \nbR^{n \times n}\f$</li>
+    <li> a vector \f$ {f} \in \nbR^n\f$,</li>
+    <li> a matrix  \f${H} \in \nbR^{n \times m}\f$</li>
+    <li> a matrix  \f${G} \in \nbR^{n \times p}\f$</li>
+     <li> a vector \f$w \in \nbR^{m}\f$,</li>
+     <li> a vector \f$b \in \nbR^{p}\f$,</li>
+    <li> a vector of coefficients of friction \f$\mu \in \nbR^{n_c}\f$
+</ul>
+ the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in \nbR^n\f$, \f$u\in\nbR^m\f$, \f$r\in \nbR^m\f$ and \f$\lambda \in \nbR^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
+\f{eqnarray*}{
+  \begin{cases}
+    M v = {H} {r} + G\lambda + {f} \\ \\
+    G^T v +b =0 \\ \\
+    \hat u = H^T v + w +\left[
+      \left[\begin{array}{c}
+        \mu \|u^\alpha_\t\|\\
+        0 \\
+        0
+      \end{array}\right]^T, \alpha = 1 \ldots n_c
+\right]^T \\ \\
+    C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+  \end{cases}
+\f}
 
 
 */

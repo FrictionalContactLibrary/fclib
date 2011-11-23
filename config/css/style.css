@@ -1,7 +1,7 @@
 /*** Global Settings ****/
 body {font : normal 12px/1.6em Arial, Helvetica, sans-serif;color : #2a3845;margin : 0;padding : 0;background:#FFFFFF;}
 p { margin : 0;padding : 0;}
-a:visited, a:link {color : #a43b55;text-decoration : underline;background:none;}
+a:visited, a:link {color : #a43b55;text-decoration : none;background:none;}
 a:hover {color : #a43b55;text-decoration : none;background:none;}
 h1 { color : #7a2e40;margin: 0px 0px 10px 0px;padding-bottom : 10px;font : normal 17px Georgia, serif;border-bottom : 1px solid #efece7;}
 h2 {color : #7a2e40;margin : 20px 0 10px;padding-bottom : 10px;font : normal 17px Georgia, serif;border-bottom : 1px solid #efece7;}
@@ -11,7 +11,7 @@ ul {padding:0;margin:0 0 0 17px;list-style: square url(images/bullet.gif);}
 
 /*** Layout ****/
 #wrapper {margin : 0 auto;width : 776px;border-left : 1px solid #f0e9eb;border-right : 1px solid #f0e9eb;}
-#header {margin : 0 1px;}
+#header {margin : 0 0px;}
 #bg {height : 36px;background : url(images/bg.gif) repeat-x;}
 #nav {background : #7a2e40;padding : 10px 20px;text-align : right;color : #f6dde3;}
 #nav a:visited, #nav a:link {text-decoration : none;color : #f6dde3;}
