@@ -1,0 +1,7 @@
+* FCLIB TO DO LIST  						      :FCLIB:
+* General Development Tasks
+** TODO Implement the merit function
+   DEADLINE: <2011-12-23 Fri>
+* Documentation
+** TODO Doxygen comment of the fclib.h
+   DEADLINE: <2011-12-23 Fri>

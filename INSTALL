@@ -7,6 +7,9 @@ make
 make install
 
 
+If you want to generate the documentation (ans web site) use -DWITH_DOCUMENTATION=ON
+
+
 default value for where_to_install_fclib is /usr/local.
 
 If hdf5 is not in a standard place, just set var HDF5_ROOT before running cmake. 
