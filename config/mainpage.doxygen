@@ -4,7 +4,7 @@
 
 FCLIB is 
 <ul>
-<li> A open source collection of Frictional Contact (FC) problems stored in a specific HDF5 format </li>
+<li> A open source collection of Frictional Contact (FC) problems stored in a specific <a href="http://www.hdfgroup.org/HDF5/"> HDF5 format </a></li>
 <li> A open source light implementation of Input/Output functions in C Language to read and write problems </li>
 </ul>
 
