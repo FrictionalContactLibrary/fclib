@@ -1,22 +1,28 @@
-#=======================================================
-# cmake utility to compile and install fclib library
-#
-#=======================================================
+# =================================================================
+# cmake configuration to compile and install fclib library
+# =================================================================
 
-# ============= Global cmake Settings ============= 
+#
+# Global cmake Settings 
+#
+
 # Set minimum version for cmake
 cmake_minimum_required(VERSION 2.8)
+
 # Set policy
 cmake_policy(VERSION 2.8)
-# Set cmake modules directory (i.e. the one which contains all user-defined FindXXX.cmake files among other things)
+
+# Set cmake modules directory (i.e. the one which contains all
+# user-defined FindXXX.cmake files among other things)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-# Force out-of-source build
-include(OutOfSourceBuild)
-# Some usefull macros
-include(MyTools)
+
+# debug
+macro(display V)
+  message(STATUS "${V} = ${${V}}")
+endmacro(display V)
 
 IF(APPLE)
-SET (CMAKE_OSX_ARCHITECTURES "i386;x86_64" )
+  SET (CMAKE_OSX_ARCHITECTURES "i386;x86_64" )
 ENDIF(APPLE)
 
 # User defined options
@@ -27,22 +33,26 @@ option(WITH_TESTS "Enable testing. Default = on" ON)
 
 # cmake project name
 set(PROJECT_NAME fclib)
-# --- Name for the package ---
-# This name will be used to install FCLib (library, headers, ...) and when another lib or soft will need to search for FCLib.
+
+# This name will be used to install FCLib (library, headers, ...) and
+# when another lib or soft will need to search for FCLib.
 set(PACKAGE_NAME "FCLib")
+
 # --- Set a version number for the package ---
 set(${PACKAGE_NAME}_version 1.0.0)
+
 # --- The name (without extension) of the lib to be created ---
 set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
+
 # The list of all dirs containing sources to be compiled for the fclib lib
 # Any file in those dirs will be used to create libfclib
-set(${PROJECT_LIBRARY_NAME}_SRCDIRS 
-  src
-  )
+set(${PROJECT_LIBRARY_NAME}_SRCDIRS src)
+
 # Matching expr for files to be compiled. 
 set(EXTS *.c)
+
 # Matching expr for headers (install purpose)
-set(EXTS_HDRS *.hpp *.h)
+set(EXTS_HDRS *.h)
 
 # ============= The project =============
 # Set project name and project languages 
@@ -51,26 +61,23 @@ set(EXTS_HDRS *.hpp *.h)
 #   - ${PROJECT_NAME}_SOURCE_DIR : where sources (.f and .h and this CMakeLists.txt) are located
 # Note that because of OutOfSourceBuild, binary_dir and source_dir must be different. 
 project(${PROJECT_NAME} C)
+
 # ============= Doc and website =============
 # Doxygen documentation
-IF(WITH_DOCUMENTATION)
-  INCLUDE(FCLIBDoc)
-ENDIF(WITH_DOCUMENTATION)
+if(WITH_DOCUMENTATION)
+  include(FCLibDoc)
+endif(WITH_DOCUMENTATION)
 
-
-
-
-# ============= Tests =============
-if(WITH_TESTS)
-  enable_testing()
-endif(WITH_TESTS)
 
 # ============= Search for libraries  =============
 # set the compile/link conf (-I and -L opt)
 
-# --- hdf5 ---
+# --- hdf5 --- what a mess!, cf this thread
+# http://www.cmake.org/pipermail/cmake/2011-June/044723.html
+find_package(HDF5) # ok on ubuntu 11.4 with std packages
 find_package(HDF5 REQUIRED COMPONENTS HL)
-set(HDF5_INCLUDE_DIRS "/opt/local/include/")
+
+#set(HDF5_INCLUDE_DIRS "/opt/local/include/")
 include_directories(${HDF5_INCLUDE_DIRS})
 
 set(LIBS ${LIBS} ${HDF5_LIBRARIES})
@@ -118,6 +125,7 @@ foreach(_DIR ${${PROJECT_LIBRARY_NAME}_SRCDIRS})
     endif()
   endforeach()
 endforeach()
+
 # We add headers to source files
 list(APPEND ${PROJECT_LIBRARY_NAME}_SRC ${${PROJECT_LIBRARY_NAME}_HDRS})
 
@@ -135,23 +143,18 @@ endif()
 target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
 
 
-
 # ============== Add tests ==============
-if(WITH_TESTS)
-  #  SET(TEST_WRAP)
-  message(STATUS "Enable testing ...")
-  begin_test(src/tests)
-  new_test(fctest1 fctst.c)
-  end_test()
-endif(WITH_TESTS)
+add_executable(fctest1 src/tests/fctst.c)
+target_link_libraries(fctest1 ${PROJECT_LIBRARY_NAME})
+add_test(fctest1 fctest1)
+enable_testing()
 
 # ============= Prepare install =============
 
-# The library
 # The library, the headers and mod files, the cmake generated files
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
-include(InstallPackage)
 display(${PROJECT_LIBRARY_NAME}_HDRS)
+include(InstallPackage)
 install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_HDRS)
 
 # ============= RPATH =============
