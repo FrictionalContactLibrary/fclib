@@ -4,8 +4,13 @@
 ** TODO add siconos Numerics test collection in fclib
    DEADLINE: <2011-11-30 Wed>
 * General Development Tasks
+
 ** TODO Implement the merit function
    DEADLINE: <2011-12-23 Fri>
+
+** TODO fix the cmake stuff
+   too big & fail (on a std ubuntu 11.4)
+   
 * Documentation
 ** TODO Doxygen comment of the fclib.h
    DEADLINE: <2011-12-23 Fri>
