@@ -27,24 +27,28 @@ see \ref download section
 
 A Frictional contact problem is algebraic problem obtained after possible time and space discretizations of problems of mechanics of solid involving contact and Coulomb's friction.  The mathematical structure of the problem is a second-order cone complementarity problem. For more details, you could have a look to the <a href="doc/FCLib.pdf"> fclib specifications </a>
 
-\subsection Localfclib The local Frictional Contact problem
- Given
-<ul>
-    <li> a symmetric positive semi--definite  matrix \f${W} \in \nbR^{m \times m} \f$ </li>
-    <li> a vector \f$ {q} \in \nbR^m\f$</li>
-    <li> a vector of coefficients of friction \f$\mu \in\nbR^{n_c}\f$</li>
-</ul>
- the local FC problem  is to find two vectors \f$u\in{\ensuremath{\mathrm{I\!R}}}^m\f$, the relative local velocity and \f$r\in {\ensuremath{\mathrm{I\!R}}}^m\f$, the contact forces denoted by \f$\mathrm{FC}(W,q,\mu)\f$  such that
-\f{eqnarray*}{
+\subsection Localfclib The local Frictional Contact problem with equality constraints
+  Given
+  <ul>
+    <li> a positive semi--definite matrix  \f${W} \in \nbR^{m \times m}\f$</li>
+    <li> a matrix  \f${V} \in \nbR^{m \times p}\f$</li>
+    <li> a matrix  \f${R} \in \nbR^{p \times p}\f$</li>
+    <li> a vector \f$q \in \nbR^{m}\f$,</li>
+    <li> a vector \f$s \in \nbR^{p}\f$,</li>
+    <li> a vector of coefficients of friction \f$\mu \in \nbR^{n_c}\f$
+  </ul
+ the  Mixed 3DFC problem  is to find three vectors \f$u\in\nbR^m\f$, \f$r\in \nbR^m\f$ and \f$\lambda \in \nbR^p\f$ denoted by \f$\mathrm{M3DFC}(R,V,W,q,s,\mu)\f$  such that
+\f{eqnarray*}\label{eq:lcp1}
   \begin{cases}
-     \hat u = W r + q +\left[
-       \left[\begin{array}{c}
-           \mu^\alpha \|u^\alpha_\t\|\\
-          0 \\
-           0
-         \end{array}\right]^T, \alpha = 1 \ldots n_c
-     \right]^T \\ \\
-     C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+    V^T {r} + R \lambda + s = 0 \\ \\
+    \hat u = W {r}    + V\lambda  + q +\left[
+      \left[\begin{array}{c}
+        \mu^\alpha \|u^\alpha_\t\|\\
+        0 \\
+        0
+      \end{array}\right]^T, \alpha = 1 \ldots n_c
+\right]^T \\ \\
+    C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
   \end{cases}
 \f}
 where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by 
@@ -82,6 +86,10 @@ We are also dealing with global  FC problem defined by
     C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
   \end{cases}
 \f}
+ \subsection wihtout Problems without equality constraints
+If the original problems do not contain inequality constraints, or if there are reduced, the problems do no have the variables \f$\lambda\f$ as unknowns and can be simplified.  However, the storage in HDF5 file remains the same.
 
+ \subsection Merict functions.
+ The API provides also some Merit functions whixh measures it one set of vectors satifies the previous problems.
 
 */

@@ -5,15 +5,15 @@
 	 <li> latest version on the svn server access at <a href=" https://gforge.inria.fr/scm/?group_id=2824"> FCLIB Gforge </a></li>
 	 <li> tar files available at <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
     </ul>
-    \section howto binaries	
+     \section howtolibrary How to download the collection of problems ?
+       <ul>
+	 <li> A prelinary version is avalaible at  <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
+      </ul>	     	
+    \section howto Binaries	
        <ul>
 	 <li> Coming soon at  <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
   	 </ul >
-    \section howtolibrary How to download the collection of problems ?
-       <ul>
-	 <li> Coming soon at  <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
-      </ul>	     	
-    
+   
     <br/>
     <br/>
     
