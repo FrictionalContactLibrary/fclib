@@ -69,18 +69,19 @@ if(WITH_DOCUMENTATION)
 endif(WITH_DOCUMENTATION)
 
 
+include(FeatureSummary)
+
 # ============= Search for libraries  =============
 # set the compile/link conf (-I and -L opt)
 
 # --- hdf5 --- what a mess!, cf this thread
 # http://www.cmake.org/pipermail/cmake/2011-June/044723.html
-find_package(HDF5) # ok on ubuntu 11.4 with std packages
 find_package(HDF5 REQUIRED COMPONENTS HL)
 
 #set(HDF5_INCLUDE_DIRS "/opt/local/include/")
 include_directories(${HDF5_INCLUDE_DIRS})
 
-set(LIBS ${LIBS} ${HDF5_LIBRARIES})
+set(LIBS ${LIBS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 display(HDF5_INCLUDE_DIRS)
 
 # --- MPI ---
@@ -182,3 +183,6 @@ if(VERBOSE_MODE)
   message(STATUS " Project will be installed in ${CMAKE_INSTALL_PREFIX}")
   message(STATUS "====================== ======= ======================")
 endif()
+
+
+feature_summary(WHAT ALL)
