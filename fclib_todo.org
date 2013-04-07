@@ -1,0 +1,20 @@
+* FCLIB TO DO LIST  						      :FCLIB:
+* DONE ask for ftp site ? 
+  CLOSED: [2012-01-30 Mon 09:13]
+  Answer: Upt ot 10 Go, put the files on the web site.
+  
+* Add first problems in the collection
+** DONE add siconos Numerics test collection in fclib
+   DEADLINE: <2011-11-30 Wed> CLOSED: [2011-11-25 Fri 09:02]
+* General Development Tasks
+
+** TODO Implement the merit function
+   DEADLINE: <2011-12-23 Fri>
+
+** TODO fix the cmake stuff
+   too big & fail (on a std ubuntu 11.4)
+   
+* Documentation
+** DONE Doxygen comment of the fclib.h
+   DEADLINE: <2011-12-23 Fri> CLOSED: [2011-11-23 Wed 20:56]
+** TODO Write a small tutorial form the test fctst.c to read and write an hdf5 file
