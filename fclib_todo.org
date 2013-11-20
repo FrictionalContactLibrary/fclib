@@ -9,8 +9,10 @@
 * General Development Tasks
 
 ** TODO Implement the merit function
-   DEADLINE: <2011-12-23 Fri>
-
+   DEADLINE: <2013-12-20 Ven>
+   + for global problem.
+   +  with equality constraints  
+   
 ** TODO fix the cmake stuff
    too big & fail (on a std ubuntu 11.4)
    
