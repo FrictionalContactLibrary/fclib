@@ -145,9 +145,30 @@ target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
 
 
 # ============== Add tests ==============
+
+FILE(GLOB_RECURSE _DATA_FILES 
+  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${_D}
+  *.hdf5
+  *.mat 
+  *.dat
+  *.xml
+  *.DAT
+  *.INI)
+
+FOREACH(_F ${_DATA_FILES})
+  GET_FILENAME_COMPONENT(_BASENAME_F "${_F}" NAME ) 
+  MESSAGE(STATUS "basename = ${_BASENAME_F}")
+  MESSAGE(STATUS "copy  ${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} in ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F}")
+  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F} COPYONLY)
+ENDFOREACH(_F ${_DATA_FILES})
+
+
 add_executable(fctest1 src/tests/fctst.c)
+add_executable(fctest_merit src/tests/fctst_merit.c)
 target_link_libraries(fctest1 ${PROJECT_LIBRARY_NAME})
+target_link_libraries(fctest_merit ${PROJECT_LIBRARY_NAME})
 add_test(fctest1 fctest1)
+add_test(fctest_merit fctest_merit)
 enable_testing()
 
 # ============= Prepare install =============

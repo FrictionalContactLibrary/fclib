@@ -82,6 +82,8 @@
 #ifndef _fclib_h_
 #define _fclib_h_
 
+#include "csparse.h"
+
 /**\struct  fclib_info fclib.h
  * This structure allows the user to enter a  problem information  as a title, a short description and known mathematical properties of the problem 
  */
@@ -171,19 +173,19 @@ struct fclib_matrix   /*  */
  */
 struct fclib_global
 {
-  /** the matrix M (see mathematical desctiption below)*/
+  /** the matrix M (see mathematical description below)*/
   struct fclib_matrix *M;
-  /** the matrix M (see mathematical desctiption below)*/
+  /** the matrix M (see mathematical description below)*/
   struct fclib_matrix *H;
-  /** the matrix M (see mathematical desctiption below)*/
+  /** the matrix M (see mathematical description below)*/
   struct fclib_matrix *G;
-  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical desctiption below)*/
+  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical description below)*/
   double *mu;
-  /** the vector f (see mathematical desctiption below)*/  
+  /** the vector f (see mathematical description below)*/  
   double *f;
-  /** the vector b (see mathematical desctiption below)*/
+  /** the vector b (see mathematical description below)*/
   double *b;
-  /** the vector w (see mathematical desctiption below)*/
+  /** the vector w (see mathematical description below)*/
   double *w;
   /** the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws)*/
   int spacedim;             
@@ -225,17 +227,17 @@ struct fclib_global
  */
 struct fclib_local
 {
-  /** the matrix W (see mathematical desctiption below)*/
+  /** the matrix W (see mathematical description below)*/
   struct fclib_matrix *W;
-  /** the matrix V (see mathematical desctiption below)*/
+  /** the matrix V (see mathematical description below)*/
   struct fclib_matrix *V;
-  /** the matrix R (see mathematical desctiption below)*/
+  /** the matrix R (see mathematical description below)*/
   struct fclib_matrix *R;
-  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical desctiption below)*/
+  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical description below)*/
   double *mu;
-  /** the vector q (see mathematical desctiption below)*/
+  /** the vector q (see mathematical description below)*/
   double *q;
-  /** the vector s (see mathematical desctiption below)*/
+  /** the vector s (see mathematical description below)*/
   double *s; 
   /** the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws)*/
   int spacedim;             /* 2 or 3 */
@@ -261,6 +263,9 @@ struct fclib_solution /* solution data */
   double *l;
 };
 
+/** \enum  fclib_merit
+ * MERIT_1 is a implementation of the merit function based on the natural map for a SOCCP   
+ */
 enum fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
 
 /** write global problem;

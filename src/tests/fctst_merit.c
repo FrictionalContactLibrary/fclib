@@ -400,111 +400,48 @@ static int compare_solutions (struct fclib_solution *a, struct fclib_solution *b
 int main (int argc, char **argv)
 {
   int i;
-
-  srand (time (NULL));
-
-  if (rand () % 2)
+  if (0)
   {
     struct fclib_global *problem, *p;
     struct fclib_solution *solution, *s;
     struct fclib_solution *guesses, *g;
-    int numguess = rand () % 10, n;
-    short allfine = 0;
-
-    problem = random_global_problem (10 + rand () % 900, 10 + rand () % 900, 10 + rand () % 900);
-    solution = random_global_solutions (problem, 1);
-    guesses = random_global_solutions (problem, numguess);
-
-    if (fclib_write_global (problem, "output_file.hdf5"))
-      if (fclib_write_solution (solution, "output_file.hdf5"))
-        if (fclib_write_guesses (numguess, guesses, "output_file.hdf5")) allfine = 1;
-
-    if (allfine)
-    {
-      p = fclib_read_global ("output_file.hdf5");
-      s = fclib_read_solution ("output_file.hdf5");
-      g = fclib_read_guesses ("output_file.hdf5", &n);
-
-      printf ("Comparing written and read global problem data ...\n");
-
-      ASSERT (compare_global_problems (problem, p), "ERROR: written/read problem comparison failed");
-      ASSERT (compare_solutions (solution, s, p->M->n, p->H->n, (p->G ? p->G->n : 0)), "ERROR: written/read solution comparison failed");
-      ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
-      for (i = 0; i < n; i ++)
-      {
-        ASSERT (compare_solutions (guesses+i, g+i, p->M->n, p->H->n, (p->G ? p->G->n : 0)), "ERROR: written/read guess comparison failed");
-      }
-
-      printf ("All comparisons PASSED\n");
+    int numguess;
     
-      fclib_delete_global (p);
-      fclib_delete_solutions (s, 1);
-      fclib_delete_solutions (g, n);
-    }
-
+    problem = fclib_read_global ("output_file.hdf5");
+    solution = fclib_read_solution ("output_file.hdf5");
+    guesses = fclib_read_guesses ("output_file.hdf5", &numguess);
+    
+    printf ("Computing merit function ...\n");
+    double error1 = fclib_merit_global (problem, MERIT_1, solution);
+    printf ("Error for initial problem = %12.8e\n", error1);
+       
     fclib_delete_global (problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }
   else
   {
+
     struct fclib_local *problem, *p;
     struct fclib_solution *solution, *s;
     struct fclib_solution *guesses, *g;
-    int numguess = rand () % 10, n;
     short allfine = 0;
+    int numguess=1;
+    problem = fclib_read_local ("local_problem_test.hdf5");
+    solution = fclib_read_solution ("local_problem_test.hdf5");
+    guesses = fclib_read_guesses ("local_problem_test.hdf5", &numguess);
 
-    problem = random_local_problem (10 + rand () % 900, 10 + rand () % 900);
-    solution = random_local_solutions (problem, 1);
-    guesses = random_local_solutions (problem, numguess);
+   
+    printf ("Computing merit function ...\n");
 
-    if (fclib_write_local (problem, "output_file.hdf5"))
-      if (fclib_write_solution (solution, "output_file.hdf5"))
-        if (fclib_write_guesses (numguess, guesses, "output_file.hdf5")) allfine = 1;
+    double error1 = fclib_merit_local (problem, MERIT_1, solution);
+    printf ("Error for local problem = %12.8e\n", error1);
 
-    if (allfine)
-    {
-      p = fclib_read_local ("output_file.hdf5");
-      s = fclib_read_solution ("output_file.hdf5");
-      g = fclib_read_guesses ("output_file.hdf5", &n);
-
-      printf ("Comparing written and read local problem data ...\n");
-
-      ASSERT (compare_local_problems (problem, p), "ERROR: written/read problem comparison failed");
-      ASSERT (compare_solutions (solution, s, 0, p->W->m, (p->R ? p->R->n : 0)), "ERROR: written/read solution comparison failed");
- 
-      printf ("Computing merit function ...\n");
-
-      double error1 = fclib_merit_local (problem, MERIT_1, solution);
-      double error2 = fclib_merit_local (p, MERIT_1, s);
-      printf ("Error for initial problem = %12.8e\n", error1);
-      printf ("Error for read problem = %12.8e\n", error2);
-     
-  
-      
-      
-       
-
-
-      ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
-      for (i = 0; i < n; i ++)
-      {
-        ASSERT (compare_solutions (guesses+i, g+i, 0, p->W->n, (p->R ? p->R->n : 0)), "ERROR: written/read guess comparison failed");
-      }
-
-      printf ("All comparions PASSED\n");
-    
-      fclib_delete_local (p);
-      fclib_delete_solutions (s, 1);
-      fclib_delete_solutions (g, n);
-    }
 
     fclib_delete_local (problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }
-
-   remove ("output_file.hdf5"); 
 
   return 0;
 }
