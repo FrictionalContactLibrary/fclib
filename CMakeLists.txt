@@ -90,6 +90,7 @@ if(USE_MPI)
   find_package(MPI REQUIRED)
   if(MPI_COMPILER)
     set(CMAKE_CXX_COMPILER mpic++)
+    set(CMAKE_C_COMPILER mpicc)
   elseif(MPI_COMPILER)
     # -I
     include_directories(${MPI_INCLUDE_PATH})

@@ -666,7 +666,7 @@ struct fclib_local* fclib_read_local (const char *path)
 
   if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)
   {
-    fprintf (stderr, "ERROR: creating file failed\n");
+    fprintf (stderr, "ERROR: opening file failed\n");
     return 0;
   }
 
