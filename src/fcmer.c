@@ -148,7 +148,7 @@ double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, s
     }
           
     free(tmp);
-    error = sqrt(error)/(1.0 +  sqrt(dnrm2(q,W->n)) );+error_l;  
+    error = sqrt(error)/(1.0 +  sqrt(dnrm2(q,W->n)) )+error_l;  
 
     /* printf("error_l = %12.8e", error_l); */
     /* printf("norm of u  = %12.8e\n",  dnrm2(u,W->n)); */
@@ -157,10 +157,6 @@ double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, s
   
     return error;
   }
-
-
-
-  
 
   return 0; /* TODO */
 }

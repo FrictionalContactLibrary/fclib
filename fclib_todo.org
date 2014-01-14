@@ -11,7 +11,7 @@
 ** TODO Implement the merit function
    DEADLINE: <2013-12-20 Ven>
    + for global problem.
-   +  with equality constraints  
+   + with equality constraints  
    
 ** TODO fix the cmake stuff
    too big & fail (on a std ubuntu 11.4)
