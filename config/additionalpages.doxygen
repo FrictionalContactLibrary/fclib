@@ -7,7 +7,7 @@
     </ul>
      \section howtolibrary How to download the collection of problems ?
        <ul>
-	 <li> A preliminary version is avalaible here  <a href="http://fclib.inria.fr/resources/fclib-library-v0.1.tgz"> FCLIB Gforge  </a></li>
+	 <li> A preliminary version is avalaible here  <a href="./resources/fclib-library-v0.1.tgz"> FCLIB library v 0.1  </a></li>
       </ul>	     	
     \section howto Binaries	
        <ul>

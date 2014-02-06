@@ -30,20 +30,20 @@ A Frictional contact problem is algebraic problem obtained after possible time a
 \subsection Localfclib The local Frictional Contact problem with equality constraints
   Given
   <ul>
-    <li> a positive semi--definite matrix  \f${W} \in \nbR^{m \times m}\f$</li>
-    <li> a matrix  \f${V} \in \nbR^{m \times p}\f$</li>
-    <li> a matrix  \f${R} \in \nbR^{p \times p}\f$</li>
-    <li> a vector \f$q \in \nbR^{m}\f$,</li>
-    <li> a vector \f$s \in \nbR^{p}\f$,</li>
-    <li> a vector of coefficients of friction \f$\mu \in \nbR^{n_c}\f$
+    <li> a positive semi--definite matrix  \f${W} \in {\mathrm{I\!R}}^{m \times m}\f$</li>
+    <li> a matrix  \f${V} \in {\mathrm{I\!R}}^{m \times p}\f$</li>
+    <li> a matrix  \f${R} \in {\mathrm{I\!R}}^{p \times p}\f$</li>
+    <li> a vector \f$q \in {\mathrm{I\!R}}^{m}\f$,</li>
+    <li> a vector \f$s \in {\mathrm{I\!R}}^{p}\f$,</li>
+    <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
   </ul
- the  Mixed 3DFC problem  is to find three vectors \f$u\in\nbR^m\f$, \f$r\in \nbR^m\f$ and \f$\lambda \in \nbR^p\f$ denoted by \f$\mathrm{M3DFC}(R,V,W,q,s,\mu)\f$  such that
+ the  Mixed 3DFC problem  is to find three vectors \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{M3DFC}(R,V,W,q,s,\mu)\f$  such that
 \f{eqnarray*}\label{eq:lcp1}
   \begin{cases}
     V^T {r} + R \lambda + s = 0 \\ \\
     \hat u = W {r}    + V\lambda  + q +\left[
       \left[\begin{array}{c}
-        \mu^\alpha \|u^\alpha_\t\|\\
+        \mu^\alpha \|u^\alpha_T\|\\
         0 \\
         0
       \end{array}\right]^T, \alpha = 1 \ldots n_c
@@ -54,7 +54,7 @@ A Frictional contact problem is algebraic problem obtained after possible time a
 where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by 
 \f{eqnarray*}{
   \label{eq:CCC}
-  C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_\t \| \leq \mu^\alpha |r^\alpha_\n| \}
+  C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
 \f}
 and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
 \subsection globalfclib The Global Frictional Contact problem with equality constraints
@@ -63,22 +63,22 @@ We are also dealing with global  FC problem defined by
 
  Given
 <ul>
-    <li> a symmetric positive definite matrix \f${M} \in \nbR^{n \times n}\f$</li>
-    <li> a vector \f$ {f} \in \nbR^n\f$,</li>
-    <li> a matrix  \f${H} \in \nbR^{n \times m}\f$</li>
-    <li> a matrix  \f${G} \in \nbR^{n \times p}\f$</li>
-     <li> a vector \f$w \in \nbR^{m}\f$,</li>
-     <li> a vector \f$b \in \nbR^{p}\f$,</li>
-    <li> a vector of coefficients of friction \f$\mu \in \nbR^{n_c}\f$
+    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
+    <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
+    <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
+    <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
+     <li> a vector \f$w \in {\mathrm{I\!R}}^{m}\f$,</li>
+     <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
+    <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
 </ul>
- the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in \nbR^n\f$, \f$u\in\nbR^m\f$, \f$r\in \nbR^m\f$ and \f$\lambda \in \nbR^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
+ the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
 \f{eqnarray*}{
   \begin{cases}
     M v = {H} {r} + G\lambda + {f} \\ \\
     G^T v +b =0 \\ \\
     \hat u = H^T v + w +\left[
       \left[\begin{array}{c}
-        \mu \|u^\alpha_\t\|\\
+        \mu \|u^\alpha_T\|\\
         0 \\
         0
       \end{array}\right]^T, \alpha = 1 \ldots n_c
