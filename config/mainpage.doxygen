@@ -36,7 +36,7 @@ A Frictional contact problem is algebraic problem obtained after possible time a
     <li> a vector \f$q \in {\mathrm{I\!R}}^{m}\f$,</li>
     <li> a vector \f$s \in {\mathrm{I\!R}}^{p}\f$,</li>
     <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
-  </ul
+  </ul>
  the  Mixed 3DFC problem  is to find three vectors \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{M3DFC}(R,V,W,q,s,\mu)\f$  such that
 \f{eqnarray*}\label{eq:lcp1}
   \begin{cases}
