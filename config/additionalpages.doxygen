@@ -31,16 +31,15 @@
 
 
 /*! \page problems_0_2 FClib collection v0.2
+<ul>
+   <li> \ref boxesstack1 </li>
+   <li> \ref capsules1 </li>
+   <li> \ref chain1 </li>
+   <li> \ref kaplas1 </li>
+</ul>
 
-    \section BoxesStack
-    \ref boxesstack1
-    \section Capsules
-    \ref capsules1
-    \section Chain
-    \ref chain1
-    \section Kaplas
-    \ref kaplas1
-
+  \section DownloadProblems Download
+   <a href="https://gforge.inria.fr/frs/download.php/33387/fclib-library-v0.2.tar.gz"> collection v0.2</a>
 */
 
 
