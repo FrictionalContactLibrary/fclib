@@ -86,10 +86,10 @@ We are also dealing with global  FC problem defined by
     C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
   \end{cases}
 \f}
- \subsection wihtout Problems without equality constraints
-If the original problems do not contain inequality constraints, or if there are reduced, the problems do no have the variables \f$\lambda\f$ as unknowns and can be simplified.  However, the storage in HDF5 file remains the same.
+ \subsection without Problems without equality constraints
+If the original problems do not contain inequality constraints, or if they are reduced, the problems do no have the variables \f$\lambda\f$ as unknowns and can be simplified.  However, the storage in HDF5 file remains the same.
 
  \subsection Merict functions.
- The API provides also some Merit functions whixh measures it one set of vectors satifies the previous problems.
+ The API provides also some Merit functions which measures if one set of vectors satisfies the previous problems.
 
 */

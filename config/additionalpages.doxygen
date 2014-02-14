@@ -7,7 +7,7 @@
     </ul>
      \section howtolibrary How to download the collection of problems ?
        <ul>
-	 <li> A preliminary version is avalaible here  <a href="./resources/fclib-library-v0.1.tgz"> FCLIB library v 0.1  </a></li>
+	 <li> \ref problems_0_2 </a></li>
       </ul>	     	
     \section howto Binaries	
        <ul>
@@ -29,6 +29,94 @@
   
   <br/>
 
+
+/*! \page problems_0_2 FClib collection v0.2
+
+    \section BoxesStack
+    \ref boxesstack1
+    \section Capsules
+    \ref capsules1
+    \section Chain
+    \ref chain1
+    \section Kaplas
+    \ref kaplas1
+
+*/
+
+
+/*! \page kaplas1 Kaplas-1
+
+<img  style="float:left;margin:0 50px 0 0;" width=300  src="./images/KaplasTower.png"/>
+
+<ul>
+
+<li>    coefficient of friction 0.3</li>
+<li>      number of problems  201 </li>
+<li>      number of degrees of freedom [72 : 864] </li>
+<li>      number of contacts  [ 0: 950]</li>
+<li>      required accuracy $10^{-8}$</li>
+</ul>
+
+<a href="./resources/KaplasTower-1.tar.gz"> Download KaplasTower-1 </a> 
+
+*/
+
+
+
+/*! \page boxesstack1 BoxesStack-1
+
+<img  style="float:left;margin:0 50px 0 0;" height=300 src="./images/BoxesStack2.png"/>
+
+<ul>
+
+  <li> number of boxes : 50 </li>
+  <li> coefficient of friction : 0.7 </li>
+  <li> number of problems : 1514 </li>
+  <li> number of degrees of freedom : [48 : 60] </li>
+  <li> number of contacts : [8 : 28] </li>
+  <li> required accuracy : $10^{-8}$  </li>
+  
+</ul>
+
+<a href="./resources/BoxeStack-1.tar.gz"> Download BoxesStack-1 </a> 
+
+*/
+
+
+
+/*! \page chain1 Chain-1
+
+<img  style="float:left;margin:0 50px 0 0;" height=300 src="./images/Chain.png"/>
+
+<ul>
+<li>     coefficient of friction $0.3$ </li>
+<li>        number of problems  1514 </li>
+<li>        number of degrees of freedom [48 : 60] </li>
+<li>        number of contacts  [8 :28] </li>
+<li>        required accuracy   $10^{-8}$ </li>   
+</ul>
+
+<a href="./resources/KaplasTower-1.tar.gz"> Download Chain-1 </a> 
+
+*/
+
+
+/*! \page capsules1 Capsules-1
+
+
+<img  style="float:left;margin:0 50px 0 0;" height=300 src="./images/Capsules.png"/>
+
+<ul>
+  <li> coefficient of friction  $0.7$ </li>
+  <li> number of problems  1705  </li>
+  <li> number of degrees of freedom [6 : 600] </li>
+  <li> number of contacts   [0:300]  </li>
+  <li> required accuracy   $10^{-8}$  </li>   
+</ul>
+
+<a href="./resources/KaplasTower-1.tar.gz"> Download Capsules-1 </a> 
+
+*/
 
   
 */
