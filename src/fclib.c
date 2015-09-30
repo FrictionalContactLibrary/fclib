@@ -419,9 +419,9 @@ int fclib_create_int_attributes_in_info(const char *path, const char * attr_name
     IO(H5Aclose (attr_id));
     IO (H5Gclose (id));
   }
+  IO (H5Fclose (file_id));
 
-
-  return 0;
+  return 1;
 }
 
 /* =========================== interface ============================ */
