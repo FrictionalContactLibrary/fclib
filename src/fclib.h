@@ -316,4 +316,8 @@ void fclib_delete_local (struct fclib_local *problem);
 /** delete solutions or guesses */
 void fclib_delete_solutions (struct fclib_solution *data, int count);
 
+/** create and set attributes of tyoe int in info */
+int fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
+                                        int attr_value);
+
 #endif /* _fclib_h_ */

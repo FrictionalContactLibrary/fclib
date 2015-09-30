@@ -32,8 +32,6 @@ double dnrm2(double * v ,  int n)
   return sqrt(norm2);
 }
 
-
-
 void projectionOnCone(double* r, double  mu)
 {
   double normT = hypot(r[1], r[2]);

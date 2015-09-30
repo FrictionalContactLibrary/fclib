@@ -7,12 +7,10 @@
 ** DONE add siconos Numerics test collection in fclib
    DEADLINE: <2011-11-30 Wed> CLOSED: [2011-11-25 Fri 09:02]
 * General Development Tasks
-
-** TODO Implement the merit function
+** TODO Correct & Implement the merit function
    DEADLINE: <2013-12-20 Ven>
    + for global problem.
    + with equality constraints  
-   
 ** TODO fix the cmake stuff
    too big & fail (on a std ubuntu 11.4)
    

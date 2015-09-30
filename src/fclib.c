@@ -379,6 +379,51 @@ static void delete_info (struct fclib_info *info)
   }
 }
 
+int fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
+                                        int attr_value)
+{
+  hid_t  file_id, id, dataspace_id, attr_id;
+  hsize_t dim = 1;
+  hsize_t     dims[1];
+  FILE *f;
+
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
+  {
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
+    {
+      fprintf (stderr, "ERROR: opening file failed\n");
+      return 0;
+    }
+  }
+  
+  if (H5Lexists (file_id, "/fclib_local/info", H5P_DEFAULT))
+  {
+    IO (id = H5Gopen (file_id, "/fclib_local/info", H5P_DEFAULT));
+    dims[0]=1;
+    dataspace_id = H5Screate_simple(1, dims, NULL);
+    attr_id = H5Acreate (id, attr_name, H5T_NATIVE_INT, dataspace_id,
+                         H5P_DEFAULT, H5P_DEFAULT);
+    IO(H5Awrite(attr_id, H5T_NATIVE_INT , &attr_value ));
+    IO(H5Aclose (attr_id));
+    IO (H5Gclose (id));
+  }
+  else
+  {
+    IO (id = H5Gmake (file_id, "/fclib_local/info"));
+    dims[0]=1;
+    dataspace_id = H5Screate_simple(1, dims, NULL);
+    attr_id = H5Acreate (id, attr_name, H5T_NATIVE_INT, dataspace_id,
+                         H5P_DEFAULT, H5P_DEFAULT);
+    IO(H5Awrite(attr_id, H5T_NATIVE_INT , &attr_value ));
+    IO(H5Aclose (attr_id));
+    IO (H5Gclose (id));
+  }
+
+
+  return 0;
+}
+
 /* =========================== interface ============================ */
 
 /** write global problem;
@@ -448,6 +493,10 @@ int fclib_write_global (struct fclib_global *problem, const char *path)
 
   return 1;
 }
+
+
+
+
 
 /** write local problem;
  * return 1 on success, 0 on failure */
