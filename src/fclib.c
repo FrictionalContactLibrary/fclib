@@ -148,6 +148,10 @@ struct fclib_matrix* read_matrix (hid_t id)
     IO (H5LTread_dataset_double (id, "determinant", &mat->info->determinant));
     IO (H5LTread_dataset_int (id, "rank", &mat->info->rank));
   }
+  else
+  {
+    mat->info = NULL;
+  }
 
   return mat;
 }
