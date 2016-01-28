@@ -716,7 +716,13 @@ struct fclib_local* fclib_read_local (const char *path)
   if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)
   {
     fprintf (stderr, "ERROR: opening file failed\n");
-    return 0;
+    return NULL;
+  }
+
+  if (!H5Lexists (file_id, "/fclib_local", H5P_DEFAULT))
+  {
+    fprintf (stderr, "ERROR: spurious input file %s :: fclib_local group does not exists", path);
+    return NULL;
   }
 
   MM (problem = calloc (1, sizeof (struct fclib_local)));
