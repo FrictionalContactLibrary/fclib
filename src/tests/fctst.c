@@ -438,11 +438,13 @@ int main (int argc, char **argv)
       printf ("All comparisons PASSED\n");
     
       fclib_delete_global (p);
+      free(p);
       fclib_delete_solutions (s, 1);
       fclib_delete_solutions (g, n);
     }
 
     fclib_delete_global (problem);
+    free(problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }
@@ -495,11 +497,13 @@ int main (int argc, char **argv)
       printf ("All comparions PASSED\n");
     
       fclib_delete_local (p);
+      free(p);
       fclib_delete_solutions (s, 1);
       fclib_delete_solutions (g, n);
     }
 
     fclib_delete_local (problem);
+    free(problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }

@@ -380,6 +380,7 @@ static void delete_info (struct fclib_info *info)
     if (info->title) free (info->title);
     if (info->description) free (info->description);
     if (info->math_info) free (info->math_info);
+    free(info);
   }
 }
 
