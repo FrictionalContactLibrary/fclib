@@ -1,0 +1,75 @@
+\hypertarget{fcint_8h}{\subsection{fcint.\-h File Reference}
+\label{fcint_8h}\index{fcint.\-h@{fcint.\-h}}
+}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{fcint_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fcint_8h_af6a170071ba1da3930abadc6d3f95493}{A\-S\-S\-E\-R\-T}(Test,...)
+\item 
+\#define \hyperlink{fcint_8h_a7e1b7988c998844258179660bb5f8e69}{I\-O}(Call)~\hyperlink{fcint_8h_af6a170071ba1da3930abadc6d3f95493}{A\-S\-S\-E\-R\-T} ((Call) $>$= 0, \char`\"{}E\-R\-R\-O\-R\-: H\-D\-F5 call failed\char`\"{})
+\item 
+\#define \hyperlink{fcint_8h_ae5d192dca25b682622b72b1211df96b7}{M\-M}(Call)~\hyperlink{fcint_8h_af6a170071ba1da3930abadc6d3f95493}{A\-S\-S\-E\-R\-T} ((Call), \char`\"{}E\-R\-R\-O\-R\-: out of memory\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Macro Definition Documentation}
+\hypertarget{fcint_8h_af6a170071ba1da3930abadc6d3f95493}{\index{fcint.\-h@{fcint.\-h}!A\-S\-S\-E\-R\-T@{A\-S\-S\-E\-R\-T}}
+\index{A\-S\-S\-E\-R\-T@{A\-S\-S\-E\-R\-T}!fcint.h@{fcint.\-h}}
+\paragraph[{A\-S\-S\-E\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-S\-S\-E\-R\-T(
+\begin{DoxyParamCaption}
+\item[{}]{Test, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{fcint_8h_af6a170071ba1da3930abadc6d3f95493}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{\(\backslash\)
+  if (! (Test)) \{ fprintf (stderr, \textcolor{stringliteral}{"%s: %d => "}, \_\_FILE\_\_, \_\_LINE\_\_);\(\backslash\)
+    fprintf (stderr, \_\_VA\_ARGS\_\_);\(\backslash\)
+    fprintf (stderr, \textcolor{stringliteral}{"\(\backslash\)n"}); exit (1); \} \} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 11 of file fcint.\-h.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-global(), fclib\-\_\-write\-\_\-local(), main(), read\-\_\-global\-\_\-vectors(), read\-\_\-local\-\_\-vectors(), read\-\_\-matrix(), read\-\_\-solution(), write\-\_\-global\-\_\-vectors(), write\-\_\-local\-\_\-vectors(), write\-\_\-matrix(), and write\-\_\-solution().
+
+\hypertarget{fcint_8h_a7e1b7988c998844258179660bb5f8e69}{\index{fcint.\-h@{fcint.\-h}!I\-O@{I\-O}}
+\index{I\-O@{I\-O}!fcint.h@{fcint.\-h}}
+\paragraph[{I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O(
+\begin{DoxyParamCaption}
+\item[{}]{Call}
+\end{DoxyParamCaption}
+)~{\bf A\-S\-S\-E\-R\-T} ((Call) $>$= 0, \char`\"{}E\-R\-R\-O\-R\-: H\-D\-F5 call failed\char`\"{})}}\label{fcint_8h_a7e1b7988c998844258179660bb5f8e69}
+
+
+Definition at line 17 of file fcint.\-h.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-global(), fclib\-\_\-read\-\_\-guesses(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-read\-\_\-solution(), fclib\-\_\-write\-\_\-global(), fclib\-\_\-write\-\_\-guesses(), fclib\-\_\-write\-\_\-local(), fclib\-\_\-write\-\_\-solution(), read\-\_\-global\-\_\-vectors(), read\-\_\-local\-\_\-vectors(), read\-\_\-matrix(), read\-\_\-nvnunrnl(), read\-\_\-problem\-\_\-info(), read\-\_\-solution(), write\-\_\-global\-\_\-vectors(), write\-\_\-local\-\_\-vectors(), write\-\_\-matrix(), write\-\_\-problem\-\_\-info(), and write\-\_\-solution().
+
+\hypertarget{fcint_8h_ae5d192dca25b682622b72b1211df96b7}{\index{fcint.\-h@{fcint.\-h}!M\-M@{M\-M}}
+\index{M\-M@{M\-M}!fcint.h@{fcint.\-h}}
+\paragraph[{M\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-M(
+\begin{DoxyParamCaption}
+\item[{}]{Call}
+\end{DoxyParamCaption}
+)~{\bf A\-S\-S\-E\-R\-T} ((Call), \char`\"{}E\-R\-R\-O\-R\-: out of memory\char`\"{})}}\label{fcint_8h_ae5d192dca25b682622b72b1211df96b7}
+
+
+Definition at line 18 of file fcint.\-h.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-global(), fclib\-\_\-read\-\_\-guesses(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-read\-\_\-solution(), matrix\-\_\-info(), problem\-\_\-info(), random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-problem(), random\-\_\-local\-\_\-solutions(), random\-\_\-matrix(), random\-\_\-vector(), read\-\_\-global\-\_\-vectors(), read\-\_\-local\-\_\-vectors(), read\-\_\-matrix(), read\-\_\-problem\-\_\-info(), and read\-\_\-solution().
+

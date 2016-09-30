@@ -1,0 +1,368 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}What is F\discretionary {-}{}{}C\discretionary {-}{}{}L\discretionary {-}{}{}I\discretionary {-}{}{}B ?}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Goals of the project}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}How to download ?}{2}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}What is a Frictional contact problem ?}{2}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}The local Frictional Contact problem with equality constraints}{2}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}The Global Frictional Contact problem with equality constraints}{3}{subsubsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.3}Problems without equality constraints}{3}{subsubsection.1.4.3}
+\contentsline {subsubsection}{\numberline {1.4.4}functions.}{4}{subsubsection.1.4.4}
+\contentsline {section}{\numberline {2}Download}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}How to download sources files of the A\discretionary {-}{}{}P\discretionary {-}{}{}I?}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}How to download the collection of problems ?}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Binaries}{4}{subsection.2.3}
+\contentsline {section}{\numberline {3}Contact us}{4}{section.3}
+\contentsline {section}{\numberline {4}Related Publications}{4}{section.4}
+\contentsline {section}{\numberline {5}Class Index}{4}{section.5}
+\contentsline {subsection}{\numberline {5.1}Class List}{4}{subsection.5.1}
+\contentsline {section}{\numberline {6}File Index}{5}{section.6}
+\contentsline {subsection}{\numberline {6.1}File List}{5}{subsection.6.1}
+\contentsline {section}{\numberline {7}Class Documentation}{5}{section.7}
+\contentsline {subsection}{\numberline {7.1}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dmperm\discretionary {-}{}{}\_\discretionary {-}{}{}results Struct Reference}{5}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Detailed Description}{5}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}Member Data Documentation}{6}{subsubsection.7.1.2}
+\contentsline {paragraph}{\numberline {7.1.2.1}P}{6}{paragraph.7.1.2.1}
+\contentsline {paragraph}{\numberline {7.1.2.2}Q}{6}{paragraph.7.1.2.2}
+\contentsline {paragraph}{\numberline {7.1.2.3}R}{6}{paragraph.7.1.2.3}
+\contentsline {paragraph}{\numberline {7.1.2.4}S}{6}{paragraph.7.1.2.4}
+\contentsline {paragraph}{\numberline {7.1.2.5}nb}{6}{paragraph.7.1.2.5}
+\contentsline {paragraph}{\numberline {7.1.2.6}rr}{6}{paragraph.7.1.2.6}
+\contentsline {paragraph}{\numberline {7.1.2.7}cc}{6}{paragraph.7.1.2.7}
+\contentsline {subsection}{\numberline {7.2}cs\discretionary {-}{}{}\_\discretionary {-}{}{}numeric Struct Reference}{6}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}Detailed Description}{7}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}Member Data Documentation}{7}{subsubsection.7.2.2}
+\contentsline {paragraph}{\numberline {7.2.2.1}L}{7}{paragraph.7.2.2.1}
+\contentsline {paragraph}{\numberline {7.2.2.2}U}{7}{paragraph.7.2.2.2}
+\contentsline {paragraph}{\numberline {7.2.2.3}Pinv}{7}{paragraph.7.2.2.3}
+\contentsline {paragraph}{\numberline {7.2.2.4}B}{7}{paragraph.7.2.2.4}
+\contentsline {subsection}{\numberline {7.3}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sparse Struct Reference}{7}{subsection.7.3}
+\contentsline {subsubsection}{\numberline {7.3.1}Detailed Description}{8}{subsubsection.7.3.1}
+\contentsline {subsubsection}{\numberline {7.3.2}Member Data Documentation}{8}{subsubsection.7.3.2}
+\contentsline {paragraph}{\numberline {7.3.2.1}nzmax}{8}{paragraph.7.3.2.1}
+\contentsline {paragraph}{\numberline {7.3.2.2}m}{8}{paragraph.7.3.2.2}
+\contentsline {paragraph}{\numberline {7.3.2.3}n}{8}{paragraph.7.3.2.3}
+\contentsline {paragraph}{\numberline {7.3.2.4}p}{8}{paragraph.7.3.2.4}
+\contentsline {paragraph}{\numberline {7.3.2.5}i}{8}{paragraph.7.3.2.5}
+\contentsline {paragraph}{\numberline {7.3.2.6}x}{9}{paragraph.7.3.2.6}
+\contentsline {paragraph}{\numberline {7.3.2.7}nz}{9}{paragraph.7.3.2.7}
+\contentsline {subsection}{\numberline {7.4}cs\discretionary {-}{}{}\_\discretionary {-}{}{}symbolic Struct Reference}{9}{subsection.7.4}
+\contentsline {subsubsection}{\numberline {7.4.1}Detailed Description}{9}{subsubsection.7.4.1}
+\contentsline {subsubsection}{\numberline {7.4.2}Member Data Documentation}{9}{subsubsection.7.4.2}
+\contentsline {paragraph}{\numberline {7.4.2.1}Pinv}{9}{paragraph.7.4.2.1}
+\contentsline {paragraph}{\numberline {7.4.2.2}Q}{9}{paragraph.7.4.2.2}
+\contentsline {paragraph}{\numberline {7.4.2.3}parent}{9}{paragraph.7.4.2.3}
+\contentsline {paragraph}{\numberline {7.4.2.4}cp}{9}{paragraph.7.4.2.4}
+\contentsline {paragraph}{\numberline {7.4.2.5}m2}{10}{paragraph.7.4.2.5}
+\contentsline {paragraph}{\numberline {7.4.2.6}lnz}{10}{paragraph.7.4.2.6}
+\contentsline {paragraph}{\numberline {7.4.2.7}unz}{10}{paragraph.7.4.2.7}
+\contentsline {subsection}{\numberline {7.5}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}global Struct Reference}{10}{subsection.7.5}
+\contentsline {subsubsection}{\numberline {7.5.1}Detailed Description}{11}{subsubsection.7.5.1}
+\contentsline {subsubsection}{\numberline {7.5.2}Member Data Documentation}{11}{subsubsection.7.5.2}
+\contentsline {paragraph}{\numberline {7.5.2.1}M}{11}{paragraph.7.5.2.1}
+\contentsline {paragraph}{\numberline {7.5.2.2}H}{12}{paragraph.7.5.2.2}
+\contentsline {paragraph}{\numberline {7.5.2.3}G}{12}{paragraph.7.5.2.3}
+\contentsline {paragraph}{\numberline {7.5.2.4}mu}{12}{paragraph.7.5.2.4}
+\contentsline {paragraph}{\numberline {7.5.2.5}f}{12}{paragraph.7.5.2.5}
+\contentsline {paragraph}{\numberline {7.5.2.6}b}{12}{paragraph.7.5.2.6}
+\contentsline {paragraph}{\numberline {7.5.2.7}w}{12}{paragraph.7.5.2.7}
+\contentsline {paragraph}{\numberline {7.5.2.8}spacedim}{12}{paragraph.7.5.2.8}
+\contentsline {paragraph}{\numberline {7.5.2.9}info}{12}{paragraph.7.5.2.9}
+\contentsline {subsection}{\numberline {7.6}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}info Struct Reference}{13}{subsection.7.6}
+\contentsline {subsubsection}{\numberline {7.6.1}Detailed Description}{13}{subsubsection.7.6.1}
+\contentsline {subsubsection}{\numberline {7.6.2}Member Data Documentation}{13}{subsubsection.7.6.2}
+\contentsline {paragraph}{\numberline {7.6.2.1}title}{13}{paragraph.7.6.2.1}
+\contentsline {paragraph}{\numberline {7.6.2.2}description}{13}{paragraph.7.6.2.2}
+\contentsline {paragraph}{\numberline {7.6.2.3}math\discretionary {-}{}{}\_\discretionary {-}{}{}info}{13}{paragraph.7.6.2.3}
+\contentsline {subsection}{\numberline {7.7}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}local Struct Reference}{13}{subsection.7.7}
+\contentsline {subsubsection}{\numberline {7.7.1}Detailed Description}{14}{subsubsection.7.7.1}
+\contentsline {subsubsection}{\numberline {7.7.2}Member Data Documentation}{15}{subsubsection.7.7.2}
+\contentsline {paragraph}{\numberline {7.7.2.1}W}{15}{paragraph.7.7.2.1}
+\contentsline {paragraph}{\numberline {7.7.2.2}V}{15}{paragraph.7.7.2.2}
+\contentsline {paragraph}{\numberline {7.7.2.3}R}{15}{paragraph.7.7.2.3}
+\contentsline {paragraph}{\numberline {7.7.2.4}mu}{15}{paragraph.7.7.2.4}
+\contentsline {paragraph}{\numberline {7.7.2.5}q}{15}{paragraph.7.7.2.5}
+\contentsline {paragraph}{\numberline {7.7.2.6}s}{16}{paragraph.7.7.2.6}
+\contentsline {paragraph}{\numberline {7.7.2.7}spacedim}{16}{paragraph.7.7.2.7}
+\contentsline {paragraph}{\numberline {7.7.2.8}info}{16}{paragraph.7.7.2.8}
+\contentsline {subsection}{\numberline {7.8}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}matrix Struct Reference}{16}{subsection.7.8}
+\contentsline {subsubsection}{\numberline {7.8.1}Detailed Description}{17}{subsubsection.7.8.1}
+\contentsline {subsubsection}{\numberline {7.8.2}Member Data Documentation}{17}{subsubsection.7.8.2}
+\contentsline {paragraph}{\numberline {7.8.2.1}nzmax}{17}{paragraph.7.8.2.1}
+\contentsline {paragraph}{\numberline {7.8.2.2}m}{17}{paragraph.7.8.2.2}
+\contentsline {paragraph}{\numberline {7.8.2.3}n}{17}{paragraph.7.8.2.3}
+\contentsline {paragraph}{\numberline {7.8.2.4}p}{17}{paragraph.7.8.2.4}
+\contentsline {paragraph}{\numberline {7.8.2.5}i}{17}{paragraph.7.8.2.5}
+\contentsline {paragraph}{\numberline {7.8.2.6}x}{18}{paragraph.7.8.2.6}
+\contentsline {paragraph}{\numberline {7.8.2.7}nz}{18}{paragraph.7.8.2.7}
+\contentsline {paragraph}{\numberline {7.8.2.8}info}{18}{paragraph.7.8.2.8}
+\contentsline {subsection}{\numberline {7.9}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}info Struct Reference}{18}{subsection.7.9}
+\contentsline {subsubsection}{\numberline {7.9.1}Detailed Description}{18}{subsubsection.7.9.1}
+\contentsline {subsubsection}{\numberline {7.9.2}Member Data Documentation}{18}{subsubsection.7.9.2}
+\contentsline {paragraph}{\numberline {7.9.2.1}comment}{18}{paragraph.7.9.2.1}
+\contentsline {paragraph}{\numberline {7.9.2.2}conditioning}{19}{paragraph.7.9.2.2}
+\contentsline {paragraph}{\numberline {7.9.2.3}determinant}{19}{paragraph.7.9.2.3}
+\contentsline {paragraph}{\numberline {7.9.2.4}rank}{19}{paragraph.7.9.2.4}
+\contentsline {subsection}{\numberline {7.10}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}solution Struct Reference}{19}{subsection.7.10}
+\contentsline {subsubsection}{\numberline {7.10.1}Detailed Description}{19}{subsubsection.7.10.1}
+\contentsline {subsubsection}{\numberline {7.10.2}Member Data Documentation}{19}{subsubsection.7.10.2}
+\contentsline {paragraph}{\numberline {7.10.2.1}v}{19}{paragraph.7.10.2.1}
+\contentsline {paragraph}{\numberline {7.10.2.2}u}{20}{paragraph.7.10.2.2}
+\contentsline {paragraph}{\numberline {7.10.2.3}r}{20}{paragraph.7.10.2.3}
+\contentsline {paragraph}{\numberline {7.10.2.4}l}{20}{paragraph.7.10.2.4}
+\contentsline {section}{\numberline {8}File Documentation}{20}{section.8}
+\contentsline {subsection}{\numberline {8.1}additionalpages.\discretionary {-}{}{}doxygen File Reference}{20}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}csparse.\discretionary {-}{}{}c File Reference}{20}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Function Documentation}{22}{subsubsection.8.2.1}
+\contentsline {paragraph}{\numberline {8.2.1.1}cs\discretionary {-}{}{}\_\discretionary {-}{}{}add}{22}{paragraph.8.2.1.1}
+\contentsline {paragraph}{\numberline {8.2.1.2}cs\discretionary {-}{}{}\_\discretionary {-}{}{}wclear}{22}{paragraph.8.2.1.2}
+\contentsline {paragraph}{\numberline {8.2.1.3}cs\discretionary {-}{}{}\_\discretionary {-}{}{}diag}{23}{paragraph.8.2.1.3}
+\contentsline {paragraph}{\numberline {8.2.1.4}cs\discretionary {-}{}{}\_\discretionary {-}{}{}amd}{23}{paragraph.8.2.1.4}
+\contentsline {paragraph}{\numberline {8.2.1.5}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ereach}{23}{paragraph.8.2.1.5}
+\contentsline {paragraph}{\numberline {8.2.1.6}cs\discretionary {-}{}{}\_\discretionary {-}{}{}chol}{24}{paragraph.8.2.1.6}
+\contentsline {paragraph}{\numberline {8.2.1.7}cs\discretionary {-}{}{}\_\discretionary {-}{}{}cholsol}{24}{paragraph.8.2.1.7}
+\contentsline {paragraph}{\numberline {8.2.1.8}cs\discretionary {-}{}{}\_\discretionary {-}{}{}cedge}{25}{paragraph.8.2.1.8}
+\contentsline {paragraph}{\numberline {8.2.1.9}cs\discretionary {-}{}{}\_\discretionary {-}{}{}counts}{26}{paragraph.8.2.1.9}
+\contentsline {paragraph}{\numberline {8.2.1.10}cs\discretionary {-}{}{}\_\discretionary {-}{}{}cumsum}{26}{paragraph.8.2.1.10}
+\contentsline {paragraph}{\numberline {8.2.1.11}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dfs}{26}{paragraph.8.2.1.11}
+\contentsline {paragraph}{\numberline {8.2.1.12}cs\discretionary {-}{}{}\_\discretionary {-}{}{}bfs}{26}{paragraph.8.2.1.12}
+\contentsline {paragraph}{\numberline {8.2.1.13}cs\discretionary {-}{}{}\_\discretionary {-}{}{}matched}{27}{paragraph.8.2.1.13}
+\contentsline {paragraph}{\numberline {8.2.1.14}cs\discretionary {-}{}{}\_\discretionary {-}{}{}unmatched}{27}{paragraph.8.2.1.14}
+\contentsline {paragraph}{\numberline {8.2.1.15}cs\discretionary {-}{}{}\_\discretionary {-}{}{}rprune}{27}{paragraph.8.2.1.15}
+\contentsline {paragraph}{\numberline {8.2.1.16}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dmperm}{27}{paragraph.8.2.1.16}
+\contentsline {paragraph}{\numberline {8.2.1.17}cs\discretionary {-}{}{}\_\discretionary {-}{}{}tol}{28}{paragraph.8.2.1.17}
+\contentsline {paragraph}{\numberline {8.2.1.18}cs\discretionary {-}{}{}\_\discretionary {-}{}{}droptol}{28}{paragraph.8.2.1.18}
+\contentsline {paragraph}{\numberline {8.2.1.19}cs\discretionary {-}{}{}\_\discretionary {-}{}{}nonzero}{29}{paragraph.8.2.1.19}
+\contentsline {paragraph}{\numberline {8.2.1.20}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dropzeros}{29}{paragraph.8.2.1.20}
+\contentsline {paragraph}{\numberline {8.2.1.21}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dupl}{29}{paragraph.8.2.1.21}
+\contentsline {paragraph}{\numberline {8.2.1.22}cs\discretionary {-}{}{}\_\discretionary {-}{}{}entry}{30}{paragraph.8.2.1.22}
+\contentsline {paragraph}{\numberline {8.2.1.23}cs\discretionary {-}{}{}\_\discretionary {-}{}{}etree}{30}{paragraph.8.2.1.23}
+\contentsline {paragraph}{\numberline {8.2.1.24}cs\discretionary {-}{}{}\_\discretionary {-}{}{}fkeep}{31}{paragraph.8.2.1.24}
+\contentsline {paragraph}{\numberline {8.2.1.25}cs\discretionary {-}{}{}\_\discretionary {-}{}{}gaxpy}{31}{paragraph.8.2.1.25}
+\contentsline {paragraph}{\numberline {8.2.1.26}cs\discretionary {-}{}{}\_\discretionary {-}{}{}happly}{31}{paragraph.8.2.1.26}
+\contentsline {paragraph}{\numberline {8.2.1.27}cs\discretionary {-}{}{}\_\discretionary {-}{}{}house}{31}{paragraph.8.2.1.27}
+\contentsline {paragraph}{\numberline {8.2.1.28}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ipvec}{31}{paragraph.8.2.1.28}
+\contentsline {paragraph}{\numberline {8.2.1.29}cs\discretionary {-}{}{}\_\discretionary {-}{}{}load}{31}{paragraph.8.2.1.29}
+\contentsline {paragraph}{\numberline {8.2.1.30}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lsolve}{32}{paragraph.8.2.1.30}
+\contentsline {paragraph}{\numberline {8.2.1.31}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ltsolve}{32}{paragraph.8.2.1.31}
+\contentsline {paragraph}{\numberline {8.2.1.32}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lu}{32}{paragraph.8.2.1.32}
+\contentsline {paragraph}{\numberline {8.2.1.33}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lusol}{33}{paragraph.8.2.1.33}
+\contentsline {paragraph}{\numberline {8.2.1.34}cs\discretionary {-}{}{}\_\discretionary {-}{}{}malloc}{34}{paragraph.8.2.1.34}
+\contentsline {paragraph}{\numberline {8.2.1.35}cs\discretionary {-}{}{}\_\discretionary {-}{}{}calloc}{35}{paragraph.8.2.1.35}
+\contentsline {paragraph}{\numberline {8.2.1.36}cs\discretionary {-}{}{}\_\discretionary {-}{}{}free}{35}{paragraph.8.2.1.36}
+\contentsline {paragraph}{\numberline {8.2.1.37}cs\discretionary {-}{}{}\_\discretionary {-}{}{}realloc}{35}{paragraph.8.2.1.37}
+\contentsline {paragraph}{\numberline {8.2.1.38}cs\discretionary {-}{}{}\_\discretionary {-}{}{}augment}{35}{paragraph.8.2.1.38}
+\contentsline {paragraph}{\numberline {8.2.1.39}cs\discretionary {-}{}{}\_\discretionary {-}{}{}maxtrans}{35}{paragraph.8.2.1.39}
+\contentsline {paragraph}{\numberline {8.2.1.40}cs\discretionary {-}{}{}\_\discretionary {-}{}{}multiply}{36}{paragraph.8.2.1.40}
+\contentsline {paragraph}{\numberline {8.2.1.41}cs\discretionary {-}{}{}\_\discretionary {-}{}{}norm}{36}{paragraph.8.2.1.41}
+\contentsline {paragraph}{\numberline {8.2.1.42}cs\discretionary {-}{}{}\_\discretionary {-}{}{}permute}{36}{paragraph.8.2.1.42}
+\contentsline {paragraph}{\numberline {8.2.1.43}cs\discretionary {-}{}{}\_\discretionary {-}{}{}pinv}{37}{paragraph.8.2.1.43}
+\contentsline {paragraph}{\numberline {8.2.1.44}cs\discretionary {-}{}{}\_\discretionary {-}{}{}post}{37}{paragraph.8.2.1.44}
+\contentsline {paragraph}{\numberline {8.2.1.45}cs\discretionary {-}{}{}\_\discretionary {-}{}{}print}{38}{paragraph.8.2.1.45}
+\contentsline {paragraph}{\numberline {8.2.1.46}cs\discretionary {-}{}{}\_\discretionary {-}{}{}pvec}{38}{paragraph.8.2.1.46}
+\contentsline {paragraph}{\numberline {8.2.1.47}cs\discretionary {-}{}{}\_\discretionary {-}{}{}qr}{38}{paragraph.8.2.1.47}
+\contentsline {paragraph}{\numberline {8.2.1.48}cs\discretionary {-}{}{}\_\discretionary {-}{}{}qrsol}{39}{paragraph.8.2.1.48}
+\contentsline {paragraph}{\numberline {8.2.1.49}cs\discretionary {-}{}{}\_\discretionary {-}{}{}reach}{40}{paragraph.8.2.1.49}
+\contentsline {paragraph}{\numberline {8.2.1.50}cs\discretionary {-}{}{}\_\discretionary {-}{}{}scatter}{41}{paragraph.8.2.1.50}
+\contentsline {paragraph}{\numberline {8.2.1.51}cs\discretionary {-}{}{}\_\discretionary {-}{}{}scc}{41}{paragraph.8.2.1.51}
+\contentsline {paragraph}{\numberline {8.2.1.52}cs\discretionary {-}{}{}\_\discretionary {-}{}{}schol}{41}{paragraph.8.2.1.52}
+\contentsline {paragraph}{\numberline {8.2.1.53}cs\discretionary {-}{}{}\_\discretionary {-}{}{}splsolve}{42}{paragraph.8.2.1.53}
+\contentsline {paragraph}{\numberline {8.2.1.54}cs\discretionary {-}{}{}\_\discretionary {-}{}{}vcount}{43}{paragraph.8.2.1.54}
+\contentsline {paragraph}{\numberline {8.2.1.55}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sqr}{43}{paragraph.8.2.1.55}
+\contentsline {paragraph}{\numberline {8.2.1.56}cs\discretionary {-}{}{}\_\discretionary {-}{}{}symperm}{44}{paragraph.8.2.1.56}
+\contentsline {paragraph}{\numberline {8.2.1.57}cs\discretionary {-}{}{}\_\discretionary {-}{}{}tdfs}{45}{paragraph.8.2.1.57}
+\contentsline {paragraph}{\numberline {8.2.1.58}cs\discretionary {-}{}{}\_\discretionary {-}{}{}transpose}{45}{paragraph.8.2.1.58}
+\contentsline {paragraph}{\numberline {8.2.1.59}cs\discretionary {-}{}{}\_\discretionary {-}{}{}triplet}{45}{paragraph.8.2.1.59}
+\contentsline {paragraph}{\numberline {8.2.1.60}cs\discretionary {-}{}{}\_\discretionary {-}{}{}updown}{46}{paragraph.8.2.1.60}
+\contentsline {paragraph}{\numberline {8.2.1.61}cs\discretionary {-}{}{}\_\discretionary {-}{}{}usolve}{46}{paragraph.8.2.1.61}
+\contentsline {paragraph}{\numberline {8.2.1.62}cs\discretionary {-}{}{}\_\discretionary {-}{}{}spalloc}{46}{paragraph.8.2.1.62}
+\contentsline {paragraph}{\numberline {8.2.1.63}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sprealloc}{47}{paragraph.8.2.1.63}
+\contentsline {paragraph}{\numberline {8.2.1.64}cs\discretionary {-}{}{}\_\discretionary {-}{}{}spfree}{47}{paragraph.8.2.1.64}
+\contentsline {paragraph}{\numberline {8.2.1.65}cs\discretionary {-}{}{}\_\discretionary {-}{}{}nfree}{48}{paragraph.8.2.1.65}
+\contentsline {paragraph}{\numberline {8.2.1.66}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sfree}{48}{paragraph.8.2.1.66}
+\contentsline {paragraph}{\numberline {8.2.1.67}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dalloc}{48}{paragraph.8.2.1.67}
+\contentsline {paragraph}{\numberline {8.2.1.68}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dfree}{49}{paragraph.8.2.1.68}
+\contentsline {paragraph}{\numberline {8.2.1.69}cs\discretionary {-}{}{}\_\discretionary {-}{}{}done}{49}{paragraph.8.2.1.69}
+\contentsline {paragraph}{\numberline {8.2.1.70}cs\discretionary {-}{}{}\_\discretionary {-}{}{}idone}{50}{paragraph.8.2.1.70}
+\contentsline {paragraph}{\numberline {8.2.1.71}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ndone}{50}{paragraph.8.2.1.71}
+\contentsline {paragraph}{\numberline {8.2.1.72}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ddone}{50}{paragraph.8.2.1.72}
+\contentsline {paragraph}{\numberline {8.2.1.73}cs\discretionary {-}{}{}\_\discretionary {-}{}{}utsolve}{51}{paragraph.8.2.1.73}
+\contentsline {subsection}{\numberline {8.3}csparse.\discretionary {-}{}{}h File Reference}{51}{subsection.8.3}
+\contentsline {subsubsection}{\numberline {8.3.1}Macro Definition Documentation}{53}{subsubsection.8.3.1}
+\contentsline {paragraph}{\numberline {8.3.1.1}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}V\discretionary {-}{}{}E\discretionary {-}{}{}R}{53}{paragraph.8.3.1.1}
+\contentsline {paragraph}{\numberline {8.3.1.2}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}U\discretionary {-}{}{}B\discretionary {-}{}{}V\discretionary {-}{}{}E\discretionary {-}{}{}R}{53}{paragraph.8.3.1.2}
+\contentsline {paragraph}{\numberline {8.3.1.3}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}U\discretionary {-}{}{}B\discretionary {-}{}{}S\discretionary {-}{}{}U\discretionary {-}{}{}B}{53}{paragraph.8.3.1.3}
+\contentsline {paragraph}{\numberline {8.3.1.4}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}D\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}E}{53}{paragraph.8.3.1.4}
+\contentsline {paragraph}{\numberline {8.3.1.5}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}C\discretionary {-}{}{}O\discretionary {-}{}{}P\discretionary {-}{}{}Y\discretionary {-}{}{}R\discretionary {-}{}{}I\discretionary {-}{}{}G\discretionary {-}{}{}H\discretionary {-}{}{}T}{54}{paragraph.8.3.1.5}
+\contentsline {paragraph}{\numberline {8.3.1.6}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}X}{54}{paragraph.8.3.1.6}
+\contentsline {paragraph}{\numberline {8.3.1.7}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}I\discretionary {-}{}{}N}{54}{paragraph.8.3.1.7}
+\contentsline {paragraph}{\numberline {8.3.1.8}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}L\discretionary {-}{}{}I\discretionary {-}{}{}P}{54}{paragraph.8.3.1.8}
+\contentsline {paragraph}{\numberline {8.3.1.9}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}U\discretionary {-}{}{}N\discretionary {-}{}{}F\discretionary {-}{}{}L\discretionary {-}{}{}I\discretionary {-}{}{}P}{54}{paragraph.8.3.1.9}
+\contentsline {paragraph}{\numberline {8.3.1.10}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}K\discretionary {-}{}{}E\discretionary {-}{}{}D}{54}{paragraph.8.3.1.10}
+\contentsline {paragraph}{\numberline {8.3.1.11}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}K}{54}{paragraph.8.3.1.11}
+\contentsline {paragraph}{\numberline {8.3.1.12}C\discretionary {-}{}{}S\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}O\discretionary {-}{}{}V\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}F\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W}{54}{paragraph.8.3.1.12}
+\contentsline {subsubsection}{\numberline {8.3.2}Typedef Documentation}{54}{subsubsection.8.3.2}
+\contentsline {paragraph}{\numberline {8.3.2.1}cs}{54}{paragraph.8.3.2.1}
+\contentsline {paragraph}{\numberline {8.3.2.2}css}{54}{paragraph.8.3.2.2}
+\contentsline {paragraph}{\numberline {8.3.2.3}csn}{54}{paragraph.8.3.2.3}
+\contentsline {paragraph}{\numberline {8.3.2.4}csd}{54}{paragraph.8.3.2.4}
+\contentsline {subsubsection}{\numberline {8.3.3}Function Documentation}{54}{subsubsection.8.3.3}
+\contentsline {paragraph}{\numberline {8.3.3.1}cs\discretionary {-}{}{}\_\discretionary {-}{}{}add}{54}{paragraph.8.3.3.1}
+\contentsline {paragraph}{\numberline {8.3.3.2}cs\discretionary {-}{}{}\_\discretionary {-}{}{}cholsol}{55}{paragraph.8.3.3.2}
+\contentsline {paragraph}{\numberline {8.3.3.3}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dupl}{56}{paragraph.8.3.3.3}
+\contentsline {paragraph}{\numberline {8.3.3.4}cs\discretionary {-}{}{}\_\discretionary {-}{}{}entry}{57}{paragraph.8.3.3.4}
+\contentsline {paragraph}{\numberline {8.3.3.5}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lusol}{57}{paragraph.8.3.3.5}
+\contentsline {paragraph}{\numberline {8.3.3.6}cs\discretionary {-}{}{}\_\discretionary {-}{}{}gaxpy}{58}{paragraph.8.3.3.6}
+\contentsline {paragraph}{\numberline {8.3.3.7}cs\discretionary {-}{}{}\_\discretionary {-}{}{}multiply}{59}{paragraph.8.3.3.7}
+\contentsline {paragraph}{\numberline {8.3.3.8}cs\discretionary {-}{}{}\_\discretionary {-}{}{}qrsol}{59}{paragraph.8.3.3.8}
+\contentsline {paragraph}{\numberline {8.3.3.9}cs\discretionary {-}{}{}\_\discretionary {-}{}{}transpose}{60}{paragraph.8.3.3.9}
+\contentsline {paragraph}{\numberline {8.3.3.10}cs\discretionary {-}{}{}\_\discretionary {-}{}{}triplet}{61}{paragraph.8.3.3.10}
+\contentsline {paragraph}{\numberline {8.3.3.11}cs\discretionary {-}{}{}\_\discretionary {-}{}{}norm}{61}{paragraph.8.3.3.11}
+\contentsline {paragraph}{\numberline {8.3.3.12}cs\discretionary {-}{}{}\_\discretionary {-}{}{}print}{61}{paragraph.8.3.3.12}
+\contentsline {paragraph}{\numberline {8.3.3.13}cs\discretionary {-}{}{}\_\discretionary {-}{}{}load}{62}{paragraph.8.3.3.13}
+\contentsline {paragraph}{\numberline {8.3.3.14}cs\discretionary {-}{}{}\_\discretionary {-}{}{}calloc}{62}{paragraph.8.3.3.14}
+\contentsline {paragraph}{\numberline {8.3.3.15}cs\discretionary {-}{}{}\_\discretionary {-}{}{}free}{62}{paragraph.8.3.3.15}
+\contentsline {paragraph}{\numberline {8.3.3.16}cs\discretionary {-}{}{}\_\discretionary {-}{}{}realloc}{62}{paragraph.8.3.3.16}
+\contentsline {paragraph}{\numberline {8.3.3.17}cs\discretionary {-}{}{}\_\discretionary {-}{}{}spalloc}{63}{paragraph.8.3.3.17}
+\contentsline {paragraph}{\numberline {8.3.3.18}cs\discretionary {-}{}{}\_\discretionary {-}{}{}spfree}{63}{paragraph.8.3.3.18}
+\contentsline {paragraph}{\numberline {8.3.3.19}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sprealloc}{63}{paragraph.8.3.3.19}
+\contentsline {paragraph}{\numberline {8.3.3.20}cs\discretionary {-}{}{}\_\discretionary {-}{}{}malloc}{64}{paragraph.8.3.3.20}
+\contentsline {paragraph}{\numberline {8.3.3.21}cs\discretionary {-}{}{}\_\discretionary {-}{}{}amd}{64}{paragraph.8.3.3.21}
+\contentsline {paragraph}{\numberline {8.3.3.22}cs\discretionary {-}{}{}\_\discretionary {-}{}{}chol}{65}{paragraph.8.3.3.22}
+\contentsline {paragraph}{\numberline {8.3.3.23}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dmperm}{66}{paragraph.8.3.3.23}
+\contentsline {paragraph}{\numberline {8.3.3.24}cs\discretionary {-}{}{}\_\discretionary {-}{}{}droptol}{67}{paragraph.8.3.3.24}
+\contentsline {paragraph}{\numberline {8.3.3.25}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dropzeros}{68}{paragraph.8.3.3.25}
+\contentsline {paragraph}{\numberline {8.3.3.26}cs\discretionary {-}{}{}\_\discretionary {-}{}{}happly}{68}{paragraph.8.3.3.26}
+\contentsline {paragraph}{\numberline {8.3.3.27}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ipvec}{68}{paragraph.8.3.3.27}
+\contentsline {paragraph}{\numberline {8.3.3.28}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lsolve}{68}{paragraph.8.3.3.28}
+\contentsline {paragraph}{\numberline {8.3.3.29}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ltsolve}{68}{paragraph.8.3.3.29}
+\contentsline {paragraph}{\numberline {8.3.3.30}cs\discretionary {-}{}{}\_\discretionary {-}{}{}lu}{68}{paragraph.8.3.3.30}
+\contentsline {paragraph}{\numberline {8.3.3.31}cs\discretionary {-}{}{}\_\discretionary {-}{}{}permute}{69}{paragraph.8.3.3.31}
+\contentsline {paragraph}{\numberline {8.3.3.32}cs\discretionary {-}{}{}\_\discretionary {-}{}{}pinv}{69}{paragraph.8.3.3.32}
+\contentsline {paragraph}{\numberline {8.3.3.33}cs\discretionary {-}{}{}\_\discretionary {-}{}{}pvec}{70}{paragraph.8.3.3.33}
+\contentsline {paragraph}{\numberline {8.3.3.34}cs\discretionary {-}{}{}\_\discretionary {-}{}{}qr}{70}{paragraph.8.3.3.34}
+\contentsline {paragraph}{\numberline {8.3.3.35}cs\discretionary {-}{}{}\_\discretionary {-}{}{}schol}{70}{paragraph.8.3.3.35}
+\contentsline {paragraph}{\numberline {8.3.3.36}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sqr}{71}{paragraph.8.3.3.36}
+\contentsline {paragraph}{\numberline {8.3.3.37}cs\discretionary {-}{}{}\_\discretionary {-}{}{}symperm}{72}{paragraph.8.3.3.37}
+\contentsline {paragraph}{\numberline {8.3.3.38}cs\discretionary {-}{}{}\_\discretionary {-}{}{}usolve}{73}{paragraph.8.3.3.38}
+\contentsline {paragraph}{\numberline {8.3.3.39}cs\discretionary {-}{}{}\_\discretionary {-}{}{}utsolve}{73}{paragraph.8.3.3.39}
+\contentsline {paragraph}{\numberline {8.3.3.40}cs\discretionary {-}{}{}\_\discretionary {-}{}{}updown}{73}{paragraph.8.3.3.40}
+\contentsline {paragraph}{\numberline {8.3.3.41}cs\discretionary {-}{}{}\_\discretionary {-}{}{}sfree}{73}{paragraph.8.3.3.41}
+\contentsline {paragraph}{\numberline {8.3.3.42}cs\discretionary {-}{}{}\_\discretionary {-}{}{}nfree}{74}{paragraph.8.3.3.42}
+\contentsline {paragraph}{\numberline {8.3.3.43}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dfree}{74}{paragraph.8.3.3.43}
+\contentsline {paragraph}{\numberline {8.3.3.44}cs\discretionary {-}{}{}\_\discretionary {-}{}{}counts}{75}{paragraph.8.3.3.44}
+\contentsline {paragraph}{\numberline {8.3.3.45}cs\discretionary {-}{}{}\_\discretionary {-}{}{}cumsum}{75}{paragraph.8.3.3.45}
+\contentsline {paragraph}{\numberline {8.3.3.46}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dfs}{75}{paragraph.8.3.3.46}
+\contentsline {paragraph}{\numberline {8.3.3.47}cs\discretionary {-}{}{}\_\discretionary {-}{}{}etree}{75}{paragraph.8.3.3.47}
+\contentsline {paragraph}{\numberline {8.3.3.48}cs\discretionary {-}{}{}\_\discretionary {-}{}{}fkeep}{76}{paragraph.8.3.3.48}
+\contentsline {paragraph}{\numberline {8.3.3.49}cs\discretionary {-}{}{}\_\discretionary {-}{}{}house}{76}{paragraph.8.3.3.49}
+\contentsline {paragraph}{\numberline {8.3.3.50}cs\discretionary {-}{}{}\_\discretionary {-}{}{}maxtrans}{76}{paragraph.8.3.3.50}
+\contentsline {paragraph}{\numberline {8.3.3.51}cs\discretionary {-}{}{}\_\discretionary {-}{}{}post}{76}{paragraph.8.3.3.51}
+\contentsline {paragraph}{\numberline {8.3.3.52}cs\discretionary {-}{}{}\_\discretionary {-}{}{}reach}{77}{paragraph.8.3.3.52}
+\contentsline {paragraph}{\numberline {8.3.3.53}cs\discretionary {-}{}{}\_\discretionary {-}{}{}scc}{77}{paragraph.8.3.3.53}
+\contentsline {paragraph}{\numberline {8.3.3.54}cs\discretionary {-}{}{}\_\discretionary {-}{}{}scatter}{78}{paragraph.8.3.3.54}
+\contentsline {paragraph}{\numberline {8.3.3.55}cs\discretionary {-}{}{}\_\discretionary {-}{}{}splsolve}{78}{paragraph.8.3.3.55}
+\contentsline {paragraph}{\numberline {8.3.3.56}cs\discretionary {-}{}{}\_\discretionary {-}{}{}tdfs}{78}{paragraph.8.3.3.56}
+\contentsline {paragraph}{\numberline {8.3.3.57}cs\discretionary {-}{}{}\_\discretionary {-}{}{}dalloc}{78}{paragraph.8.3.3.57}
+\contentsline {paragraph}{\numberline {8.3.3.58}cs\discretionary {-}{}{}\_\discretionary {-}{}{}done}{79}{paragraph.8.3.3.58}
+\contentsline {paragraph}{\numberline {8.3.3.59}cs\discretionary {-}{}{}\_\discretionary {-}{}{}idone}{79}{paragraph.8.3.3.59}
+\contentsline {paragraph}{\numberline {8.3.3.60}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ndone}{80}{paragraph.8.3.3.60}
+\contentsline {paragraph}{\numberline {8.3.3.61}cs\discretionary {-}{}{}\_\discretionary {-}{}{}ddone}{80}{paragraph.8.3.3.61}
+\contentsline {subsection}{\numberline {8.4}fcint.\discretionary {-}{}{}h File Reference}{81}{subsection.8.4}
+\contentsline {subsubsection}{\numberline {8.4.1}Macro Definition Documentation}{81}{subsubsection.8.4.1}
+\contentsline {paragraph}{\numberline {8.4.1.1}A\discretionary {-}{}{}S\discretionary {-}{}{}S\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}T}{81}{paragraph.8.4.1.1}
+\contentsline {paragraph}{\numberline {8.4.1.2}I\discretionary {-}{}{}O}{82}{paragraph.8.4.1.2}
+\contentsline {paragraph}{\numberline {8.4.1.3}M\discretionary {-}{}{}M}{82}{paragraph.8.4.1.3}
+\contentsline {subsection}{\numberline {8.5}fclib.\discretionary {-}{}{}c File Reference}{82}{subsection.8.5}
+\contentsline {subsubsection}{\numberline {8.5.1}Detailed Description}{83}{subsubsection.8.5.1}
+\contentsline {subsubsection}{\numberline {8.5.2}Macro Definition Documentation}{84}{subsubsection.8.5.2}
+\contentsline {paragraph}{\numberline {8.5.2.1}H5\discretionary {-}{}{}Gcreate\discretionary {-}{}{}\_\discretionary {-}{}{}vers}{84}{paragraph.8.5.2.1}
+\contentsline {paragraph}{\numberline {8.5.2.2}H5\discretionary {-}{}{}Gopen\discretionary {-}{}{}\_\discretionary {-}{}{}vers}{84}{paragraph.8.5.2.2}
+\contentsline {subsubsection}{\numberline {8.5.3}Function Documentation}{84}{subsubsection.8.5.3}
+\contentsline {paragraph}{\numberline {8.5.3.1}H5\discretionary {-}{}{}Gmake}{84}{paragraph.8.5.3.1}
+\contentsline {paragraph}{\numberline {8.5.3.2}write\discretionary {-}{}{}\_\discretionary {-}{}{}matrix}{84}{paragraph.8.5.3.2}
+\contentsline {paragraph}{\numberline {8.5.3.3}read\discretionary {-}{}{}\_\discretionary {-}{}{}matrix}{84}{paragraph.8.5.3.3}
+\contentsline {paragraph}{\numberline {8.5.3.4}write\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{84}{paragraph.8.5.3.4}
+\contentsline {paragraph}{\numberline {8.5.3.5}read\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{84}{paragraph.8.5.3.5}
+\contentsline {paragraph}{\numberline {8.5.3.6}write\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{85}{paragraph.8.5.3.6}
+\contentsline {paragraph}{\numberline {8.5.3.7}read\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{85}{paragraph.8.5.3.7}
+\contentsline {paragraph}{\numberline {8.5.3.8}write\discretionary {-}{}{}\_\discretionary {-}{}{}problem\discretionary {-}{}{}\_\discretionary {-}{}{}info}{85}{paragraph.8.5.3.8}
+\contentsline {paragraph}{\numberline {8.5.3.9}read\discretionary {-}{}{}\_\discretionary {-}{}{}problem\discretionary {-}{}{}\_\discretionary {-}{}{}info}{85}{paragraph.8.5.3.9}
+\contentsline {paragraph}{\numberline {8.5.3.10}write\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{85}{paragraph.8.5.3.10}
+\contentsline {paragraph}{\numberline {8.5.3.11}read\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{85}{paragraph.8.5.3.11}
+\contentsline {paragraph}{\numberline {8.5.3.12}read\discretionary {-}{}{}\_\discretionary {-}{}{}nvnunrnl}{85}{paragraph.8.5.3.12}
+\contentsline {paragraph}{\numberline {8.5.3.13}delete\discretionary {-}{}{}\_\discretionary {-}{}{}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}info}{86}{paragraph.8.5.3.13}
+\contentsline {paragraph}{\numberline {8.5.3.14}delete\discretionary {-}{}{}\_\discretionary {-}{}{}matrix}{86}{paragraph.8.5.3.14}
+\contentsline {paragraph}{\numberline {8.5.3.15}delete\discretionary {-}{}{}\_\discretionary {-}{}{}info}{86}{paragraph.8.5.3.15}
+\contentsline {paragraph}{\numberline {8.5.3.16}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}global}{86}{paragraph.8.5.3.16}
+\contentsline {paragraph}{\numberline {8.5.3.17}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}local}{87}{paragraph.8.5.3.17}
+\contentsline {paragraph}{\numberline {8.5.3.18}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{87}{paragraph.8.5.3.18}
+\contentsline {paragraph}{\numberline {8.5.3.19}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}guesses}{88}{paragraph.8.5.3.19}
+\contentsline {paragraph}{\numberline {8.5.3.20}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}global}{88}{paragraph.8.5.3.20}
+\contentsline {paragraph}{\numberline {8.5.3.21}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}local}{89}{paragraph.8.5.3.21}
+\contentsline {paragraph}{\numberline {8.5.3.22}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{89}{paragraph.8.5.3.22}
+\contentsline {paragraph}{\numberline {8.5.3.23}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}guesses}{90}{paragraph.8.5.3.23}
+\contentsline {paragraph}{\numberline {8.5.3.24}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}global}{90}{paragraph.8.5.3.24}
+\contentsline {paragraph}{\numberline {8.5.3.25}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}local}{91}{paragraph.8.5.3.25}
+\contentsline {paragraph}{\numberline {8.5.3.26}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{91}{paragraph.8.5.3.26}
+\contentsline {subsection}{\numberline {8.6}fclib.\discretionary {-}{}{}h File Reference}{91}{subsection.8.6}
+\contentsline {subsubsection}{\numberline {8.6.1}Detailed Description}{93}{subsubsection.8.6.1}
+\contentsline {subsubsection}{\numberline {8.6.2}Enumeration Type Documentation}{94}{subsubsection.8.6.2}
+\contentsline {paragraph}{\numberline {8.6.2.1}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}merit}{94}{paragraph.8.6.2.1}
+\contentsline {subsubsection}{\numberline {8.6.3}Function Documentation}{94}{subsubsection.8.6.3}
+\contentsline {paragraph}{\numberline {8.6.3.1}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}global}{94}{paragraph.8.6.3.1}
+\contentsline {paragraph}{\numberline {8.6.3.2}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}local}{95}{paragraph.8.6.3.2}
+\contentsline {paragraph}{\numberline {8.6.3.3}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{95}{paragraph.8.6.3.3}
+\contentsline {paragraph}{\numberline {8.6.3.4}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}write\discretionary {-}{}{}\_\discretionary {-}{}{}guesses}{96}{paragraph.8.6.3.4}
+\contentsline {paragraph}{\numberline {8.6.3.5}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}global}{96}{paragraph.8.6.3.5}
+\contentsline {paragraph}{\numberline {8.6.3.6}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}local}{97}{paragraph.8.6.3.6}
+\contentsline {paragraph}{\numberline {8.6.3.7}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}solution}{97}{paragraph.8.6.3.7}
+\contentsline {paragraph}{\numberline {8.6.3.8}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}read\discretionary {-}{}{}\_\discretionary {-}{}{}guesses}{98}{paragraph.8.6.3.8}
+\contentsline {paragraph}{\numberline {8.6.3.9}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}merit\discretionary {-}{}{}\_\discretionary {-}{}{}global}{98}{paragraph.8.6.3.9}
+\contentsline {paragraph}{\numberline {8.6.3.10}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}merit\discretionary {-}{}{}\_\discretionary {-}{}{}local}{98}{paragraph.8.6.3.10}
+\contentsline {paragraph}{\numberline {8.6.3.11}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}global}{99}{paragraph.8.6.3.11}
+\contentsline {paragraph}{\numberline {8.6.3.12}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}local}{99}{paragraph.8.6.3.12}
+\contentsline {paragraph}{\numberline {8.6.3.13}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}delete\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{100}{paragraph.8.6.3.13}
+\contentsline {subsection}{\numberline {8.7}fcmer.\discretionary {-}{}{}c File Reference}{100}{subsection.8.7}
+\contentsline {subsubsection}{\numberline {8.7.1}Function Documentation}{101}{subsubsection.8.7.1}
+\contentsline {paragraph}{\numberline {8.7.1.1}dnrm2}{101}{paragraph.8.7.1.1}
+\contentsline {paragraph}{\numberline {8.7.1.2}projection\discretionary {-}{}{}On\discretionary {-}{}{}Cone}{101}{paragraph.8.7.1.2}
+\contentsline {paragraph}{\numberline {8.7.1.3}Friction\discretionary {-}{}{}Contact3\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}unitary\discretionary {-}{}{}\_\discretionary {-}{}{}compute\discretionary {-}{}{}\_\discretionary {-}{}{}and\discretionary {-}{}{}\_\discretionary {-}{}{}add\discretionary {-}{}{}\_\discretionary {-}{}{}error}{101}{paragraph.8.7.1.3}
+\contentsline {paragraph}{\numberline {8.7.1.4}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}merit\discretionary {-}{}{}\_\discretionary {-}{}{}global}{101}{paragraph.8.7.1.4}
+\contentsline {paragraph}{\numberline {8.7.1.5}fclib\discretionary {-}{}{}\_\discretionary {-}{}{}merit\discretionary {-}{}{}\_\discretionary {-}{}{}local}{101}{paragraph.8.7.1.5}
+\contentsline {subsection}{\numberline {8.8}fctst.\discretionary {-}{}{}c File Reference}{102}{subsection.8.8}
+\contentsline {subsubsection}{\numberline {8.8.1}Function Documentation}{103}{subsubsection.8.8.1}
+\contentsline {paragraph}{\numberline {8.8.1.1}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}info}{103}{paragraph.8.8.1.1}
+\contentsline {paragraph}{\numberline {8.8.1.2}random\discretionary {-}{}{}\_\discretionary {-}{}{}matrix}{103}{paragraph.8.8.1.2}
+\contentsline {paragraph}{\numberline {8.8.1.3}random\discretionary {-}{}{}\_\discretionary {-}{}{}vector}{103}{paragraph.8.8.1.3}
+\contentsline {paragraph}{\numberline {8.8.1.4}problem\discretionary {-}{}{}\_\discretionary {-}{}{}info}{103}{paragraph.8.8.1.4}
+\contentsline {paragraph}{\numberline {8.8.1.5}random\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}problem}{103}{paragraph.8.8.1.5}
+\contentsline {paragraph}{\numberline {8.8.1.6}random\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{104}{paragraph.8.8.1.6}
+\contentsline {paragraph}{\numberline {8.8.1.7}random\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}problem}{104}{paragraph.8.8.1.7}
+\contentsline {paragraph}{\numberline {8.8.1.8}random\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{105}{paragraph.8.8.1.8}
+\contentsline {paragraph}{\numberline {8.8.1.9}compare\discretionary {-}{}{}\_\discretionary {-}{}{}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}infos}{105}{paragraph.8.8.1.9}
+\contentsline {paragraph}{\numberline {8.8.1.10}compare\discretionary {-}{}{}\_\discretionary {-}{}{}matrices}{105}{paragraph.8.8.1.10}
+\contentsline {paragraph}{\numberline {8.8.1.11}compare\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{106}{paragraph.8.8.1.11}
+\contentsline {paragraph}{\numberline {8.8.1.12}compare\discretionary {-}{}{}\_\discretionary {-}{}{}infos}{106}{paragraph.8.8.1.12}
+\contentsline {paragraph}{\numberline {8.8.1.13}compare\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}problems}{106}{paragraph.8.8.1.13}
+\contentsline {paragraph}{\numberline {8.8.1.14}compare\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}problems}{106}{paragraph.8.8.1.14}
+\contentsline {paragraph}{\numberline {8.8.1.15}compare\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{107}{paragraph.8.8.1.15}
+\contentsline {paragraph}{\numberline {8.8.1.16}main}{107}{paragraph.8.8.1.16}
+\contentsline {subsection}{\numberline {8.9}fctst\discretionary {-}{}{}\_\discretionary {-}{}{}merit.\discretionary {-}{}{}c File Reference}{108}{subsection.8.9}
+\contentsline {subsubsection}{\numberline {8.9.1}Function Documentation}{109}{subsubsection.8.9.1}
+\contentsline {paragraph}{\numberline {8.9.1.1}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}info}{109}{paragraph.8.9.1.1}
+\contentsline {paragraph}{\numberline {8.9.1.2}random\discretionary {-}{}{}\_\discretionary {-}{}{}matrix}{109}{paragraph.8.9.1.2}
+\contentsline {paragraph}{\numberline {8.9.1.3}random\discretionary {-}{}{}\_\discretionary {-}{}{}vector}{110}{paragraph.8.9.1.3}
+\contentsline {paragraph}{\numberline {8.9.1.4}problem\discretionary {-}{}{}\_\discretionary {-}{}{}info}{110}{paragraph.8.9.1.4}
+\contentsline {paragraph}{\numberline {8.9.1.5}random\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}problem}{110}{paragraph.8.9.1.5}
+\contentsline {paragraph}{\numberline {8.9.1.6}random\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{110}{paragraph.8.9.1.6}
+\contentsline {paragraph}{\numberline {8.9.1.7}random\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}problem}{111}{paragraph.8.9.1.7}
+\contentsline {paragraph}{\numberline {8.9.1.8}random\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{111}{paragraph.8.9.1.8}
+\contentsline {paragraph}{\numberline {8.9.1.9}compare\discretionary {-}{}{}\_\discretionary {-}{}{}matrix\discretionary {-}{}{}\_\discretionary {-}{}{}infos}{111}{paragraph.8.9.1.9}
+\contentsline {paragraph}{\numberline {8.9.1.10}compare\discretionary {-}{}{}\_\discretionary {-}{}{}matrices}{112}{paragraph.8.9.1.10}
+\contentsline {paragraph}{\numberline {8.9.1.11}compare\discretionary {-}{}{}\_\discretionary {-}{}{}vectors}{112}{paragraph.8.9.1.11}
+\contentsline {paragraph}{\numberline {8.9.1.12}compare\discretionary {-}{}{}\_\discretionary {-}{}{}infos}{112}{paragraph.8.9.1.12}
+\contentsline {paragraph}{\numberline {8.9.1.13}compare\discretionary {-}{}{}\_\discretionary {-}{}{}global\discretionary {-}{}{}\_\discretionary {-}{}{}problems}{112}{paragraph.8.9.1.13}
+\contentsline {paragraph}{\numberline {8.9.1.14}compare\discretionary {-}{}{}\_\discretionary {-}{}{}local\discretionary {-}{}{}\_\discretionary {-}{}{}problems}{113}{paragraph.8.9.1.14}
+\contentsline {paragraph}{\numberline {8.9.1.15}compare\discretionary {-}{}{}\_\discretionary {-}{}{}solutions}{113}{paragraph.8.9.1.15}
+\contentsline {paragraph}{\numberline {8.9.1.16}main}{113}{paragraph.8.9.1.16}
+\contentsline {subsection}{\numberline {8.10}mainpage.\discretionary {-}{}{}doxygen File Reference}{114}{subsection.8.10}

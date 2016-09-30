@@ -1,0 +1,483 @@
+\hypertarget{fctst_8c}{\subsection{fctst.\-c File Reference}
+\label{fctst_8c}\index{fctst.\-c@{fctst.\-c}}
+}
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}fclib.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fcint.\-h\char`\"{}}\\*
+Include dependency graph for fctst.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static struct \hyperlink{structfclib__matrix__info}{fclib\-\_\-matrix\-\_\-info} $\ast$ \hyperlink{fctst_8c_a5317d629631ea1f011ac56be9ea38b38}{matrix\-\_\-info} (struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$mat, char $\ast$comment)
+\item 
+static struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{fctst_8c_a6416171cd1c45fcd483d9f8d72b4d074}{random\-\_\-matrix} (int m, int n)
+\item 
+static double $\ast$ \hyperlink{fctst_8c_a999ad2a7d7f608315a960fead29ed28b}{random\-\_\-vector} (int n)
+\item 
+static struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$ \hyperlink{fctst_8c_abacfc09e4ebacd539b34abc2eb6dd26c}{problem\-\_\-info} (char $\ast$title, char $\ast$desc, char $\ast$math)
+\item 
+static struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$ \hyperlink{fctst_8c_a6bef941fe768030a414543381d847b64}{random\-\_\-global\-\_\-problem} (int global\-\_\-dofs, int contact\-\_\-points, int neq)
+\item 
+static struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$ \hyperlink{fctst_8c_a7aad52ff7bfb95ad106f406bc9c55e58}{random\-\_\-global\-\_\-solutions} (struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem, int count)
+\item 
+static struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$ \hyperlink{fctst_8c_aa112c21ec93e39bb3d3f0461aaa17eec}{random\-\_\-local\-\_\-problem} (int contact\-\_\-points, int neq)
+\item 
+static struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$ \hyperlink{fctst_8c_ab80ee715851eb0c92913d5687498c2d7}{random\-\_\-local\-\_\-solutions} (struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem, int count)
+\item 
+static int \hyperlink{fctst_8c_afe507e5b61471a838e743fe8966e1dde}{compare\-\_\-matrix\-\_\-infos} (struct \hyperlink{structfclib__matrix__info}{fclib\-\_\-matrix\-\_\-info} $\ast$a, struct \hyperlink{structfclib__matrix__info}{fclib\-\_\-matrix\-\_\-info} $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_ae337371ca0bad878ee90abcb775e94b6}{compare\-\_\-matrices} (char $\ast$name, struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$a, struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_a67077fe8eef8d36f1bc54695d4e38b07}{compare\-\_\-vectors} (char $\ast$name, int n, double $\ast$a, double $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_a9616c18dc1480beb7de7875405ba8a69}{compare\-\_\-infos} (struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$a, struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_aeadef34f0fb9a9e71e98d044a21fb51f}{compare\-\_\-global\-\_\-problems} (struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$a, struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_ab0228efafe00f19b638a3f5cdd03eb98}{compare\-\_\-local\-\_\-problems} (struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$a, struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$b)
+\item 
+static int \hyperlink{fctst_8c_a65196cbffb155f5d40ff33f2d1b825c2}{compare\-\_\-solutions} (struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$a, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$b, int nv, int nr, int nl)
+\item 
+int \hyperlink{fctst_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Function Documentation}
+\hypertarget{fctst_8c_a5317d629631ea1f011ac56be9ea38b38}{\index{fctst.\-c@{fctst.\-c}!matrix\-\_\-info@{matrix\-\_\-info}}
+\index{matrix\-\_\-info@{matrix\-\_\-info}!fctst.c@{fctst.\-c}}
+\paragraph[{matrix\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-matrix\-\_\-info}$\ast$ matrix\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-matrix} $\ast$}]{mat, }
+\item[{char $\ast$}]{comment}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a5317d629631ea1f011ac56be9ea38b38}
+
+
+Definition at line 33 of file fctst.\-c.
+
+
+
+References fclib\-\_\-matrix\-\_\-info\-::comment, fclib\-\_\-matrix\-\_\-info\-::conditioning, fclib\-\_\-matrix\-\_\-info\-::determinant, fclib\-\_\-matrix\-::m, M\-M, and fclib\-\_\-matrix\-\_\-info\-::rank.
+
+
+
+Referenced by random\-\_\-matrix().
+
+\hypertarget{fctst_8c_a6416171cd1c45fcd483d9f8d72b4d074}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-matrix@{random\-\_\-matrix}}
+\index{random\-\_\-matrix@{random\-\_\-matrix}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-matrix}$\ast$ random\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{int}]{m, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a6416171cd1c45fcd483d9f8d72b4d074}
+
+
+Definition at line 48 of file fctst.\-c.
+
+
+
+References fclib\-\_\-matrix\-::i, fclib\-\_\-matrix\-::info, fclib\-\_\-matrix\-::m, matrix\-\_\-info(), M\-M, fclib\-\_\-matrix\-::n, fclib\-\_\-matrix\-::nz, fclib\-\_\-matrix\-::nzmax, fclib\-\_\-matrix\-::p, and fclib\-\_\-matrix\-::x.
+
+
+
+Referenced by random\-\_\-global\-\_\-problem(), and random\-\_\-local\-\_\-problem().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{fctst_8c_a6416171cd1c45fcd483d9f8d72b4d074_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_a999ad2a7d7f608315a960fead29ed28b}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-vector@{random\-\_\-vector}}
+\index{random\-\_\-vector@{random\-\_\-vector}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-vector}]{\setlength{\rightskip}{0pt plus 5cm}static double$\ast$ random\-\_\-vector (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a999ad2a7d7f608315a960fead29ed28b}
+
+
+Definition at line 91 of file fctst.\-c.
+
+
+
+References M\-M.
+
+
+
+Referenced by random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-problem(), and random\-\_\-local\-\_\-solutions().
+
+\hypertarget{fctst_8c_abacfc09e4ebacd539b34abc2eb6dd26c}{\index{fctst.\-c@{fctst.\-c}!problem\-\_\-info@{problem\-\_\-info}}
+\index{problem\-\_\-info@{problem\-\_\-info}!fctst.c@{fctst.\-c}}
+\paragraph[{problem\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-info}$\ast$ problem\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{title, }
+\item[{char $\ast$}]{desc, }
+\item[{char $\ast$}]{math}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_abacfc09e4ebacd539b34abc2eb6dd26c}
+
+
+Definition at line 102 of file fctst.\-c.
+
+
+
+References fclib\-\_\-info\-::description, fclib\-\_\-info\-::math\-\_\-info, M\-M, and fclib\-\_\-info\-::title.
+
+
+
+Referenced by random\-\_\-global\-\_\-problem(), and random\-\_\-local\-\_\-problem().
+
+\hypertarget{fctst_8c_a6bef941fe768030a414543381d847b64}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-global\-\_\-problem@{random\-\_\-global\-\_\-problem}}
+\index{random\-\_\-global\-\_\-problem@{random\-\_\-global\-\_\-problem}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-global\-\_\-problem}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-global}$\ast$ random\-\_\-global\-\_\-problem (
+\begin{DoxyParamCaption}
+\item[{int}]{global\-\_\-dofs, }
+\item[{int}]{contact\-\_\-points, }
+\item[{int}]{neq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a6bef941fe768030a414543381d847b64}
+
+
+Definition at line 118 of file fctst.\-c.
+
+
+
+References fclib\-\_\-global\-::b, fclib\-\_\-global\-::f, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-global\-::info, fclib\-\_\-global\-::\-M, M\-M, fclib\-\_\-global\-::mu, fclib\-\_\-matrix\-::n, problem\-\_\-info(), random\-\_\-matrix(), random\-\_\-vector(), fclib\-\_\-global\-::spacedim, and fclib\-\_\-global\-::w.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c_a6bef941fe768030a414543381d847b64_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_a7aad52ff7bfb95ad106f406bc9c55e58}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-global\-\_\-solutions@{random\-\_\-global\-\_\-solutions}}
+\index{random\-\_\-global\-\_\-solutions@{random\-\_\-global\-\_\-solutions}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-global\-\_\-solutions}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-solution}$\ast$ random\-\_\-global\-\_\-solutions (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a7aad52ff7bfb95ad106f406bc9c55e58}
+
+
+Definition at line 141 of file fctst.\-c.
+
+
+
+References fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-solution\-::l, fclib\-\_\-global\-::\-M, M\-M, fclib\-\_\-matrix\-::n, fclib\-\_\-solution\-::r, random\-\_\-vector(), fclib\-\_\-solution\-::u, and fclib\-\_\-solution\-::v.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{fctst_8c_a7aad52ff7bfb95ad106f406bc9c55e58_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_aa112c21ec93e39bb3d3f0461aaa17eec}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-local\-\_\-problem@{random\-\_\-local\-\_\-problem}}
+\index{random\-\_\-local\-\_\-problem@{random\-\_\-local\-\_\-problem}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-local\-\_\-problem}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-local}$\ast$ random\-\_\-local\-\_\-problem (
+\begin{DoxyParamCaption}
+\item[{int}]{contact\-\_\-points, }
+\item[{int}]{neq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_aa112c21ec93e39bb3d3f0461aaa17eec}
+
+
+Definition at line 161 of file fctst.\-c.
+
+
+
+References fclib\-\_\-local\-::info, M\-M, fclib\-\_\-local\-::mu, problem\-\_\-info(), fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, random\-\_\-matrix(), random\-\_\-vector(), fclib\-\_\-local\-::s, fclib\-\_\-local\-::spacedim, fclib\-\_\-local\-::\-V, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c_aa112c21ec93e39bb3d3f0461aaa17eec_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_ab80ee715851eb0c92913d5687498c2d7}{\index{fctst.\-c@{fctst.\-c}!random\-\_\-local\-\_\-solutions@{random\-\_\-local\-\_\-solutions}}
+\index{random\-\_\-local\-\_\-solutions@{random\-\_\-local\-\_\-solutions}!fctst.c@{fctst.\-c}}
+\paragraph[{random\-\_\-local\-\_\-solutions}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-solution}$\ast$ random\-\_\-local\-\_\-solutions (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_ab80ee715851eb0c92913d5687498c2d7}
+
+
+Definition at line 189 of file fctst.\-c.
+
+
+
+References fclib\-\_\-solution\-::l, M\-M, fclib\-\_\-matrix\-::n, fclib\-\_\-local\-::\-R, fclib\-\_\-solution\-::r, random\-\_\-vector(), fclib\-\_\-solution\-::u, fclib\-\_\-solution\-::v, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{fctst_8c_ab80ee715851eb0c92913d5687498c2d7_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_afe507e5b61471a838e743fe8966e1dde}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-matrix\-\_\-infos@{compare\-\_\-matrix\-\_\-infos}}
+\index{compare\-\_\-matrix\-\_\-infos@{compare\-\_\-matrix\-\_\-infos}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-matrix\-\_\-infos}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-matrix\-\_\-infos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-matrix\-\_\-info} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-matrix\-\_\-info} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_afe507e5b61471a838e743fe8966e1dde}
+
+
+Definition at line 209 of file fctst.\-c.
+
+
+
+References fclib\-\_\-matrix\-\_\-info\-::comment, fclib\-\_\-matrix\-\_\-info\-::conditioning, fclib\-\_\-matrix\-\_\-info\-::determinant, and fclib\-\_\-matrix\-\_\-info\-::rank.
+
+
+
+Referenced by compare\-\_\-matrices().
+
+\hypertarget{fctst_8c_ae337371ca0bad878ee90abcb775e94b6}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-matrices@{compare\-\_\-matrices}}
+\index{compare\-\_\-matrices@{compare\-\_\-matrices}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-matrices}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-matrices (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{struct {\bf fclib\-\_\-matrix} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-matrix} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_ae337371ca0bad878ee90abcb775e94b6}
+
+
+Definition at line 222 of file fctst.\-c.
+
+
+
+References compare\-\_\-matrix\-\_\-infos(), fclib\-\_\-matrix\-::i, fclib\-\_\-matrix\-::info, fclib\-\_\-matrix\-::m, fclib\-\_\-matrix\-::n, fclib\-\_\-matrix\-::nz, fclib\-\_\-matrix\-::nzmax, fclib\-\_\-matrix\-::p, and fclib\-\_\-matrix\-::x.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), and compare\-\_\-local\-\_\-problems().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{fctst_8c_ae337371ca0bad878ee90abcb775e94b6_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_a67077fe8eef8d36f1bc54695d4e38b07}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-vectors@{compare\-\_\-vectors}}
+\index{compare\-\_\-vectors@{compare\-\_\-vectors}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-vectors}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-vectors (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{int}]{n, }
+\item[{double $\ast$}]{a, }
+\item[{double $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a67077fe8eef8d36f1bc54695d4e38b07}
+
+
+Definition at line 327 of file fctst.\-c.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), compare\-\_\-local\-\_\-problems(), and compare\-\_\-solutions().
+
+\hypertarget{fctst_8c_a9616c18dc1480beb7de7875405ba8a69}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-infos@{compare\-\_\-infos}}
+\index{compare\-\_\-infos@{compare\-\_\-infos}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-infos}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-infos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-info} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-info} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a9616c18dc1480beb7de7875405ba8a69}
+
+
+Definition at line 347 of file fctst.\-c.
+
+
+
+References fclib\-\_\-info\-::description, fclib\-\_\-info\-::math\-\_\-info, and fclib\-\_\-info\-::title.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), and compare\-\_\-local\-\_\-problems().
+
+\hypertarget{fctst_8c_aeadef34f0fb9a9e71e98d044a21fb51f}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-global\-\_\-problems@{compare\-\_\-global\-\_\-problems}}
+\index{compare\-\_\-global\-\_\-problems@{compare\-\_\-global\-\_\-problems}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-global\-\_\-problems}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-global\-\_\-problems (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_aeadef34f0fb9a9e71e98d044a21fb51f}
+
+
+Definition at line 359 of file fctst.\-c.
+
+
+
+References fclib\-\_\-global\-::b, compare\-\_\-infos(), compare\-\_\-matrices(), compare\-\_\-vectors(), fclib\-\_\-global\-::f, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-global\-::info, fclib\-\_\-matrix\-::m, fclib\-\_\-global\-::\-M, fclib\-\_\-global\-::mu, fclib\-\_\-matrix\-::n, fclib\-\_\-global\-::spacedim, and fclib\-\_\-global\-::w.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c_aeadef34f0fb9a9e71e98d044a21fb51f_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_ab0228efafe00f19b638a3f5cdd03eb98}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-local\-\_\-problems@{compare\-\_\-local\-\_\-problems}}
+\index{compare\-\_\-local\-\_\-problems@{compare\-\_\-local\-\_\-problems}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-local\-\_\-problems}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-local\-\_\-problems (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_ab0228efafe00f19b638a3f5cdd03eb98}
+
+
+Definition at line 375 of file fctst.\-c.
+
+
+
+References compare\-\_\-infos(), compare\-\_\-matrices(), compare\-\_\-vectors(), fclib\-\_\-local\-::info, fclib\-\_\-local\-::mu, fclib\-\_\-matrix\-::n, fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, fclib\-\_\-local\-::s, fclib\-\_\-local\-::spacedim, fclib\-\_\-local\-::\-V, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c_ab0228efafe00f19b638a3f5cdd03eb98_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_a65196cbffb155f5d40ff33f2d1b825c2}{\index{fctst.\-c@{fctst.\-c}!compare\-\_\-solutions@{compare\-\_\-solutions}}
+\index{compare\-\_\-solutions@{compare\-\_\-solutions}!fctst.c@{fctst.\-c}}
+\paragraph[{compare\-\_\-solutions}]{\setlength{\rightskip}{0pt plus 5cm}static int compare\-\_\-solutions (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{a, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{b, }
+\item[{int}]{nv, }
+\item[{int}]{nr, }
+\item[{int}]{nl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fctst_8c_a65196cbffb155f5d40ff33f2d1b825c2}
+
+
+Definition at line 390 of file fctst.\-c.
+
+
+
+References compare\-\_\-vectors(), fclib\-\_\-solution\-::l, fclib\-\_\-solution\-::r, fclib\-\_\-solution\-::u, and fclib\-\_\-solution\-::v.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{fctst_8c_a65196cbffb155f5d40ff33f2d1b825c2_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fctst_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{fctst.\-c@{fctst.\-c}!main@{main}}
+\index{main@{main}!fctst.c@{fctst.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{fctst_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 400 of file fctst.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, compare\-\_\-global\-\_\-problems(), compare\-\_\-local\-\_\-problems(), compare\-\_\-solutions(), fclib\-\_\-delete\-\_\-global(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-delete\-\_\-solutions(), fclib\-\_\-merit\-\_\-local(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-read\-\_\-guesses(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-read\-\_\-solution(), fclib\-\_\-write\-\_\-global(), fclib\-\_\-write\-\_\-guesses(), fclib\-\_\-write\-\_\-local(), fclib\-\_\-write\-\_\-solution(), fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-matrix\-::m, fclib\-\_\-global\-::\-M, M\-E\-R\-I\-T\-\_\-1, fclib\-\_\-matrix\-::n, fclib\-\_\-local\-::\-R, random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-problem(), random\-\_\-local\-\_\-solutions(), and fclib\-\_\-local\-::\-W.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fctst_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+
+

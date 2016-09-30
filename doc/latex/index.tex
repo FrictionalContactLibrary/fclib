@@ -1,0 +1,39 @@
+\hypertarget{index_whatis}{}\subsection{What is F\-C\-L\-I\-B ?}\label{index_whatis}
+F\-C\-L\-I\-B is 
+\begin{DoxyItemize}
+\item A open source collection of Frictional Contact (F\-C) problems stored in a specific \href{http://www.hdfgroup.org/HDF5/}{\tt H\-D\-F5 format } 
+\item A open source light implementation of Input/\-Output functions in C Language to read and write problems  
+\end{DoxyItemize}\hypertarget{index_goals}{}\subsection{Goals of the project}\label{index_goals}
+The goal of this work is to set up a collection of 2\-D and 3\-D Frictional Contact (F\-C) problems in order to
+
+
+\begin{DoxyItemize}
+\item set up a list of benchmarks  
+\item provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems  
+\item share common formulations of problems in order to exchange data 
+\end{DoxyItemize}\hypertarget{index_howtodownload}{}\subsection{How to download  ?}\label{index_howtodownload}
+see \hyperlink{download}{Download} section\hypertarget{index_Wahtis}{}\subsection{What is a Frictional contact problem ?}\label{index_Wahtis}
+A Frictional contact problem is algebraic problem obtained after possible time and space discretizations of problems of mechanics of solid involving contact and Coulomb's friction. The mathematical structure of the problem is a second-\/order cone complementarity problem. For more details, you could have a look to the \href{doc/FCLib.pdf}{\tt fclib specifications }\hypertarget{index_Localfclib}{}\subsubsection{The local Frictional Contact problem with equality constraints}\label{index_Localfclib}
+Given 
+\begin{DoxyItemize}
+\item a positive semi--definite matrix ${W} \in {\mathrm{I\!R}}^{m \times m}$ 
+\item a matrix ${V} \in {\mathrm{I\!R}}^{m \times p}$ 
+\item a matrix ${R} \in {\mathrm{I\!R}}^{p \times p}$ 
+\item a vector $q \in {\mathrm{I\!R}}^{m}$, 
+\item a vector $s \in {\mathrm{I\!R}}^{p}$, 
+\item a vector of coefficients of friction $\mu \in {\mathrm{I\!R}}^{n_c}$ 
+\end{DoxyItemize}the Mixed 3\-D\-F\-C problem is to find three vectors $u\in{\mathrm{I\!R}}^m$, $r\in {\mathrm{I\!R}}^m$ and $\lambda \in {\mathrm{I\!R}}^p$ denoted by $\mathrm{M3DFC}(R,V,W,q,s,\mu)$ such that \begin{eqnarray*}\label{eq:lcp1} \begin{cases} V^T {r} + R \lambda + s = 0 \\ \\ \hat u = W {r} + V\lambda + q +\left[ \left[\begin{array}{c} \mu^\alpha \|u^\alpha_T\|\\ 0 \\ 0 \end{array}\right]^T, \alpha = 1 \ldots n_c \right]^T \\ \\ C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu} \end{cases} \end{eqnarray*} where the Coulomb friction cone for a contact $\alpha$ is defined by \begin{eqnarray*} \label{eq:CCC} C_{\mu^\alpha}^{\alpha} = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \} \end{eqnarray*} and the set $C^{\alpha,\star}_{\mu^\alpha}$ is its dual. \hypertarget{index_globalfclib}{}\subsubsection{The Global Frictional Contact problem with equality constraints}\label{index_globalfclib}
+We are also dealing with global F\-C problem defined by
+
+Given 
+\begin{DoxyItemize}
+\item a symmetric positive definite matrix ${M} \in {\mathrm{I\!R}}^{n \times n}$ 
+\item a vector $ {f} \in {\mathrm{I\!R}}^n$, 
+\item a matrix ${H} \in {\mathrm{I\!R}}^{n \times m}$ 
+\item a matrix ${G} \in {\mathrm{I\!R}}^{n \times p}$ 
+\item a vector $w \in {\mathrm{I\!R}}^{m}$, 
+\item a vector $b \in {\mathrm{I\!R}}^{p}$, 
+\item a vector of coefficients of friction $\mu \in {\mathrm{I\!R}}^{n_c}$ 
+\end{DoxyItemize}the Global Mixed 3\-D\-F\-C problem is to find four vectors $ {v} \in {\mathrm{I\!R}}^n$, $u\in{\mathrm{I\!R}}^m$, $r\in {\mathrm{I\!R}}^m$ and $\lambda \in {\mathrm{I\!R}}^p$ denoted by $\mathrm{GM3DFC}(M,H,G,w,b,\mu)$ such that \begin{eqnarray*} \begin{cases} M v = {H} {r} + G\lambda + {f} \\ \\ G^T v +b =0 \\ \\ \hat u = H^T v + w +\left[ \left[\begin{array}{c} \mu \|u^\alpha_T\|\\ 0 \\ 0 \end{array}\right]^T, \alpha = 1 \ldots n_c \right]^T \\ \\ C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu} \end{cases} \end{eqnarray*} \hypertarget{index_wihtout}{}\subsubsection{Problems without equality constraints}\label{index_wihtout}
+If the original problems do not contain inequality constraints, or if there are reduced, the problems do no have the variables $\lambda$ as unknowns and can be simplified. However, the storage in H\-D\-F5 file remains the same.\hypertarget{index_Merict}{}\subsubsection{functions.}\label{index_Merict}
+The A\-P\-I provides also some Merit functions whixh measures it one set of vectors satifies the previous problems. 

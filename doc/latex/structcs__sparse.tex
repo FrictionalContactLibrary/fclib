@@ -1,0 +1,111 @@
+\hypertarget{structcs__sparse}{\subsection{cs\-\_\-sparse Struct Reference}
+\label{structcs__sparse}\index{cs\-\_\-sparse@{cs\-\_\-sparse}}
+}
+
+
+{\ttfamily \#include $<$csparse.\-h$>$}
+
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structcs__sparse_aab49fc365ddf6273376a96d3a6aa751f}{nzmax}
+\item 
+int \hyperlink{structcs__sparse_a8aeba3ffed4d599a4906e78329d3448b}{m}
+\item 
+int \hyperlink{structcs__sparse_a86c18870dc1551c71f8ea551efe68625}{n}
+\item 
+int $\ast$ \hyperlink{structcs__sparse_a263a2347e8dcf1a7a20ee66730297b85}{p}
+\item 
+int $\ast$ \hyperlink{structcs__sparse_aeb6831b93f8a901b4a5d520c46990f44}{i}
+\item 
+double $\ast$ \hyperlink{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{x}
+\item 
+int \hyperlink{structcs__sparse_a707363d7869d3fc4126027c1c9c7cf7c}{nz}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 14 of file csparse.\-h.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{structcs__sparse_aab49fc365ddf6273376a96d3a6aa751f}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!nzmax@{nzmax}}
+\index{nzmax@{nzmax}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{nzmax}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-sparse\-::nzmax}}\label{structcs__sparse_aab49fc365ddf6273376a96d3a6aa751f}
+
+
+Definition at line 16 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-entry(), cs\-\_\-lu(), cs\-\_\-print(), cs\-\_\-spalloc(), and cs\-\_\-sprealloc().
+
+\hypertarget{structcs__sparse_a8aeba3ffed4d599a4906e78329d3448b}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!m@{m}}
+\index{m@{m}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{m}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-sparse\-::m}}\label{structcs__sparse_a8aeba3ffed4d599a4906e78329d3448b}
+
+
+Definition at line 17 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-amd(), cs\-\_\-counts(), cs\-\_\-dmperm(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-etree(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-permute(), cs\-\_\-print(), cs\-\_\-qr(), cs\-\_\-qrsol(), cs\-\_\-spalloc(), cs\-\_\-transpose(), cs\-\_\-triplet(), and cs\-\_\-vcount().
+
+\hypertarget{structcs__sparse_a86c18870dc1551c71f8ea551efe68625}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!n@{n}}
+\index{n@{n}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{n}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-sparse\-::n}}\label{structcs__sparse_a86c18870dc1551c71f8ea551efe68625}
+
+
+Definition at line 18 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-amd(), cs\-\_\-chol(), cs\-\_\-cholsol(), cs\-\_\-counts(), cs\-\_\-dmperm(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-etree(), cs\-\_\-fkeep(), cs\-\_\-gaxpy(), cs\-\_\-lsolve(), cs\-\_\-ltsolve(), cs\-\_\-lu(), cs\-\_\-lusol(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-norm(), cs\-\_\-permute(), cs\-\_\-print(), cs\-\_\-qr(), cs\-\_\-qrsol(), cs\-\_\-reach(), cs\-\_\-scc(), cs\-\_\-schol(), cs\-\_\-spalloc(), cs\-\_\-splsolve(), cs\-\_\-sprealloc(), cs\-\_\-sqr(), cs\-\_\-symperm(), cs\-\_\-transpose(), cs\-\_\-triplet(), cs\-\_\-updown(), cs\-\_\-usolve(), cs\-\_\-utsolve(), and cs\-\_\-vcount().
+
+\hypertarget{structcs__sparse_a263a2347e8dcf1a7a20ee66730297b85}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!p@{p}}
+\index{p@{p}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{p}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-sparse\-::p}}\label{structcs__sparse_a263a2347e8dcf1a7a20ee66730297b85}
+
+
+Definition at line 19 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-amd(), cs\-\_\-augment(), cs\-\_\-bfs(), cs\-\_\-chol(), cs\-\_\-counts(), cs\-\_\-dfs(), cs\-\_\-dmperm(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-ereach(), cs\-\_\-etree(), cs\-\_\-fkeep(), cs\-\_\-gaxpy(), cs\-\_\-happly(), cs\-\_\-lsolve(), cs\-\_\-ltsolve(), cs\-\_\-lu(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-norm(), cs\-\_\-permute(), cs\-\_\-print(), cs\-\_\-qr(), cs\-\_\-reach(), cs\-\_\-scatter(), cs\-\_\-scc(), cs\-\_\-spalloc(), cs\-\_\-spfree(), cs\-\_\-splsolve(), cs\-\_\-sprealloc(), cs\-\_\-sqr(), cs\-\_\-symperm(), cs\-\_\-transpose(), cs\-\_\-triplet(), cs\-\_\-updown(), cs\-\_\-usolve(), cs\-\_\-utsolve(), and cs\-\_\-vcount().
+
+\hypertarget{structcs__sparse_aeb6831b93f8a901b4a5d520c46990f44}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!i@{i}}
+\index{i@{i}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{i}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-sparse\-::i}}\label{structcs__sparse_aeb6831b93f8a901b4a5d520c46990f44}
+
+
+Definition at line 20 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-augment(), cs\-\_\-bfs(), cs\-\_\-chol(), cs\-\_\-counts(), cs\-\_\-dfs(), cs\-\_\-dmperm(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-ereach(), cs\-\_\-etree(), cs\-\_\-fkeep(), cs\-\_\-gaxpy(), cs\-\_\-happly(), cs\-\_\-lsolve(), cs\-\_\-ltsolve(), cs\-\_\-lu(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-permute(), cs\-\_\-print(), cs\-\_\-qr(), cs\-\_\-reach(), cs\-\_\-scatter(), cs\-\_\-spalloc(), cs\-\_\-spfree(), cs\-\_\-splsolve(), cs\-\_\-sprealloc(), cs\-\_\-symperm(), cs\-\_\-transpose(), cs\-\_\-triplet(), cs\-\_\-updown(), cs\-\_\-usolve(), cs\-\_\-utsolve(), and cs\-\_\-vcount().
+
+\hypertarget{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!x@{x}}
+\index{x@{x}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{x}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ cs\-\_\-sparse\-::x}}\label{structcs__sparse_a0d6d06e4893a7d4d86e94ce49358d9c1}
+
+
+Definition at line 21 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-chol(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-ereach(), cs\-\_\-fkeep(), cs\-\_\-gaxpy(), cs\-\_\-happly(), cs\-\_\-lsolve(), cs\-\_\-ltsolve(), cs\-\_\-lu(), cs\-\_\-multiply(), cs\-\_\-norm(), cs\-\_\-permute(), cs\-\_\-print(), cs\-\_\-qr(), cs\-\_\-scatter(), cs\-\_\-spalloc(), cs\-\_\-spfree(), cs\-\_\-splsolve(), cs\-\_\-sprealloc(), cs\-\_\-symperm(), cs\-\_\-transpose(), cs\-\_\-triplet(), cs\-\_\-updown(), cs\-\_\-usolve(), and cs\-\_\-utsolve().
+
+\hypertarget{structcs__sparse_a707363d7869d3fc4126027c1c9c7cf7c}{\index{cs\-\_\-sparse@{cs\-\_\-sparse}!nz@{nz}}
+\index{nz@{nz}!cs_sparse@{cs\-\_\-sparse}}
+\paragraph[{nz}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-sparse\-::nz}}\label{structcs__sparse_a707363d7869d3fc4126027c1c9c7cf7c}
+
+
+Definition at line 22 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-entry(), cs\-\_\-print(), cs\-\_\-spalloc(), cs\-\_\-sprealloc(), and cs\-\_\-triplet().
+

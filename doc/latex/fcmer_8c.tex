@@ -1,0 +1,155 @@
+\hypertarget{fcmer_8c}{\subsection{fcmer.\-c File Reference}
+\label{fcmer_8c}\index{fcmer.\-c@{fcmer.\-c}}
+}
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$hdf5.\-h$>$}\\*
+{\ttfamily \#include $<$hdf5\-\_\-hl.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}fclib.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fcint.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}math.\-h\char`\"{}}\\*
+Include dependency graph for fcmer.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fcmer_8c__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{fcmer_8c_a98e8be3f37690b649f87ba1d48d1bc9c}{dnrm2} (double $\ast$v, int n)
+\item 
+void \hyperlink{fcmer_8c_a2148bd190e300797ee2f81a139ce4f38}{projection\-On\-Cone} (double $\ast$r, double mu)
+\item 
+void \hyperlink{fcmer_8c_afee93cccfbaff1232c6083249e1a5e7e}{Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error} (double $\ast$z, double $\ast$w, double mu, double $\ast$error)
+\item 
+double \hyperlink{fcmer_8c_a148e6f5a5567fc5f2961d48f0652f1b9}{fclib\-\_\-merit\-\_\-global} (struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem, enum \hyperlink{fclib_8h_a8d23c04ffda9ad1393fc7f3793e4a9a1}{fclib\-\_\-merit} merit, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$solution)
+\begin{DoxyCompactList}\small\item\em calculate merit function for a global problem \end{DoxyCompactList}\item 
+double \hyperlink{fcmer_8c_a60a8a78d06e2ba1a2dc5bce40d49113e}{fclib\-\_\-merit\-\_\-local} (struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem, enum \hyperlink{fclib_8h_a8d23c04ffda9ad1393fc7f3793e4a9a1}{fclib\-\_\-merit} merit, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$solution)
+\begin{DoxyCompactList}\small\item\em calculate merit function for a local problem \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Function Documentation}
+\hypertarget{fcmer_8c_a98e8be3f37690b649f87ba1d48d1bc9c}{\index{fcmer.\-c@{fcmer.\-c}!dnrm2@{dnrm2}}
+\index{dnrm2@{dnrm2}!fcmer.c@{fcmer.\-c}}
+\paragraph[{dnrm2}]{\setlength{\rightskip}{0pt plus 5cm}double dnrm2 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{v, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{fcmer_8c_a98e8be3f37690b649f87ba1d48d1bc9c}
+
+
+Definition at line 27 of file fcmer.\-c.
+
+
+
+Referenced by fclib\-\_\-merit\-\_\-local().
+
+\hypertarget{fcmer_8c_a2148bd190e300797ee2f81a139ce4f38}{\index{fcmer.\-c@{fcmer.\-c}!projection\-On\-Cone@{projection\-On\-Cone}}
+\index{projection\-On\-Cone@{projection\-On\-Cone}!fcmer.c@{fcmer.\-c}}
+\paragraph[{projection\-On\-Cone}]{\setlength{\rightskip}{0pt plus 5cm}void projection\-On\-Cone (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{r, }
+\item[{double}]{mu}
+\end{DoxyParamCaption}
+)}}\label{fcmer_8c_a2148bd190e300797ee2f81a139ce4f38}
+
+
+Definition at line 37 of file fcmer.\-c.
+
+
+
+Referenced by Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error().
+
+\hypertarget{fcmer_8c_afee93cccfbaff1232c6083249e1a5e7e}{\index{fcmer.\-c@{fcmer.\-c}!Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error@{Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error}}
+\index{Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error@{Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error}!fcmer.c@{fcmer.\-c}}
+\paragraph[{Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{z, }
+\item[{double $\ast$}]{w, }
+\item[{double}]{mu, }
+\item[{double $\ast$}]{error}
+\end{DoxyParamCaption}
+)}}\label{fcmer_8c_afee93cccfbaff1232c6083249e1a5e7e}
+
+
+Definition at line 61 of file fcmer.\-c.
+
+
+
+References projection\-On\-Cone().
+
+
+
+Referenced by fclib\-\_\-merit\-\_\-local().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{fcmer_8c_afee93cccfbaff1232c6083249e1a5e7e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fcmer_8c_a148e6f5a5567fc5f2961d48f0652f1b9}{\index{fcmer.\-c@{fcmer.\-c}!fclib\-\_\-merit\-\_\-global@{fclib\-\_\-merit\-\_\-global}}
+\index{fclib\-\_\-merit\-\_\-global@{fclib\-\_\-merit\-\_\-global}!fcmer.c@{fcmer.\-c}}
+\paragraph[{fclib\-\_\-merit\-\_\-global}]{\setlength{\rightskip}{0pt plus 5cm}double fclib\-\_\-merit\-\_\-global (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem, }
+\item[{enum {\bf fclib\-\_\-merit}}]{merit, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{solution}
+\end{DoxyParamCaption}
+)}}\label{fcmer_8c_a148e6f5a5567fc5f2961d48f0652f1b9}
+
+
+calculate merit function for a global problem 
+
+
+
+Definition at line 80 of file fcmer.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{fcmer_8c_a60a8a78d06e2ba1a2dc5bce40d49113e}{\index{fcmer.\-c@{fcmer.\-c}!fclib\-\_\-merit\-\_\-local@{fclib\-\_\-merit\-\_\-local}}
+\index{fclib\-\_\-merit\-\_\-local@{fclib\-\_\-merit\-\_\-local}!fcmer.c@{fcmer.\-c}}
+\paragraph[{fclib\-\_\-merit\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}double fclib\-\_\-merit\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem, }
+\item[{enum {\bf fclib\-\_\-merit}}]{merit, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{solution}
+\end{DoxyParamCaption}
+)}}\label{fcmer_8c_a60a8a78d06e2ba1a2dc5bce40d49113e}
+
+
+calculate merit function for a local problem 
+
+
+
+Definition at line 86 of file fcmer.\-c.
+
+
+
+References cs\-\_\-gaxpy(), cs\-\_\-transpose(), dnrm2(), Friction\-Contact3\-D\-\_\-unitary\-\_\-compute\-\_\-and\-\_\-add\-\_\-error(), fclib\-\_\-matrix\-::i, fclib\-\_\-solution\-::l, M\-E\-R\-I\-T\-\_\-1, fclib\-\_\-local\-::mu, fclib\-\_\-matrix\-::n, fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, fclib\-\_\-solution\-::r, fclib\-\_\-local\-::s, fclib\-\_\-local\-::spacedim, fclib\-\_\-solution\-::u, fclib\-\_\-local\-::\-V, fclib\-\_\-solution\-::v, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fcmer_8c_a60a8a78d06e2ba1a2dc5bce40d49113e_cgraph}
+\end{center}
+\end{figure}
+
+

@@ -1,0 +1,12 @@
+
+Ce package contient 
+- le fichier de style RR.sty pour les rapports
+  de recherche et rapports techniques Inria
+- les logos  au format png et eps.
+- la documentation RR.pdf
+- un fichier modele squelette-rr.tex
+- les sources RR.ins et RR.dtx
+
+
+Jose Grimm
+

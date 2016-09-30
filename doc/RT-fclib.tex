@@ -1,0 +1,673 @@
+%%
+%% This is file `squelette-rr.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% RR.dtx  (with options: `sample')
+%% ********************************************************************
+%% Copyright (C) 1997-1999 2004 2006-2011 INRIA/APICS/MARELLE by Jose' Grimm
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% An archive of the software can be found at
+%%    ftp://ftp-sop.inria.fr/marelle/RR-INRIA
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[twoside]{article}
+\usepackage{etex}
+\usepackage[a4paper]{geometry}
+\usepackage{RR}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{stmaryrd} 
+\usepackage{subeqnarray}
+%%\usepackage[frenchb]{babel} % optionnel
+%%\RRNo{7003}
+\RTNo{444}
+%%
+%% date de publication du rapport
+\RRdate{\today}
+%%
+%% Cas d'une version deux
+%% \RRversion{2}
+%% date de publication de la version 2
+%% \RRdater{November 2008}
+%%
+\RRauthor{% les auteurs
+ % Premier auteur, avec une note
+Vincent Acary\thanks{INRIA Rh\^one--Alpes. LJK Laboratoire Jean Kuntzman. {\tt vincent.acary@inria.fr}}%
+\and
+Maurice Br\'emond\thanks{INRIA Rh\^one--Alpes. {\tt maurice.bremond@inria.fr}}%
+ % r\'ef\'erence \`a la note partag\'ee
+ % liste longue pour tests de mise en page
+\and Tomasz Koziara\thanks{School of Engineering and Computing Sciences.Durham University U.K. {\tt tomasz.koziara@durham.ac.uk}} 
+\and Franck P\'erignon\thanks{ LJK Laboratoire Jean Kuntzman. {\tt franck.perignon@imag.fr}}}
+%% Ceci apparait sur chaque page paire.
+\authorhead{Acary \& Br\'emond \& Koziara \& P\'erignon}
+%% titre francais long
+\RRtitle{FCLIB: une collection de probl\`emes discrets tridimensionels de contact avec frottement}
+%% English title
+\RRetitle{FCLIB: a collection  of discrete 3D Frictional Contact problems}
+%%
+\titlehead{FCLIB: a collection  of discrete 3D Frictional Contact  problems}
+%%
+% \RRnote{This is a note}
+% \RRnote{This is a second note}
+%%
+\RRresume{Le but de ce travail est de mettre en place une collection de probl\`emes discrets de frottement de Coulomb avec contact unilat\'ral. La collection fournira un environnement standard de test pour les algorithmes de r\'esolution, existants et \`a venir. Dans ce document, on d\'ecrit les probl\`emes math\'ematiques que nous voulons collecter et le contenu de la collection courante.
+}
+\RRabstract{
+The goal of this work is to set up a collection of 3D Frictional Contact (3DFC) problems. The collection will provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems. In this document, we describe the mathematical problems that we want to collect and the contents of the current collection. }
+%%
+\RRmotcle{frottement de Coulomb, contact unilateral, benchmarks}
+\RRkeyword{Coulomb's friction, unilateral contact, benchmarks}
+%%
+%% \RRprojet{Apics}  % cas d'un seul projet
+\RRprojet{Bipop}
+%%
+%% \URLorraine % pour ceux qui sont \`a l'est
+%% \URRennes  % pour ceux qui sont \`a l'ouest
+%% \URRhoneAlpes % pour ceux qui sont dans les montagnes
+%% \URRocq % pour ceux qui sont au centre de la France
+%% \URFuturs % pour ceux qui sont dans le virtuel
+%% \URSophia % pour ceux qui sont au Sud.
+%%
+%% \RCBordeaux % centre de recherche Bordeaux - Sud Ouest
+%% \RCLille % centre de recherche Lille Nord Europe
+%% \RCParis % Paris Rocquencourt
+%% \RCSaclay % Saclay \^Ile de France
+\RCGrenoble % Grenoble - Rh\^one-Alpes
+%% \RCNancy % Nancy - Grand Est
+%% \RCRennes % Rennes - Bretagne Atlantique
+%%\RCSophia % Sophia Antipolis M\'editerran\'ee
+
+%\input{macro.tex}
+
+\def\n{{\hbox{\tiny{N}}}}
+\def\t{{\hbox{\tiny{T}}}}
+\newcommand{\RR}{\ensuremath{\rm\sf I\!R}}
+\newcommand{\NN}{\ensuremath{\rm\sf I\!N}}
+
+
+% Packages required by doxygen
+\usepackage{calc}
+\usepackage{./latex/doxygen}
+\usepackage[utf8]{inputenc}
+%\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage[table]{xcolor}
+
+% Font selection
+\usepackage[T1]{fontenc}
+%\usepackage{mathptmx}
+%\usepackage[scaled=.90]{helvet}
+%\usepackage{courier}
+\usepackage{sectsty}
+% \renewcommand{\familydefault}{\sfdefault}
+% \allsectionsfont{%
+%   \fontseries{bc}\selectfont%
+%   \color{darkgray}%
+% }
+\renewcommand{\DoxyLabelFont}{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+
+% % Page & text layout
+% \usepackage{geometry}
+% \geometry{%
+%   a4paper,%
+%   top=2.5cm,%
+%   bottom=2.5cm,%
+%   left=2.5cm,%
+%   right=2.5cm%
+% }
+% \tolerance=750
+% \hfuzz=15pt
+% \hbadness=750
+% \setlength{\emergencystretch}{15pt}
+% \setlength{\parindent}{0cm}
+% \setlength{\parskip}{0.2cm}
+\makeatletter
+% \renewcommand{\paragraph}{%
+%   \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+%     \normalfont\normalsize\bfseries\SS@parafont%
+%   }%
+% }
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@subparafont%
+  }%
+}
+\makeatother
+%%
+
+\usepackage{tikz}
+\graphicspath{{./figure/},{./latex/}}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+
+
+
+\begin{document}
+%%
+%\makeRR   % cas d'un rapport de recherche
+\makeRT % cas d'un rapport technique.
+%% a partir d'ici, chacun fait comme il le souhaite
+
+\section*{Purpose of the document}
+
+
+
+The goal of this work is to set up a collection of 3D Frictional Contact (3DFC) problems. The collection will provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems.  In this document, we describe the mathematical problems that we want to collect and the contents of the current collection.
+
+\section*{Notation}
+Let us denote by the integer $n_c$ the number of contacts. The integer $n$ is the number of degree of freedom of the system and $m = 3 n_c$ the number of unknown variables at contacts.
+
+\begin{figure}[htbp]
+  \begin{center}
+
+    \begin{tikzpicture}[ scale=3,
+      axis/.style={ ->, >=stealth'},
+      normal/.style={ thick, ->, >=stealth'},
+      important line/.style={very thick}, 
+      dashed line/.style={dashed, thin},
+      every node/.style={color=black},
+      soldot/.style={only marks,mark=*},
+      holdot/.style={fill=white,only marks,mark=*}
+      ]
+      % body
+      \node (BodyA) at (1,-1) {Body A};
+      \fill[gray!20] (1,0) arc (0:-90:1);
+      \fill[gray!20] (1,0) arc (90:180:1);
+      \draw (1,0) arc (90:180:1);
+
+      \node (BodyB) at (-1,1) {Body B};
+      \draw (0,1) arc (0:-90:1);
+      \fill[gray!20] (0,1) arc (90:180:1);
+      \fill[gray!20] (0,1) arc (0:-90:1);
+
+      % local frame
+      \def\nlength{0.35};
+      \coordinate (CA)  at  ({1.0-sqrt(2)/2.0},{-1.0+sqrt(2)/2.0});
+      \node[] at  (CA) [right] {$\sf C_A$};
+      \draw[holdot]  (CA) circle(0.05em);
+      \draw[normal] (CA) -- ($(CA)+({-\nlength*sqrt(2)/2.0},{+\nlength*sqrt(2)/2.0 })$) node [right] {$\,\sf N$};
+      \draw[normal] (CA) -- ($(CA)+({-\nlength*sqrt(2)/2.0},{-\nlength*sqrt(2)/2.0 })$) node [above] {$\sf T_1\quad$};
+      \draw[dashed line] (BodyA) -- (BodyB);
+      \draw[holdot] ($(CA)+({\nlength*sqrt(3)/2.0},{0.0})$) circle(0.2em);
+      \node at ($(CA)+({\nlength*sqrt(3)/2.0},{0.0})$) [right]{$\sf T_2$};
+      \draw[soldot] ($(CA)+({\nlength*sqrt(3)/2.0},{0.0})$) circle(0.02em);
+      
+      \coordinate (CB)  at  ({-1.0+sqrt(2)/2.0},{1.0-sqrt(2)/2.0});
+      \node at  (CB) [above] {$\sf C_B$};
+      \draw[holdot]  (CB) circle(0.05em);
+
+      \draw[axis] (CA) -- (CB) node[midway, below left ] {$\sf g_\n$} ;
+
+      % \draw[axis] (0,-0.4) -- (0,0.4) node(yline)[right] {$\sgn(x)$};
+      % % lines
+      % \draw[important line] (-0.4,-0.3) -- (0.   ,-.3);
+      % \draw[important line] (0.0,0.3) --(.4,.3)  ;
+      % \coordinate (O) at (0.0, 0.05);
+      % \draw[fill] (O) circle (0.03em);
+      % \draw (0.0,0.05) node[right]{$a$};
+      % \draw (0.0,0.3) node[left]{$1$};
+      % \draw (0.0,-0.3) node[right]{$-1$};
+      % \draw[holdot] (0.0,0.3) circle (0.03em);
+      % \draw[holdot] (0.0,-.3) circle (0.03em);
+    \end{tikzpicture}    
+  \end{center}
+    \caption{Local frame at contact}
+    \label{Fig:localframe}
+\end{figure}
+  
+For each contact $\alpha \in \{1,\ldots n_c\}$, the  local velocity  is denoted by $u^\alpha \in \RR^3$. Its normal part  is denoted by $u_\n^{\alpha}\in \RR$ and its tangential part $u_\t\in\RR^2$ (see Figure~\ref{Fig:localframe})
+\begin{equation}
+  \label{eq:contactvelocity}
+  u^\alpha =\left[
+  \begin{array}{c}
+    u^\alpha_{\n} \\
+    u^\alpha_{\t}   
+  \end{array}\right].
+\end{equation}
+The vector $u$ collects all the local velocities at each contact
+\begin{equation}
+  \label{eq:normal-collect}
+  u = [[u^\alpha]^T, \alpha = 1\ldots n_c]^T,
+\end{equation}
+respectively for the normal part $u_\n$
+\begin{equation}
+  \label{eq:normal}
+  u_\n = [ u^\alpha_{\n}, \alpha = 1\ldots n_c]^T,
+\end{equation}
+and its tangential a part as 
+\begin{equation}
+  \label{eq:tangent}
+  u_\t = [ [u^\alpha_{\t}]^T, \alpha = 1\ldots n_c]^T.
+\end{equation}
+For a contact $\alpha $ and a friction coefficient $\mu$, the modified local velocity, denoted by $\hat u^\alpha $, is defined by
+\begin{equation}
+  \label{eq:modified}
+  \hat u^\alpha = u^\alpha +\left[
+  \begin{array}{c}
+    \mu \|u^\alpha_\t\| \\
+    0 \\
+    0
+  \end{array}\right].
+\end{equation}
+The vector $\hat u$ collects all the modified local velocity at each contact
+\begin{equation}
+  \label{eq:normal-modified}
+  \hat u = [[\hat u^\alpha]^T, \alpha = 1\ldots n_c]^T.
+\end{equation}
+
+For each contact $\alpha$, the reaction vector $r^\alpha\in \RR^3$ is also decomposed in its normal part $r_\n^{\alpha}\in \RR$ and its tangential part $r_\t\in\RR^2$ as
+\begin{equation}
+  \label{eq:contactreaction}
+  r^\alpha = \left[
+  \begin{array}{c}
+    r^\alpha_{\n} \\
+    r^\alpha_{\t}   
+  \end{array}\right].
+\end{equation}
+The Coulomb friction cone for a  contact $\alpha$ is defined by 
+\begin{equation}
+  \label{eq:CCC}
+  K_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_\t \| \leq \mu^\alpha |r^\alpha_\n| \}
+\end{equation}
+and the set $K^{\alpha,\star}_{\mu^\alpha}$ is its dual. The set $K_{\mu}$ is the cartesian product of Coulomb's friction cone at each contact,
+\begin{equation}
+  \label{eq:CC}
+  K_{\mu} = \prod_{\alpha=1\ldots n_c} K_{\mu^\alpha}^{\alpha} 
+\end{equation}
+For more details, we refer to\cite{Acary.Brogliato2008}.
+
+\clearpage
+\section{Linear discrete problems with Coulomb's friction and unilateral contact}
+In this section, we formulate basic discrete frictional contact problems considering a finite number $n$ of degrees of freedom  together with a discrete linear dynamics and possibly some bilateral constraints. We assume that a finite set of $n_c$ contact points and their associated local frames has been defined.
+
+\newtheorem{definition}{Definition}
+
+\begin{definition}[Frictional contact problem (3DFC)]\index{mFC3D}
+  Given
+  \begin{itemize}
+    \item a symmetric positive semi--definite  matrix ${W} \in \RR^{m \times m}$
+    \item a vector $ {q} \in \RR^m$,
+    \item a vector of coefficients of friction $\mu \in \RR^{n_c}$
+  \end{itemize}
+ the  3DFC problem, denoted by $\mathrm{3DFC}(W,q,\mu)$, consists in finding two vectors $u\in\RR^m$ and $r\in \RR^m$ such that
+\begin{equation}\label{eq:3dfc}
+  \begin{cases}
+    \hat u = W r + q +\left[
+      \left[\begin{array}{c}
+          \mu^\alpha \|u^\alpha_\t\|\\
+          0 \\
+          0
+        \end{array}\right]^T, \alpha = 1 \ldots n_c
+    \right]^T \\ \\
+    K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
+  \end{cases}
+\end{equation}
+\qed
+\end{definition}
+
+\begin{definition}[Global 3DFrictional contact  problem (G3DFC)]\index{G3DFC}
+  Given
+  \begin{itemize}
+    \item a symmetric positive definite matrix ${M} \in \RR^{n \times n}$
+    \item a vector $ {f} \in \RR^n$,
+    \item a matrix  ${H} \in \RR^{n \times m}$
+    \item a vector $w \in \RR^{m}$,
+    \item a vector of coefficients of friction $\mu \in \RR^{n_c}$
+  \end{itemize}
+ the Global 3DFC problem, denoted by $\mathrm{G3DFC}(M,H,f,w,\mu)$, consists in finding three vectors $ {v} \in \RR^n$, $u\in\RR^m$ and $r\in \RR^m$  such that
+\begin{equation}\label{eq:Gfc3d}
+  \begin{cases}
+    M v = {H} {r} + {f} \\[1mm]
+    \hat u = H^T v + w +\left[
+      \left[\begin{array}{c}
+        \mu^\alpha \|u^\alpha_\t\|\\
+        0 \\
+        0
+      \end{array}\right]^T, \alpha = 1 \ldots n_c
+\right]^T \\[1mm]
+    K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
+  \end{cases}
+\end{equation}
+\qed
+\end{definition}
+
+
+
+
+\begin{definition}[Global  Mixed Frictional contact problem (GM3DFC)]\index{GN3DFC}
+  Given
+  \begin{itemize}
+    \item a symmetric positive definite matrix ${M} \in \RR^{n \times n}$
+    \item a vector $ {f} \in \RR^n$,
+    \item a matrix  ${H} \in \RR^{n \times m}$
+    \item a matrix  ${G} \in \RR^{n \times p}$
+     \item a vector $w \in \RR^{m}$,
+     \item a vector $b \in \RR^{p}$,
+    \item a vector of coefficients of friction $\mu \in \RR^{n_c}$
+  \end{itemize}
+ the Global Mixed 3DFC problem, denoted by $\mathrm{GM3DFC}(M,H,G,w,b,\mu)$, consists in finding four vectors $ {v} \in \RR^n$, $u\in\RR^m$, $r\in \RR^m$ and $\lambda \in \RR^p$ such that
+\begin{equation}\label{eq:gmfc3d}
+  \begin{cases}
+    M v = {H} {r} + G\lambda + {f} \\[1mm]
+    G^T v +b =0 \\[1mm]
+    \hat u = H^T v + w +\left[
+      \left[\begin{array}{c}
+        \mu \|u^\alpha_\t\|\\
+        0 \\
+        0
+      \end{array}\right]^T, \alpha = 1 \ldots n_c
+\right]^T \\[1mm]
+    K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
+  \end{cases}
+\end{equation}
+\qed
+\end{definition}
+
+
+\begin{definition}[Mixed 3DFrictional contact  problem (M3DFC)]\index{M3DFC}
+  Given
+  \begin{itemize}
+    \item a positive semi--definite matrix  ${W} \in \RR^{m \times m}$
+    \item a matrix  ${V} \in \RR^{m \times p}$
+    \item a matrix  ${R} \in \RR^{p \times p}$
+     \item a vector $q \in \RR^{m}$,
+     \item a vector $s \in \RR^{p}$,
+    \item a vector of coefficients of friction $\mu \in \RR^{n_c}$
+  \end{itemize}
+ the  Mixed 3DFC problem, denoted by $\mathrm{M3DFC}(R,V,W,q,s,\mu)$ , consists in finding three vectors $u\in\RR^m$, $r\in \RR^m$ and $\lambda \in \RR^p$  such that
+\begin{equation}\label{eq:mfc3d}
+  \begin{cases}
+    V^T {r} + R \lambda + s = 0 \\[1mm]
+    \hat u = W {r}    + V\lambda  + q +\left[
+      \left[\begin{array}{c}
+        \mu^\alpha \|u^\alpha_\t\|\\
+        0 \\
+        0
+      \end{array}\right]^T, \alpha = 1 \ldots n_c
+\right]^T \\[1mm]
+   K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
+  \end{cases}
+\end{equation}
+\qed
+\end{definition}
+
+\paragraph{Remark}
+Note that the previous problems may be an instance of quasi-static problems: the matrix $M$ plays the role of the stiffness matrix and the vector $u$ is a position or a displacement. All the problems can also be an problem in terms of acceleration and forces that we find in event--driven schemes.
+
+%\section{Measuring errors}
+
+\section{Details on the  implementation}
+
+\paragraph{File format}
+
+The proposed file format for storing and managing data is the HDF5 data format\\
+ \url{http://www.hdfgroup.org/HDF5}
+
+
+\noindent The data name should be defined as close as possible to the definition of this document.
+
+\paragraph{Matrix storage}
+Several matrix storages are considered :
+\begin{enumerate}
+\item dense format
+\item sparse format : row compressed format, column compressed and triplet (see the description in~\cite{Davis:2006:DMS:1196434}).
+\end{enumerate}
+The storage of dense matrices is in column major mode (FORTRAN mode). For the sparse matrices, we use the sparse toolkit developed by T. Davis~\cite{Davis:2006:DMS:1196434}.
+
+\paragraph{C implementation}
+
+A C implementation is proposed for reading and writing each of 3DFC problems into HDF5 files. Some details of the C implementation are given in Appendix. More details can be found at \url{http://fclib.gforge.inria.fr}.
+
+
+
+
+\section{Additional  description of the problems}
+
+The following additional information should be added in a reference document and in the HDF5 file.
+
+
+\begin{itemize}
+\item \verb?TITLE? : a title for the problem
+\item \verb?DESCRIPTION? : the field of application. Short description on how the problem is generated.
+\item \verb?MATRIX_INFO? : the sparsity and the conditioning of the matrices.
+\item \verb?MATH_INFO? : existence, uniqueness of solutions.
+\item \ldots
+\end{itemize}
+
+\noindent The following data can be optionally added in the HDF5 file
+\begin{itemize}
+\item \verb?SOLUTION? : a reference solution
+\item \verb?INITIAL_GUESS? : an initial guess
+\item \ldots
+\end{itemize}
+
+\clearpage
+
+
+\section{List of problems in FCLIB.  version 0.2}
+\def\ssep{1.5mm}
+
+\begin{itemize}
+\item Hanging chain with initial velocity at the tip (see Section~\ref{Sec:Chain}).
+\item 100 capsules dropped into a box (see Section~\ref{Sec:Capsules}).
+\item 50 boxes stacked under gravity (see Section~\ref{Sec:BoxesStack}).
+\item A tower of Kaplas (see Section~\ref{Sec:Kaplas}).
+\end{itemize}
+
+For each example, several configurations are available. Each problem is described in a file (HDF5 format) and mainly characterized by the number of degrees of freedom, the number of contacts and the formulation for the contact problem.
+
+\clearpage
+\subsection{Hanging chain with initial velocity at the tip.}
+\label{Sec:Chain}
+{\tt
+  \centering
+  \begin{tabular}{p{0.3\linewidth}p{0.65\linewidth}}
+    \hline \\
+    Authors & V. Acary, M. Br\'emond. (INRIA Rh\^one--Alpes) \\
+    Date & 10/02/2014\\
+    Software & Siconos\\ \\
+    \hline \\
+  \end{tabular}}
+
+This set of $1514$ problems has been generated by Siconos with the help of Bullet contact detection library. It simulates an hanging chain with initial velocity at the tip. The chain is composed of $11$ elements with the same geometry given by a unique mesh.  The mass of each component is $1$kg for a length of $13.7$m and a thickness of $7.6$m . The initial velocity at the tip is $50$mm/s.
+
+The script that generates this example can be obtained from the Siconos development team. On Figure~\ref{fig:Chain-distrib}, the distribution of the number of contacts, the number of d.o.f and the ratio number of contacts unknowns/number of d.o.f are illustrated.
+
+\begin{minipage}{0.29\linewidth}
+  \includegraphics[width=1.0\textwidth]{Chains}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+  \begin{tabular}{|p{0.7\textwidth}|c|}
+    coefficient of friction & $0.3$ \\[\ssep]
+    number of problems & 1514 \\[\ssep]
+    number of degrees of freedom & [48:60] \\[\ssep]
+    number of contacts & [8:28] \\[\ssep]
+    required accuracy   & $10^{-8}$    
+  \end{tabular}
+\end{minipage}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{distrib-Chain.pdf}
+  \caption{distribution of the number of contacts, the number of d.o.f and their ratio}
+  \label{fig:Chain-distrib}
+\end{figure}
+
+\clearpage
+\subsection{100 capsules dropped into a box.}
+\label{Sec:Capsules}
+{\tt
+  \centering
+  \begin{tabular}{p{0.3\linewidth}p{0.65\linewidth}}
+    \hline \\
+    Authors & V. Acary, M. Br\'emond. (INRIA Rh\^one--Alpes) \\
+    Date & 10/02/2014\\
+    Software & Siconos\\ \\
+    \hline \\
+  \end{tabular}}
+
+This set of $1514$ problems has been generated by Siconos with the help of Bullet contact detection library. It simulates $100$ capsules dropped into a box. The Mass of each capsule is $1$kg and length is $5$m. The radius is $1$m.
+
+The script that generates this example can be obtained from the Siconos development team. On Figure~\ref{fig:Capsules-distrib}, the distribution of the number of contacts, the number of d.o.f and the ratio number of contacts unknowns/number of d.o.f are illustrated.
+
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[width=1.0\textwidth]{Capsules}
+  \end{minipage}  
+  \begin{minipage}{0.49\linewidth}
+    \begin{tabular}{|p{0.7\textwidth}|c|}
+      coefficient of friction & $0.7$ \\[\ssep]
+      number of problems & 1705 \\[\ssep]
+      number of degrees of freedom & [6:600] \\[\ssep]
+      number of contacts &  [0:300]\\[\ssep]
+      required accuracy   & $10^{-8}$    
+    \end{tabular}
+  \end{minipage}
+\begin{figure}[htbp]
+  \centering
+  
+  \includegraphics[width=0.7\textwidth]{distrib-Capsules.pdf}
+
+
+  \caption{distribution of the number of contacts, the number of d.o.f and their ratio}
+  \label{fig:Capsules-distrib}
+\end{figure}
+
+
+\clearpage
+\subsection{50 boxes stacked under gravity}
+\label{Sec:BoxesStack}
+{\tt
+  \centering
+  \begin{tabular}{p{0.3\linewidth}p{0.65\linewidth}}
+    \hline \\
+    Authors & V. Acary, M. Br\'emond. (INRIA Rh\^one--Alpes) \\
+    Date & 10/02/2014\\
+    Software & Siconos\\ \\
+    \hline \\
+  \end{tabular}}
+
+This set of $1514$ problems has been generated by Siconos with the help of Bullet contact detection library. It simulates 50 boxes stacked under gravity. The mass of the box is $1$kg and the size is $2\times 2$m.
+The script that generates this example can be obtained from the Siconos development team. On Figure~\ref{fig:BoxesStack-distrib}, the distribution of the number of contacts, the number of d.o.f and the ratio number of contacts unknowns/number of d.o.f are illustrated.
+
+  \begin{minipage}{0.14\linewidth}
+    \includegraphics[width=1.0\textwidth]{BoxesStack}
+  \end{minipage}
+  \begin{minipage}{0.25\linewidth}
+    \includegraphics[width=1.0\textwidth]{BoxesStack2}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \begin{tabular}{|p{0.7\textwidth}|c|}
+      coefficient of friction &  0.7\\[\ssep]
+      number of problems &  1159 \\[\ssep]
+      number of degrees of freedom & [6:300] \\[\ssep]
+      number of contacts &  [0:200]\\[\ssep]
+      required accuracy   & $10^{-8}$
+    \end{tabular}
+  \end{minipage}
+
+\begin{figure}[htbp]
+  \centering
+  
+  \includegraphics[width=0.7\textwidth]{distrib-BoxesStack1.pdf}
+
+
+  \caption{distribution of the number of contacts, the number of d.o.f and their ratio}
+  \label{fig:BoxesStack-distrib}
+\end{figure}
+\clearpage
+\subsection{A tower of Kaplas}
+\label{Sec:Kaplas}
+{\tt
+  \centering
+  \begin{tabular}{p{0.3\linewidth}p{0.65\linewidth}}
+    \hline \\
+    Authors & V. Acary, M. Br\'emond. (INRIA Rh\^one--Alpes) \\
+    Date & 10/02/2014\\
+    Software & Siconos\\ \\
+    \hline \\
+  \end{tabular}}
+
+This set of $201$ problems has been generated by Siconos with the help of Bullet contact detection library. It simulates a tower of $144$ kaplas of dimension $11.4\times 2.348\times 0.78267$cm. The mass of each is $1$kg. The script that generates this example can be obtained from the Siconos development team. On Figure~\ref{fig:BoxesStack-distrib}, the distribution of the number of contacts, the number of d.o.f and the ratio number of contacts unknowns/number of d.o.f are illustrated.
+
+  \begin{minipage}{0.50\linewidth}
+    \includegraphics[width=1.0\textwidth]{KaplasTower}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \begin{tabular}{|p{0.7\textwidth}|c|}
+      coefficient of friction &  0.3\\[\ssep]
+      number of problems &  201 \\[\ssep]
+      number of degrees of freedom & [72:864] \\[\ssep]
+      number of contacts &  [0:950]\\[\ssep]
+      required accuracy   & $10^{-8}$
+    \end{tabular}
+  \end{minipage}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{distrib-KaplasTower.pdf}
+  \caption{distribution of the number of contacts, the number of d.o.f and their ratio}
+  \label{fig:KaplasTower-distrib}
+\end{figure}
+
+
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{biblio}
+\clearpage
+\appendix
+%--- Begin generated contents ---
+% \section{Introduction}
+% \label{index}\hypertarget{index}{}\input{./latex/index}
+% \section{Download}
+% \label{download}
+% \hypertarget{download}{}
+% \input{./latex/download}
+% \section{Contact us}
+% \label{contact}
+% \hypertarget{contact}{}
+% \input{./latex/contact}
+% \section{Related Publications}
+% \label{publications}
+% \hypertarget{publications}{}
+% \input{./latex/publications}
+\section{Class Index}
+\input{./latex/annotated}
+% \section{File Index}
+% \input{./latex/files}
+\section{Class Documentation}
+\input{./latex/structcs__dmperm__results}
+\input{./latex/structcs__numeric}
+\input{./latex/structcs__sparse}
+\input{./latex/structcs__symbolic}
+\input{./latex/structfclib__global}
+\input{./latex/structfclib__info}
+\input{./latex/structfclib__local}
+\input{./latex/structfclib__matrix}
+\input{./latex/structfclib__matrix__info}
+\input{./latex/structfclib__solution}
+
+\end{document}
+\endinput
+
+
+%%
+%% End of file `squelette-rr.tex'.

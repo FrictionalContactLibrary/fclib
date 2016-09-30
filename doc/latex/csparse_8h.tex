@@ -1,0 +1,2033 @@
+\hypertarget{csparse_8h}{\subsection{csparse.\-h File Reference}
+\label{csparse_8h}\index{csparse.\-h@{csparse.\-h}}
+}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{csparse_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcs__sparse}{cs\-\_\-sparse}
+\item 
+struct \hyperlink{structcs__symbolic}{cs\-\_\-symbolic}
+\item 
+struct \hyperlink{structcs__numeric}{cs\-\_\-numeric}
+\item 
+struct \hyperlink{structcs__dmperm__results}{cs\-\_\-dmperm\-\_\-results}
+\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{csparse_8h_a4371903ff8b39a742cfaf6c6d7f60c4b}{C\-S\-\_\-\-V\-E\-R}~1		    /$\ast$ C\-Sparse Version 1.\-2.\-0 $\ast$/
+\item 
+\#define \hyperlink{csparse_8h_ac86012ab063a9b8248eaac8bec3b648b}{C\-S\-\_\-\-S\-U\-B\-V\-E\-R}~2
+\item 
+\#define \hyperlink{csparse_8h_a7f63c57bd63a43fe7ca98e82f524f2ea}{C\-S\-\_\-\-S\-U\-B\-S\-U\-B}~0
+\item 
+\#define \hyperlink{csparse_8h_a368a611d92ef4a9df9b95cfad8dccf80}{C\-S\-\_\-\-D\-A\-T\-E}~\char`\"{}Mar 6, 2006\char`\"{}	    /$\ast$ C\-Sparse release date $\ast$/
+\item 
+\#define \hyperlink{csparse_8h_ae6b1a40644b8ddacbbc3bd7c255dbbb4}{C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T}~\char`\"{}Copyright (c) Timothy A. Davis, 2006\char`\"{}
+\item 
+\#define \hyperlink{csparse_8h_a7447e0bed6bf453743551d158e019e8b}{C\-S\-\_\-\-M\-A\-X}(a, b)~(((a) $>$ (b)) ? (a) \-: (b))
+\item 
+\#define \hyperlink{csparse_8h_a2635aa5c35f05bb0e4c88be5aabae949}{C\-S\-\_\-\-M\-I\-N}(a, b)~(((a) $<$ (b)) ? (a) \-: (b))
+\item 
+\#define \hyperlink{csparse_8h_aa64f99348d6e0bd00fd5f974199b685a}{C\-S\-\_\-\-F\-L\-I\-P}(i)~(-\/(i)-\/2)
+\item 
+\#define \hyperlink{csparse_8h_ac9ba6b1092f27aeed7f94a418610aff9}{C\-S\-\_\-\-U\-N\-F\-L\-I\-P}(i)~(((i) $<$ 0) ? \hyperlink{csparse_8h_aa64f99348d6e0bd00fd5f974199b685a}{C\-S\-\_\-\-F\-L\-I\-P}(i) \-: (i))
+\item 
+\#define \hyperlink{csparse_8h_a434539b758c06b28c4e62ad2a56b859b}{C\-S\-\_\-\-M\-A\-R\-K\-E\-D}(Ap, j)~(Ap \mbox{[}j\mbox{]} $<$ 0)
+\item 
+\#define \hyperlink{csparse_8h_a8c9d2b0aa06c83acbaf8a183d76e4e2c}{C\-S\-\_\-\-M\-A\-R\-K}(Ap, j)~\{ Ap \mbox{[}j\mbox{]} = \hyperlink{csparse_8h_aa64f99348d6e0bd00fd5f974199b685a}{C\-S\-\_\-\-F\-L\-I\-P} (Ap \mbox{[}j\mbox{]}) ; \}
+\item 
+\#define \hyperlink{csparse_8h_a0062601c62a646fef2e56a5d62380907}{C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}(n, size)~(n $>$ I\-N\-T\-\_\-\-M\-A\-X / (int) size)
+\end{DoxyCompactItemize}
+\subsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structcs__sparse}{cs\-\_\-sparse} \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs}
+\item 
+typedef struct \hyperlink{structcs__symbolic}{cs\-\_\-symbolic} \hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css}
+\item 
+typedef struct \hyperlink{structcs__numeric}{cs\-\_\-numeric} \hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn}
+\item 
+typedef struct \hyperlink{structcs__dmperm__results}{cs\-\_\-dmperm\-\_\-results} \hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd}
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a12000fbd0b9198d3852978cca8386afe}{cs\-\_\-add} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$B, double alpha, double beta)
+\item 
+int \hyperlink{csparse_8h_ac3a64b3dfa45b30d2e764e096107ba1e}{cs\-\_\-cholsol} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, double $\ast$b, int order)
+\item 
+int \hyperlink{csparse_8h_a83dc83954d821b748c3ba9fea1f6b5ca}{cs\-\_\-dupl} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_a123f77ef9b940089a931a994deb21735}{cs\-\_\-entry} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$T, int i, int j, double x)
+\item 
+int \hyperlink{csparse_8h_a14612df0010f5284c8f3feac2a7e02fd}{cs\-\_\-lusol} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, double $\ast$b, int order, double tol)
+\item 
+int \hyperlink{csparse_8h_a7c887151e9bd6dd56f580c8ae6a5af31}{cs\-\_\-gaxpy} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const double $\ast$x, double $\ast$y)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a066e18f8570c820530c73ebc88b30a97}{cs\-\_\-multiply} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$B)
+\item 
+int \hyperlink{csparse_8h_a833a289a30d66ea255d49ab3e93c1334}{cs\-\_\-qrsol} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, double $\ast$b, int order)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a090225477a18abe5f8d5ab26e4efaf3a}{cs\-\_\-transpose} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int values)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a333e20a0edc2af41f68d77d79ede53e5}{cs\-\_\-triplet} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$T)
+\item 
+double \hyperlink{csparse_8h_ae2b324f8f0cdc3610d98ce6cebd50075}{cs\-\_\-norm} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_ab3e2c74ed6cf7521170a45d04aab9b51}{cs\-\_\-print} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int brief)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a12eb66c4f53e51ee5e03ec0b9f24b368}{cs\-\_\-load} (F\-I\-L\-E $\ast$f)
+\item 
+void $\ast$ \hyperlink{csparse_8h_ad3e846c0142a1457e8e85bcaf559fb98}{cs\-\_\-calloc} (int n, size\-\_\-t size)
+\item 
+void $\ast$ \hyperlink{csparse_8h_a78c1d1194aacc65212bb0d2b03643ac7}{cs\-\_\-free} (void $\ast$p)
+\item 
+void $\ast$ \hyperlink{csparse_8h_a7e829e1175f2c8ddb0d6d9e0bb90f985}{cs\-\_\-realloc} (void $\ast$p, int n, size\-\_\-t size, int $\ast$ok)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_aad3a584d9185a4fe4497a36f892b9c72}{cs\-\_\-spalloc} (int m, int n, int nzmax, int values, int triplet)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a6d705e404a7831ccf01bc0ea064215b9}{cs\-\_\-spfree} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_a5a9bc4224732ce1cedc50119afc687c1}{cs\-\_\-sprealloc} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int nzmax)
+\item 
+void $\ast$ \hyperlink{csparse_8h_a4c6c75c54cbdf2f3fd4574a90c2f8a86}{cs\-\_\-malloc} (int n, size\-\_\-t size)
+\item 
+int $\ast$ \hyperlink{csparse_8h_a8ae6ef945b48ea6aff888481c8394ef8}{cs\-\_\-amd} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int order)
+\item 
+\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$ \hyperlink{csparse_8h_a5ae664f3c6b2baeed717be084e00e13f}{cs\-\_\-chol} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const \hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$S)
+\item 
+\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$ \hyperlink{csparse_8h_a59484c944748596c1a9adecfd19085b4}{cs\-\_\-dmperm} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_a39d53ef3034685545cda58ae28af6bb5}{cs\-\_\-droptol} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, double tol)
+\item 
+int \hyperlink{csparse_8h_a50c30e47141ef37dbb4b342e1b4ba924}{cs\-\_\-dropzeros} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_a27050a31d36046e833b7763fe8ef62ce}{cs\-\_\-happly} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$V, int i, double beta, double $\ast$x)
+\item 
+int \hyperlink{csparse_8h_a51a8d1a79477ff438a978ab1d8f9849b}{cs\-\_\-ipvec} (int n, const int $\ast$P, const double $\ast$b, double $\ast$x)
+\item 
+int \hyperlink{csparse_8h_adbd011bdb4d7bef9825ca1c743fc6b46}{cs\-\_\-lsolve} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, double $\ast$x)
+\item 
+int \hyperlink{csparse_8h_afc61741ee2f33a3544f1c5f6b9caf9f6}{cs\-\_\-ltsolve} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, double $\ast$x)
+\item 
+\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$ \hyperlink{csparse_8h_a6a35ad4816f210234a33eed09b19d181}{cs\-\_\-lu} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const \hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$S, double tol)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a1428474a78c2db414b465aef5b40feb3}{cs\-\_\-permute} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const int $\ast$P, const int $\ast$Q, int values)
+\item 
+int $\ast$ \hyperlink{csparse_8h_a879e3a62bc0c081fb2a598d20f59b2d2}{cs\-\_\-pinv} (const int $\ast$P, int n)
+\item 
+int \hyperlink{csparse_8h_a547d4d67ec772ecf190dc7073e7fcf41}{cs\-\_\-pvec} (int n, const int $\ast$P, const double $\ast$b, double $\ast$x)
+\item 
+\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$ \hyperlink{csparse_8h_a767dc90c22d90fe898f72c2da0d98c03}{cs\-\_\-qr} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const \hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$S)
+\item 
+\hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$ \hyperlink{csparse_8h_afcc0ebf37f4cf80e097ac7e8aa2830f2}{cs\-\_\-schol} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int order)
+\item 
+\hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$ \hyperlink{csparse_8h_a0a717b429d68d3c98b6dc8579988473d}{cs\-\_\-sqr} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int order, int qr)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a6aa95f82cd0d8c61afb033405320d727}{cs\-\_\-symperm} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const int $\ast$Pinv, int values)
+\item 
+int \hyperlink{csparse_8h_aa4cdacecec403b30b97abc7c27594b4f}{cs\-\_\-usolve} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$U, double $\ast$x)
+\item 
+int \hyperlink{csparse_8h_a9fbb54471515f219326666ffc4e3e255}{cs\-\_\-utsolve} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$U, double $\ast$x)
+\item 
+int \hyperlink{csparse_8h_ad5fa81f80009c06259a77fd7d2092f78}{cs\-\_\-updown} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, int sigma, const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, const int $\ast$parent)
+\item 
+\hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$ \hyperlink{csparse_8h_ace766075ef439ad6e4347f6b076eb4b7}{cs\-\_\-sfree} (\hyperlink{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{css} $\ast$S)
+\item 
+\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$ \hyperlink{csparse_8h_af2e6d75dfc24a842fdbce3aa510dc4bc}{cs\-\_\-nfree} (\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$N)
+\item 
+\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$ \hyperlink{csparse_8h_a7c59264397d2c5cc85c87c879aedc4f5}{cs\-\_\-dfree} (\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$D)
+\item 
+int $\ast$ \hyperlink{csparse_8h_aa7fdeead97aef81cdf18af7576a7f722}{cs\-\_\-counts} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, const int $\ast$parent, const int $\ast$post, int ata)
+\item 
+int \hyperlink{csparse_8h_afa16a8bc0209e3bd5c0819ed15d2c987}{cs\-\_\-cumsum} (int $\ast$p, int $\ast$c, int n)
+\item 
+int \hyperlink{csparse_8h_a30e23f78c9bcbe87e9027d078c98467a}{cs\-\_\-dfs} (int j, \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, int top, int $\ast$xi, int $\ast$pstack, const int $\ast$Pinv)
+\item 
+int $\ast$ \hyperlink{csparse_8h_a5c531804008e67c207e93f14c2551b1a}{cs\-\_\-etree} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int ata)
+\item 
+int \hyperlink{csparse_8h_ade63a58ec1758250c64518d817ea3c4c}{cs\-\_\-fkeep} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int($\ast$fkeep)(int, int, double, void $\ast$), void $\ast$other)
+\item 
+double \hyperlink{csparse_8h_a096c9057bf2038f9eaef0c1dfb09f3dd}{cs\-\_\-house} (double $\ast$x, double $\ast$beta, int n)
+\item 
+int $\ast$ \hyperlink{csparse_8h_aebd7035aaa1627313149c32755b9f642}{cs\-\_\-maxtrans} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int $\ast$ \hyperlink{csparse_8h_af84bc0a35c099a9a1e01e5aebf8c7292}{cs\-\_\-post} (int n, const int $\ast$parent)
+\item 
+int \hyperlink{csparse_8h_add4fc69b3887fae610e0362fc13bb214}{cs\-\_\-reach} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$B, int k, int $\ast$xi, const int $\ast$Pinv)
+\item 
+\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$ \hyperlink{csparse_8h_a9fede5f7dcf4367d7d005ca6dd0ba100}{cs\-\_\-scc} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A)
+\item 
+int \hyperlink{csparse_8h_a3729a7e21dbc3309ac96461ddb060328}{cs\-\_\-scatter} (const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$A, int j, double beta, int $\ast$w, double $\ast$x, int mark, \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, int nz)
+\item 
+int \hyperlink{csparse_8h_aabed11053c84c540d80e6edc410cce2f}{cs\-\_\-splsolve} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$L, const \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$B, int k, int $\ast$xi, double $\ast$x, const int $\ast$Pinv)
+\item 
+int \hyperlink{csparse_8h_a7b064c4799cc09da13c13d982197eff7}{cs\-\_\-tdfs} (int j, int k, int $\ast$head, const int $\ast$next, int $\ast$post, int $\ast$stack)
+\item 
+\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$ \hyperlink{csparse_8h_aefbcfeb2d1143578988d22d116dde57b}{cs\-\_\-dalloc} (int m, int n)
+\item 
+\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$ \hyperlink{csparse_8h_a41590e7ef8c8f3ebce8c7bbe07303c28}{cs\-\_\-done} (\hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, void $\ast$w, void $\ast$x, int ok)
+\item 
+int $\ast$ \hyperlink{csparse_8h_a9c3bd8e36cdfb832d199b580e22467c7}{cs\-\_\-idone} (int $\ast$p, \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, void $\ast$w, int ok)
+\item 
+\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$ \hyperlink{csparse_8h_a24796e2f78414578fd2b8e7528535cbb}{cs\-\_\-ndone} (\hyperlink{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{csn} $\ast$N, \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, void $\ast$w, void $\ast$x, int ok)
+\item 
+\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$ \hyperlink{csparse_8h_a312cb23797ac49cd9e99853f6bd2895f}{cs\-\_\-ddone} (\hyperlink{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{csd} $\ast$D, \hyperlink{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{cs} $\ast$C, void $\ast$w, int ok)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Macro Definition Documentation}
+\hypertarget{csparse_8h_a4371903ff8b39a742cfaf6c6d7f60c4b}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-V\-E\-R@{C\-S\-\_\-\-V\-E\-R}}
+\index{C\-S\-\_\-\-V\-E\-R@{C\-S\-\_\-\-V\-E\-R}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-V\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-V\-E\-R~1		    /$\ast$ C\-Sparse Version 1.\-2.\-0 $\ast$/}}\label{csparse_8h_a4371903ff8b39a742cfaf6c6d7f60c4b}
+
+
+Definition at line 7 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_ac86012ab063a9b8248eaac8bec3b648b}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-S\-U\-B\-V\-E\-R@{C\-S\-\_\-\-S\-U\-B\-V\-E\-R}}
+\index{C\-S\-\_\-\-S\-U\-B\-V\-E\-R@{C\-S\-\_\-\-S\-U\-B\-V\-E\-R}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-S\-U\-B\-V\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-S\-U\-B\-V\-E\-R~2}}\label{csparse_8h_ac86012ab063a9b8248eaac8bec3b648b}
+
+
+Definition at line 8 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_a7f63c57bd63a43fe7ca98e82f524f2ea}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-S\-U\-B\-S\-U\-B@{C\-S\-\_\-\-S\-U\-B\-S\-U\-B}}
+\index{C\-S\-\_\-\-S\-U\-B\-S\-U\-B@{C\-S\-\_\-\-S\-U\-B\-S\-U\-B}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-S\-U\-B\-S\-U\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-S\-U\-B\-S\-U\-B~0}}\label{csparse_8h_a7f63c57bd63a43fe7ca98e82f524f2ea}
+
+
+Definition at line 9 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_a368a611d92ef4a9df9b95cfad8dccf80}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-D\-A\-T\-E@{C\-S\-\_\-\-D\-A\-T\-E}}
+\index{C\-S\-\_\-\-D\-A\-T\-E@{C\-S\-\_\-\-D\-A\-T\-E}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-D\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-D\-A\-T\-E~\char`\"{}Mar 6, 2006\char`\"{}	    /$\ast$ C\-Sparse release date $\ast$/}}\label{csparse_8h_a368a611d92ef4a9df9b95cfad8dccf80}
+
+
+Definition at line 10 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_ae6b1a40644b8ddacbbc3bd7c255dbbb4}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T@{C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T}}
+\index{C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T@{C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T~\char`\"{}Copyright (c) Timothy A. Davis, 2006\char`\"{}}}\label{csparse_8h_ae6b1a40644b8ddacbbc3bd7c255dbbb4}
+
+
+Definition at line 11 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_a7447e0bed6bf453743551d158e019e8b}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-M\-A\-X@{C\-S\-\_\-\-M\-A\-X}}
+\index{C\-S\-\_\-\-M\-A\-X@{C\-S\-\_\-\-M\-A\-X}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-M\-A\-X(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a) $>$ (b)) ? (a) \-: (b))}}\label{csparse_8h_a7447e0bed6bf453743551d158e019e8b}
+
+
+Definition at line 127 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-calloc(), cs\-\_\-entry(), cs\-\_\-malloc(), cs\-\_\-norm(), cs\-\_\-realloc(), cs\-\_\-spalloc(), and cs\-\_\-symperm().
+
+\hypertarget{csparse_8h_a2635aa5c35f05bb0e4c88be5aabae949}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-M\-I\-N@{C\-S\-\_\-\-M\-I\-N}}
+\index{C\-S\-\_\-\-M\-I\-N@{C\-S\-\_\-\-M\-I\-N}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-M\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-M\-I\-N(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a) $<$ (b)) ? (a) \-: (b))}}\label{csparse_8h_a2635aa5c35f05bb0e4c88be5aabae949}
+
+
+Definition at line 128 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-counts(), cs\-\_\-symperm(), and cs\-\_\-updown().
+
+\hypertarget{csparse_8h_aa64f99348d6e0bd00fd5f974199b685a}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-F\-L\-I\-P@{C\-S\-\_\-\-F\-L\-I\-P}}
+\index{C\-S\-\_\-\-F\-L\-I\-P@{C\-S\-\_\-\-F\-L\-I\-P}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-F\-L\-I\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-F\-L\-I\-P(
+\begin{DoxyParamCaption}
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~(-\/(i)-\/2)}}\label{csparse_8h_aa64f99348d6e0bd00fd5f974199b685a}
+
+
+Definition at line 129 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-amd().
+
+\hypertarget{csparse_8h_ac9ba6b1092f27aeed7f94a418610aff9}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-U\-N\-F\-L\-I\-P@{C\-S\-\_\-\-U\-N\-F\-L\-I\-P}}
+\index{C\-S\-\_\-\-U\-N\-F\-L\-I\-P@{C\-S\-\_\-\-U\-N\-F\-L\-I\-P}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-U\-N\-F\-L\-I\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-U\-N\-F\-L\-I\-P(
+\begin{DoxyParamCaption}
+\item[{}]{i}
+\end{DoxyParamCaption}
+)~(((i) $<$ 0) ? {\bf C\-S\-\_\-\-F\-L\-I\-P}(i) \-: (i))}}\label{csparse_8h_ac9ba6b1092f27aeed7f94a418610aff9}
+
+
+Definition at line 130 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-dfs().
+
+\hypertarget{csparse_8h_a434539b758c06b28c4e62ad2a56b859b}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-M\-A\-R\-K\-E\-D@{C\-S\-\_\-\-M\-A\-R\-K\-E\-D}}
+\index{C\-S\-\_\-\-M\-A\-R\-K\-E\-D@{C\-S\-\_\-\-M\-A\-R\-K\-E\-D}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-M\-A\-R\-K\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-M\-A\-R\-K\-E\-D(
+\begin{DoxyParamCaption}
+\item[{}]{Ap, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)~(Ap \mbox{[}j\mbox{]} $<$ 0)}}\label{csparse_8h_a434539b758c06b28c4e62ad2a56b859b}
+
+
+Definition at line 131 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-dfs(), cs\-\_\-reach(), and cs\-\_\-scc().
+
+\hypertarget{csparse_8h_a8c9d2b0aa06c83acbaf8a183d76e4e2c}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-M\-A\-R\-K@{C\-S\-\_\-\-M\-A\-R\-K}}
+\index{C\-S\-\_\-\-M\-A\-R\-K@{C\-S\-\_\-\-M\-A\-R\-K}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-M\-A\-R\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-M\-A\-R\-K(
+\begin{DoxyParamCaption}
+\item[{}]{Ap, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)~\{ Ap \mbox{[}j\mbox{]} = {\bf C\-S\-\_\-\-F\-L\-I\-P} (Ap \mbox{[}j\mbox{]}) ; \}}}\label{csparse_8h_a8c9d2b0aa06c83acbaf8a183d76e4e2c}
+
+
+Definition at line 132 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-dfs(), cs\-\_\-reach(), and cs\-\_\-scc().
+
+\hypertarget{csparse_8h_a0062601c62a646fef2e56a5d62380907}{\index{csparse.\-h@{csparse.\-h}!C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W@{C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}}
+\index{C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W@{C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}!csparse.h@{csparse.\-h}}
+\paragraph[{C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W(
+\begin{DoxyParamCaption}
+\item[{}]{n, }
+\item[{}]{size}
+\end{DoxyParamCaption}
+)~(n $>$ I\-N\-T\-\_\-\-M\-A\-X / (int) size)}}\label{csparse_8h_a0062601c62a646fef2e56a5d62380907}
+
+
+Definition at line 133 of file csparse.\-h.
+
+
+
+Referenced by cs\-\_\-calloc(), cs\-\_\-malloc(), and cs\-\_\-realloc().
+
+
+
+\subsubsection{Typedef Documentation}
+\hypertarget{csparse_8h_a44e471a015cf32e012cffef17e81b6db}{\index{csparse.\-h@{csparse.\-h}!cs@{cs}}
+\index{cs@{cs}!csparse.h@{csparse.\-h}}
+\paragraph[{cs}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf cs\-\_\-sparse}  {\bf cs}}}\label{csparse_8h_a44e471a015cf32e012cffef17e81b6db}
+\hypertarget{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}{\index{csparse.\-h@{csparse.\-h}!css@{css}}
+\index{css@{css}!csparse.h@{csparse.\-h}}
+\paragraph[{css}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf cs\-\_\-symbolic}  {\bf css}}}\label{csparse_8h_afdd66916fadd9fd39cd279717aa5c6b9}
+\hypertarget{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}{\index{csparse.\-h@{csparse.\-h}!csn@{csn}}
+\index{csn@{csn}!csparse.h@{csparse.\-h}}
+\paragraph[{csn}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf cs\-\_\-numeric}  {\bf csn}}}\label{csparse_8h_aa81f48a471a94557a00da42ceb21dc68}
+\hypertarget{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}{\index{csparse.\-h@{csparse.\-h}!csd@{csd}}
+\index{csd@{csd}!csparse.h@{csparse.\-h}}
+\paragraph[{csd}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf cs\-\_\-dmperm\-\_\-results}  {\bf csd}}}\label{csparse_8h_a157bda8b8156601179bd598e17ff4b9d}
+
+
+\subsubsection{Function Documentation}
+\hypertarget{csparse_8h_a12000fbd0b9198d3852978cca8386afe}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-add@{cs\-\_\-add}}
+\index{cs\-\_\-add@{cs\-\_\-add}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-add (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const {\bf cs} $\ast$}]{B, }
+\item[{double}]{alpha, }
+\item[{double}]{beta}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a12000fbd0b9198d3852978cca8386afe}
+
+
+Definition at line 8 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-done(), cs\-\_\-malloc(), cs\-\_\-scatter(), cs\-\_\-spalloc(), cs\-\_\-sprealloc(), cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-amd().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a12000fbd0b9198d3852978cca8386afe_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_ac3a64b3dfa45b30d2e764e096107ba1e}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-cholsol@{cs\-\_\-cholsol}}
+\index{cs\-\_\-cholsol@{cs\-\_\-cholsol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-cholsol}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-cholsol (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{double $\ast$}]{b, }
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ac3a64b3dfa45b30d2e764e096107ba1e}
+
+
+Definition at line 533 of file csparse.\-c.
+
+
+
+References cs\-\_\-chol(), cs\-\_\-free(), cs\-\_\-ipvec(), cs\-\_\-lsolve(), cs\-\_\-ltsolve(), cs\-\_\-malloc(), cs\-\_\-nfree(), cs\-\_\-pvec(), cs\-\_\-schol(), cs\-\_\-sfree(), cs\-\_\-numeric\-::\-L, cs\-\_\-sparse\-::n, and cs\-\_\-symbolic\-::\-Pinv.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{csparse_8h_ac3a64b3dfa45b30d2e764e096107ba1e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a83dc83954d821b748c3ba9fea1f6b5ca}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dupl@{cs\-\_\-dupl}}
+\index{cs\-\_\-dupl@{cs\-\_\-dupl}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dupl}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-dupl (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a83dc83954d821b748c3ba9fea1f6b5ca}
+
+
+Definition at line 877 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-malloc(), cs\-\_\-sprealloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{csparse_8h_a83dc83954d821b748c3ba9fea1f6b5ca_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a123f77ef9b940089a931a994deb21735}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-entry@{cs\-\_\-entry}}
+\index{cs\-\_\-entry@{cs\-\_\-entry}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-entry}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-entry (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{T, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a123f77ef9b940089a931a994deb21735}
+
+
+Definition at line 926 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-X, cs\-\_\-sprealloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nz, cs\-\_\-sparse\-::nzmax, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-load().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{csparse_8h_a123f77ef9b940089a931a994deb21735_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a14612df0010f5284c8f3feac2a7e02fd}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-lusol@{cs\-\_\-lusol}}
+\index{cs\-\_\-lusol@{cs\-\_\-lusol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-lusol}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-lusol (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{double $\ast$}]{b, }
+\item[{int}]{order, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a14612df0010f5284c8f3feac2a7e02fd}
+
+
+Definition at line 1255 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-ipvec(), cs\-\_\-lsolve(), cs\-\_\-lu(), cs\-\_\-malloc(), cs\-\_\-nfree(), cs\-\_\-sfree(), cs\-\_\-sqr(), cs\-\_\-usolve(), cs\-\_\-numeric\-::\-L, cs\-\_\-sparse\-::n, cs\-\_\-numeric\-::\-Pinv, cs\-\_\-symbolic\-::\-Q, and cs\-\_\-numeric\-::\-U.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{csparse_8h_a14612df0010f5284c8f3feac2a7e02fd_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a7c887151e9bd6dd56f580c8ae6a5af31}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-gaxpy@{cs\-\_\-gaxpy}}
+\index{cs\-\_\-gaxpy@{cs\-\_\-gaxpy}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-gaxpy}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-gaxpy (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const double $\ast$}]{x, }
+\item[{double $\ast$}]{y}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a7c887151e9bd6dd56f580c8ae6a5af31}
+
+
+Definition at line 998 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by fclib\-\_\-merit\-\_\-local().
+
+\hypertarget{csparse_8h_a066e18f8570c820530c73ebc88b30a97}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-multiply@{cs\-\_\-multiply}}
+\index{cs\-\_\-multiply@{cs\-\_\-multiply}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-multiply}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-multiply (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const {\bf cs} $\ast$}]{B}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a066e18f8570c820530c73ebc88b30a97}
+
+
+Definition at line 1400 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-done(), cs\-\_\-malloc(), cs\-\_\-scatter(), cs\-\_\-spalloc(), cs\-\_\-sprealloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-amd().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a066e18f8570c820530c73ebc88b30a97_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a833a289a30d66ea255d49ab3e93c1334}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-qrsol@{cs\-\_\-qrsol}}
+\index{cs\-\_\-qrsol@{cs\-\_\-qrsol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-qrsol}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-qrsol (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{double $\ast$}]{b, }
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a833a289a30d66ea255d49ab3e93c1334}
+
+
+Definition at line 1674 of file csparse.\-c.
+
+
+
+References cs\-\_\-numeric\-::\-B, cs\-\_\-calloc(), cs\-\_\-free(), cs\-\_\-happly(), cs\-\_\-ipvec(), cs\-\_\-nfree(), cs\-\_\-pvec(), cs\-\_\-qr(), cs\-\_\-sfree(), cs\-\_\-spfree(), cs\-\_\-sqr(), cs\-\_\-transpose(), cs\-\_\-usolve(), cs\-\_\-utsolve(), cs\-\_\-numeric\-::\-L, cs\-\_\-sparse\-::m, cs\-\_\-symbolic\-::m2, cs\-\_\-sparse\-::n, cs\-\_\-symbolic\-::\-Pinv, cs\-\_\-symbolic\-::\-Q, and cs\-\_\-numeric\-::\-U.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{csparse_8h_a833a289a30d66ea255d49ab3e93c1334_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a090225477a18abe5f8d5ab26e4efaf3a}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-transpose@{cs\-\_\-transpose}}
+\index{cs\-\_\-transpose@{cs\-\_\-transpose}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-transpose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-transpose (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{values}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a090225477a18abe5f8d5ab26e4efaf3a}
+
+
+Definition at line 2017 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-cumsum(), cs\-\_\-done(), cs\-\_\-spalloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-bfs(), cs\-\_\-counts(), cs\-\_\-maxtrans(), cs\-\_\-qrsol(), cs\-\_\-scc(), and fclib\-\_\-merit\-\_\-local().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a090225477a18abe5f8d5ab26e4efaf3a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a333e20a0edc2af41f68d77d79ede53e5}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-triplet@{cs\-\_\-triplet}}
+\index{cs\-\_\-triplet@{cs\-\_\-triplet}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-triplet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-triplet (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{T}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a333e20a0edc2af41f68d77d79ede53e5}
+
+
+Definition at line 2048 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-cumsum(), cs\-\_\-done(), cs\-\_\-spalloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nz, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a333e20a0edc2af41f68d77d79ede53e5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_ae2b324f8f0cdc3610d98ce6cebd50075}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-norm@{cs\-\_\-norm}}
+\index{cs\-\_\-norm@{cs\-\_\-norm}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-norm}]{\setlength{\rightskip}{0pt plus 5cm}double cs\-\_\-norm (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ae2b324f8f0cdc3610d98ce6cebd50075}
+
+
+Definition at line 1440 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-X, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-print().
+
+\hypertarget{csparse_8h_ab3e2c74ed6cf7521170a45d04aab9b51}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-print@{cs\-\_\-print}}
+\index{cs\-\_\-print@{cs\-\_\-print}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-print (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{brief}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ab3e2c74ed6cf7521170a45d04aab9b51}
+
+
+Definition at line 1525 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-C\-O\-P\-Y\-R\-I\-G\-H\-T, C\-S\-\_\-\-D\-A\-T\-E, cs\-\_\-norm(), C\-S\-\_\-\-S\-U\-B\-S\-U\-B, C\-S\-\_\-\-S\-U\-B\-V\-E\-R, C\-S\-\_\-\-V\-E\-R, cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nz, cs\-\_\-sparse\-::nzmax, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{csparse_8h_ab3e2c74ed6cf7521170a45d04aab9b51_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a12eb66c4f53e51ee5e03ec0b9f24b368}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-load@{cs\-\_\-load}}
+\index{cs\-\_\-load@{cs\-\_\-load}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-load (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a12eb66c4f53e51ee5e03ec0b9f24b368}
+
+
+Definition at line 1069 of file csparse.\-c.
+
+
+
+References cs\-\_\-entry(), cs\-\_\-spalloc(), and cs\-\_\-spfree().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a12eb66c4f53e51ee5e03ec0b9f24b368_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_ad3e846c0142a1457e8e85bcaf559fb98}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-calloc@{cs\-\_\-calloc}}
+\index{cs\-\_\-calloc@{cs\-\_\-calloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cs\-\_\-calloc (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ad3e846c0142a1457e8e85bcaf559fb98}
+
+
+Definition at line 1294 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-X, and C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-chol(), cs\-\_\-dalloc(), cs\-\_\-lu(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-qr(), cs\-\_\-qrsol(), cs\-\_\-schol(), cs\-\_\-spalloc(), cs\-\_\-sqr(), cs\-\_\-symperm(), cs\-\_\-transpose(), and cs\-\_\-triplet().
+
+\hypertarget{csparse_8h_a78c1d1194aacc65212bb0d2b03643ac7}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-free@{cs\-\_\-free}}
+\index{cs\-\_\-free@{cs\-\_\-free}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cs\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a78c1d1194aacc65212bb0d2b03643ac7}
+
+
+Definition at line 1300 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-cholsol(), cs\-\_\-ddone(), cs\-\_\-dfree(), cs\-\_\-dmperm(), cs\-\_\-done(), cs\-\_\-dupl(), cs\-\_\-idone(), cs\-\_\-lusol(), cs\-\_\-ndone(), cs\-\_\-nfree(), cs\-\_\-qrsol(), cs\-\_\-schol(), cs\-\_\-sfree(), cs\-\_\-spfree(), cs\-\_\-sqr(), and cs\-\_\-updown().
+
+\hypertarget{csparse_8h_a7e829e1175f2c8ddb0d6d9e0bb90f985}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-realloc@{cs\-\_\-realloc}}
+\index{cs\-\_\-realloc@{cs\-\_\-realloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-realloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cs\-\_\-realloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p, }
+\item[{int}]{n, }
+\item[{size\-\_\-t}]{size, }
+\item[{int $\ast$}]{ok}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a7e829e1175f2c8ddb0d6d9e0bb90f985}
+
+
+Definition at line 1307 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-X, and C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W.
+
+
+
+Referenced by cs\-\_\-sprealloc().
+
+\hypertarget{csparse_8h_aad3a584d9185a4fe4497a36f892b9c72}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-spalloc@{cs\-\_\-spalloc}}
+\index{cs\-\_\-spalloc@{cs\-\_\-spalloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-spalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-spalloc (
+\begin{DoxyParamCaption}
+\item[{int}]{m, }
+\item[{int}]{n, }
+\item[{int}]{nzmax, }
+\item[{int}]{values, }
+\item[{int}]{triplet}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aad3a584d9185a4fe4497a36f892b9c72}
+
+
+Definition at line 2140 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-malloc(), C\-S\-\_\-\-M\-A\-X, cs\-\_\-spfree(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nz, cs\-\_\-sparse\-::nzmax, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-chol(), cs\-\_\-load(), cs\-\_\-lu(), cs\-\_\-multiply(), cs\-\_\-permute(), cs\-\_\-qr(), cs\-\_\-symperm(), cs\-\_\-transpose(), and cs\-\_\-triplet().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{csparse_8h_aad3a584d9185a4fe4497a36f892b9c72_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a6d705e404a7831ccf01bc0ea064215b9}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-spfree@{cs\-\_\-spfree}}
+\index{cs\-\_\-spfree@{cs\-\_\-spfree}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-spfree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-spfree (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a6d705e404a7831ccf01bc0ea064215b9}
+
+
+Definition at line 2169 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-bfs(), cs\-\_\-ddone(), cs\-\_\-done(), cs\-\_\-idone(), cs\-\_\-load(), cs\-\_\-ndone(), cs\-\_\-nfree(), cs\-\_\-qrsol(), cs\-\_\-schol(), cs\-\_\-spalloc(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{csparse_8h_a6d705e404a7831ccf01bc0ea064215b9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a5a9bc4224732ce1cedc50119afc687c1}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-sprealloc@{cs\-\_\-sprealloc}}
+\index{cs\-\_\-sprealloc@{cs\-\_\-sprealloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-sprealloc}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-sprealloc (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A, }
+\item[{int}]{nzmax}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a5a9bc4224732ce1cedc50119afc687c1}
+
+
+Definition at line 2155 of file csparse.\-c.
+
+
+
+References cs\-\_\-realloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nz, cs\-\_\-sparse\-::nzmax, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-amd(), cs\-\_\-dupl(), cs\-\_\-entry(), cs\-\_\-lu(), and cs\-\_\-multiply().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{csparse_8h_a5a9bc4224732ce1cedc50119afc687c1_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a4c6c75c54cbdf2f3fd4574a90c2f8a86}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-malloc@{cs\-\_\-malloc}}
+\index{cs\-\_\-malloc@{cs\-\_\-malloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cs\-\_\-malloc (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a4c6c75c54cbdf2f3fd4574a90c2f8a86}
+
+
+Definition at line 1288 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-X, and C\-S\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-amd(), cs\-\_\-chol(), cs\-\_\-cholsol(), cs\-\_\-counts(), cs\-\_\-dalloc(), cs\-\_\-dupl(), cs\-\_\-etree(), cs\-\_\-lu(), cs\-\_\-lusol(), cs\-\_\-maxtrans(), cs\-\_\-multiply(), cs\-\_\-pinv(), cs\-\_\-post(), cs\-\_\-qr(), cs\-\_\-scc(), cs\-\_\-schol(), cs\-\_\-spalloc(), cs\-\_\-updown(), and cs\-\_\-vcount().
+
+\hypertarget{csparse_8h_a8ae6ef945b48ea6aff888481c8394ef8}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-amd@{cs\-\_\-amd}}
+\index{cs\-\_\-amd@{cs\-\_\-amd}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-amd}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-amd (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a8ae6ef945b48ea6aff888481c8394ef8}
+
+
+Definition at line 79 of file csparse.\-c.
+
+
+
+References cs\-\_\-add(), cs\-\_\-diag(), cs\-\_\-fkeep(), C\-S\-\_\-\-F\-L\-I\-P, cs\-\_\-idone(), cs\-\_\-malloc(), C\-S\-\_\-\-M\-A\-X, C\-S\-\_\-\-M\-I\-N, cs\-\_\-multiply(), cs\-\_\-spfree(), cs\-\_\-sprealloc(), cs\-\_\-tdfs(), cs\-\_\-transpose(), cs\-\_\-wclear(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nzmax, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-schol(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a8ae6ef945b48ea6aff888481c8394ef8_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a5ae664f3c6b2baeed717be084e00e13f}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-chol@{cs\-\_\-chol}}
+\index{cs\-\_\-chol@{cs\-\_\-chol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-chol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csn}$\ast$ cs\-\_\-chol (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const {\bf css} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a5ae664f3c6b2baeed717be084e00e13f}
+
+
+Definition at line 474 of file csparse.\-c.
+
+
+
+References cs\-\_\-symbolic\-::cp, cs\-\_\-calloc(), cs\-\_\-ereach(), cs\-\_\-malloc(), cs\-\_\-ndone(), cs\-\_\-spalloc(), cs\-\_\-symperm(), cs\-\_\-sparse\-::i, cs\-\_\-numeric\-::\-L, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, cs\-\_\-symbolic\-::parent, cs\-\_\-symbolic\-::\-Pinv, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-cholsol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a5ae664f3c6b2baeed717be084e00e13f_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a59484c944748596c1a9adecfd19085b4}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dmperm@{cs\-\_\-dmperm}}
+\index{cs\-\_\-dmperm@{cs\-\_\-dmperm}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dmperm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csd}$\ast$ cs\-\_\-dmperm (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a59484c944748596c1a9adecfd19085b4}
+
+
+Definition at line 774 of file csparse.\-c.
+
+
+
+References cs\-\_\-dmperm\-\_\-results\-::cc, cs\-\_\-bfs(), cs\-\_\-dalloc(), cs\-\_\-ddone(), cs\-\_\-dfree(), cs\-\_\-fkeep(), cs\-\_\-free(), cs\-\_\-matched(), cs\-\_\-maxtrans(), cs\-\_\-permute(), cs\-\_\-pinv(), cs\-\_\-rprune(), cs\-\_\-scc(), cs\-\_\-unmatched(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-dmperm\-\_\-results\-::nb, cs\-\_\-sparse\-::p, cs\-\_\-dmperm\-\_\-results\-::\-P, cs\-\_\-dmperm\-\_\-results\-::\-Q, cs\-\_\-dmperm\-\_\-results\-::\-R, cs\-\_\-dmperm\-\_\-results\-::rr, and cs\-\_\-dmperm\-\_\-results\-::\-S.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a59484c944748596c1a9adecfd19085b4_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a39d53ef3034685545cda58ae28af6bb5}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-droptol@{cs\-\_\-droptol}}
+\index{cs\-\_\-droptol@{cs\-\_\-droptol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-droptol}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-droptol (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a39d53ef3034685545cda58ae28af6bb5}
+
+
+Definition at line 864 of file csparse.\-c.
+
+
+
+References cs\-\_\-fkeep(), and cs\-\_\-tol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{csparse_8h_a39d53ef3034685545cda58ae28af6bb5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a50c30e47141ef37dbb4b342e1b4ba924}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dropzeros@{cs\-\_\-dropzeros}}
+\index{cs\-\_\-dropzeros@{cs\-\_\-dropzeros}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dropzeros}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-dropzeros (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a50c30e47141ef37dbb4b342e1b4ba924}
+
+
+Definition at line 873 of file csparse.\-c.
+
+
+
+References cs\-\_\-fkeep(), and cs\-\_\-nonzero().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{csparse_8h_a50c30e47141ef37dbb4b342e1b4ba924_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a27050a31d36046e833b7763fe8ef62ce}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-happly@{cs\-\_\-happly}}
+\index{cs\-\_\-happly@{cs\-\_\-happly}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-happly}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-happly (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{V, }
+\item[{int}]{i, }
+\item[{double}]{beta, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a27050a31d36046e833b7763fe8ef62ce}
+
+
+Definition at line 1018 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-qr(), and cs\-\_\-qrsol().
+
+\hypertarget{csparse_8h_a51a8d1a79477ff438a978ab1d8f9849b}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-ipvec@{cs\-\_\-ipvec}}
+\index{cs\-\_\-ipvec@{cs\-\_\-ipvec}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-ipvec}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-ipvec (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{const int $\ast$}]{P, }
+\item[{const double $\ast$}]{b, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a51a8d1a79477ff438a978ab1d8f9849b}
+
+
+Definition at line 1062 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-cholsol(), cs\-\_\-lusol(), and cs\-\_\-qrsol().
+
+\hypertarget{csparse_8h_adbd011bdb4d7bef9825ca1c743fc6b46}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-lsolve@{cs\-\_\-lsolve}}
+\index{cs\-\_\-lsolve@{cs\-\_\-lsolve}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-lsolve}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-lsolve (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{L, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_adbd011bdb4d7bef9825ca1c743fc6b46}
+
+
+Definition at line 1093 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-cholsol(), and cs\-\_\-lusol().
+
+\hypertarget{csparse_8h_afc61741ee2f33a3544f1c5f6b9caf9f6}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-ltsolve@{cs\-\_\-ltsolve}}
+\index{cs\-\_\-ltsolve@{cs\-\_\-ltsolve}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-ltsolve}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-ltsolve (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{L, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_afc61741ee2f33a3544f1c5f6b9caf9f6}
+
+
+Definition at line 1127 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-cholsol().
+
+\hypertarget{csparse_8h_a6a35ad4816f210234a33eed09b19d181}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-lu@{cs\-\_\-lu}}
+\index{cs\-\_\-lu@{cs\-\_\-lu}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-lu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csn}$\ast$ cs\-\_\-lu (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const {\bf css} $\ast$}]{S, }
+\item[{double}]{tol}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a6a35ad4816f210234a33eed09b19d181}
+
+
+Definition at line 1163 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-malloc(), cs\-\_\-ndone(), cs\-\_\-spalloc(), cs\-\_\-splsolve(), cs\-\_\-sprealloc(), cs\-\_\-sparse\-::i, cs\-\_\-numeric\-::\-L, cs\-\_\-symbolic\-::lnz, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::nzmax, cs\-\_\-sparse\-::p, cs\-\_\-numeric\-::\-Pinv, cs\-\_\-symbolic\-::\-Q, cs\-\_\-numeric\-::\-U, cs\-\_\-symbolic\-::unz, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-lusol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a6a35ad4816f210234a33eed09b19d181_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a1428474a78c2db414b465aef5b40feb3}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-permute@{cs\-\_\-permute}}
+\index{cs\-\_\-permute@{cs\-\_\-permute}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-permute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-permute (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const int $\ast$}]{P, }
+\item[{const int $\ast$}]{Q, }
+\item[{int}]{values}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a1428474a78c2db414b465aef5b40feb3}
+
+
+Definition at line 1457 of file csparse.\-c.
+
+
+
+References cs\-\_\-done(), cs\-\_\-spalloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-dmperm(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a1428474a78c2db414b465aef5b40feb3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a879e3a62bc0c081fb2a598d20f59b2d2}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-pinv@{cs\-\_\-pinv}}
+\index{cs\-\_\-pinv@{cs\-\_\-pinv}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-pinv}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-pinv (
+\begin{DoxyParamCaption}
+\item[{const int $\ast$}]{P, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a879e3a62bc0c081fb2a598d20f59b2d2}
+
+
+Definition at line 1488 of file csparse.\-c.
+
+
+
+References cs\-\_\-malloc().
+
+
+
+Referenced by cs\-\_\-dmperm(), and cs\-\_\-schol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{csparse_8h_a879e3a62bc0c081fb2a598d20f59b2d2_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a547d4d67ec772ecf190dc7073e7fcf41}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-pvec@{cs\-\_\-pvec}}
+\index{cs\-\_\-pvec@{cs\-\_\-pvec}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-pvec}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-pvec (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{const int $\ast$}]{P, }
+\item[{const double $\ast$}]{b, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a547d4d67ec772ecf190dc7073e7fcf41}
+
+
+Definition at line 1578 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-cholsol(), and cs\-\_\-qrsol().
+
+\hypertarget{csparse_8h_a767dc90c22d90fe898f72c2da0d98c03}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-qr@{cs\-\_\-qr}}
+\index{cs\-\_\-qr@{cs\-\_\-qr}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-qr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csn}$\ast$ cs\-\_\-qr (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const {\bf css} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a767dc90c22d90fe898f72c2da0d98c03}
+
+
+Definition at line 1587 of file csparse.\-c.
+
+
+
+References cs\-\_\-numeric\-::\-B, cs\-\_\-calloc(), cs\-\_\-happly(), cs\-\_\-house(), cs\-\_\-malloc(), cs\-\_\-ndone(), cs\-\_\-scatter(), cs\-\_\-spalloc(), cs\-\_\-sparse\-::i, cs\-\_\-numeric\-::\-L, cs\-\_\-symbolic\-::lnz, cs\-\_\-sparse\-::m, cs\-\_\-symbolic\-::m2, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, cs\-\_\-symbolic\-::parent, cs\-\_\-symbolic\-::\-Pinv, cs\-\_\-symbolic\-::\-Q, cs\-\_\-numeric\-::\-U, cs\-\_\-symbolic\-::unz, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-qrsol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a767dc90c22d90fe898f72c2da0d98c03_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_afcc0ebf37f4cf80e097ac7e8aa2830f2}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-schol@{cs\-\_\-schol}}
+\index{cs\-\_\-schol@{cs\-\_\-schol}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-schol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf css}$\ast$ cs\-\_\-schol (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_afcc0ebf37f4cf80e097ac7e8aa2830f2}
+
+
+Definition at line 1812 of file csparse.\-c.
+
+
+
+References cs\-\_\-symbolic\-::cp, cs\-\_\-amd(), cs\-\_\-calloc(), cs\-\_\-counts(), cs\-\_\-cumsum(), cs\-\_\-etree(), cs\-\_\-free(), cs\-\_\-malloc(), cs\-\_\-pinv(), cs\-\_\-post(), cs\-\_\-sfree(), cs\-\_\-spfree(), cs\-\_\-symperm(), cs\-\_\-symbolic\-::lnz, cs\-\_\-sparse\-::n, cs\-\_\-symbolic\-::parent, cs\-\_\-symbolic\-::\-Pinv, and cs\-\_\-symbolic\-::unz.
+
+
+
+Referenced by cs\-\_\-cholsol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_afcc0ebf37f4cf80e097ac7e8aa2830f2_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a0a717b429d68d3c98b6dc8579988473d}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-sqr@{cs\-\_\-sqr}}
+\index{cs\-\_\-sqr@{cs\-\_\-sqr}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-sqr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf css}$\ast$ cs\-\_\-sqr (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{order, }
+\item[{int}]{qr}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a0a717b429d68d3c98b6dc8579988473d}
+
+
+Definition at line 1917 of file csparse.\-c.
+
+
+
+References cs\-\_\-symbolic\-::cp, cs\-\_\-amd(), cs\-\_\-calloc(), cs\-\_\-counts(), cs\-\_\-etree(), cs\-\_\-free(), cs\-\_\-permute(), cs\-\_\-post(), cs\-\_\-sfree(), cs\-\_\-spfree(), cs\-\_\-vcount(), cs\-\_\-symbolic\-::lnz, cs\-\_\-symbolic\-::m2, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, cs\-\_\-symbolic\-::parent, cs\-\_\-symbolic\-::\-Pinv, cs\-\_\-symbolic\-::\-Q, and cs\-\_\-symbolic\-::unz.
+
+
+
+Referenced by cs\-\_\-lusol(), and cs\-\_\-qrsol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a0a717b429d68d3c98b6dc8579988473d_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a6aa95f82cd0d8c61afb033405320d727}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-symperm@{cs\-\_\-symperm}}
+\index{cs\-\_\-symperm@{cs\-\_\-symperm}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-symperm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-symperm (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const int $\ast$}]{Pinv, }
+\item[{int}]{values}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a6aa95f82cd0d8c61afb033405320d727}
+
+
+Definition at line 1949 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-cumsum(), cs\-\_\-done(), C\-S\-\_\-\-M\-A\-X, C\-S\-\_\-\-M\-I\-N, cs\-\_\-spalloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-chol(), and cs\-\_\-schol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a6aa95f82cd0d8c61afb033405320d727_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_aa4cdacecec403b30b97abc7c27594b4f}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-usolve@{cs\-\_\-usolve}}
+\index{cs\-\_\-usolve@{cs\-\_\-usolve}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-usolve}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-usolve (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{U, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aa4cdacecec403b30b97abc7c27594b4f}
+
+
+Definition at line 2119 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-lusol(), and cs\-\_\-qrsol().
+
+\hypertarget{csparse_8h_a9fbb54471515f219326666ffc4e3e255}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-utsolve@{cs\-\_\-utsolve}}
+\index{cs\-\_\-utsolve@{cs\-\_\-utsolve}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-utsolve}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-utsolve (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{U, }
+\item[{double $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a9fbb54471515f219326666ffc4e3e255}
+
+
+Definition at line 2258 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-qrsol().
+
+\hypertarget{csparse_8h_ad5fa81f80009c06259a77fd7d2092f78}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-updown@{cs\-\_\-updown}}
+\index{cs\-\_\-updown@{cs\-\_\-updown}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-updown}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-updown (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{L, }
+\item[{int}]{sigma, }
+\item[{const {\bf cs} $\ast$}]{C, }
+\item[{const int $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ad5fa81f80009c06259a77fd7d2092f78}
+
+
+Definition at line 2077 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-malloc(), C\-S\-\_\-\-M\-I\-N, cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{csparse_8h_ad5fa81f80009c06259a77fd7d2092f78_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_ace766075ef439ad6e4347f6b076eb4b7}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-sfree@{cs\-\_\-sfree}}
+\index{cs\-\_\-sfree@{cs\-\_\-sfree}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-sfree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf css}$\ast$ cs\-\_\-sfree (
+\begin{DoxyParamCaption}
+\item[{{\bf css} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ace766075ef439ad6e4347f6b076eb4b7}
+
+
+Definition at line 2190 of file csparse.\-c.
+
+
+
+References cs\-\_\-symbolic\-::cp, cs\-\_\-free(), cs\-\_\-symbolic\-::parent, cs\-\_\-symbolic\-::\-Pinv, and cs\-\_\-symbolic\-::\-Q.
+
+
+
+Referenced by cs\-\_\-cholsol(), cs\-\_\-lusol(), cs\-\_\-qrsol(), cs\-\_\-schol(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{csparse_8h_ace766075ef439ad6e4347f6b076eb4b7_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_af2e6d75dfc24a842fdbce3aa510dc4bc}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-nfree@{cs\-\_\-nfree}}
+\index{cs\-\_\-nfree@{cs\-\_\-nfree}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-nfree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csn}$\ast$ cs\-\_\-nfree (
+\begin{DoxyParamCaption}
+\item[{{\bf csn} $\ast$}]{N}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_af2e6d75dfc24a842fdbce3aa510dc4bc}
+
+
+Definition at line 2179 of file csparse.\-c.
+
+
+
+References cs\-\_\-numeric\-::\-B, cs\-\_\-free(), cs\-\_\-spfree(), cs\-\_\-numeric\-::\-L, cs\-\_\-numeric\-::\-Pinv, and cs\-\_\-numeric\-::\-U.
+
+
+
+Referenced by cs\-\_\-cholsol(), cs\-\_\-lusol(), cs\-\_\-ndone(), and cs\-\_\-qrsol().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{csparse_8h_af2e6d75dfc24a842fdbce3aa510dc4bc_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a7c59264397d2c5cc85c87c879aedc4f5}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dfree@{cs\-\_\-dfree}}
+\index{cs\-\_\-dfree@{cs\-\_\-dfree}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dfree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csd}$\ast$ cs\-\_\-dfree (
+\begin{DoxyParamCaption}
+\item[{{\bf csd} $\ast$}]{D}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a7c59264397d2c5cc85c87c879aedc4f5}
+
+
+Definition at line 2214 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-dmperm\-\_\-results\-::\-P, cs\-\_\-dmperm\-\_\-results\-::\-Q, cs\-\_\-dmperm\-\_\-results\-::\-R, and cs\-\_\-dmperm\-\_\-results\-::\-S.
+
+
+
+Referenced by cs\-\_\-dalloc(), cs\-\_\-ddone(), and cs\-\_\-dmperm().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{csparse_8h_a7c59264397d2c5cc85c87c879aedc4f5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_aa7fdeead97aef81cdf18af7576a7f722}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-counts@{cs\-\_\-counts}}
+\index{cs\-\_\-counts@{cs\-\_\-counts}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-counts}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-counts (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{const int $\ast$}]{parent, }
+\item[{const int $\ast$}]{post, }
+\item[{int}]{ata}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aa7fdeead97aef81cdf18af7576a7f722}
+
+
+Definition at line 582 of file csparse.\-c.
+
+
+
+References cs\-\_\-cedge(), cs\-\_\-idone(), cs\-\_\-malloc(), C\-S\-\_\-\-M\-I\-N, cs\-\_\-transpose(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-schol(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_aa7fdeead97aef81cdf18af7576a7f722_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_afa16a8bc0209e3bd5c0819ed15d2c987}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-cumsum@{cs\-\_\-cumsum}}
+\index{cs\-\_\-cumsum@{cs\-\_\-cumsum}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-cumsum}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-cumsum (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p, }
+\item[{int $\ast$}]{c, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_afa16a8bc0209e3bd5c0819ed15d2c987}
+
+
+Definition at line 651 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-schol(), cs\-\_\-symperm(), cs\-\_\-transpose(), and cs\-\_\-triplet().
+
+\hypertarget{csparse_8h_a30e23f78c9bcbe87e9027d078c98467a}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dfs@{cs\-\_\-dfs}}
+\index{cs\-\_\-dfs@{cs\-\_\-dfs}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dfs}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-dfs (
+\begin{DoxyParamCaption}
+\item[{int}]{j, }
+\item[{{\bf cs} $\ast$}]{L, }
+\item[{int}]{top, }
+\item[{int $\ast$}]{xi, }
+\item[{int $\ast$}]{pstack, }
+\item[{const int $\ast$}]{Pinv}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a30e23f78c9bcbe87e9027d078c98467a}
+
+
+Definition at line 666 of file csparse.\-c.
+
+
+
+References C\-S\-\_\-\-M\-A\-R\-K, C\-S\-\_\-\-M\-A\-R\-K\-E\-D, C\-S\-\_\-\-U\-N\-F\-L\-I\-P, cs\-\_\-sparse\-::i, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-reach(), and cs\-\_\-scc().
+
+\hypertarget{csparse_8h_a5c531804008e67c207e93f14c2551b1a}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-etree@{cs\-\_\-etree}}
+\index{cs\-\_\-etree@{cs\-\_\-etree}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-etree}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-etree (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{ata}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a5c531804008e67c207e93f14c2551b1a}
+
+
+Definition at line 938 of file csparse.\-c.
+
+
+
+References cs\-\_\-idone(), cs\-\_\-malloc(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-schol(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a5c531804008e67c207e93f14c2551b1a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_ade63a58ec1758250c64518d817ea3c4c}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-fkeep@{cs\-\_\-fkeep}}
+\index{cs\-\_\-fkeep@{cs\-\_\-fkeep}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-fkeep}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-fkeep (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A, }
+\item[{int($\ast$)(int, int, double, void $\ast$)}]{fkeep, }
+\item[{void $\ast$}]{other}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_ade63a58ec1758250c64518d817ea3c4c}
+
+
+Definition at line 972 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-dmperm(), cs\-\_\-droptol(), and cs\-\_\-dropzeros().
+
+\hypertarget{csparse_8h_a096c9057bf2038f9eaef0c1dfb09f3dd}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-house@{cs\-\_\-house}}
+\index{cs\-\_\-house@{cs\-\_\-house}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-house}]{\setlength{\rightskip}{0pt plus 5cm}double cs\-\_\-house (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{beta, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a096c9057bf2038f9eaef0c1dfb09f3dd}
+
+
+Definition at line 1040 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-qr().
+
+\hypertarget{csparse_8h_aebd7035aaa1627313149c32755b9f642}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-maxtrans@{cs\-\_\-maxtrans}}
+\index{cs\-\_\-maxtrans@{cs\-\_\-maxtrans}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-maxtrans}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-maxtrans (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aebd7035aaa1627313149c32755b9f642}
+
+
+Definition at line 1359 of file csparse.\-c.
+
+
+
+References cs\-\_\-augment(), cs\-\_\-calloc(), cs\-\_\-idone(), cs\-\_\-malloc(), cs\-\_\-transpose(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::m, cs\-\_\-sparse\-::n, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-dmperm().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_aebd7035aaa1627313149c32755b9f642_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_af84bc0a35c099a9a1e01e5aebf8c7292}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-post@{cs\-\_\-post}}
+\index{cs\-\_\-post@{cs\-\_\-post}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-post}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-post (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{const int $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_af84bc0a35c099a9a1e01e5aebf8c7292}
+
+
+Definition at line 1499 of file csparse.\-c.
+
+
+
+References cs\-\_\-idone(), cs\-\_\-malloc(), and cs\-\_\-tdfs().
+
+
+
+Referenced by cs\-\_\-schol(), and cs\-\_\-sqr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_af84bc0a35c099a9a1e01e5aebf8c7292_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_add4fc69b3887fae610e0362fc13bb214}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-reach@{cs\-\_\-reach}}
+\index{cs\-\_\-reach@{cs\-\_\-reach}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-reach}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-reach (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{L, }
+\item[{const {\bf cs} $\ast$}]{B, }
+\item[{int}]{k, }
+\item[{int $\ast$}]{xi, }
+\item[{const int $\ast$}]{Pinv}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_add4fc69b3887fae610e0362fc13bb214}
+
+
+Definition at line 1728 of file csparse.\-c.
+
+
+
+References cs\-\_\-dfs(), C\-S\-\_\-\-M\-A\-R\-K, C\-S\-\_\-\-M\-A\-R\-K\-E\-D, cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, and cs\-\_\-sparse\-::p.
+
+
+
+Referenced by cs\-\_\-splsolve().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{csparse_8h_add4fc69b3887fae610e0362fc13bb214_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a9fede5f7dcf4367d7d005ca6dd0ba100}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-scc@{cs\-\_\-scc}}
+\index{cs\-\_\-scc@{cs\-\_\-scc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-scc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csd}$\ast$ cs\-\_\-scc (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{A}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a9fede5f7dcf4367d7d005ca6dd0ba100}
+
+
+Definition at line 1774 of file csparse.\-c.
+
+
+
+References cs\-\_\-dalloc(), cs\-\_\-ddone(), cs\-\_\-dfs(), cs\-\_\-malloc(), C\-S\-\_\-\-M\-A\-R\-K, C\-S\-\_\-\-M\-A\-R\-K\-E\-D, cs\-\_\-transpose(), cs\-\_\-sparse\-::n, cs\-\_\-dmperm\-\_\-results\-::nb, cs\-\_\-sparse\-::p, cs\-\_\-dmperm\-\_\-results\-::\-P, and cs\-\_\-dmperm\-\_\-results\-::\-R.
+
+
+
+Referenced by cs\-\_\-dmperm().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a9fede5f7dcf4367d7d005ca6dd0ba100_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a3729a7e21dbc3309ac96461ddb060328}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-scatter@{cs\-\_\-scatter}}
+\index{cs\-\_\-scatter@{cs\-\_\-scatter}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-scatter}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-scatter (
+\begin{DoxyParamCaption}
+\item[{const {\bf cs} $\ast$}]{A, }
+\item[{int}]{j, }
+\item[{double}]{beta, }
+\item[{int $\ast$}]{w, }
+\item[{double $\ast$}]{x, }
+\item[{int}]{mark, }
+\item[{{\bf cs} $\ast$}]{C, }
+\item[{int}]{nz}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a3729a7e21dbc3309ac96461ddb060328}
+
+
+Definition at line 1749 of file csparse.\-c.
+
+
+
+References cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-multiply(), and cs\-\_\-qr().
+
+\hypertarget{csparse_8h_aabed11053c84c540d80e6edc410cce2f}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-splsolve@{cs\-\_\-splsolve}}
+\index{cs\-\_\-splsolve@{cs\-\_\-splsolve}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-splsolve}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-splsolve (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{L, }
+\item[{const {\bf cs} $\ast$}]{B, }
+\item[{int}]{k, }
+\item[{int $\ast$}]{xi, }
+\item[{double $\ast$}]{x, }
+\item[{const int $\ast$}]{Pinv}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aabed11053c84c540d80e6edc410cce2f}
+
+
+Definition at line 1838 of file csparse.\-c.
+
+
+
+References cs\-\_\-reach(), cs\-\_\-sparse\-::i, cs\-\_\-sparse\-::n, cs\-\_\-sparse\-::p, and cs\-\_\-sparse\-::x.
+
+
+
+Referenced by cs\-\_\-lu().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{csparse_8h_aabed11053c84c540d80e6edc410cce2f_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a7b064c4799cc09da13c13d982197eff7}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-tdfs@{cs\-\_\-tdfs}}
+\index{cs\-\_\-tdfs@{cs\-\_\-tdfs}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-tdfs}]{\setlength{\rightskip}{0pt plus 5cm}int cs\-\_\-tdfs (
+\begin{DoxyParamCaption}
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int $\ast$}]{head, }
+\item[{const int $\ast$}]{next, }
+\item[{int $\ast$}]{post, }
+\item[{int $\ast$}]{stack}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a7b064c4799cc09da13c13d982197eff7}
+
+
+Definition at line 1993 of file csparse.\-c.
+
+
+
+Referenced by cs\-\_\-amd(), and cs\-\_\-post().
+
+\hypertarget{csparse_8h_aefbcfeb2d1143578988d22d116dde57b}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-dalloc@{cs\-\_\-dalloc}}
+\index{cs\-\_\-dalloc@{cs\-\_\-dalloc}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-dalloc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csd}$\ast$ cs\-\_\-dalloc (
+\begin{DoxyParamCaption}
+\item[{int}]{m, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_aefbcfeb2d1143578988d22d116dde57b}
+
+
+Definition at line 2201 of file csparse.\-c.
+
+
+
+References cs\-\_\-calloc(), cs\-\_\-dfree(), cs\-\_\-malloc(), cs\-\_\-dmperm\-\_\-results\-::\-P, cs\-\_\-dmperm\-\_\-results\-::\-Q, cs\-\_\-dmperm\-\_\-results\-::\-R, and cs\-\_\-dmperm\-\_\-results\-::\-S.
+
+
+
+Referenced by cs\-\_\-dmperm(), and cs\-\_\-scc().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{csparse_8h_aefbcfeb2d1143578988d22d116dde57b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a41590e7ef8c8f3ebce8c7bbe07303c28}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-done@{cs\-\_\-done}}
+\index{cs\-\_\-done@{cs\-\_\-done}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-done}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cs}$\ast$ cs\-\_\-done (
+\begin{DoxyParamCaption}
+\item[{{\bf cs} $\ast$}]{C, }
+\item[{void $\ast$}]{w, }
+\item[{void $\ast$}]{x, }
+\item[{int}]{ok}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a41590e7ef8c8f3ebce8c7bbe07303c28}
+
+
+Definition at line 2225 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), and cs\-\_\-spfree().
+
+
+
+Referenced by cs\-\_\-add(), cs\-\_\-multiply(), cs\-\_\-permute(), cs\-\_\-symperm(), cs\-\_\-transpose(), and cs\-\_\-triplet().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{csparse_8h_a41590e7ef8c8f3ebce8c7bbe07303c28_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a9c3bd8e36cdfb832d199b580e22467c7}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-idone@{cs\-\_\-idone}}
+\index{cs\-\_\-idone@{cs\-\_\-idone}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-idone}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ cs\-\_\-idone (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{p, }
+\item[{{\bf cs} $\ast$}]{C, }
+\item[{void $\ast$}]{w, }
+\item[{int}]{ok}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a9c3bd8e36cdfb832d199b580e22467c7}
+
+
+Definition at line 2233 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), and cs\-\_\-spfree().
+
+
+
+Referenced by cs\-\_\-amd(), cs\-\_\-counts(), cs\-\_\-etree(), cs\-\_\-maxtrans(), cs\-\_\-post(), and cs\-\_\-vcount().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{csparse_8h_a9c3bd8e36cdfb832d199b580e22467c7_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a24796e2f78414578fd2b8e7528535cbb}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-ndone@{cs\-\_\-ndone}}
+\index{cs\-\_\-ndone@{cs\-\_\-ndone}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-ndone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csn}$\ast$ cs\-\_\-ndone (
+\begin{DoxyParamCaption}
+\item[{{\bf csn} $\ast$}]{N, }
+\item[{{\bf cs} $\ast$}]{C, }
+\item[{void $\ast$}]{w, }
+\item[{void $\ast$}]{x, }
+\item[{int}]{ok}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a24796e2f78414578fd2b8e7528535cbb}
+
+
+Definition at line 2241 of file csparse.\-c.
+
+
+
+References cs\-\_\-free(), cs\-\_\-nfree(), and cs\-\_\-spfree().
+
+
+
+Referenced by cs\-\_\-chol(), cs\-\_\-lu(), and cs\-\_\-qr().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{csparse_8h_a24796e2f78414578fd2b8e7528535cbb_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{csparse_8h_a312cb23797ac49cd9e99853f6bd2895f}{\index{csparse.\-h@{csparse.\-h}!cs\-\_\-ddone@{cs\-\_\-ddone}}
+\index{cs\-\_\-ddone@{cs\-\_\-ddone}!csparse.h@{csparse.\-h}}
+\paragraph[{cs\-\_\-ddone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf csd}$\ast$ cs\-\_\-ddone (
+\begin{DoxyParamCaption}
+\item[{{\bf csd} $\ast$}]{D, }
+\item[{{\bf cs} $\ast$}]{C, }
+\item[{void $\ast$}]{w, }
+\item[{int}]{ok}
+\end{DoxyParamCaption}
+)}}\label{csparse_8h_a312cb23797ac49cd9e99853f6bd2895f}
+
+
+Definition at line 2250 of file csparse.\-c.
+
+
+
+References cs\-\_\-dfree(), cs\-\_\-free(), and cs\-\_\-spfree().
+
+
+
+Referenced by cs\-\_\-dmperm(), and cs\-\_\-scc().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{csparse_8h_a312cb23797ac49cd9e99853f6bd2895f_cgraph}
+\end{center}
+\end{figure}
+
+

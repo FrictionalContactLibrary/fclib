@@ -1,0 +1,414 @@
+%%
+%% This is file `RR.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% RR.dtx  (with options: `RR')
+%% ********************************************************************
+%% Copyright (C) 1997-1999 2004 2006-2011 INRIA/APICS/MARELLE by Jose' Grimm
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% An archive of the software can be found at
+%%    ftp://ftp-sop.inria.fr/marelle/RR-INRIA
+\def\RRfiledate{2012/11/26}
+\def\RRfileversion{5.1e}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{RR}
+       [\RRfiledate\space v\RRfileversion\space
+         Copyright INRIA/MIAOU/APICS/MARELLE 2002-2011]
+
+\typeout{Style de documents Rapport de recherche Inria : version
+\RRfileversion\space du \RRfiledate}
+\newif\ifRR@french \RR@frenchfalse
+\newif\if@dc@french \@dc@frenchfalse
+\def\RR@badoption#1{\@latex@error
+   {Option `#1' removed, see documentation}\@eha}
+\DeclareOption{french}{\@dc@frenchtrue}
+\DeclareOption{T1}{\RR@badoption{T1}}
+\DeclareOption{OT1}{\RR@badoption{OT1}}
+\DeclareOption{noinputenc}{\RR@badoption{noinputenc}}
+\DeclareOption{utf8}{\RR@badoption{utf8}}
+\ProcessOptions\relax
+\RequirePackage{textcomp}\RequirePackage{color}
+\RequirePackage{graphicx}
+%% \@twosidetrue
+\def\@psenc{T1}
+\newcommand\times@font{\fontencoding{T1}\fontfamily{ptm}}
+\newcommand\helvetica@font{\fontencoding{T1}\fontfamily{phv}}
+\newcommand\title@font{\times@font\fontseries{b}%
+   \fontshape{n}\fontsize{36pt}{40pt}\selectfont}
+\newcommand\rrno@font{\times@font\fontseries{b}%
+   \fontshape{n}\fontsize{15pt}{20pt}\selectfont}
+\newcommand\author@font{\times@font\fontseries{b}%
+   \fontshape{n}\fontsize{13.3pt}{16pt}\selectfont}
+\newcommand\theme@font{\times@font\fontseries{m}%
+   \fontshape{n}\fontsize{10pt}{11pt}\selectfont}
+\newcommand\issn@font{\helvetica@font\fontseries{m}%
+   \fontshape{n}\fontsize{8pt}{10pt}\selectfont}
+\newcommand\cr@font{\helvetica@font\fontseries{b}%
+   \fontshape{n}\fontsize{7.5pt}{10pt}\selectfont}
+\newbox\RR@atxybox%
+\newif\ifRR@atxy\RR@atxyfalse
+\newcommand\RR@atxy[3]{\global\setbox\RR@atxybox=\hbox
+ {\unhbox\RR@atxybox
+  \vtop to 0pt{\kern #2\hbox to 0pt{\kern #1\relax #3\hss}\vss}}%
+ \global\RR@atxytrue}
+\def\@userratxy{%
+ \ifRR@atxy{%
+  \if@twoside
+    \ifodd\count\z@
+         \let\@themargin\oddsidemargin
+    \else \let\@themargin\evensidemargin
+    \fi
+  \fi
+  \vtop to 0pt{\kern-\headsep \kern-\topmargin \kern-\headheight
+               \kern-1in \kern-\voffset
+               \hbox to 0pt{\kern-\@themargin \kern-1in \kern-\hoffset
+                            \unhbox\RR@atxybox \hss}\vss}%
+ }\fi
+ \global\RR@atxyfalse}%
+\AtBeginDocument{\toks0={\setbox255=\vbox{\@userratxy \unvbox255}}
+\output=\expandafter{\the\toks0\the\output}}
+\let\titlehead=\undefined
+\newcommand\titlehead[1]{\gdef\@titlehead{#1}}
+\newcommand\authorhead[1]{\gdef\@authorhead{#1}}
+\titlehead{}
+\authorhead{}
+\newcommand\RRNo[1]{\gdef\RR@No{#1}}
+\newcommand\RR@No{????}
+\let\RTNo\RRNo
+\newcommand\RR@month{\ifcase\the\month
+ \or Janvier\or F\'evrier\or Mars\or Avril\or Mai\or Juin \or Juillet%
+ \or Ao\^ut\or Septembre\or Octobre\or Novembre\or D\'ecembre\fi}
+\newcommand\RRdate[1]{\gdef\RR@date{#1}}
+\newcommand\RR@date{%
+ \protected@xdef\RR@date{\RR@month\space \number\the\year}%
+ \RR@date%
+ \@warning{No \string\RRdate \space seen:
+         \RR@date\space will be used.}}
+\newcommand\RRdater[1]{\gdef\RR@dater{#1}}
+\newcommand\RR@dater{%
+ \protected@xdef\RR@dater{\RR@month\space \number\the\year}%
+ \RR@dater%
+ \@warning{No \string\RRdater \space seen:
+         \RR@dater\space will be used.}}
+\newcommand\RRversion[1]{\gdef\RR@version{#1}\global\RR@versiontrue}
+\newcommand\RR@version{Initial version}%
+\newif\ifRR@version\RR@versionfalse
+\newcommand\RRauthor[1]{\gdef\RR@author{#1}\gdef\@authorhead{#1}}
+\newcommand\RR@author{??\gdef\RR@author{??}%
+\@latex@error{No author given,^^J
+   use \string\RRauthor\string{Prenom1 Nom1 \string\and\space  Prenom2
+    Nom2 \string\and \space...\string}}\@eha}
+\newcommand\RRtitle[1]{\gdef\RR@title{#1}}
+\newcommand\RRetitle[1]{\gdef\RR@etitle{#1}}
+\def\set@titlehead{%
+  {\if@dc@french\global\RR@frenchtrue
+   \else
+     \def\tempa{french}\def\tempb{frenchb}%
+     \ifx\bbl@main@language\tempa\global\RR@frenchtrue\fi
+     \ifx\bbl@main@language\tempb\global\RR@frenchtrue\fi
+     \@ifundefined{ifFrench}{}{\global\RR@frenchtrue}%
+   \fi
+   \def\tempa{}%
+   \ifx\@titlehead\tempa \ifRR@french \gdef\@titlehead{\RR@title} \else
+     \gdef\@titlehead{\RR@etitle}\fi\fi}}
+\AtBeginDocument{\set@titlehead}
+\newcommand\RR@title{??\@latex@error{French title missing, use
+  \string\RRtitle.}\@eha}
+\newcommand\RR@etitle{??\@latex@error{English title missing, use
+  \string\RRetitle.}\@eha}
+\newcommand\RRnote[1]{\begingroup
+  \let\protect\@unexpandable@protect
+  \protected@xdef\RR@note{\RR@note \protect\footnotetext[0]{#1\par}}%
+  \endgroup}
+\newcommand\RR@note{}
+\def\RRobsolete#1{%
+\@latex@error{Obsolete command `\@backslashchar#1' ignored}\@eha}
+
+\newcommand\RRtheme[1]{\RRobsolete{RRtheme}}
+\newcommand\RRdomaine[1]{\RRobsolete{RRdomaine}}
+\newcommand\RRthemeProj[1]{\RRobsolete{RRthemeProj}}
+\newcommand\RRdomaineProj[1]{\RRobsolete{RRdomaineProj}}
+\newcommand\RRthemeProjBis[1]{\RRobsolete{RRthemeProjBis}}
+\newcommand\RRdomaineProjBis[1]{\RRobsolete{RRdomaineProjBis}}
+
+%% dom1{Math\'ematiques appliqu\'ees, calcul et simulation}
+%% dom2{Algorithmique, programmation, logiciels et architectures}
+%% dom3{R\'eseaux, syst\`emes et services, calcul distribu\'e}
+%% dom4{Perception, cognition, interaction}
+%% dom5{STIC pour les sciences de la vie et de l'environnement}
+\newcommand\RR@prjtype{Project-Team}
+\newcommand\RR@fprjtype{\'Equipe-Projet}
+\newcommand\RRprojet[1]{\gdef\RR@projet{#1}}
+\newcommand\RRprojets[1]{\gdef\RR@fprjtype{\'Equipes-Projets}
+  \gdef\RR@prjtype{Project-Teams}\gdef\RR@projet{#1}}
+\let\RRequipe\RRprojet
+\let\RRequipes\RRprojets
+\newcommand\RR@projet{??\latex@error{Team missing, use
+ \string\RRprojet}\@eha}
+\newcommand\RRnbpage[1]{\gdef\RR@nbpage{#1}}
+\newcommand\RR@nbpage{\@ifundefined{r@RRlastpageofreport}{??}
+  {\pageref{RRlastpageofreport}}}
+\newcommand\RRresume[1]{%
+    \long\def\RR@resume{\noindent{\bf R\'esum\'e : } #1\par}}
+\newcommand\RRabstract[1]{%
+    \long\def\RR@abstract{\noindent{\bf Abstract: } #1\par}}
+\RRresume{Pas de r\'esum\'e}
+\RRabstract{No abstract}
+\newcommand\RRmotcle[1]{%
+   \def\RR@motcle{\noindent{\bf Mots-cl\'es : } #1\par}}
+\newcommand\RRkeyword[1]{%
+   \def\RR@keyword{\noindent{\bf Key-words: } #1\par}}
+\RRmotcle{Pas de motclef}
+\RRkeyword{No keywords}
+\let\resume=\RRresume \let\abstract=\RRabstract
+\let\motcle=\RRmotcle \let\keyword=\RRkeyword
+\let\RR@rc@name\relax \let\RR@rc\empty
+\newcommand\RCNancy{\gdef\RR@rc@name{nancy}
+  \def\RR@rc{NANCY -- GRAND EST}
+  \def\RR@adr{615 rue du Jardin Botanique \\CS20101\\
+    54603 Villers-l\`es-Nancy Cedex}}
+\let\URLorraine\RCNancy
+\newcommand\RCRennes{\gdef\RR@rc@name{rennes}
+  \def\RR@rc{RENNES -- BRETAGNE ATLANTIQUE}
+  \def\RR@adr{Campus universitaire de Beaulieu\\
+    35042 Rennes Cedex}}
+\let\URRennes\RCRennes
+\newcommand\RCGrenoble{
+  \gdef\RR@rc@name{grenoble}\def\RR@rc{GRENOBLE -- RH\^ONE-ALPES}
+  \def\RR@adr{Inovall\'ee\\655 avenue de l'Europe Montbonnot\\
+    38334  Saint Ismier Cedex}}
+\let\URRhoneAlpes\RCGrenoble
+\newcommand\RCParis{\gdef\RR@rc@name{paris}
+  \def\RR@rc{PARIS -- ROCQUENCOURT}
+  \def\RR@adr{Domaine de Voluceau, - Rocquencourt\\
+     B.P. 105 - 78153 Le Chesnay Cedex}}
+\let\URRocq\RCParis
+\newcommand\RCSophia{\gdef\RR@rc@name{sophia}
+  \def\RR@rc{SOPHIA ANTIPOLIS -- M\'EDITERRAN\'EE}
+  \def\RR@adr{2004 route des Lucioles - BP 93\\
+    06902 Sophia Antipolis Cedex}}
+\let\URSophia\RCSophia\RCSophia
+\newcommand\URFuturs{\RRobsolete{URFuturs}}
+\newcommand\RCBordeaux{\gdef\RR@rc@name{bordeaux}
+  \def\RR@rc{BORDEAUX -- SUD-OUEST}
+  \def\RR@adr{351, Cours de la Lib\'eration\\ B\^atiment A 29\\
+     33405 Talence Cedex}}
+\newcommand\RCLille{\gdef\RR@rc@name{lille}
+  \def\RR@rc{LILLE -- NORD EUROPE}
+  \def\RR@adr{Parc scientifique de la Haute-Borne\\
+   40 avenue Halley - B\^at A - Park Plaza\\
+   59650 Villeneuve d'Ascq}}
+\newcommand\RCSaclay{\gdef\RR@rc@name{saclay}
+   \def\RR@rc{SACLAY -- \^ILE-DE-FRANCE}
+   \def\RR@adr{1 rue Honor\'e d'Estienne d'Orves\\B\^atiment Alan Turing\\
+   Campus de l'\'Ecole Polytechnique\\91120 Palaiseau}}
+\newcommand\rr@frame{%
+ \RR@atxy{0mm}{10mm}{\includegraphics{pagei}}
+ \RR@atxy{38mm}{55mm}{\includegraphics[width=50mm]{logo-inria}}
+ \RR@atxy{40mm}{256mm}{\hbox{\cr@font\color{red}RESEARCH CENTRE}}
+ \RR@atxy{40mm}{259mm}{\hbox{\cr@font\color{red}\RR@rc}}
+ \RR@atxy{40mm}{266mm}{\vbox{\hsize=18cm{\noindent\issn@font\RR@adr}}}}
+\newcommand\lastRRpage{%
+  \clearpage\thispagestyle{empty}%
+  \csname phantomsection\endcsname
+  \label{RRlastpageofreport}
+  \addtocounter{page}{-1}
+  \null\vfill\rr@frame
+  \RR@atxy{98mm}{255mm}{\hbox{\vbox{\parindent=0pt \issn@font%
+     \hsize=48mm \raggedright \hyphenpenalty 10000
+      Publisher\\ Inria \\ Domaine de Voluceau - Rocquencourt\\
+      BP 105 - 78153 Le Chesnay Cedex\\inria.fr\\[3mm]
+      ISSN 0249-\RR@cond{6399}{0803}}}}
+  \clearpage}
+\AtEndDocument{\lastRRpage}
+\newcommand\RR@issn{%
+ \setbox0\hbox{\rotatebox{90}{\issn@font\color{white}
+    ISSN 0249-\RR@cond{6399}{0803}
+    \qquad ISRN INRIA/\RR@cond{RR}{RT}-{}-\RR@No-{}-FR+ENG}}
+    \dimen0=272mm \advance\dimen0 by -\ht0
+ \RR@atxy{190mm}{\dimen0}{\box0}}
+\def\@nothanks{\@ifnextchar[{\@xnothanks}{\@gobble}}
+\def\@xnothanks[#1]#2{\relax}
+\def\@xthanks[#1]#2{\orig@thanks{#2}%
+  \expandafter\edef\csname @footnote@#1\endcsname{\the\c@footnote}}
+\def\thanksref#1{\footnotemark[\csname @footnote@#1\endcsname]}
+
+\newcommand\@out@CR{%
+  \dimen0=25cm
+  \advance\dimen0 -\ht0
+  \dimen1=1in
+  \advance\dimen1\topmargin
+  \advance\dimen1\headheight
+  \advance\dimen1\headsep
+  \advance\dimen1\textheight
+  \advance\dimen1\footskip
+  \ifdim \dimen1>\dimen0
+     \advance\dimen1 -\dimen0 \enlargethispage{-\dimen1}\fi}
+\newif\ifRR@RT
+\newcommand\makeRR{\RR@RTtrue{\@makeRRorRT}}
+\newcommand\makeRT{\RR@RTfalse{\@makeRRorRT}}
+\newcommand\rr@dash{ --- }
+\newcommand\RR@cond[2]{\ifRR@RT#1\else#2\fi}
+\def\RR@start{
+   \global\let\makeRR\relax\global\let\makeRT\relax
+   \let\orig@thanks\thanks
+   \def\thanks{\@ifnextchar[ {\@xthanks}{\orig@thanks}}% ]
+   \@ifundefined{english}{\def\english{}}{}
+   \@ifundefined{french}{\def\french{}}{}
+   \ifx\RR@rc@name\relax \@latex@error{Missing \string\URLorraine,
+      \string\URRennes, \string \URRhoneAlpes, \string \URRocq, ^^J
+      \string \URFuturs, or \string\URSophia}
+      \@eha {\gdef\RR@rc@name{bordeaux}}%
+   \fi
+   \gdef\and{\unskip, }
+   \@restonecolfalse
+   \if@twocolumn\@restonecoltrue\onecolumn\fi}
+\def\RR@fplow{%
+  \RR@atxy{40mm}{240mm}{\hbox{\vbox{\parindent=0pt%
+     \hsize=48mm \raggedright \hyphenpenalty 10000
+     \color{red}%
+ {\rrno@font \RR@cond{RESEARCH}{TECHNICAL}\\[0mm]REPORT \\[4mm]
+      N\textdegree\ \RR@No}
+      \theme@font \\[2mm]
+      \RR@date\\[3mm] \RR@prjtype~\RR@projet}}}}
+\def\RR@fpmiddle{%
+ \RR@atxy{38mm}{113mm}{\hbox{\vbox to 10cm{\hsize=14cm
+   \begin{raggedright}
+     \def\footnote##1{\relax}%
+     \let\thanks\@nothanks
+     \def\footnotemark{%
+         \@ifnextchar[\my@xfootnotemark\relax} %]
+     \def\my@xfootnotemark[##1]{\relax}%
+     \color{white}
+     {\title@font  \baselineskip43pt
+        \ifRR@french {\RR@title}\else {\RR@etitle}\fi
+       \\[1cm]}
+     \baselineskip16pt
+     {\author@font\RR@author}%
+     \vfill
+   \end{raggedright}}}}}
+\def\RR@sp{{%
+\def\thefootnote{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+\def\@makefnmark{\hbox{\@textsuperscript{\@thefnmark}}}
+\long\def\@makefntext##1{\parindent 1em\noindent
+         \hb@xt@1.8em{%
+             \hss\@textsuperscript{\normalfont\@thefnmark}} ##1}%
+\let\footnoterule\relax
+\null\@out@CR  \vskip 3cm \rr@frame
+\begin{center}
+\dimen0=\@themargin\advance \dimen0 by -26mm
+\advance \rightskip by \dimen0
+\advance \leftskip by -\dimen0\hsize 115mm
+   {\Large\bf \ifRR@french \RR@title\else\RR@etitle\fi \par}
+   \vskip 2em
+   {\large \lineskip .75em \RR@author \par}
+   \vskip 1em
+   \normalsize
+   \ifRR@french \RR@fprjtype\else\RR@prjtype\fi
+    ~\RR@projet \par
+   \vskip 1em
+   \ifRR@french
+     Rapport \RR@cond{de recherche}{technique}
+   \else
+     \RR@cond{Research}{Technical} Report
+   \fi
+   \space n\textdegree{} \RR@No  \rr@dash
+   \ifRR@version
+        version \RR@version \rr@dash
+     \ifRR@french
+        version initiale \RR@date\rr@dash version r\'evis\'ee \RR@dater
+     \else
+        initial version \RR@date \rr@dash revised version \RR@dater
+     \fi
+   \else
+     \RR@date
+   \fi
+   \rr@dash \RR@nbpage\ pages\par
+\end{center}
+\RR@note
+\@thanks
+ \vfil
+\dimen0=\@themargin
+\advance \dimen0 by -11mm
+\noindent\kern-\dimen0\parbox{150mm}{%
+   \ifRR@french
+      \RR@resume \par\vskip2mm \RR@motcle \else
+      \RR@abstract\par\vskip2mm \RR@keyword\fi}}}
+\newcommand\@makeRRorRT{%
+  \RR@start\topmargin=18pt
+  \thispagestyle{empty}\pagestyle{empty}
+  \RR@atxy{0cm}{10mm}{\includegraphics{rrpage1}}
+  \RR@atxy{38mm}{55mm}{\includegraphics[width=50mm]{logo-inria}}
+  \RR@issn   \RR@fplow \RR@fpmiddle
+  \null\vfill  \c@page\z@ \newpage
+  \null\vfill  \c@page\z@ \newpage
+  \RR@sp \vfil  \newpage
+   {\ifRR@french \english\fi
+     {\Large\bf  \begin{center}
+       \ifRR@french \RR@etitle\else \RR@title \fi
+        \end{center}}
+     \pagebreak[0]
+     \ifRR@french \RR@abstract\par\vskip2mm \RR@keyword \french\else
+     %   \french
+\RR@resume \par\vskip2mm \RR@motcle\fi
+   }
+   \vfil \null \newpage
+   \if@restonecol\twocolumn\fi
+  \setcounter{footnote}{0}
+  \global\def\thanks##1{\relax}}
+\newcommand\@inibe{%
+      \let\\\space
+      \let\thanks\@nothanks%
+      \def\footnotemark[##1]{\relax}}
+\newcommand\ps@pi{\let\@mkboth\@gobbletwo%
+  \def\@oddhead{\vbox{\hbox to \textwidth{%
+    \normalsize\normalfont{\itshape \@inibe\@titlehead}\hfil\thepage}%
+    \hbox{\rule[-1ex]{\textwidth}{.03cm}}}}
+  \def\@oddfoot{{\normalfont\footnotesize \RR@cond{RR}{RT}%
+    \space n\textdegree{} \RR@No{}}\hfill}
+  \def\@evenhead{\vbox{\hbox to \textwidth{%
+    \normalsize\normalfont\thepage\hfil{\itshape \@inibe\@authorhead}}
+    \hbox{\rule[-1ex]{\textwidth}{.03cm}}}}%
+  \def\@evenfoot{\hfill{\footnotesize\normalfont Inria}}}
+\let\ps@plain\ps@pi
+\headheight1cm
+\headsep1cm
+\pagestyle{pi}
+\@ifundefined{chapter}{\relax}
+   {\def\chapter{\cleardoublepage \thispagestyle{pi}
+   \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter}}
+%%\textwidth14cm
+%%\textheight18cm
+%%\evensidemargin0.96cm
+%%\oddsidemargin0.96cm
+%%\footskip2cm
+%% Param\`etres de taille en mode RRA4.
+%%\textwidth17cm
+%%\textheight24cm
+%%\evensidemargin-0.46cm
+%%\oddsidemargin-0.46cm
+%%\topmargin-1.46cm
+%%\footskip1cm
+%%\setcounter{topnumber}{5}
+%%\def\topfraction{1}
+%%\setcounter{bottomnumber}{4}
+%%\def\bottomfraction{1}
+%%\setcounter{totalnumber}{10}
+%%\def\textfraction{0}
+%%\def\floatpagefraction{.5}
+%%\clubpenalty=10000
+%%\widowpenalty=10000
+%%\hfuzz=1pt
+%%\vfuzz=5pt
+\endinput
+%%
+%% End of file `RR.sty'.

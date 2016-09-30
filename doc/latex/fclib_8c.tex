@@ -1,0 +1,848 @@
+\hypertarget{fclib_8c}{\subsection{fclib.\-c File Reference}
+\label{fclib_8c}\index{fclib.\-c@{fclib.\-c}}
+}
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$hdf5.\-h$>$}\\*
+{\ttfamily \#include $<$hdf5\-\_\-hl.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}fclib.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fcint.\-h\char`\"{}}\\*
+Include dependency graph for fclib.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fclib_8c__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fclib_8c_ae8ec3114e7970ceac40260041d66edbb}{H5\-Gcreate\-\_\-vers}~2
+\item 
+\#define \hyperlink{fclib_8c_a76c98e4e3ad7bd3a5a480e59f446d20d}{H5\-Gopen\-\_\-vers}~2
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static hid\-\_\-t \hyperlink{fclib_8c_a59a656449b319a4517bb7e3c95efcb5d}{H5\-Gmake} (hid\-\_\-t loc\-\_\-id, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em make grourp \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_aefffb8708bf8509b7832d3ed70d4be47}{write\-\_\-matrix} (hid\-\_\-t id, struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$mat)
+\begin{DoxyCompactList}\small\item\em write matrix \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{fclib_8c_a39c7990d9fd2ab18430feb9814c1e69d}{read\-\_\-matrix} (hid\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em read matrix \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_a7834ca369ef4dd197d0667954854edd0}{write\-\_\-global\-\_\-vectors} (hid\-\_\-t id, struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em write global vectors \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_a7c692e0eee1727bb5a3033bd2330d81c}{read\-\_\-global\-\_\-vectors} (hid\-\_\-t id, struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em read global vectors \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_a6dcbbbee29d6a0af12fb87d531508a48}{write\-\_\-local\-\_\-vectors} (hid\-\_\-t id, struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em write local vectors \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_a8bc238e193fcdf7574221d62af6591c2}{read\-\_\-local\-\_\-vectors} (hid\-\_\-t id, struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em read local vectors \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_aca8c24ddc0ea386c97b678b1324ea0d4}{write\-\_\-problem\-\_\-info} (hid\-\_\-t id, struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em write problem info \end{DoxyCompactList}\item 
+static struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$ \hyperlink{fclib_8c_a027ca7a38adea4ea55cd4ad3af71505d}{read\-\_\-problem\-\_\-info} (hid\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em read problem info \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_aa4bc76f00cee23457c4f29ec53f8ceea}{write\-\_\-solution} (hid\-\_\-t id, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$solution, hsize\-\_\-t nv, hsize\-\_\-t nr, hsize\-\_\-t nl)
+\begin{DoxyCompactList}\small\item\em write solution \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_af66ff03f18b03083ea7ad5a9ee9d2021}{read\-\_\-solution} (hid\-\_\-t id, hsize\-\_\-t nv, hsize\-\_\-t nr, hsize\-\_\-t nl, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$solution)
+\begin{DoxyCompactList}\small\item\em read solution \end{DoxyCompactList}\item 
+static int \hyperlink{fclib_8c_a0da0a5e09f832f89656ad0fe8fc7064d}{read\-\_\-nvnunrnl} (hid\-\_\-t file\-\_\-id, int $\ast$nv, int $\ast$nr, int $\ast$nl)
+\begin{DoxyCompactList}\small\item\em read solution sizes \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_ac35480502e8612c3717d5fc6279de0c5}{delete\-\_\-matrix\-\_\-info} (struct \hyperlink{structfclib__matrix__info}{fclib\-\_\-matrix\-\_\-info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em delete matrix info \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_ab5f8fb6fdbd5d68d93e1b68e8b009581}{delete\-\_\-matrix} (struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$mat)
+\begin{DoxyCompactList}\small\item\em delete matrix \end{DoxyCompactList}\item 
+static void \hyperlink{fclib_8c_a0b6e96725a6f98fdd3b49cdaea3aa38d}{delete\-\_\-info} (struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em delete problem info \end{DoxyCompactList}\item 
+int \hyperlink{fclib_8c_acd5a38f03c621ce4a53eea28ae6d9e2e}{fclib\-\_\-write\-\_\-global} (struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em write global problem; return 1 on success, 0 on failure \end{DoxyCompactList}\item 
+int \hyperlink{fclib_8c_a5c4c7bb4d98efc388fdf4a7aa009b87a}{fclib\-\_\-write\-\_\-local} (struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em write local problem; return 1 on success, 0 on failure \end{DoxyCompactList}\item 
+int \hyperlink{fclib_8c_a6edc26abbeec9f3e9a4fa71e70726988}{fclib\-\_\-write\-\_\-solution} (struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$solution, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em write solution; return 1 on success, 0 on failure \end{DoxyCompactList}\item 
+int \hyperlink{fclib_8c_a5100104b958b245b883f5d505651a5c1}{fclib\-\_\-write\-\_\-guesses} (int number\-\_\-of\-\_\-guesses, struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$guesses, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em write initial guesses; return 1 on success, 0 on failure \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$ \hyperlink{fclib_8c_a68650a3ef8e5cfca61e10ede3ff59745}{fclib\-\_\-read\-\_\-global} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em read global problem; return problem on success; N\-U\-L\-L on failure \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$ \hyperlink{fclib_8c_a1122778ddd33ab84360ec6da584bff99}{fclib\-\_\-read\-\_\-local} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em read local problem; return problem on success; N\-U\-L\-L on failure \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$ \hyperlink{fclib_8c_a038c74114b0d53fd79785d99cd6c42fb}{fclib\-\_\-read\-\_\-solution} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em read solution; return solution on success; N\-U\-L\-L on failure \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$ \hyperlink{fclib_8c_ad1392d4746f60eb0030d6f9e80846e53}{fclib\-\_\-read\-\_\-guesses} (const char $\ast$path, int $\ast$number\-\_\-of\-\_\-guesses)
+\begin{DoxyCompactList}\small\item\em read initial guesses; return vector of guesses on success; N\-U\-L\-L on failure; output numebr of guesses in the variable pointed by 'number\-\_\-of\-\_\-guesses' \end{DoxyCompactList}\item 
+void \hyperlink{fclib_8c_a14b1c35f51633d79f4ed6a680d21d6b4}{fclib\-\_\-delete\-\_\-global} (struct \hyperlink{structfclib__global}{fclib\-\_\-global} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em delete global problem \end{DoxyCompactList}\item 
+void \hyperlink{fclib_8c_a20292c502d574d412fd8b41aad37225b}{fclib\-\_\-delete\-\_\-local} (struct \hyperlink{structfclib__local}{fclib\-\_\-local} $\ast$problem)
+\begin{DoxyCompactList}\small\item\em delete local problem \end{DoxyCompactList}\item 
+void \hyperlink{fclib_8c_a4b70826ccf4a67808e1946036ac6d950}{fclib\-\_\-delete\-\_\-solutions} (struct \hyperlink{structfclib__solution}{fclib\-\_\-solution} $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em delete solutions or guesses \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+ frictional contact library input/output 
+
+Definition in file \hyperlink{fclib_8c_source}{fclib.\-c}.
+
+
+
+\subsubsection{Macro Definition Documentation}
+\hypertarget{fclib_8c_ae8ec3114e7970ceac40260041d66edbb}{\index{fclib.\-c@{fclib.\-c}!H5\-Gcreate\-\_\-vers@{H5\-Gcreate\-\_\-vers}}
+\index{H5\-Gcreate\-\_\-vers@{H5\-Gcreate\-\_\-vers}!fclib.c@{fclib.\-c}}
+\paragraph[{H5\-Gcreate\-\_\-vers}]{\setlength{\rightskip}{0pt plus 5cm}\#define H5\-Gcreate\-\_\-vers~2}}\label{fclib_8c_ae8ec3114e7970ceac40260041d66edbb}
+
+
+Definition at line 24 of file fclib.\-c.
+
+\hypertarget{fclib_8c_a76c98e4e3ad7bd3a5a480e59f446d20d}{\index{fclib.\-c@{fclib.\-c}!H5\-Gopen\-\_\-vers@{H5\-Gopen\-\_\-vers}}
+\index{H5\-Gopen\-\_\-vers@{H5\-Gopen\-\_\-vers}!fclib.c@{fclib.\-c}}
+\paragraph[{H5\-Gopen\-\_\-vers}]{\setlength{\rightskip}{0pt plus 5cm}\#define H5\-Gopen\-\_\-vers~2}}\label{fclib_8c_a76c98e4e3ad7bd3a5a480e59f446d20d}
+
+
+Definition at line 25 of file fclib.\-c.
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{fclib_8c_a59a656449b319a4517bb7e3c95efcb5d}{\index{fclib.\-c@{fclib.\-c}!H5\-Gmake@{H5\-Gmake}}
+\index{H5\-Gmake@{H5\-Gmake}!fclib.c@{fclib.\-c}}
+\paragraph[{H5\-Gmake}]{\setlength{\rightskip}{0pt plus 5cm}static hid\-\_\-t H5\-Gmake (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{loc\-\_\-id, }
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a59a656449b319a4517bb7e3c95efcb5d}
+
+
+make grourp 
+
+
+
+Definition at line 37 of file fclib.\-c.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-global(), fclib\-\_\-write\-\_\-guesses(), fclib\-\_\-write\-\_\-local(), and fclib\-\_\-write\-\_\-solution().
+
+\hypertarget{fclib_8c_aefffb8708bf8509b7832d3ed70d4be47}{\index{fclib.\-c@{fclib.\-c}!write\-\_\-matrix@{write\-\_\-matrix}}
+\index{write\-\_\-matrix@{write\-\_\-matrix}!fclib.c@{fclib.\-c}}
+\paragraph[{write\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-matrix} $\ast$}]{mat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_aefffb8708bf8509b7832d3ed70d4be47}
+
+
+write matrix 
+
+
+
+Definition at line 51 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, fclib\-\_\-matrix\-\_\-info\-::comment, fclib\-\_\-matrix\-\_\-info\-::conditioning, fclib\-\_\-matrix\-\_\-info\-::determinant, fclib\-\_\-matrix\-::i, fclib\-\_\-matrix\-::info, I\-O, fclib\-\_\-matrix\-::m, fclib\-\_\-matrix\-::n, fclib\-\_\-matrix\-::nz, fclib\-\_\-matrix\-::nzmax, fclib\-\_\-matrix\-::p, fclib\-\_\-matrix\-\_\-info\-::rank, and fclib\-\_\-matrix\-::x.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-global(), and fclib\-\_\-write\-\_\-local().
+
+\hypertarget{fclib_8c_a39c7990d9fd2ab18430feb9814c1e69d}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-matrix@{read\-\_\-matrix}}
+\index{read\-\_\-matrix@{read\-\_\-matrix}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ read\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a39c7990d9fd2ab18430feb9814c1e69d}
+
+
+read matrix 
+
+
+
+Definition at line 96 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, fclib\-\_\-matrix\-\_\-info\-::comment, fclib\-\_\-matrix\-\_\-info\-::conditioning, fclib\-\_\-matrix\-\_\-info\-::determinant, fclib\-\_\-matrix\-::i, fclib\-\_\-matrix\-::info, I\-O, fclib\-\_\-matrix\-::m, M\-M, fclib\-\_\-matrix\-::n, fclib\-\_\-matrix\-::nz, fclib\-\_\-matrix\-::nzmax, fclib\-\_\-matrix\-::p, fclib\-\_\-matrix\-\_\-info\-::rank, and fclib\-\_\-matrix\-::x.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-global(), and fclib\-\_\-read\-\_\-local().
+
+\hypertarget{fclib_8c_a7834ca369ef4dd197d0667954854edd0}{\index{fclib.\-c@{fclib.\-c}!write\-\_\-global\-\_\-vectors@{write\-\_\-global\-\_\-vectors}}
+\index{write\-\_\-global\-\_\-vectors@{write\-\_\-global\-\_\-vectors}!fclib.c@{fclib.\-c}}
+\paragraph[{write\-\_\-global\-\_\-vectors}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-global\-\_\-vectors (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a7834ca369ef4dd197d0667954854edd0}
+
+
+write global vectors 
+
+
+
+Definition at line 156 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, fclib\-\_\-global\-::b, fclib\-\_\-global\-::f, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, I\-O, fclib\-\_\-matrix\-::m, fclib\-\_\-global\-::\-M, fclib\-\_\-global\-::mu, fclib\-\_\-matrix\-::n, fclib\-\_\-global\-::spacedim, and fclib\-\_\-global\-::w.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-global().
+
+\hypertarget{fclib_8c_a7c692e0eee1727bb5a3033bd2330d81c}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-global\-\_\-vectors@{read\-\_\-global\-\_\-vectors}}
+\index{read\-\_\-global\-\_\-vectors@{read\-\_\-global\-\_\-vectors}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-global\-\_\-vectors}]{\setlength{\rightskip}{0pt plus 5cm}static void read\-\_\-global\-\_\-vectors (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a7c692e0eee1727bb5a3033bd2330d81c}
+
+
+read global vectors 
+
+
+
+Definition at line 180 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, fclib\-\_\-global\-::b, fclib\-\_\-global\-::f, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, I\-O, fclib\-\_\-matrix\-::m, fclib\-\_\-global\-::\-M, M\-M, fclib\-\_\-global\-::mu, fclib\-\_\-matrix\-::n, fclib\-\_\-global\-::spacedim, and fclib\-\_\-global\-::w.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-global().
+
+\hypertarget{fclib_8c_a6dcbbbee29d6a0af12fb87d531508a48}{\index{fclib.\-c@{fclib.\-c}!write\-\_\-local\-\_\-vectors@{write\-\_\-local\-\_\-vectors}}
+\index{write\-\_\-local\-\_\-vectors@{write\-\_\-local\-\_\-vectors}!fclib.c@{fclib.\-c}}
+\paragraph[{write\-\_\-local\-\_\-vectors}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-local\-\_\-vectors (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a6dcbbbee29d6a0af12fb87d531508a48}
+
+
+write local vectors 
+
+
+
+Definition at line 199 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, I\-O, fclib\-\_\-matrix\-::m, fclib\-\_\-local\-::mu, fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, fclib\-\_\-local\-::s, fclib\-\_\-local\-::spacedim, fclib\-\_\-local\-::\-V, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-local().
+
+\hypertarget{fclib_8c_a8bc238e193fcdf7574221d62af6591c2}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-local\-\_\-vectors@{read\-\_\-local\-\_\-vectors}}
+\index{read\-\_\-local\-\_\-vectors@{read\-\_\-local\-\_\-vectors}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-local\-\_\-vectors}]{\setlength{\rightskip}{0pt plus 5cm}static void read\-\_\-local\-\_\-vectors (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a8bc238e193fcdf7574221d62af6591c2}
+
+
+read local vectors 
+
+
+
+Definition at line 220 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, I\-O, fclib\-\_\-matrix\-::m, M\-M, fclib\-\_\-local\-::mu, fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, fclib\-\_\-local\-::s, fclib\-\_\-local\-::spacedim, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-local().
+
+\hypertarget{fclib_8c_aca8c24ddc0ea386c97b678b1324ea0d4}{\index{fclib.\-c@{fclib.\-c}!write\-\_\-problem\-\_\-info@{write\-\_\-problem\-\_\-info}}
+\index{write\-\_\-problem\-\_\-info@{write\-\_\-problem\-\_\-info}!fclib.c@{fclib.\-c}}
+\paragraph[{write\-\_\-problem\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-problem\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_aca8c24ddc0ea386c97b678b1324ea0d4}
+
+
+write problem info 
+
+
+
+Definition at line 237 of file fclib.\-c.
+
+
+
+References fclib\-\_\-info\-::description, I\-O, fclib\-\_\-info\-::math\-\_\-info, and fclib\-\_\-info\-::title.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-global(), and fclib\-\_\-write\-\_\-local().
+
+\hypertarget{fclib_8c_a027ca7a38adea4ea55cd4ad3af71505d}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-problem\-\_\-info@{read\-\_\-problem\-\_\-info}}
+\index{read\-\_\-problem\-\_\-info@{read\-\_\-problem\-\_\-info}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-problem\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static struct {\bf fclib\-\_\-info}$\ast$ read\-\_\-problem\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a027ca7a38adea4ea55cd4ad3af71505d}
+
+
+read problem info 
+
+
+
+Definition at line 245 of file fclib.\-c.
+
+
+
+References fclib\-\_\-info\-::description, I\-O, fclib\-\_\-info\-::math\-\_\-info, M\-M, and fclib\-\_\-info\-::title.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-global(), and fclib\-\_\-read\-\_\-local().
+
+\hypertarget{fclib_8c_aa4bc76f00cee23457c4f29ec53f8ceea}{\index{fclib.\-c@{fclib.\-c}!write\-\_\-solution@{write\-\_\-solution}}
+\index{write\-\_\-solution@{write\-\_\-solution}!fclib.c@{fclib.\-c}}
+\paragraph[{write\-\_\-solution}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-solution (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{solution, }
+\item[{hsize\-\_\-t}]{nv, }
+\item[{hsize\-\_\-t}]{nr, }
+\item[{hsize\-\_\-t}]{nl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_aa4bc76f00cee23457c4f29ec53f8ceea}
+
+
+write solution 
+
+
+
+Definition at line 282 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, I\-O, fclib\-\_\-solution\-::l, fclib\-\_\-solution\-::r, fclib\-\_\-solution\-::u, and fclib\-\_\-solution\-::v.
+
+
+
+Referenced by fclib\-\_\-write\-\_\-guesses(), and fclib\-\_\-write\-\_\-solution().
+
+\hypertarget{fclib_8c_af66ff03f18b03083ea7ad5a9ee9d2021}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-solution@{read\-\_\-solution}}
+\index{read\-\_\-solution@{read\-\_\-solution}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-solution}]{\setlength{\rightskip}{0pt plus 5cm}static void read\-\_\-solution (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{id, }
+\item[{hsize\-\_\-t}]{nv, }
+\item[{hsize\-\_\-t}]{nr, }
+\item[{hsize\-\_\-t}]{nl, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{solution}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_af66ff03f18b03083ea7ad5a9ee9d2021}
+
+
+read solution 
+
+
+
+Definition at line 293 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, I\-O, fclib\-\_\-solution\-::l, M\-M, fclib\-\_\-solution\-::r, fclib\-\_\-solution\-::u, and fclib\-\_\-solution\-::v.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-guesses(), and fclib\-\_\-read\-\_\-solution().
+
+\hypertarget{fclib_8c_a0da0a5e09f832f89656ad0fe8fc7064d}{\index{fclib.\-c@{fclib.\-c}!read\-\_\-nvnunrnl@{read\-\_\-nvnunrnl}}
+\index{read\-\_\-nvnunrnl@{read\-\_\-nvnunrnl}!fclib.c@{fclib.\-c}}
+\paragraph[{read\-\_\-nvnunrnl}]{\setlength{\rightskip}{0pt plus 5cm}static int read\-\_\-nvnunrnl (
+\begin{DoxyParamCaption}
+\item[{hid\-\_\-t}]{file\-\_\-id, }
+\item[{int $\ast$}]{nv, }
+\item[{int $\ast$}]{nr, }
+\item[{int $\ast$}]{nl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a0da0a5e09f832f89656ad0fe8fc7064d}
+
+
+read solution sizes 
+
+
+
+Definition at line 317 of file fclib.\-c.
+
+
+
+References I\-O.
+
+
+
+Referenced by fclib\-\_\-read\-\_\-guesses(), fclib\-\_\-read\-\_\-solution(), fclib\-\_\-write\-\_\-guesses(), and fclib\-\_\-write\-\_\-solution().
+
+\hypertarget{fclib_8c_ac35480502e8612c3717d5fc6279de0c5}{\index{fclib.\-c@{fclib.\-c}!delete\-\_\-matrix\-\_\-info@{delete\-\_\-matrix\-\_\-info}}
+\index{delete\-\_\-matrix\-\_\-info@{delete\-\_\-matrix\-\_\-info}!fclib.c@{fclib.\-c}}
+\paragraph[{delete\-\_\-matrix\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static void delete\-\_\-matrix\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-matrix\-\_\-info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_ac35480502e8612c3717d5fc6279de0c5}
+
+
+delete matrix info 
+
+
+
+Definition at line 349 of file fclib.\-c.
+
+
+
+References fclib\-\_\-matrix\-\_\-info\-::comment.
+
+
+
+Referenced by delete\-\_\-matrix().
+
+\hypertarget{fclib_8c_ab5f8fb6fdbd5d68d93e1b68e8b009581}{\index{fclib.\-c@{fclib.\-c}!delete\-\_\-matrix@{delete\-\_\-matrix}}
+\index{delete\-\_\-matrix@{delete\-\_\-matrix}!fclib.c@{fclib.\-c}}
+\paragraph[{delete\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}static void delete\-\_\-matrix (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-matrix} $\ast$}]{mat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_ab5f8fb6fdbd5d68d93e1b68e8b009581}
+
+
+delete matrix 
+
+
+
+Definition at line 359 of file fclib.\-c.
+
+
+
+References delete\-\_\-matrix\-\_\-info(), fclib\-\_\-matrix\-::i, fclib\-\_\-matrix\-::info, fclib\-\_\-matrix\-::p, and fclib\-\_\-matrix\-::x.
+
+
+
+Referenced by fclib\-\_\-delete\-\_\-global(), and fclib\-\_\-delete\-\_\-local().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{fclib_8c_ab5f8fb6fdbd5d68d93e1b68e8b009581_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a0b6e96725a6f98fdd3b49cdaea3aa38d}{\index{fclib.\-c@{fclib.\-c}!delete\-\_\-info@{delete\-\_\-info}}
+\index{delete\-\_\-info@{delete\-\_\-info}!fclib.c@{fclib.\-c}}
+\paragraph[{delete\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}static void delete\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{fclib_8c_a0b6e96725a6f98fdd3b49cdaea3aa38d}
+
+
+delete problem info 
+
+
+
+Definition at line 372 of file fclib.\-c.
+
+
+
+References fclib\-\_\-info\-::description, fclib\-\_\-info\-::math\-\_\-info, and fclib\-\_\-info\-::title.
+
+
+
+Referenced by fclib\-\_\-delete\-\_\-global(), and fclib\-\_\-delete\-\_\-local().
+
+\hypertarget{fclib_8c_acd5a38f03c621ce4a53eea28ae6d9e2e}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-write\-\_\-global@{fclib\-\_\-write\-\_\-global}}
+\index{fclib\-\_\-write\-\_\-global@{fclib\-\_\-write\-\_\-global}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-write\-\_\-global}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-write\-\_\-global (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_acd5a38f03c621ce4a53eea28ae6d9e2e}
+
+
+write global problem; return 1 on success, 0 on failure 
+
+
+
+Definition at line 386 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, H5\-Gmake(), fclib\-\_\-global\-::info, I\-O, fclib\-\_\-global\-::\-M, fclib\-\_\-global\-::spacedim, write\-\_\-global\-\_\-vectors(), write\-\_\-matrix(), and write\-\_\-problem\-\_\-info().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{fclib_8c_acd5a38f03c621ce4a53eea28ae6d9e2e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a5c4c7bb4d98efc388fdf4a7aa009b87a}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-write\-\_\-local@{fclib\-\_\-write\-\_\-local}}
+\index{fclib\-\_\-write\-\_\-local@{fclib\-\_\-write\-\_\-local}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-write\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-write\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a5c4c7bb4d98efc388fdf4a7aa009b87a}
+
+
+write local problem; return 1 on success, 0 on failure 
+
+
+
+Definition at line 454 of file fclib.\-c.
+
+
+
+References A\-S\-S\-E\-R\-T, H5\-Gmake(), fclib\-\_\-local\-::info, I\-O, fclib\-\_\-local\-::\-R, fclib\-\_\-local\-::spacedim, fclib\-\_\-local\-::\-V, fclib\-\_\-local\-::\-W, write\-\_\-local\-\_\-vectors(), write\-\_\-matrix(), and write\-\_\-problem\-\_\-info().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{fclib_8c_a5c4c7bb4d98efc388fdf4a7aa009b87a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a6edc26abbeec9f3e9a4fa71e70726988}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-write\-\_\-solution@{fclib\-\_\-write\-\_\-solution}}
+\index{fclib\-\_\-write\-\_\-solution@{fclib\-\_\-write\-\_\-solution}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-write\-\_\-solution}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-write\-\_\-solution (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{solution, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a6edc26abbeec9f3e9a4fa71e70726988}
+
+
+write solution; return 1 on success, 0 on failure 
+
+
+
+Definition at line 522 of file fclib.\-c.
+
+
+
+References H5\-Gmake(), I\-O, read\-\_\-nvnunrnl(), and write\-\_\-solution().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{fclib_8c_a6edc26abbeec9f3e9a4fa71e70726988_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a5100104b958b245b883f5d505651a5c1}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-write\-\_\-guesses@{fclib\-\_\-write\-\_\-guesses}}
+\index{fclib\-\_\-write\-\_\-guesses@{fclib\-\_\-write\-\_\-guesses}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-write\-\_\-guesses}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-write\-\_\-guesses (
+\begin{DoxyParamCaption}
+\item[{int}]{number\-\_\-of\-\_\-guesses, }
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{guesses, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a5100104b958b245b883f5d505651a5c1}
+
+
+write initial guesses; return 1 on success, 0 on failure 
+
+
+
+Definition at line 562 of file fclib.\-c.
+
+
+
+References H5\-Gmake(), I\-O, read\-\_\-nvnunrnl(), and write\-\_\-solution().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{fclib_8c_a5100104b958b245b883f5d505651a5c1_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a68650a3ef8e5cfca61e10ede3ff59745}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-read\-\_\-global@{fclib\-\_\-read\-\_\-global}}
+\index{fclib\-\_\-read\-\_\-global@{fclib\-\_\-read\-\_\-global}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-read\-\_\-global}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-global}$\ast$ fclib\-\_\-read\-\_\-global (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a68650a3ef8e5cfca61e10ede3ff59745}
+
+
+read global problem; return problem on success; N\-U\-L\-L on failure 
+
+
+
+Definition at line 612 of file fclib.\-c.
+
+
+
+References fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-global\-::info, I\-O, fclib\-\_\-global\-::\-M, M\-M, read\-\_\-global\-\_\-vectors(), read\-\_\-matrix(), read\-\_\-problem\-\_\-info(), and fclib\-\_\-global\-::spacedim.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{fclib_8c_a68650a3ef8e5cfca61e10ede3ff59745_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a1122778ddd33ab84360ec6da584bff99}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-read\-\_\-local@{fclib\-\_\-read\-\_\-local}}
+\index{fclib\-\_\-read\-\_\-local@{fclib\-\_\-read\-\_\-local}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-read\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-local}$\ast$ fclib\-\_\-read\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a1122778ddd33ab84360ec6da584bff99}
+
+
+read local problem; return problem on success; N\-U\-L\-L on failure 
+
+
+
+Definition at line 662 of file fclib.\-c.
+
+
+
+References fclib\-\_\-local\-::info, I\-O, M\-M, fclib\-\_\-local\-::\-R, read\-\_\-local\-\_\-vectors(), read\-\_\-matrix(), read\-\_\-problem\-\_\-info(), fclib\-\_\-local\-::spacedim, fclib\-\_\-local\-::\-V, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{fclib_8c_a1122778ddd33ab84360ec6da584bff99_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a038c74114b0d53fd79785d99cd6c42fb}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-read\-\_\-solution@{fclib\-\_\-read\-\_\-solution}}
+\index{fclib\-\_\-read\-\_\-solution@{fclib\-\_\-read\-\_\-solution}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-read\-\_\-solution}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-solution}$\ast$ fclib\-\_\-read\-\_\-solution (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a038c74114b0d53fd79785d99cd6c42fb}
+
+
+read solution; return solution on success; N\-U\-L\-L on failure 
+
+
+
+Definition at line 712 of file fclib.\-c.
+
+
+
+References I\-O, M\-M, read\-\_\-nvnunrnl(), and read\-\_\-solution().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{fclib_8c_a038c74114b0d53fd79785d99cd6c42fb_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_ad1392d4746f60eb0030d6f9e80846e53}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-read\-\_\-guesses@{fclib\-\_\-read\-\_\-guesses}}
+\index{fclib\-\_\-read\-\_\-guesses@{fclib\-\_\-read\-\_\-guesses}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-read\-\_\-guesses}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-solution}$\ast$ fclib\-\_\-read\-\_\-guesses (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path, }
+\item[{int $\ast$}]{number\-\_\-of\-\_\-guesses}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_ad1392d4746f60eb0030d6f9e80846e53}
+
+
+read initial guesses; return vector of guesses on success; N\-U\-L\-L on failure; output numebr of guesses in the variable pointed by 'number\-\_\-of\-\_\-guesses' 
+
+
+
+Definition at line 740 of file fclib.\-c.
+
+
+
+References I\-O, M\-M, read\-\_\-nvnunrnl(), and read\-\_\-solution().
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{fclib_8c_ad1392d4746f60eb0030d6f9e80846e53_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a14b1c35f51633d79f4ed6a680d21d6b4}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-delete\-\_\-global@{fclib\-\_\-delete\-\_\-global}}
+\index{fclib\-\_\-delete\-\_\-global@{fclib\-\_\-delete\-\_\-global}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-delete\-\_\-global}]{\setlength{\rightskip}{0pt plus 5cm}void fclib\-\_\-delete\-\_\-global (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-global} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a14b1c35f51633d79f4ed6a680d21d6b4}
+
+
+delete global problem 
+
+
+
+Definition at line 780 of file fclib.\-c.
+
+
+
+References fclib\-\_\-global\-::b, delete\-\_\-info(), delete\-\_\-matrix(), fclib\-\_\-global\-::f, fclib\-\_\-global\-::\-G, fclib\-\_\-global\-::\-H, fclib\-\_\-global\-::info, fclib\-\_\-global\-::\-M, fclib\-\_\-global\-::mu, and fclib\-\_\-global\-::w.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fclib_8c_a14b1c35f51633d79f4ed6a680d21d6b4_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a20292c502d574d412fd8b41aad37225b}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-delete\-\_\-local@{fclib\-\_\-delete\-\_\-local}}
+\index{fclib\-\_\-delete\-\_\-local@{fclib\-\_\-delete\-\_\-local}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-delete\-\_\-local}]{\setlength{\rightskip}{0pt plus 5cm}void fclib\-\_\-delete\-\_\-local (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-local} $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a20292c502d574d412fd8b41aad37225b}
+
+
+delete local problem 
+
+
+
+Definition at line 793 of file fclib.\-c.
+
+
+
+References delete\-\_\-info(), delete\-\_\-matrix(), fclib\-\_\-local\-::info, fclib\-\_\-local\-::mu, fclib\-\_\-local\-::q, fclib\-\_\-local\-::\-R, fclib\-\_\-local\-::s, fclib\-\_\-local\-::\-V, and fclib\-\_\-local\-::\-W.
+
+
+
+Referenced by main().
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fclib_8c_a20292c502d574d412fd8b41aad37225b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{fclib_8c_a4b70826ccf4a67808e1946036ac6d950}{\index{fclib.\-c@{fclib.\-c}!fclib\-\_\-delete\-\_\-solutions@{fclib\-\_\-delete\-\_\-solutions}}
+\index{fclib\-\_\-delete\-\_\-solutions@{fclib\-\_\-delete\-\_\-solutions}!fclib.c@{fclib.\-c}}
+\paragraph[{fclib\-\_\-delete\-\_\-solutions}]{\setlength{\rightskip}{0pt plus 5cm}void fclib\-\_\-delete\-\_\-solutions (
+\begin{DoxyParamCaption}
+\item[{struct {\bf fclib\-\_\-solution} $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{fclib_8c_a4b70826ccf4a67808e1946036ac6d950}
+
+
+delete solutions or guesses 
+
+
+
+Definition at line 805 of file fclib.\-c.
+
+
+
+References fclib\-\_\-solution\-::l, fclib\-\_\-solution\-::r, fclib\-\_\-solution\-::u, and fclib\-\_\-solution\-::v.
+
+
+
+Referenced by main().
+

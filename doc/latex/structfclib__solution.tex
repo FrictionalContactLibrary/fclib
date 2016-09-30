@@ -1,0 +1,95 @@
+\hypertarget{structfclib__solution}{\subsection{fclib\-\_\-solution Struct Reference}
+\label{structfclib__solution}\index{fclib\-\_\-solution@{fclib\-\_\-solution}}
+}
+
+
+A solution or a guess for the frictional contact problem.  
+
+
+
+
+{\ttfamily \#include $<$fclib.\-h$>$}
+
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double $\ast$ \hyperlink{structfclib__solution_a252982ce524686a094223a55c194fea8}{v}
+\begin{DoxyCompactList}\small\item\em global velocity (or position/displacement for quasi-\/static problems) solution vector \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__solution_acb160f0dad04b9420388464d256ae41f}{u}
+\begin{DoxyCompactList}\small\item\em local velocity (or position/displacement for quasi-\/static problems) solution vector \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__solution_aba0437aebbb1060350ef2f0a6e8b504d}{r}
+\begin{DoxyCompactList}\small\item\em local contact forces (or impulses) solution vector \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__solution_a872a687856540dd19286aec43d890ede}{l}
+\begin{DoxyCompactList}\small\item\em multiplier for equlity constraints ( $\lambda$) solution vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A solution or a guess for the frictional contact problem. 
+
+This structure allows to store a solution vector of a guess vector for the various frictional contact problems. 
+
+Definition at line 254 of file fclib.\-h.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{structfclib__solution_a252982ce524686a094223a55c194fea8}{\index{fclib\-\_\-solution@{fclib\-\_\-solution}!v@{v}}
+\index{v@{v}!fclib_solution@{fclib\-\_\-solution}}
+\paragraph[{v}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-solution\-::v}}\label{structfclib__solution_a252982ce524686a094223a55c194fea8}
+
+
+global velocity (or position/displacement for quasi-\/static problems) solution vector 
+
+
+
+Definition at line 257 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-solutions(), fclib\-\_\-delete\-\_\-solutions(), fclib\-\_\-merit\-\_\-local(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-solutions(), read\-\_\-solution(), and write\-\_\-solution().
+
+\hypertarget{structfclib__solution_acb160f0dad04b9420388464d256ae41f}{\index{fclib\-\_\-solution@{fclib\-\_\-solution}!u@{u}}
+\index{u@{u}!fclib_solution@{fclib\-\_\-solution}}
+\paragraph[{u}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-solution\-::u}}\label{structfclib__solution_acb160f0dad04b9420388464d256ae41f}
+
+
+local velocity (or position/displacement for quasi-\/static problems) solution vector 
+
+
+
+Definition at line 259 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-solutions(), fclib\-\_\-delete\-\_\-solutions(), fclib\-\_\-merit\-\_\-local(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-solutions(), read\-\_\-solution(), and write\-\_\-solution().
+
+\hypertarget{structfclib__solution_aba0437aebbb1060350ef2f0a6e8b504d}{\index{fclib\-\_\-solution@{fclib\-\_\-solution}!r@{r}}
+\index{r@{r}!fclib_solution@{fclib\-\_\-solution}}
+\paragraph[{r}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-solution\-::r}}\label{structfclib__solution_aba0437aebbb1060350ef2f0a6e8b504d}
+
+
+local contact forces (or impulses) solution vector 
+
+
+
+Definition at line 261 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-solutions(), fclib\-\_\-delete\-\_\-solutions(), fclib\-\_\-merit\-\_\-local(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-solutions(), read\-\_\-solution(), and write\-\_\-solution().
+
+\hypertarget{structfclib__solution_a872a687856540dd19286aec43d890ede}{\index{fclib\-\_\-solution@{fclib\-\_\-solution}!l@{l}}
+\index{l@{l}!fclib_solution@{fclib\-\_\-solution}}
+\paragraph[{l}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-solution\-::l}}\label{structfclib__solution_a872a687856540dd19286aec43d890ede}
+
+
+multiplier for equlity constraints ( $\lambda$) solution vector 
+
+
+
+Definition at line 263 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-solutions(), fclib\-\_\-delete\-\_\-solutions(), fclib\-\_\-merit\-\_\-local(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-solutions(), read\-\_\-solution(), and write\-\_\-solution().
+

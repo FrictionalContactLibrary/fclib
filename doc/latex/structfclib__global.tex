@@ -1,0 +1,198 @@
+\hypertarget{structfclib__global}{\subsection{fclib\-\_\-global Struct Reference}
+\label{structfclib__global}\index{fclib\-\_\-global@{fclib\-\_\-global}}
+}
+
+
+The global frictional contact problem defined by.  
+
+
+
+
+{\ttfamily \#include $<$fclib.\-h$>$}
+
+
+
+Collaboration diagram for fclib\-\_\-global\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{structfclib__global__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__global_a82538cefd07d0f1f6c1e7baebe768fc6}{M}
+\begin{DoxyCompactList}\small\item\em the matrix M (see mathematical description below) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__global_ac87d5553d144625b9006e2e8b0c89b3c}{H}
+\begin{DoxyCompactList}\small\item\em the matrix M (see mathematical description below) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__global_a897c09aca4a010076ed9ddb3f7527a79}{G}
+\begin{DoxyCompactList}\small\item\em the matrix M (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__global_a99fd8c775c35a6a0e233df1f8cae181a}{mu}
+\begin{DoxyCompactList}\small\item\em the vector $\mu$ of coefficient of friction (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__global_a6d5d0d1f9169b886eb3d3aca0632e8a9}{f}
+\begin{DoxyCompactList}\small\item\em the vector f (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__global_a1badf3df92b120566a2ee3c42194972f}{b}
+\begin{DoxyCompactList}\small\item\em the vector b (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__global_a8b175716b6c1f84509cf44b36a76e7ca}{w}
+\begin{DoxyCompactList}\small\item\em the vector w (see mathematical description below) \end{DoxyCompactList}\item 
+int \hyperlink{structfclib__global_a86dac5928d2c652f15ac688df14989a0}{spacedim}
+\begin{DoxyCompactList}\small\item\em the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$ \hyperlink{structfclib__global_aa6b4e80afc92dd1a9b260ff3a096b352}{info}
+\begin{DoxyCompactList}\small\item\em info on the problem \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The global frictional contact problem defined by. 
+
+Given 
+\begin{DoxyItemize}
+\item a symmetric positive definite matrix ${M} \in {\mathrm{I\!R}}^{n \times n}$ 
+\item a vector $ {f} \in {\mathrm{I\!R}}^n$, 
+\item a matrix ${H} \in {\mathrm{I\!R}}^{n \times m}$ 
+\item a matrix ${G} \in {\mathrm{I\!R}}^{n \times p}$ 
+\item a vector $w \in {\mathrm{I\!R}}^{m}$, 
+\item a vector $b \in {\mathrm{I\!R}}^{p}$, 
+\item a vector of coefficients of friction $\mu \in {\mathrm{I\!R}}^{n_c}$ 
+\end{DoxyItemize}the Global Mixed 3\-D\-F\-C problem is to find four vectors $ {v} \in {\mathrm{I\!R}}^n$, $u\in{\mathrm{I\!R}}^m$, $r\in {\mathrm{I\!R}}^m$ and $\lambda \in {\mathrm{I\!R}}^p$ denoted by $\mathrm{GM3DFC}(M,H,G,w,b,\mu)$ such that \begin{eqnarray*} \begin{cases} M v = {H} {r} + G\lambda + {f} \\ \ \ G^T v +b =0 \\ \ \ \hat u = H^T v + w +\left[ \left[\begin{array}{c} \mu \|u^\alpha_T\|\ \ 0 \ \ 0 \end{array}\right]^T, \alpha = 1 \ldots n_c \right]^T \\ \ \ C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu} \end{cases} \end{eqnarray*} where the Coulomb friction cone for a contact $\alpha$ is defined by \begin{eqnarray*} \label{eq:CCC} C_{\mu^\alpha}^{\alpha} = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \} *\end{eqnarray*} and the set $C^{\alpha,\star}_{\mu^\alpha}$ is its dual. 
+
+Definition at line 174 of file fclib.\-h.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{structfclib__global_a82538cefd07d0f1f6c1e7baebe768fc6}{\index{fclib\-\_\-global@{fclib\-\_\-global}!M@{M}}
+\index{M@{M}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{M}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-global\-::\-M}}\label{structfclib__global_a82538cefd07d0f1f6c1e7baebe768fc6}
+
+
+the matrix M (see mathematical description below) 
+
+
+
+Definition at line 177 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-write\-\_\-global(), main(), random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_ac87d5553d144625b9006e2e8b0c89b3c}{\index{fclib\-\_\-global@{fclib\-\_\-global}!H@{H}}
+\index{H@{H}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{H}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-global\-::\-H}}\label{structfclib__global_ac87d5553d144625b9006e2e8b0c89b3c}
+
+
+the matrix M (see mathematical description below) 
+
+
+
+Definition at line 179 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-write\-\_\-global(), main(), random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a897c09aca4a010076ed9ddb3f7527a79}{\index{fclib\-\_\-global@{fclib\-\_\-global}!G@{G}}
+\index{G@{G}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{G}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-global\-::\-G}}\label{structfclib__global_a897c09aca4a010076ed9ddb3f7527a79}
+
+
+the matrix M (see mathematical description below) 
+
+
+
+Definition at line 181 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-write\-\_\-global(), main(), random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a99fd8c775c35a6a0e233df1f8cae181a}{\index{fclib\-\_\-global@{fclib\-\_\-global}!mu@{mu}}
+\index{mu@{mu}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{mu}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-global\-::mu}}\label{structfclib__global_a99fd8c775c35a6a0e233df1f8cae181a}
+
+
+the vector $\mu$ of coefficient of friction (see mathematical description below) 
+
+
+
+Definition at line 183 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), random\-\_\-global\-\_\-problem(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a6d5d0d1f9169b886eb3d3aca0632e8a9}{\index{fclib\-\_\-global@{fclib\-\_\-global}!f@{f}}
+\index{f@{f}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{f}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-global\-::f}}\label{structfclib__global_a6d5d0d1f9169b886eb3d3aca0632e8a9}
+
+
+the vector f (see mathematical description below) 
+
+
+
+Definition at line 185 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), random\-\_\-global\-\_\-problem(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a1badf3df92b120566a2ee3c42194972f}{\index{fclib\-\_\-global@{fclib\-\_\-global}!b@{b}}
+\index{b@{b}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{b}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-global\-::b}}\label{structfclib__global_a1badf3df92b120566a2ee3c42194972f}
+
+
+the vector b (see mathematical description below) 
+
+
+
+Definition at line 187 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), random\-\_\-global\-\_\-problem(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a8b175716b6c1f84509cf44b36a76e7ca}{\index{fclib\-\_\-global@{fclib\-\_\-global}!w@{w}}
+\index{w@{w}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{w}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-global\-::w}}\label{structfclib__global_a8b175716b6c1f84509cf44b36a76e7ca}
+
+
+the vector w (see mathematical description below) 
+
+
+
+Definition at line 189 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), random\-\_\-global\-\_\-problem(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_a86dac5928d2c652f15ac688df14989a0}{\index{fclib\-\_\-global@{fclib\-\_\-global}!spacedim@{spacedim}}
+\index{spacedim@{spacedim}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{spacedim}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-global\-::spacedim}}\label{structfclib__global_a86dac5928d2c652f15ac688df14989a0}
+
+
+the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws) 
+
+
+
+Definition at line 191 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-write\-\_\-global(), random\-\_\-global\-\_\-problem(), read\-\_\-global\-\_\-vectors(), and write\-\_\-global\-\_\-vectors().
+
+\hypertarget{structfclib__global_aa6b4e80afc92dd1a9b260ff3a096b352}{\index{fclib\-\_\-global@{fclib\-\_\-global}!info@{info}}
+\index{info@{info}!fclib_global@{fclib\-\_\-global}}
+\paragraph[{info}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-info}$\ast$ fclib\-\_\-global\-::info}}\label{structfclib__global_aa6b4e80afc92dd1a9b260ff3a096b352}
+
+
+info on the problem 
+
+
+
+Definition at line 193 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), fclib\-\_\-delete\-\_\-global(), fclib\-\_\-read\-\_\-global(), fclib\-\_\-write\-\_\-global(), and random\-\_\-global\-\_\-problem().
+

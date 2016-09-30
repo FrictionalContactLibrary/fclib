@@ -1,0 +1,170 @@
+\hypertarget{structfclib__matrix}{\subsection{fclib\-\_\-matrix Struct Reference}
+\label{structfclib__matrix}\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}}
+}
+
+
+matrix in compressed row/column or triplet form  
+
+
+
+
+{\ttfamily \#include $<$fclib.\-h$>$}
+
+
+
+Collaboration diagram for fclib\-\_\-matrix\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{structfclib__matrix__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structfclib__matrix_ad59323011143dc70ef74f4377279e0d0}{nzmax}
+\begin{DoxyCompactList}\small\item\em maximum number of entries \end{DoxyCompactList}\item 
+int \hyperlink{structfclib__matrix_aaec2a835fcc339c3fb84227e2f7b861b}{m}
+\begin{DoxyCompactList}\small\item\em number of rows \end{DoxyCompactList}\item 
+int \hyperlink{structfclib__matrix_ace0c395ca5da8a4bcc4958a29895c639}{n}
+\begin{DoxyCompactList}\small\item\em number of columns \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{structfclib__matrix_ace167d937e3c1bb2558e264aefada841}{p}
+\begin{DoxyCompactList}\small\item\em compressed\-: row (size m+1) or column (size n+1) pointers; triplet\-: row indices (size nz) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{structfclib__matrix_aed86c681657206e7502450e437dba667}{i}
+\begin{DoxyCompactList}\small\item\em compressed\-: column or row indices, size nzmax; triplet\-: column indices (size nz) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__matrix_aba1891f51a81f973249456c91715e06d}{x}
+\begin{DoxyCompactList}\small\item\em numerical values, size nzmax \end{DoxyCompactList}\item 
+int \hyperlink{structfclib__matrix_a7d64a7cddc93a8e1f96ab32e9afe0bbb}{nz}
+\begin{DoxyCompactList}\small\item\em \subsubsection*{of entries in triplet matrix, -\/1 for compressed columns, -\/2 for compressed rows}\end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix__info}{fclib\-\_\-matrix\-\_\-info} $\ast$ \hyperlink{structfclib__matrix_ac0af227334c5b0a13a3222c8f04add36}{info}
+\begin{DoxyCompactList}\small\item\em info for this matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+matrix in compressed row/column or triplet form 
+
+Definition at line 119 of file fclib.\-h.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{structfclib__matrix_ad59323011143dc70ef74f4377279e0d0}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!nzmax@{nzmax}}
+\index{nzmax@{nzmax}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{nzmax}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-matrix\-::nzmax}}\label{structfclib__matrix_ad59323011143dc70ef74f4377279e0d0}
+
+
+maximum number of entries 
+
+
+
+Definition at line 122 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_aaec2a835fcc339c3fb84227e2f7b861b}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!m@{m}}
+\index{m@{m}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{m}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-matrix\-::m}}\label{structfclib__matrix_aaec2a835fcc339c3fb84227e2f7b861b}
+
+
+number of rows 
+
+
+
+Definition at line 124 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), compare\-\_\-matrices(), main(), matrix\-\_\-info(), random\-\_\-matrix(), read\-\_\-global\-\_\-vectors(), read\-\_\-local\-\_\-vectors(), read\-\_\-matrix(), write\-\_\-global\-\_\-vectors(), write\-\_\-local\-\_\-vectors(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_ace0c395ca5da8a4bcc4958a29895c639}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!n@{n}}
+\index{n@{n}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{n}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-matrix\-::n}}\label{structfclib__matrix_ace0c395ca5da8a4bcc4958a29895c639}
+
+
+number of columns 
+
+
+
+Definition at line 126 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-global\-\_\-problems(), compare\-\_\-local\-\_\-problems(), compare\-\_\-matrices(), fclib\-\_\-merit\-\_\-local(), main(), random\-\_\-global\-\_\-problem(), random\-\_\-global\-\_\-solutions(), random\-\_\-local\-\_\-solutions(), random\-\_\-matrix(), read\-\_\-global\-\_\-vectors(), read\-\_\-matrix(), write\-\_\-global\-\_\-vectors(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_ace167d937e3c1bb2558e264aefada841}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!p@{p}}
+\index{p@{p}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{p}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ fclib\-\_\-matrix\-::p}}\label{structfclib__matrix_ace167d937e3c1bb2558e264aefada841}
+
+
+compressed\-: row (size m+1) or column (size n+1) pointers; triplet\-: row indices (size nz) 
+
+
+
+Definition at line 128 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), delete\-\_\-matrix(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_aed86c681657206e7502450e437dba667}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!i@{i}}
+\index{i@{i}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{i}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ fclib\-\_\-matrix\-::i}}\label{structfclib__matrix_aed86c681657206e7502450e437dba667}
+
+
+compressed\-: column or row indices, size nzmax; triplet\-: column indices (size nz) 
+
+
+
+Definition at line 130 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), delete\-\_\-matrix(), fclib\-\_\-merit\-\_\-local(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_aba1891f51a81f973249456c91715e06d}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!x@{x}}
+\index{x@{x}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{x}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-matrix\-::x}}\label{structfclib__matrix_aba1891f51a81f973249456c91715e06d}
+
+
+numerical values, size nzmax 
+
+
+
+Definition at line 132 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), delete\-\_\-matrix(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_a7d64a7cddc93a8e1f96ab32e9afe0bbb}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!nz@{nz}}
+\index{nz@{nz}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{nz}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-matrix\-::nz}}\label{structfclib__matrix_a7d64a7cddc93a8e1f96ab32e9afe0bbb}
+
+
+\subsubsection*{of entries in triplet matrix, -\/1 for compressed columns, -\/2 for compressed rows}
+
+
+
+Definition at line 134 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+
+\hypertarget{structfclib__matrix_ac0af227334c5b0a13a3222c8f04add36}{\index{fclib\-\_\-matrix@{fclib\-\_\-matrix}!info@{info}}
+\index{info@{info}!fclib_matrix@{fclib\-\_\-matrix}}
+\paragraph[{info}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix\-\_\-info}$\ast$ fclib\-\_\-matrix\-::info}}\label{structfclib__matrix_ac0af227334c5b0a13a3222c8f04add36}
+
+
+info for this matrix 
+
+
+
+Definition at line 136 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-matrices(), delete\-\_\-matrix(), random\-\_\-matrix(), read\-\_\-matrix(), and write\-\_\-matrix().
+

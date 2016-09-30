@@ -1,0 +1,180 @@
+\hypertarget{structfclib__local}{\subsection{fclib\-\_\-local Struct Reference}
+\label{structfclib__local}\index{fclib\-\_\-local@{fclib\-\_\-local}}
+}
+
+
+The local frictional contact problem defined by.  
+
+
+
+
+{\ttfamily \#include $<$fclib.\-h$>$}
+
+
+
+Collaboration diagram for fclib\-\_\-local\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{structfclib__local__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__local_a981b5abb9acf3f99dffe9a05602ad864}{W}
+\begin{DoxyCompactList}\small\item\em the matrix W (see mathematical description below) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__local_a516663ee92260f82283b4933f7e098cf}{V}
+\begin{DoxyCompactList}\small\item\em the matrix V (see mathematical description below) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__matrix}{fclib\-\_\-matrix} $\ast$ \hyperlink{structfclib__local_ae08751b33a0771d54d48aee48f838ced}{R}
+\begin{DoxyCompactList}\small\item\em the matrix R (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__local_a90d9490cac0bc9b69fd13253882f1557}{mu}
+\begin{DoxyCompactList}\small\item\em the vector $\mu$ of coefficient of friction (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__local_a9a032092a828a13a7e106cce4ba7ad96}{q}
+\begin{DoxyCompactList}\small\item\em the vector q (see mathematical description below) \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{structfclib__local_abb6b3a07d92a86aac1c38e4d847207e3}{s}
+\begin{DoxyCompactList}\small\item\em the vector s (see mathematical description below) \end{DoxyCompactList}\item 
+int \hyperlink{structfclib__local_accf07018913652e57be3a661b25d8bb7}{spacedim}
+\begin{DoxyCompactList}\small\item\em the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws) \end{DoxyCompactList}\item 
+struct \hyperlink{structfclib__info}{fclib\-\_\-info} $\ast$ \hyperlink{structfclib__local_ababce9da71cdb99e4928a596dde8bc89}{info}
+\begin{DoxyCompactList}\small\item\em info on the problem \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The local frictional contact problem defined by. 
+
+given 
+\begin{DoxyItemize}
+\item a positive semi--definite matrix ${W} \in {\mathrm{I\!R}}^{m \times m}$ 
+\item a matrix ${V} \in {\mathrm{I\!R}}^{m \times p}$ 
+\item a matrix ${R} \in {\mathrm{I\!R}}^{p \times p}$ 
+\item a vector $q \in {\mathrm{I\!R}}^{m}$, 
+\item a vector $s \in {\mathrm{I\!R}}^{p}$, 
+\item a vector of coefficients of friction $\mu \in {\mathrm{I\!R}}^{n_c}$ 
+\end{DoxyItemize}the Mixed 3\-D\-F\-C problem is to find three vectors $u\in{\mathrm{I\!R}}^m$, $r\in {\mathrm{I\!R}}^m$ and $\lambda \in {\mathrm{I\!R}}^p$ denoted by $\mathrm{M3DFC}(R,V,W,q,s,\mu)$ such that \begin{eqnarray*}\label{eq:lcp1} *\begin{cases} V^T {r} + R \lambda + s = 0 \\ \ \ \hat u = W {r} + V\lambda + q +\left[ \left[\begin{array}{c} \mu^\alpha \|u^\alpha_T\|\ \ 0 \ \ 0 \end{array}\right]^T, \alpha = 1 \ldots n_c \right]^T \\ \ \ C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu} \end{cases} \end{eqnarray*} where the Coulomb friction cone for a contact $\alpha$ is defined by \begin{eqnarray*} \label{eq:CCC} C_{\mu^\alpha}^{\alpha} = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \} \end{eqnarray*} and the set $C^{\alpha,\star}_{\mu^\alpha}$ is its dual. 
+
+Definition at line 228 of file fclib.\-h.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{structfclib__local_a981b5abb9acf3f99dffe9a05602ad864}{\index{fclib\-\_\-local@{fclib\-\_\-local}!W@{W}}
+\index{W@{W}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{W}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-local\-::\-W}}\label{structfclib__local_a981b5abb9acf3f99dffe9a05602ad864}
+
+
+the matrix W (see mathematical description below) 
+
+
+
+Definition at line 231 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-write\-\_\-local(), main(), random\-\_\-local\-\_\-problem(), random\-\_\-local\-\_\-solutions(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_a516663ee92260f82283b4933f7e098cf}{\index{fclib\-\_\-local@{fclib\-\_\-local}!V@{V}}
+\index{V@{V}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{V}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-local\-::\-V}}\label{structfclib__local_a516663ee92260f82283b4933f7e098cf}
+
+
+the matrix V (see mathematical description below) 
+
+
+
+Definition at line 233 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-write\-\_\-local(), random\-\_\-local\-\_\-problem(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_ae08751b33a0771d54d48aee48f838ced}{\index{fclib\-\_\-local@{fclib\-\_\-local}!R@{R}}
+\index{R@{R}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{R}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-matrix}$\ast$ fclib\-\_\-local\-::\-R}}\label{structfclib__local_ae08751b33a0771d54d48aee48f838ced}
+
+
+the matrix R (see mathematical description below) 
+
+
+
+Definition at line 235 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-write\-\_\-local(), main(), random\-\_\-local\-\_\-problem(), random\-\_\-local\-\_\-solutions(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_a90d9490cac0bc9b69fd13253882f1557}{\index{fclib\-\_\-local@{fclib\-\_\-local}!mu@{mu}}
+\index{mu@{mu}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{mu}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-local\-::mu}}\label{structfclib__local_a90d9490cac0bc9b69fd13253882f1557}
+
+
+the vector $\mu$ of coefficient of friction (see mathematical description below) 
+
+
+
+Definition at line 237 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), random\-\_\-local\-\_\-problem(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_a9a032092a828a13a7e106cce4ba7ad96}{\index{fclib\-\_\-local@{fclib\-\_\-local}!q@{q}}
+\index{q@{q}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{q}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-local\-::q}}\label{structfclib__local_a9a032092a828a13a7e106cce4ba7ad96}
+
+
+the vector q (see mathematical description below) 
+
+
+
+Definition at line 239 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), random\-\_\-local\-\_\-problem(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_abb6b3a07d92a86aac1c38e4d847207e3}{\index{fclib\-\_\-local@{fclib\-\_\-local}!s@{s}}
+\index{s@{s}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{s}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ fclib\-\_\-local\-::s}}\label{structfclib__local_abb6b3a07d92a86aac1c38e4d847207e3}
+
+
+the vector s (see mathematical description below) 
+
+
+
+Definition at line 241 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-merit\-\_\-local(), random\-\_\-local\-\_\-problem(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_accf07018913652e57be3a661b25d8bb7}{\index{fclib\-\_\-local@{fclib\-\_\-local}!spacedim@{spacedim}}
+\index{spacedim@{spacedim}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{spacedim}]{\setlength{\rightskip}{0pt plus 5cm}int fclib\-\_\-local\-::spacedim}}\label{structfclib__local_accf07018913652e57be3a661b25d8bb7}
+
+
+the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws) 
+
+
+
+Definition at line 243 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-merit\-\_\-local(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-write\-\_\-local(), random\-\_\-local\-\_\-problem(), read\-\_\-local\-\_\-vectors(), and write\-\_\-local\-\_\-vectors().
+
+\hypertarget{structfclib__local_ababce9da71cdb99e4928a596dde8bc89}{\index{fclib\-\_\-local@{fclib\-\_\-local}!info@{info}}
+\index{info@{info}!fclib_local@{fclib\-\_\-local}}
+\paragraph[{info}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf fclib\-\_\-info}$\ast$ fclib\-\_\-local\-::info}}\label{structfclib__local_ababce9da71cdb99e4928a596dde8bc89}
+
+
+info on the problem 
+
+
+
+Definition at line 245 of file fclib.\-h.
+
+
+
+Referenced by compare\-\_\-local\-\_\-problems(), fclib\-\_\-delete\-\_\-local(), fclib\-\_\-read\-\_\-local(), fclib\-\_\-write\-\_\-local(), and random\-\_\-local\-\_\-problem().
+
