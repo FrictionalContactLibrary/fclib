@@ -4,8 +4,8 @@ What is fclib ?
 ---------------
 
 fclib is
- * a open source collection of Frictional Contact (FC) problems stored in a specific HDF5 format,
- * a open source light implementation of Input/Output functions in C Language to read and write problems.
+ * an open source collection of Frictional Contact (FC) problems stored in a specific HDF5 format,
+ * an open source light implementation of Input/Output functions in C Language to read and write problems.
  
 The goal of this work is to set up a collection of 2D and 3D Frictional Contact (FC) problems in order to
  * set up a list of benchmarks,
