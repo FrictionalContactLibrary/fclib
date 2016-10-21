@@ -9,13 +9,13 @@ drwxrwsr-x@ 1516 acary  bipop  51544 Oct  2  2015 Chain/
 drwxr-xr-x   836 acary  bipop  28424 Sep 28 09:17 Chute_local_problems/
 drwxrwsr-x     3 acary  bipop    102 Oct  5  2015 Global/
 drwxrwsr-x@  203 acary  bipop   6902 Oct  2  2015 KaplasTower/
-drwxr-xr-x    53 acary  bipop   1802 Oct 20 20:59 LowWall_FEM/
+drwxr-xr-x    52 acary  bipop   1768 Oct 21 17:28 LowWall_FEM/
+-rw-r--r--     1 acary  bipop     79 Oct 21 10:15 README.md
 drwxrwsr-x   202 acary  bipop   6868 Jul 12 23:02 TolvaChute_1000/
 drwxrwsr-x    86 acary  bipop   2924 Jul 12 16:53 TolvaChute_1000_large/
 drwxrwsr-x   100 acary  bipop   3400 Aug 11 17:07 TolvaChute_4000/
 drwxrwsr-x   117 acary  bipop   3978 Sep 26 20:16 cubes_H8/
--rw-r--r--     1 acary  bipop      0 Oct 21 10:12 ls-Rl.txt
--rw-r--r--     1 acary  bipop    576 Sep 28 09:17 rename.py
+-rw-r--r--     1 acary  bipop      0 Oct 21 17:30 ls-Rl.txt
 
 ./100_PR_PerioBox:
 total 198424
@@ -5734,9 +5734,7 @@ total 667888
 -rw-rw-r--@ 1 acary  bipop   974828 Oct  2  2015 KaplasTower-i993-29.hdf5
 
 ./LowWall_FEM:
-total 1404600
--rw-r--r--  1 acary  bipop  14160268 Oct 20 20:59 LMGC_FC3D-i00057-688-00338.hdf5
--rw-r--r--  1 acary  bipop  12118796 Oct 20 20:59 LMGC_LowWall_FEM-i00000-624-00000.hdf5
+total 1380928
 -rw-r--r--  1 acary  bipop  13929492 Oct 20 20:59 LMGC_LowWall_FEM-i00012-680-00004.hdf5
 -rw-r--r--  1 acary  bipop  13875292 Oct 20 20:59 LMGC_LowWall_FEM-i00014-679-00024.hdf5
 -rw-r--r--  1 acary  bipop  13939844 Oct 20 20:59 LMGC_LowWall_FEM-i00017-681-00016.hdf5
@@ -5786,6 +5784,7 @@ total 1404600
 -rw-r--r--  1 acary  bipop  14160268 Oct 20 20:59 LMGC_LowWall_FEM-i00041-688-00452.hdf5
 -rw-r--r--  1 acary  bipop  14160268 Oct 20 20:59 LMGC_LowWall_FEM-i00043-688-00376.hdf5
 -rw-r--r--  1 acary  bipop  14160268 Oct 20 20:59 LMGC_LowWall_FEM-i00045-688-00344.hdf5
+-rw-r--r--  1 acary  bipop  14160268 Oct 20 20:59 LMGC_LowWall_FEM-i00057-688-00338.hdf5
 
 ./TolvaChute_1000:
 total 1541744
