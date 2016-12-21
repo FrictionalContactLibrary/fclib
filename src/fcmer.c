@@ -24,7 +24,7 @@
 /*   M->x = W->x; */
 /* } */
 
-double dnrm2(double * v ,  int n)
+static inline double dnrm2(double * v ,  int n)
 {
   int i;
   double norm2=0.0;
@@ -32,7 +32,7 @@ double dnrm2(double * v ,  int n)
   return sqrt(norm2);
 }
 
-void projectionOnCone(double* r, double  mu)
+static inline void projectionOnCone(double* r, double  mu)
 {
   double normT = hypot(r[1], r[2]);
   if (mu * normT <= - r[0])

@@ -416,6 +416,7 @@ int main (int argc, char **argv)
     printf ("Error for initial problem = %12.8e\n", error1);
        
     fclib_delete_global (problem);
+    free(problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }
@@ -439,6 +440,7 @@ int main (int argc, char **argv)
 
 
     fclib_delete_local (problem);
+    free(problem);
     fclib_delete_solutions (solution, 1);
     fclib_delete_solutions (guesses, numguess);
   }
