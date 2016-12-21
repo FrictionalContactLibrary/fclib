@@ -21,6 +21,12 @@ macro(display V)
   message(STATUS "${V} = ${${V}}")
 endmacro(display V)
 
+MACRO(ASSERT VAR)
+  IF (NOT DEFINED ${VAR})
+    MESSAGE( FATAL_ERROR "ASSERTION ERROR : ${VAR} UNSET" )
+  ENDIF()
+ENDMACRO()
+
 IF(APPLE)
   SET (CMAKE_OSX_ARCHITECTURES "i386;x86_64" )
 ENDIF(APPLE)
@@ -30,6 +36,7 @@ option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = on" ON)
 option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = on." OFF)
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
 option(WITH_TESTS "Enable testing. Default = on" ON)
+option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
 
 # cmake project name
 set(PROJECT_NAME fclib)
@@ -39,7 +46,7 @@ set(PROJECT_NAME fclib)
 set(PACKAGE_NAME "FCLib")
 
 # --- Set a version number for the package ---
-set(${PACKAGE_NAME}_version 1.0.0)
+set(${PACKAGE_NAME}_version 1.1.0)
 
 # --- The name (without extension) of the lib to be created ---
 set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
@@ -61,6 +68,11 @@ set(EXTS_HDRS *.h)
 #   - ${PROJECT_NAME}_SOURCE_DIR : where sources (.f and .h and this CMakeLists.txt) are located
 # Note that because of OutOfSourceBuild, binary_dir and source_dir must be different. 
 project(${PROJECT_NAME} C)
+
+# Install lib directory 32, 64 etc. on Fedora, Debian 
+# http://public.kitware.com/Bug/view.php?id=11964
+# See also http://www.cmake.org/cmake/help/v3.0/module/GNUInstallDirs.html?highlight=gnuinstalldirs
+include(GNUInstallDirs)
 
 # ============= Doc and website =============
 # Doxygen documentation
@@ -144,6 +156,11 @@ endif()
 # Libs to link with PROJECT__LIBRARY_NAME
 target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
 
+set_target_properties(${PROJECT_LIBRARY_NAME} PROPERTIES
+  OUTPUT_NAME "${PROJECT_LIBRARY_NAME}"
+  VERSION "${${PACKAGE_NAME}_version}"
+  CLEAN_DIRECT_OUTPUT 1 # no clobbering
+  LINKER_LANGUAGE C)
 
 # ============== Add tests ==============
 
@@ -172,28 +189,40 @@ add_test(fctest1 fctest1)
 add_test(fctest_merit fctest_merit)
 enable_testing()
 
+# # =========== RPATH stuff ===========
+# # we follow recommendation of https://cmake.org/Wiki/CMake_RPATH_handling
+
+# =========== RPATH stuff ===========
+# do not skip the full RPATH for the build tree
+if(FORCE_SKIP_RPATH)
+  set(CMAKE_SKIP_BUILD_RPATH TRUE)
+else()
+  set(CMAKE_SKIP_BUILD_RPATH FALSE)
+endif()
+
+# when building, don't use the install RPATH already
+# (but later on when installing)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+
+# when building a binary package, it makes no sense to add this rpath
+if(NOT FORCE_SKIP_RPATH)
+  # the RPATH to be used when installing
+  ASSERT(CMAKE_INSTALL_LIBDIR)
+  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+endif(NOT FORCE_SKIP_RPATH)
+
+# don't add the automatically determined parts of the RPATH
+# which point to directories outside the build tree to the install RPATH
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 # ============= Prepare install =============
 
 # The library, the headers and mod files, the cmake generated files
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
 display(${PROJECT_LIBRARY_NAME}_HDRS)
+set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h;")
 include(InstallPackage)
-install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_HDRS)
-
-# ============= RPATH =============
-# Concerning rpath see for example http://www.itk.org/Wiki/CMake_RPATH_handling
-
-# --------------------------------------------
-# do not skip the full RPATH for the build tree
-set(CMAKE_SKIP_BUILD_RPATH  FALSE)
-# when building, don't use the install RPATH already
-# (but later on when installing)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
-# the RPATH to be used when installing
-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-# add the automatically determined parts of the RPATH
-# which point to directories outside the build tree to the install RPATH
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_INSTALL_HDRS)
 
 # ============= Summary =============
 if(VERBOSE_MODE)

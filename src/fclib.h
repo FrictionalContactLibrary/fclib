@@ -82,8 +82,6 @@
 #ifndef _fclib_h_
 #define _fclib_h_
 
-#include "csparse.h"
-
 /**\struct  fclib_info fclib.h
  * This structure allows the user to enter a  problem information  as a title, a short description and known mathematical properties of the problem
  */
