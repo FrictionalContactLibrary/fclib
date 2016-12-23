@@ -1,21 +1,28 @@
 /*! \page download Download
 
-    \section howtosources How to download sources files of the API?
-     <ul>
-	 <li> latest version on the svn server access at <a href=" https://gforge.inria.fr/scm/?group_id=2824"> FCLIB Gforge </a></li>
-	 <li> tar files available at <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
-    </ul>
-     \section howtolibrary How to download the collection of problems ?
-       <ul>
-	 <li> \ref problems_0_2 </a></li>
-      </ul>	     	
-    \section howto Binaries	
-       <ul>
-	 <li> Coming soon at  <a href="https://gforge.inria.fr/frs/?group_id=2824"> FCLIB Gforge  </a></li>
-  	 </ul >
-   
-    <br/>
-    <br/>
+\section howtosources How to download sources files of the API?
+<ul>
+<li> latest version  on <a href="https://github.com/FrictionalContactLibrary/fclib"> github FrictionalContactLibrary/fclib</a></li>
+<li> <a href="https://github.com/FrictionalContactLibrary/fclib/releases"> releases </a></li>
+</ul>
+
+<br>
+<p></p>
+
+\section howtolibrary How to download the collection of problems ?
+<ul>
+
+<li>The directory fclib/data/fclib-library contains the list of problem files of the library of tests in the file ls-Rl.txt </li>
+
+<li> The problem files are not stored in the github repository but there: </li>
+<ul>
+<li> <a href="http://faf.gforge.inria.fr/fclib-library/"> Current versions of problems are there </a> </li>
+<li> <a href="http://fclib.gforge.inria.fr/resources/"> Old tagged versions are there </a></li>
+</ul>
+<li> \ref problems_0_2 </a></li>
+</ul>
+<br/>
+
     
 */
 
@@ -25,10 +32,18 @@
 */
 
 /*! \page publications Related Publications
-  Coming soon ...
-  
+
+  <p>
+<a href="https://hal.inria.fr/hal-00945820v2/document" > Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.<br>
+FCLIB: a collection of discrete 3D Frictional Contact problems. [Technical Report] RT-0444, INRIA. 2014, pp.34.</a>
+<br></br>
+
+<br/>
+</p>
+
   <br/>
 
+*/
 
 /*! \page problems_0_2 FClib collection v0.2
 <ul>

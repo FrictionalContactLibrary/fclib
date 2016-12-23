@@ -7,6 +7,7 @@ FCLIB is
 <li> A open source collection of Frictional Contact (FC) problems stored in a specific <a href="http://www.hdfgroup.org/HDF5/"> HDF5 format </a></li>
 <li> A open source light implementation of Input/Output functions in C Language to read and write problems </li>
 </ul>
+<br>
 
 \section goals Goals of the project
 
@@ -17,11 +18,42 @@ The goal of this work is to set up a collection of 2D and 3D Frictional Contact 
 <li> provide a standard framework for testing available and new algorithms for solving discrete frictional contact problems </li>
 <li> share common formulations of problems in order to exchange data</li>
 </ul>
- 
+ <br>
+
+
+\section References
+<p>
+<a href="https://hal.inria.fr/hal-00945820v2/document" > Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.<br>
+FCLIB: a collection of discrete 3D Frictional Contact problems. [Technical Report] RT-0444, INRIA. 2014, pp.34.</a>
+<br></br>
+
+<br/>
+</p>
 
 \section howtodownload How to download  ?
+<p>
+How to download sources files of the API?
+<ul>
+<li> latest version  on <a href="https://github.com/FrictionalContactLibrary/fclib"> github FrictionalContactLibrary/fclib</a></li>
+<li> <a href="https://github.com/FrictionalContactLibrary/fclib/releases"> releases </a></li>
+</ul>
+</p>
+<br>
 
-see \ref download section
+ How to download the collection of problems ?
+<ul>
+<li>The directory fclib/data/fclib-library contains the list of problem files of the library of tests in the file ls-Rl.txt </li>
+
+<li> The problem files are not stored in the github repository but there: </li>
+<ul>
+<li> <a href="http://faf.gforge.inria.fr/fclib-library/"> Current versions of problems are there </a> </li>
+<li> <a href="http://fclib.gforge.inria.fr/resources/"> Old tagged versions are there </a></li>
+</ul>
+<li> \ref problems_0_2 </a></li>
+</ul>
+see \ref download section for other details
+<br/>
+
 
 \section Wahtis What is a Frictional contact problem ?
 
@@ -48,22 +80,23 @@ A Frictional contact problem is algebraic problem obtained after possible time a
         0
       \end{array}\right]^T, \alpha = 1 \ldots n_c
 \right]^T \\ \\
-    C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+    K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
   \end{cases}
 \f}
 where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by 
 \f{eqnarray*}{
   \label{eq:CCC}
-  C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+  K
+  _{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
 \f}
-and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
+and the set \f$K^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
 \subsection globalfclib The Global Frictional Contact problem with equality constraints
 
 We are also dealing with global  FC problem defined by
 
  Given
 <ul>
-    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
+    <li> a positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
     <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
     <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
     <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
@@ -83,13 +116,13 @@ We are also dealing with global  FC problem defined by
         0
       \end{array}\right]^T, \alpha = 1 \ldots n_c
 \right]^T \\ \\
-    C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+    K^\star_{\mu} \ni {\hat u} \perp r \in K_{\mu}
   \end{cases}
 \f}
  \subsection without Problems without equality constraints
 If the original problems do not contain inequality constraints, or if they are reduced, the problems do no have the variables \f$\lambda\f$ as unknowns and can be simplified.  However, the storage in HDF5 file remains the same.
 
- \subsection Merict functions.
+ \subsection merit Merit functions.
  The API provides also some Merit functions which measures if one set of vectors satisfies the previous problems.
 
 */
