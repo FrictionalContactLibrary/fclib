@@ -46,7 +46,7 @@ set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
 
 # The list of all dirs containing sources to be compiled for the fclib lib
 # Any file in those dirs will be used to create libfclib
-set(${PROJECT_LIBRARY_NAME}_SRCDIRS src externals/SuiteSparse/CSparse)
+set(${PROJECT_LIBRARY_NAME}_SRCDIRS src)
 
 # Matching expr for files to be compiled. 
 set(EXTS *.c)
@@ -157,10 +157,12 @@ FILE(GLOB_RECURSE _DATA_FILES
   *.INI)
 
 FOREACH(_F ${_DATA_FILES})
-  GET_FILENAME_COMPONENT(_BASENAME_F "${_F}" NAME ) 
-  MESSAGE(STATUS "basename = ${_BASENAME_F}")
-  MESSAGE(STATUS "copy  ${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} in ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F}")
-  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F} COPYONLY)
+  IF (NOT "${_F}" MATCHES "fclib-library")
+    GET_FILENAME_COMPONENT(_BASENAME_F "${_F}" NAME )
+    MESSAGE(STATUS "basename = ${_BASENAME_F}")
+    MESSAGE(STATUS "copy  ${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} in ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F}")
+    CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${_D}/${_F} ${CMAKE_CURRENT_BINARY_DIR}/${_BASENAME_F} COPYONLY)
+  ENDIF()
 ENDFOREACH(_F ${_DATA_FILES})
 
 
