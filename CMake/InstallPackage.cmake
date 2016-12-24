@@ -10,7 +10,8 @@ macro(install_package _PACK _LIB_NAME _HEADERSLIST)
   set(_HEADERS ${${_HEADERSLIST}})
   
   # Offer the user the choice of overriding the installation directories
-  set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
+  ASSERT(CMAKE_INSTALL_LIBDIR)
+  set(INSTALL_LIB_DIR ${CMAKE_INSTALL_LIBDIR} CACHE PATH "Installation directory for libraries")
   set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
   set(INSTALL_INCLUDE_DIR include CACHE PATH
     "Installation directory for header files")

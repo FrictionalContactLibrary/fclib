@@ -29,6 +29,7 @@
 #include "fclib.h"
 #include "fcint.h"
 #include "math.h"
+#include "csparse.h"
 
 
 /* void fclib_matrix_to_cssparse(struct fclib_matrix * W, cs * M) */
