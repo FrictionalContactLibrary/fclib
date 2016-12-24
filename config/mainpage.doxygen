@@ -9,7 +9,7 @@ FCLIB is
 </ul>
 <br>
 
-\section goals Goals of the project
+\section goals Goals of the project (2011-2017)
 
 The goal of this work is to set up a collection of 2D and 3D Frictional Contact (FC) problems in order to
 
@@ -23,36 +23,35 @@ The goal of this work is to set up a collection of 2D and 3D Frictional Contact 
 
 \section References
 <p>
-<a href="https://hal.inria.fr/hal-00945820v2/document" > Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.<br>
-FCLIB: a collection of discrete 3D Frictional Contact problems. [Technical Report] RT-0444, INRIA. 2014, pp.34.</a>
-<br></br>
-
+<a href="https://hal.inria.fr/hal-00945820v2/document" >
+FCLIB: a collection of discrete 3D Frictional Contact problems.</a>
+<br> Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.
+ [Technical Report] RT-0444, INRIA. 2014, pp.34.<br></br>
+ 	    <br></br>	     
+<a href="https://hal.inria.fr/inria-00423530" > Numerical Methods for Nonsmooth Dynamical Systems: Applications in Mechanics and Electronics </a><br></br>
+Vincent Acary, Bernard Brogliato<br></br>
+Springer Verlag, 35, pp.526, 2008, Lecture Notes in Applied and Computational Mechanics, 978-3-540-75391-9 <br></br>
 <br/>
 </p>
 
 \section howtodownload How to download  ?
-<p>
 How to download sources files of the API?
+
 <ul>
-<li> latest version  on <a href="https://github.com/FrictionalContactLibrary/fclib"> github FrictionalContactLibrary/fclib</a></li>
-<li> <a href="https://github.com/FrictionalContactLibrary/fclib/releases"> releases </a></li>
+<li>  <a href="https://github.com/FrictionalContactLibrary/fclib">latest version  on github</a></li>
+<li>  <a href="https://github.com/FrictionalContactLibrary/fclib/releases"> releases on github </a></li>
 </ul>
-</p>
+
 <br>
+<p></p>
 
- How to download the collection of problems ?
+How to download the collection of problems ?
 <ul>
-<li>The directory fclib/data/fclib-library contains the list of problem files of the library of tests in the file ls-Rl.txt </li>
-
-<li> The problem files are not stored in the github repository but there: </li>
-<ul>
-<li> <a href="http://faf.gforge.inria.fr/fclib-library/"> Current versions of problems are there </a> </li>
-<li> <a href="http://fclib.gforge.inria.fr/resources/"> Old tagged versions are there </a></li>
-</ul>
-<li> \ref problems_0_2 </a></li>
-</ul>
-see \ref download section for other details
+<li> The problems are stored on a github repo with the help of git-lfs <a href="https://github.com/FrictionalContactLibrary/fclib-library">   fclib-library </a> </li>
+<li> The release of the library of problems are tagged and can be found <a href="https://github.com/FrictionalContactLibrary/fclib-library/releases">   there </a> </li>
 <br/>
+<br>
+<p></p>
 
 
 \section Wahtis What is a Frictional contact problem ?

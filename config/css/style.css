@@ -10,7 +10,7 @@ ul {padding:0;margin:0 0 0 17px;list-style: square url(images/bullet.gif);}
 .box {background : #f7f7f7;border : 1px solid #f0e9eb;padding : 15px;}
 
 /*** Layout ****/
-#wrapper {margin : 0 auto;width : 776px;border-left : 1px solid #f0e9eb;border-right : 1px solid #f0e9eb;}
+#wrapper {margin : 0 auto;width :900px;border-left : 1px solid #f0e9eb;border-right : 1px solid #f0e9eb;}
 #header {margin : 0 0px;}
 #bg {height : 36px;background : url(images/bg.gif) repeat-x;}
 #nav {background : #7a2e40;padding : 10px 20px;text-align : right;color : #f6dde3;}
