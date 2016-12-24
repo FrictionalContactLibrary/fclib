@@ -17,4 +17,9 @@
 * Documentation
 ** DONE Doxygen comment of the fclib.h
    DEADLINE: <2011-12-23 Fri> CLOSED: [2011-11-23 Wed 20:56]
-** TODO Write a small tutorial form the test fctst.c to read and write an hdf5 file
+** TODO Write a small tutorial from the test fctst.c to read and write an hdf5 file
+** Describe the collection of examples directly in github repo rather in RT fclib. easier to maintain
+   DEADLINE: <2017-01-06 Fri>
+   
+
+
