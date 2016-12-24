@@ -28,9 +28,9 @@ Download
 -----------------
 How to download sources files of the API?
 
-* latest releases are on github https://github.com/FrictionalContactLibrary/fclib/releases
+* [latest releases](https://github.com/FrictionalContactLibrary/fclib/releases)  on github 
 
 How to download the collection of problems ?
 
- The problems are stored on a github repo with the help of git-lfs (https://github.com/FrictionalContactLibrary/fclib-library)[fclib-library]
- The release of the library of problems are tagged and can be found (https://github.com/FrictionalContactLibrary/fclib-library/releases) [fclib-library releases]
+* The problems are stored on a github repo [fclib-library](https://github.com/FrictionalContactLibrary/fclib-library) with the help of git-lfs 
+* The [latest tagged releases](https://github.com/FrictionalContactLibrary/fclib-library/releases) of the library of problems
