@@ -26,18 +26,11 @@ https://hal.inria.fr/hal-00945820v2/document
 
 Download 
 -----------------
-How to download sources files of the API? 
+How to download sources files of the API?
+
 * latest releases are on github https://github.com/FrictionalContactLibrary/fclib/releases
 
 How to download the collection of problems ?
 
-The directory data/fclib-library contains the list of problem files of the library of tests in the file ls-Rl.txt
-
-The problem files are not stored in the github repository but there:
-
-  - Current versions of problem are here (http://faf.gforge.inria.fr/fclib-library/)
-  - tagged versions are here (https://gforge.inria.fr/frs/?group_id=2824) and  (http://fclib.gforge.inria.fr/resources/)
-
-
-
-
+ The problems are stored on a github repo with the help of git-lfs (https://github.com/FrictionalContactLibrary/fclib-library)[fclib-library]
+ The release of the library of problems are tagged and can be found (https://github.com/FrictionalContactLibrary/fclib-library/releases) [fclib-library releases]
