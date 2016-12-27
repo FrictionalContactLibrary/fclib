@@ -19,7 +19,7 @@
 #define csi mwSignedIndex
 #endif
 #ifndef csi
-#define csi ptrdiff_t
+#define csi int
 #endif
 
 /* --- primary CSparse routines and data structures ------------------------- */
