@@ -53,7 +53,7 @@ set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
 
 # The list of all dirs containing sources to be compiled for the fclib lib
 # Any file in those dirs will be used to create libfclib
-set(${PROJECT_LIBRARY_NAME}_SRCDIRS src)
+set(${PROJECT_LIBRARY_NAME}_SRCDIRS "src;externals/SuiteSparse/CSparse")
 
 # Matching expr for files to be compiled. 
 set(EXTS *.c)
