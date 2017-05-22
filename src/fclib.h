@@ -83,11 +83,16 @@
 #ifndef _fclib_h_
 #define _fclib_h_
 
+#ifndef FCLIB_APICOMPILE
+#define FCLIB_APICOMPILE
+#endif
+
+
 /**\struct  fclib_info fclib.h
  * This structure allows the user to enter a  problem information  as a title, a short description and known mathematical properties of the problem
  */
 
-struct fclib_info
+struct FCLIB_APICOMPILE fclib_info
 {
   /** title of the problem*/
   char *title;
@@ -100,7 +105,7 @@ struct fclib_info
 /**\struct  fclib_matrix_info fclib.h
  * This structure allows the user to enter a description for a given matrix (comment, conditionning, determinant, rank.) if they are known.
  */
-struct fclib_matrix_info  /* matrix information */
+struct FCLIB_APICOMPILE fclib_matrix_info  /* matrix information */
 {
   /** comment on the matrix properties*/
   char *comment;
@@ -115,7 +120,7 @@ struct fclib_matrix_info  /* matrix information */
 /**\struct  fclib_matrix fclib.h
  * matrix in compressed row/column or triplet form
  */
-struct fclib_matrix   /*  */
+struct FCLIB_APICOMPILE fclib_matrix   /*  */
 {
   /** maximum number of entries */
   int nzmax ;
@@ -170,7 +175,7 @@ struct fclib_matrix   /*  */
  *\f}
  * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
  */
-struct fclib_global
+struct FCLIB_APICOMPILE fclib_global
 {
   /** the matrix M (see mathematical description below)*/
   struct fclib_matrix *M;
@@ -224,7 +229,7 @@ struct fclib_global
  * \f}
  * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
  */
-struct fclib_local
+struct FCLIB_APICOMPILE fclib_local
 {
   /** the matrix W (see mathematical description below)*/
   struct fclib_matrix *W;
@@ -250,7 +255,7 @@ struct fclib_local
  * This structure allows to store a solution vector of a guess vector for the
  * various frictional contact problems.
  */
-struct fclib_solution /* solution data */
+struct FCLIB_APICOMPILE fclib_solution /* solution data */
 {
   /** global velocity (or position/displacement for quasi-static problems) solution vector */
   double *v;
@@ -265,58 +270,59 @@ struct fclib_solution /* solution data */
 /** \enum  fclib_merit
  * MERIT_1 is a implementation of the merit function based on the natural map for a SOCCP
  */
-enum fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
+enum FCLIB_APICOMPILE fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
 
 /** write global problem;
  * return 1 on success, 0 on failure */
-int fclib_write_global (struct fclib_global *problem, const char *path);
+int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *problem, const char *path);
 
 /** write local problem;
  * return 1 on success, 0 on failure */
-int fclib_write_local (struct fclib_local *problem, const char *path);
+int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem, const char *path);
 
 /** write solution;
  * return 1 on success, 0 on failure */
-int fclib_write_solution (struct fclib_solution *solution, const char *path);
+int FCLIB_APICOMPILE fclib_write_solution (struct fclib_solution *solution, const char *path);
 
 /** write initial guesses;
  * return 1 on success, 0 on failure */
-int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path);
+int FCLIB_APICOMPILE fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path);
 
 /** read global problem;
  * return problem on success; NULL on failure */
-struct fclib_global* fclib_read_global (const char *path);
+FCLIB_APICOMPILE struct fclib_global* fclib_read_global (const char *path);
 
 /** read local problem;
  * return problem on success; NULL on failure */
-struct fclib_local* fclib_read_local (const char *path);
+FCLIB_APICOMPILE struct fclib_local* fclib_read_local (const char *path);
 
 /** read solution;
  * return solution on success; NULL on failure */
-struct fclib_solution* fclib_read_solution (const char *path);
+FCLIB_APICOMPILE struct fclib_solution* fclib_read_solution (const char *path);
 
 /** read initial guesses;
  * return vector of guesses on success; NULL on failure;
  * output numebr of guesses in the variable pointed by 'number_of_guesses' */
-struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses);
+FCLIB_APICOMPILE struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses);
 
 /** calculate merit function for a global problem */
-double fclib_merit_global (struct fclib_global *problem, enum fclib_merit merit, struct fclib_solution *solution);
+double FCLIB_APICOMPILE fclib_merit_global (struct fclib_global *problem, enum fclib_merit merit, struct fclib_solution *solution);
 
 /** calculate merit function for a local problem */
-double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, struct fclib_solution *solution);
+double FCLIB_APICOMPILE fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, struct fclib_solution *solution);
 
 /** delete global problem */
-void fclib_delete_global (struct fclib_global *problem);
+void FCLIB_APICOMPILE fclib_delete_global (struct fclib_global *problem);
 
 /** delete local problem */
-void fclib_delete_local (struct fclib_local *problem);
+void FCLIB_APICOMPILE fclib_delete_local (struct fclib_local *problem);
 
 /** delete solutions or guesses */
-void fclib_delete_solutions (struct fclib_solution *data, int count);
+void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution *data, int count);
 
 /** create and set attributes of tyoe int in info */
-int fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
+int FCLIB_APICOMPILE fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
                                         int attr_value);
+
 
 #endif /* _fclib_h_ */
