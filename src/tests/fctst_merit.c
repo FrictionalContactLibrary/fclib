@@ -60,8 +60,8 @@ static struct fclib_matrix* random_matrix (int m, int n)
   if (rand () % 2) /* triplet */
   {
     mat->nz = mat->nzmax;
-    MM (mat->p = malloc (sizeof (int [mat->nzmax])));
-    MM (mat->i = malloc (sizeof (int [mat->nzmax])));
+    MM (mat->p = malloc (sizeof(int)*mat->nzmax));
+    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     for (j = 0; j < mat->nzmax; j ++)
     {
       mat->p [j] = rand () % mat->m;
@@ -72,14 +72,14 @@ static struct fclib_matrix* random_matrix (int m, int n)
   {
     mat->nz = (rand () % 2 ? -1 : -2); /* csc / csr */
     int k = (mat->nz == -1 ? mat->n : mat->m);
-    MM (mat->p = malloc (sizeof (int [k+1])));
-    MM (mat->i = malloc (sizeof (int [mat->nzmax])));
+    MM (mat->p = malloc (sizeof(int)*k+1));
+    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     int l = mat->nzmax / k;
     for (mat->p [0] = j = 0; j < k; j ++) mat->p [j+1] = mat->p [j] + l;
     for (j = 0; j < mat->nzmax; j ++) mat->i [j] = rand () % k;
   }
 
-  MM (mat->x = malloc (sizeof (double [mat->nzmax])));
+  MM (mat->x = malloc (sizeof(double)*mat->nzmax));
   for (j = 0; j < mat->nzmax; j ++) mat->x [j] = (double) rand ()  / (double) RAND_MAX;
 
   if (rand ()) mat->info = matrix_info (mat, "A random matrix");
@@ -93,7 +93,7 @@ static double* random_vector (int n)
 {
   double *v;
 
-  MM (v = malloc (sizeof (double [n])));
+  MM (v = malloc (sizeof(double)*n));
   for (n --; n >= 0; n --) v [n] = (double) rand () / (double) RAND_MAX;
 
   return v;
