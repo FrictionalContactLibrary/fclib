@@ -108,28 +108,28 @@ struct fclib_matrix* read_matrix (hid_t id)
 
   if (mat->nz >= 0) /* triplet */
   {
-    MM (mat->p = malloc (sizeof (int [mat->nz])));
-    MM (mat->i = malloc (sizeof (int [mat->nz])));
+    MM (mat->p = malloc (sizeof(int)*mat->nz));
+    MM (mat->i = malloc (sizeof(int)*mat->nz));
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else if (mat->nz == -1) /* csc */
   {
-    MM (mat->p = malloc (sizeof (int [mat->n+1])));
-    MM (mat->i = malloc (sizeof (int [mat->nzmax])));
+    MM (mat->p = malloc (sizeof(int)*mat->n+1));
+    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else if (mat->nz == -2) /* csr */
   {
-    MM (mat->p = malloc (sizeof (int [mat->m+1])));
-    MM (mat->i = malloc (sizeof (int [mat->nzmax])));
+    MM (mat->p = malloc (sizeof(int)*mat->m+1));
+    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else ASSERT (0, "ERROR: unkown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
 
-  MM (mat->x = malloc (sizeof (double [mat->nzmax])));
+  MM (mat->x = malloc (sizeof(double)*mat->nzmax));
   IO (H5LTread_dataset_double (id, "x", mat->x));
 
   if (H5LTfind_dataset (id, "conditioning"))
@@ -142,7 +142,7 @@ struct fclib_matrix* read_matrix (hid_t id)
     if (H5LTfind_dataset (id, "comment"))
     {
       IO (H5LTget_dataset_info  (id, "comment", &dim, &class_id, &size));
-      MM (mat->info->comment = malloc (sizeof (char [size])));
+      MM (mat->info->comment = malloc (sizeof(char)*size));
       IO (H5LTread_dataset_string (id, "comment", mat->info->comment));
     }
     else mat->info->comment = NULL;
@@ -185,18 +185,18 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
 /** read global vectors */
 static void read_global_vectors (hid_t id, struct fclib_global *problem)
 {
-  MM (problem->f = malloc (sizeof (double [problem->M->m])));
+  MM (problem->f = malloc (sizeof(double)*problem->M->m));
   IO (H5LTread_dataset_double (id, "f", problem->f));
 
   ASSERT (problem->H->n % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
-  MM (problem->w = malloc (sizeof (double [problem->H->n])));
-  MM (problem->mu = malloc (sizeof (double [problem->H->n / problem->spacedim])));
+  MM (problem->w = malloc (sizeof(double)*problem->H->n));
+  MM (problem->mu = malloc (sizeof(double)*(problem->H->n / problem->spacedim)));
   IO (H5LTread_dataset_double (id, "w", problem->w));
   IO (H5LTread_dataset_double (id, "mu", problem->mu));
 
   if (problem->G)
   {
-    MM (problem->b = malloc (sizeof (double [problem->G->n])));
+    MM (problem->b = malloc (sizeof(double)*problem->G->n));
     IO (H5LTread_dataset_double (id, "b", problem->b));
   }
 }
@@ -225,16 +225,16 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
 /** read local vectors */
 static void read_local_vectors (hid_t id, struct fclib_local *problem)
 {
-  MM (problem->q = malloc (sizeof (double [problem->W->m])));
+  MM (problem->q = malloc (sizeof(double)*problem->W->m));
   IO (H5LTread_dataset_double (id, "q", problem->q));
 
   ASSERT (problem->W->m % problem->spacedim == 0, "ERROR: number of W rows is not divisble by the spatial dimension");
-  MM (problem->mu = malloc (sizeof (double [problem->W->m / problem->spacedim])));
+  MM (problem->mu = malloc (sizeof(double)*(problem->W->m / problem->spacedim)));
   IO (H5LTread_dataset_double (id, "mu", problem->mu));
 
   if (problem->R)
   {
-    MM (problem->s = malloc (sizeof (double [problem->R->m])));
+    MM (problem->s = malloc (sizeof(double)*problem->R->m));
     IO (H5LTread_dataset_double (id, "s", problem->s));
   }
 }
@@ -260,7 +260,7 @@ static struct fclib_info* read_problem_info (hid_t id)
   if (H5LTfind_dataset (id, "title"))
   {
     IO (H5LTget_dataset_info  (id, "title", &dim, &class_id, &size));
-    MM (info->title = malloc (sizeof (char [size])));
+    MM (info->title = malloc (sizeof(char)*size));
     IO (H5LTread_dataset_string (id, "title", info->title));
   }
   else info->title = NULL;
@@ -268,7 +268,7 @@ static struct fclib_info* read_problem_info (hid_t id)
   if (H5LTfind_dataset (id, "description"))
   {
     IO (H5LTget_dataset_info  (id, "description", &dim, &class_id, &size));
-    MM (info->description = malloc (sizeof (char [size])));
+    MM (info->description = malloc (sizeof(char)*size));
     IO (H5LTread_dataset_string (id, "description", info->description));
   }
   else info->description = NULL;
@@ -276,7 +276,7 @@ static struct fclib_info* read_problem_info (hid_t id)
   if (H5LTfind_dataset (id, "math_info"))
   {
     IO (H5LTget_dataset_info  (id, "math_info", &dim, &class_id, &size));
-    MM (info->math_info = malloc (sizeof (char [size])));
+    MM (info->math_info = malloc (sizeof(char)*size));
     IO (H5LTread_dataset_string (id, "math_info", info->math_info));
   }
   else info->math_info = NULL;
@@ -300,22 +300,22 @@ static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct 
 {
   if (nv)
   {
-    MM (solution->v = malloc (sizeof (double [nv])));
+    MM (solution->v = malloc (sizeof(double)*nv));
     IO (H5LTread_dataset_double (id, "v", solution->v));
   }
   else solution->v = NULL;
 
   if (nl)
   {
-    MM (solution->l = malloc (sizeof (double [nl])));
+    MM (solution->l = malloc (sizeof(double)*nl));
     IO (H5LTread_dataset_double (id, "l", solution->l));
   }
   else solution->l = NULL;
 
   ASSERT (nr, "ERROR: contact constraints must be present");
-  MM (solution->u = malloc (sizeof (double [nr])));
+  MM (solution->u = malloc (sizeof(double)*nr));
   IO (H5LTread_dataset_double (id, "u", solution->u));
-  MM (solution->r = malloc (sizeof (double [nr])));
+  MM (solution->r = malloc (sizeof(double)*nr));
   IO (H5LTread_dataset_double (id, "r", solution->r));
 }
 

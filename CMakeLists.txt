@@ -120,6 +120,15 @@ if (NOT CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE RELEASE CACHE STRING "Choose the type of build, options are: None, Debug, Release, RelWithDebInfo or MinSizeRel." FORCE)  
 endif (NOT CMAKE_BUILD_TYPE)
 
+if(MSVC)
+	option(USING_HDF5_DLLs "WIN ONLY: turn on if the shared library of HDSL is linked" ON)
+	IF (USING_HDF5_DLLs)
+		ADD_DEFINITIONS("-DH5_BUILT_AS_DYNAMIC_LIB")
+	ENDIF(USING_HDF5_DLLs)
+	ADD_DEFINITIONS("-DFCLIB_APICOMPILE=__declspec( dllexport )")
+	ADD_DEFINITIONS("-D_CRT_SECURE_NO_WARNINGS")
+endif(MSVC)
+
 # ============= Source and header files list =============
 # We scan all files with matching extension in directories 
 # containing sources.
