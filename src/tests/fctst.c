@@ -214,7 +214,7 @@ static int compare_matrix_infos (struct fclib_matrix_info *a, struct fclib_matri
       a->determinant != b->determinant ||
       a->rank != b->rank) return 0;
 
-  return 1; 
+  return 1;
 }
 
 /* compare two matrices */
@@ -305,7 +305,7 @@ static int compare_matrices (char *name, struct fclib_matrix *a, struct fclib_ma
   }
 
   for (i = 0; i < a->nzmax; i ++)
-    if (a->x [i] != b->x [i]) 
+    if (a->x [i] != b->x [i])
     {
 	fprintf (stderr,
 	         "ERROR: For %s in {a, b} a->x [%d] != b->x [%d] => %g != %g\n",
@@ -435,7 +435,7 @@ int main (int argc, char **argv)
       }
 
       printf ("All comparisons PASSED\n");
-    
+
       fclib_delete_global (p);
       free(p);
       fclib_delete_solutions (s, 1);
@@ -473,18 +473,18 @@ int main (int argc, char **argv)
 
       ASSERT (compare_local_problems (problem, p), "ERROR: written/read problem comparison failed");
       ASSERT (compare_solutions (solution, s, 0, p->W->m, (p->R ? p->R->n : 0)), "ERROR: written/read solution comparison failed");
- 
+
       printf ("Computing merit function ...\n");
 
       double error1 = fclib_merit_local (problem, MERIT_1, solution);
       double error2 = fclib_merit_local (p, MERIT_1, s);
       printf ("Error for initial problem = %12.8e\n", error1);
       printf ("Error for read problem = %12.8e\n", error2);
-     
-  
-      
-      
-       
+
+
+
+
+
 
 
       ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
@@ -494,7 +494,7 @@ int main (int argc, char **argv)
       }
 
       printf ("All comparions PASSED\n");
-    
+
       fclib_delete_local (p);
       free(p);
       fclib_delete_solutions (s, 1);
@@ -507,7 +507,7 @@ int main (int argc, char **argv)
     fclib_delete_solutions (guesses, numguess);
   }
 
-   remove ("output_file.hdf5"); 
+   remove ("output_file.hdf5");
 
   return 0;
 }
