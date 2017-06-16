@@ -482,11 +482,6 @@ int main (int argc, char **argv)
       printf ("Error for read problem = %12.8e\n", error2);
 
 
-
-
-
-
-
       ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
       for (i = 0; i < n; i ++)
       {

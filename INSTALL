@@ -1,6 +1,5 @@
 To compile and install fclib : 
 
-
 cd SOME_BUILD_DIR
 cmake path_to_fclib -DCMAKE_INSTALL_PREFIX=where_to_install_fclib
 make
@@ -34,3 +33,5 @@ and run cmake like this:
 
 cmake ... -DFCLib_DIR=where_you_install_fclib/share/CMake/
 
+For all functions except merit ones, fclib may be used as a header
+only library.

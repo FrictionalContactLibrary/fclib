@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Contact: fclib-project@lists.gforge.inria.fr   
+ * Contact: fclib-project@lists.gforge.inria.fr
 */
 
 
@@ -22,6 +22,5 @@
  * frictional contact library input/output
  */
 
-
-
+#define FCLIB_IMPLEMENTATION
 #include "fclib.h"

@@ -22,13 +22,14 @@
  * frictional contact library interface
  * -----------------------------------------
  *
- * This C API provides functions to read and write Frictional contact problemes in HDF5 format
- * Two kind of problem are considered
- *  Given
+ * This C API provides functions to read and write Frictional contact
+ * problems in HDF5 format Two kind of problem are considered Given
  * <ul>
- *   <li> a symmetric positive semi--definite  matrix \f${W} \in {\mathrm{I\!R}}^{m \times m} \f$ </li>
+ *   <li> a symmetric positive semi--definite matrix \f${W} \in
+ *   {\mathrm{I\!R}}^{m \times m} \f$ </li>
  *   <li> a vector \f$ {q} \in {\mathrm{I\!R}}^m\f$</li>
- *   <li> a vector of coefficients of friction \f$\mu \in{\mathrm{I\!R}}^{n_c}\f$</li>
+ *   <li> a vector of coefficients of friction \f$\mu
+ *   \in{\mathrm{I\!R}}^{n_c}\f$</li>
  *</ul>
  * the local FC problem  is to find two vectors \f$u\in{\ensuremath{\mathrm{I\!R}}}^m\f$,
  * the relative local velocity and \f$r\in {\ensuremath{\mathrm{I\!R}}}^m\f$,
@@ -62,7 +63,10 @@
  *    <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
  *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
  *</ul>
- * the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
+ * the Global Mixed 3DFC problem is to find four vectors \f$ {v} \in
+ * {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in
+ * {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$
+ * denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$ such that
  * \f{eqnarray*}{
  * \begin{cases}
  *   M v = {H} {r} + G\lambda + {f} \\ \        \
@@ -87,18 +91,17 @@
 #define FCLIB_APICOMPILE
 #endif
 
+/* the default is to use a header only library */
+#ifndef FCLIB_NOT_HEADER_ONLY
+#define FCLIB_STATIC static
+#define FCLIB_IMPLEMENTATION
+#else
+#define FCLIB_STATIC
+#endif
+
 /* choose api version */
 #define H5Gcreate_vers 2
 #define H5Gopen_vers 2
-
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <hdf5.h>
-#include <hdf5_hl.h>
-#include "fclib.h"
-#include "fcint.h"
-#include <csparse.h>
 
 /**\struct  fclib_info fclib.h
  * This structure allows the user to enter a  problem information  as a title, a short description and known mathematical properties of the problem
@@ -114,8 +117,10 @@ struct FCLIB_APICOMPILE fclib_info
   char *math_info;
 };
 
-/**\struct  fclib_matrix_info fclib.h
- * This structure allows the user to enter a description for a given matrix (comment, conditionning, determinant, rank.) if they are known.
+/**\struct fclib_matrix_info fclib.h
+ * This structure allows the user to enter a description for a given
+ * matrix (comment, conditionning, determinant, rank.) if they are
+ * known.
  */
 struct FCLIB_APICOMPILE fclib_matrix_info  /* matrix information */
 {
@@ -284,9 +289,98 @@ struct FCLIB_APICOMPILE fclib_solution /* solution data */
  */
 enum FCLIB_APICOMPILE fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
 
+/** write global problem;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int fclib_write_global (struct fclib_global *problem,
+                                     const char *path);
 
-/** make grourp */
-static hid_t H5Gmake (hid_t loc_id, const char *name)
+/** write local problem;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int fclib_write_local (struct fclib_local *problem,
+                                    const char *path);
+
+/** write solution;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int fclib_write_solution (struct fclib_solution *solution,
+                                       const char *path);
+
+/** write initial guesses;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int fclib_write_guesses (int number_of_guesses,
+                                      struct fclib_solution *guesses,
+                                      const char *path);
+
+/** read global problem;
+ * return problem on success; NULL on failure */
+FCLIB_STATIC struct fclib_global* fclib_read_global (const char *path);
+
+/** read local problem;
+ * return problem on success; NULL on failure */
+FCLIB_STATIC struct fclib_local* fclib_read_local (const char *path);
+
+/** read solution;
+ * return solution on success; NULL on failure */
+FCLIB_STATIC struct fclib_solution* fclib_read_solution (const char *path);
+
+/** read initial guesses;
+ * return vector of guesses on success; NULL on failure;
+ * output number of guesses in the variable pointed by 'number_of_guesses' */
+FCLIB_STATIC struct fclib_solution* fclib_read_guesses (const char *path,
+                                                        int *number_of_guesses);
+
+#ifdef FCLIB_WITH_MERIT_FUNCTIONS
+/** calculate merit function for a global problem */
+FCLIB_STATIC double fclib_merit_global (struct fclib_global *problem,
+                                        enum fclib_merit merit,
+                                        struct fclib_solution *solution);
+
+/** calculate merit function for a local problem */
+FCLIB_STATIC double fclib_merit_local (struct fclib_local *problem,
+                                       enum fclib_merit merit,
+                                       struct fclib_solution *solution);
+#endif
+
+/** delete global problem */
+FCLIB_STATIC void fclib_delete_global (struct fclib_global *problem);
+
+/** delete local problem */
+FCLIB_STATIC void fclib_delete_local (struct fclib_local *problem);
+
+/** delete solutions or guesses */
+FCLIB_STATIC void fclib_delete_solutions (struct fclib_solution *data,
+                                          int count);
+
+/** create and set attributes of tyoe int in info */
+FCLIB_STATIC int fclib_create_int_attributes_in_info(const char *path,
+                                               const char * attr_name,
+                                               int attr_value);
+
+
+/* ========================= implementation =========================*/
+
+#ifdef FCLIB_IMPLEMENTATION
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <hdf5.h>
+#include <hdf5_hl.h>
+#include "fcint.h"
+#include <csparse.h>
+
+/* useful macros */
+#define ASSERT(Test, ...)\
+  do {\
+  if (! (Test)) { fprintf (stderr, "%s: %d => ", __FILE__, __LINE__);\
+    fprintf (stderr, __VA_ARGS__);\
+    fprintf (stderr, "\n"); exit (1); } } while (0)
+
+#define IO(Call) ASSERT ((Call) >= 0, "ERROR: HDF5 call failed")
+#define MM(Call) ASSERT ((Call), "ERROR: out of memory")
+
+
+/** make group */
+FCLIB_STATIC hid_t H5Gmake (hid_t loc_id, const char *name)
 {
   hid_t id;
 
@@ -301,7 +395,7 @@ static hid_t H5Gmake (hid_t loc_id, const char *name)
 
 
 /** write matrix */
-static void write_matrix (hid_t id, struct fclib_matrix *mat)
+FCLIB_STATIC void write_matrix (hid_t id, struct fclib_matrix *mat)
 {
   hsize_t dim = 1;
 
@@ -346,7 +440,7 @@ static void write_matrix (hid_t id, struct fclib_matrix *mat)
 }
 
 /** read matrix */
-static struct fclib_matrix* read_matrix (hid_t id)
+FCLIB_STATIC struct fclib_matrix* read_matrix (hid_t id)
 {
   struct fclib_matrix *mat;
 
@@ -410,7 +504,7 @@ static struct fclib_matrix* read_matrix (hid_t id)
 }
 
 /** write global vectors */
-static void write_global_vectors (hid_t id, struct fclib_global *problem)
+FCLIB_STATIC void write_global_vectors (hid_t id, struct fclib_global *problem)
 {
   hsize_t dim;
 
@@ -434,7 +528,7 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
 }
 
 /** read global vectors */
-static void read_global_vectors (hid_t id, struct fclib_global *problem)
+FCLIB_STATIC void read_global_vectors (hid_t id, struct fclib_global *problem)
 {
   MM (problem->f = malloc (sizeof(double)*problem->M->m));
   IO (H5LTread_dataset_double (id, "f", problem->f));
@@ -453,7 +547,7 @@ static void read_global_vectors (hid_t id, struct fclib_global *problem)
 }
 
 /** write local vectors */
-static void write_local_vectors (hid_t id, struct fclib_local *problem)
+FCLIB_STATIC void write_local_vectors (hid_t id, struct fclib_local *problem)
 {
   hsize_t dim;
 
@@ -474,7 +568,7 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
 }
 
 /** read local vectors */
-static void read_local_vectors (hid_t id, struct fclib_local *problem)
+FCLIB_STATIC void read_local_vectors (hid_t id, struct fclib_local *problem)
 {
   MM (problem->q = malloc (sizeof(double)*problem->W->m));
   IO (H5LTread_dataset_double (id, "q", problem->q));
@@ -491,7 +585,7 @@ static void read_local_vectors (hid_t id, struct fclib_local *problem)
 }
 
 /** write problem info */
-static void write_problem_info (hid_t id, struct fclib_info *info)
+FCLIB_STATIC void write_problem_info (hid_t id, struct fclib_info *info)
 {
   if (info->title) IO (H5LTmake_dataset_string (id, "title", info->title));
   if (info->description) IO (H5LTmake_dataset_string (id, "description", info->description));
@@ -499,7 +593,7 @@ static void write_problem_info (hid_t id, struct fclib_info *info)
 }
 
 /** read problem info */
-static struct fclib_info* read_problem_info (hid_t id)
+FCLIB_STATIC struct fclib_info* read_problem_info (hid_t id)
 {
   struct fclib_info *info;
   H5T_class_t class_id;
@@ -536,7 +630,7 @@ static struct fclib_info* read_problem_info (hid_t id)
 }
 
 /** write solution */
-static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t nv, hsize_t nr, hsize_t nl)
+FCLIB_STATIC void write_solution (hid_t id, struct fclib_solution *solution, hsize_t nv, hsize_t nr, hsize_t nl)
 {
   if (nv) IO (H5LTmake_dataset_double (id, "v", 1, &nv, solution->v));
   if (nl) IO (H5LTmake_dataset_double (id, "l", 1, &nl, solution->l));
@@ -547,7 +641,7 @@ static void write_solution (hid_t id, struct fclib_solution *solution, hsize_t n
 }
 
 /** read solution */
-static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct fclib_solution *solution)
+FCLIB_STATIC void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct fclib_solution *solution)
 {
   if (nv)
   {
@@ -571,7 +665,7 @@ static void read_solution (hid_t id, hsize_t nv, hsize_t nr, hsize_t nl, struct 
 }
 
 /** read solution sizes */
-static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
+FCLIB_STATIC int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
 {
   if (H5Lexists (file_id, "/fclib_global", H5P_DEFAULT))
   {
@@ -603,7 +697,7 @@ static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
 }
 
 /** delete matrix info */
-static void delete_matrix_info (struct fclib_matrix_info *info)
+FCLIB_STATIC void delete_matrix_info (struct fclib_matrix_info *info)
 {
   if (info)
   {
@@ -613,7 +707,7 @@ static void delete_matrix_info (struct fclib_matrix_info *info)
 }
 
 /** delete matrix */
-static void delete_matrix (struct fclib_matrix *mat)
+FCLIB_STATIC void delete_matrix (struct fclib_matrix *mat)
 {
   if (mat)
   {
@@ -626,7 +720,7 @@ static void delete_matrix (struct fclib_matrix *mat)
 }
 
 /** delete problem info */
-static void delete_info (struct fclib_info *info)
+FCLIB_STATIC void delete_info (struct fclib_info *info)
 {
   if (info)
   {
@@ -637,7 +731,7 @@ static void delete_info (struct fclib_info *info)
   }
 }
 
-static int fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_create_int_attributes_in_info(const char *path, const char * attr_name,
                                         int attr_value)
 {
   hid_t  file_id, id, dataspace_id, attr_id;
@@ -686,7 +780,7 @@ static int fclib_create_int_attributes_in_info(const char *path, const char * at
 
 /** write global problem;
  * return 1 on success, 0 on failure */
-static int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *problem, const char *path)
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *problem, const char *path)
 {
   hid_t  file_id, main_id, id;
   hsize_t dim = 1;
@@ -758,7 +852,7 @@ static int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *problem, co
 
 /** write local problem;
  * return 1 on success, 0 on failure */
-static int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem, const char *path)
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem, const char *path)
 {
   hid_t  file_id, main_id, id;
   hsize_t dim = 1;
@@ -826,7 +920,7 @@ static int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem, cons
 
 /** write solution;
  * return 1 on success, 0 on failure */
-static int fclib_write_solution (struct fclib_solution *solution, const char *path)
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_solution (struct fclib_solution *solution, const char *path)
 {
   hid_t  file_id, id;
   int nv, nr, nl;
@@ -866,7 +960,7 @@ static int fclib_write_solution (struct fclib_solution *solution, const char *pa
 
 /** write initial guesses;
  * return 1 on success, 0 on failure */
-static int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path)
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path)
 {
   hid_t  file_id, main_id, id;
   int nv, nr, nl, i;
@@ -916,7 +1010,7 @@ static int fclib_write_guesses (int number_of_guesses,  struct fclib_solution *g
 
 /** read global problem;
  * return problem on success; NULL on failure */
-static struct fclib_global* fclib_read_global (const char *path)
+FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global* fclib_read_global (const char *path)
 {
   struct fclib_global *problem;
   hid_t  file_id, main_id, id;
@@ -966,7 +1060,7 @@ static struct fclib_global* fclib_read_global (const char *path)
 
 /** read local problem;
  * return problem on success; NULL on failure */
-static struct fclib_local* fclib_read_local (const char *path)
+FCLIB_STATIC struct FCLIB_APICOMPILE fclib_local* fclib_read_local (const char *path)
 {
   struct fclib_local *problem;
   hid_t  file_id, main_id, id;
@@ -1022,7 +1116,7 @@ static struct fclib_local* fclib_read_local (const char *path)
 
 /** read solution;
  * return solution on success; NULL on failure */
-static struct fclib_solution* fclib_read_solution (const char *path)
+FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_solution (const char *path)
 {
   struct fclib_solution *solution;
   hid_t  file_id, id;
@@ -1050,7 +1144,7 @@ static struct fclib_solution* fclib_read_solution (const char *path)
 /** read initial guesses;
  * return vector of guesses on success; NULL on failure;
  * output numebr of guesses in the variable pointed by 'number_of_guesses' */
-static struct fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses)
+FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses)
 {
   struct fclib_solution *guesses;
   hid_t  file_id, main_id, id;
@@ -1090,7 +1184,7 @@ static struct fclib_solution* fclib_read_guesses (const char *path, int *number_
 }
 
 /** delete global problem */
-static void fclib_delete_global (struct fclib_global *problem)
+FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global (struct fclib_global *problem)
 {
   delete_matrix (problem->M);
   delete_matrix (problem->H);
@@ -1103,7 +1197,7 @@ static void fclib_delete_global (struct fclib_global *problem)
 }
 
 /** delete local problem */
-static void fclib_delete_local (struct fclib_local *problem)
+FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_local (struct fclib_local *problem)
 {
   delete_matrix (problem->W);
   delete_matrix (problem->V);
@@ -1115,7 +1209,7 @@ static void fclib_delete_local (struct fclib_local *problem)
 }
 
 /** delete solutions or guesses */
-static void fclib_delete_solutions (struct fclib_solution *data, int count)
+FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution *data, int count)
 {
   int i;
 
@@ -1130,7 +1224,9 @@ static void fclib_delete_solutions (struct fclib_solution *data, int count)
   free (data);
 }
 
-static inline double dnrm2(double * v ,  int n)
+#ifdef FCLIB_WITH_MERIT_FUNCTIONS
+
+FCLIB_STATIC inline double dnrm2(double * v ,  int n)
 {
   int i;
   double norm2=0.0;
@@ -1138,7 +1234,7 @@ static inline double dnrm2(double * v ,  int n)
   return sqrt(norm2);
 }
 
-static inline void projectionOnCone(double* r, double  mu)
+FCLIB_STATIC inline void projectionOnCone(double* r, double  mu)
 {
   double normT = hypot(r[1], r[2]);
   if (mu * normT <= - r[0])
@@ -1162,7 +1258,7 @@ static inline void projectionOnCone(double* r, double  mu)
   }
 }
 
-static void FrictionContact3D_unitary_compute_and_add_error(double *z , double *w, double mu, double * error)
+FCLIB_STATIC void FrictionContact3D_unitary_compute_and_add_error(double *z , double *w, double mu, double * error)
 {
 
   double normUT;
@@ -1181,13 +1277,13 @@ static void FrictionContact3D_unitary_compute_and_add_error(double *z , double *
 }
 
 /* calculate merit function for a global problem */
-static double fclib_merit_global (struct fclib_global *problem, enum fclib_merit merit, struct fclib_solution *solution)
+FCLIB_STATIC double fclib_merit_global (struct fclib_global *problem, enum fclib_merit merit, struct fclib_solution *solution)
 {
   return 0; /* TODO */
 }
 
 /* calculate merit function for a local problem */
-static double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, struct fclib_solution *solution)
+FCLIB_STATIC double fclib_merit_local (struct fclib_local *problem, enum fclib_merit merit, struct fclib_solution *solution)
 {
 
   struct fclib_matrix * W =  problem->W;
@@ -1264,6 +1360,8 @@ static double fclib_merit_local (struct fclib_local *problem, enum fclib_merit m
 
   return 0; /* TODO */
 }
+#endif /* FCLIB_WITH_MERIT_FUNCTIONS */
 
+#endif /* FCLIB_IMPLEMENTATION */
 
 #endif /* _fclib_h_ */
