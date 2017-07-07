@@ -32,10 +32,12 @@ IF(APPLE)
 ENDIF(APPLE)
 
 # User defined options
-option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = on" ON)
-option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = on." OFF)
+option(FCLIB_WITH_MERIT_FUNCTIONS "enable merit functions. Default = ON" OFF)
+option(FCLIB_HEADER_ONLY "static interface. Default = ON" ON)
+option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = ON" ON)
+option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = ON" OFF)
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
-option(WITH_TESTS "Enable testing. Default = on" ON)
+option(WITH_TESTS "Enable testing. Default = ON" ON)
 option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
 
 # cmake project name
@@ -53,7 +55,11 @@ set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
 
 # The list of all dirs containing sources to be compiled for the fclib lib
 # Any file in those dirs will be used to create libfclib
-set(${PROJECT_LIBRARY_NAME}_SRCDIRS "src;externals/SuiteSparse/CSparse")
+if(FCLIB_WITH_MERIT_FUNCTIONS)
+  set(${PROJECT_LIBRARY_NAME}_SRCDIRS "src;externals/SuiteSparse/CSparse")
+else()
+  set(${PROJECT_LIBRARY_NAME}_SRCDIRS "src")
+endif()
 
 # Matching expr for files to be compiled. 
 set(EXTS *.c)
@@ -96,6 +102,14 @@ include_directories(${HDF5_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 display(HDF5_INCLUDE_DIRS)
 
+if(FCLIB_WITH_MERIT_FUNCTIONS)
+  add_definitions("-DFCLIB_WITH_MERIT_FUNCTIONS")
+endif()
+
+if(NOT FCLIB_HEADER_ONLY)
+  add_definitions("-DFCLIB_NOT_HEADER_ONLY")
+endif()
+
 # --- MPI ---
 if(USE_MPI)
   # Find MPI for C++ and fortran.
@@ -121,12 +135,12 @@ if (NOT CMAKE_BUILD_TYPE)
 endif (NOT CMAKE_BUILD_TYPE)
 
 if(MSVC)
-	option(USING_HDF5_DLLs "WIN ONLY: turn on if the shared library of HDSL is linked" ON)
-	IF (USING_HDF5_DLLs)
-		ADD_DEFINITIONS("-DH5_BUILT_AS_DYNAMIC_LIB")
-	ENDIF(USING_HDF5_DLLs)
-	ADD_DEFINITIONS("-DFCLIB_APICOMPILE=__declspec( dllexport )")
-	ADD_DEFINITIONS("-D_CRT_SECURE_NO_WARNINGS")
+  option(USING_HDF5_DLLs "WIN ONLY: turn on if the shared library of HDSL is linked" ON)
+  IF (USING_HDF5_DLLs)
+    ADD_DEFINITIONS("-DH5_BUILT_AS_DYNAMIC_LIB")
+  ENDIF(USING_HDF5_DLLs)
+  ADD_DEFINITIONS("-DFCLIB_APICOMPILE=__declspec( dllexport )")
+  ADD_DEFINITIONS("-D_CRT_SECURE_NO_WARNINGS")
 endif(MSVC)
 
 # ============= Source and header files list =============
@@ -157,20 +171,21 @@ list(APPEND ${PROJECT_LIBRARY_NAME}_SRC ${${PROJECT_LIBRARY_NAME}_HDRS})
 include_directories(${${PROJECT_LIBRARY_NAME}_SRCDIRS})
 
 # ============= Creates the library =============
-if(BUILD_SHARED_LIBS) # shared library
-  add_library(${PROJECT_LIBRARY_NAME} SHARED ${${PROJECT_LIBRARY_NAME}_SRC})
-else() # static library
-  add_library(${PROJECT_LIBRARY_NAME} STATIC ${${PROJECT__LIBRARY_NAME}_SRC})
+if (FCLIB_WITH_MERIT_FUNCTIONS OR NOT FCLIB_HEADER_ONLY)
+  if(BUILD_SHARED_LIBS) # shared library
+    add_library(${PROJECT_LIBRARY_NAME} SHARED ${${PROJECT_LIBRARY_NAME}_SRC})
+  else() # static library
+    add_library(${PROJECT_LIBRARY_NAME} STATIC ${${PROJECT__LIBRARY_NAME}_SRC})
+  endif()
+  # Libs to link with PROJECT__LIBRARY_NAME
+  target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
+
+  set_target_properties(${PROJECT_LIBRARY_NAME} PROPERTIES
+    OUTPUT_NAME "${PROJECT_LIBRARY_NAME}"
+    VERSION "${${PACKAGE_NAME}_version}"
+    CLEAN_DIRECT_OUTPUT 1 # no clobbering
+    LINKER_LANGUAGE C)
 endif()
-# Libs to link with PROJECT__LIBRARY_NAME
-target_link_libraries(${PROJECT_LIBRARY_NAME} ${LIBS})
-
-set_target_properties(${PROJECT_LIBRARY_NAME} PROPERTIES
-  OUTPUT_NAME "${PROJECT_LIBRARY_NAME}"
-  VERSION "${${PACKAGE_NAME}_version}"
-  CLEAN_DIRECT_OUTPUT 1 # no clobbering
-  LINKER_LANGUAGE C)
-
 # ============== Add tests ==============
 
 FILE(GLOB_RECURSE _DATA_FILES 
@@ -191,13 +206,15 @@ FOREACH(_F ${_DATA_FILES})
   ENDIF()
 ENDFOREACH(_F ${_DATA_FILES})
 
+if(FCLIB_WITH_MERIT_FUNCTIONS)
+  add_executable(fctest1 src/tests/fctst.c)
+  target_link_libraries(fctest1 ${PROJECT_LIBRARY_NAME})
+  add_test(fctest1 fctest1)
+  add_executable(fctest_merit src/tests/fctst_merit.c)
+  target_link_libraries(fctest_merit ${PROJECT_LIBRARY_NAME})
+  add_test(fctest_merit fctest_merit)
+endif()
 
-add_executable(fctest1 src/tests/fctst.c)
-add_executable(fctest_merit src/tests/fctst_merit.c)
-target_link_libraries(fctest1 ${PROJECT_LIBRARY_NAME})
-target_link_libraries(fctest_merit ${PROJECT_LIBRARY_NAME})
-add_test(fctest1 fctest1)
-add_test(fctest_merit fctest_merit)
 enable_testing()
 
 # # =========== RPATH stuff ===========
@@ -232,9 +249,13 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
 display(${PROJECT_LIBRARY_NAME}_HDRS)
 set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h;")
-include(InstallPackage)
-install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_INSTALL_HDRS)
 
+if(FCLIB_WITH_MERIT_FUNCTIONS OR NOT FCLIB_HEADER_ONLY)
+  include(InstallPackage)
+  install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_INSTALL_HDRS)
+else()
+  install(FILES ${${PROJECT_LIBRARY_NAME}_INSTALL_HDRS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
+endif()
 # ============= Summary =============
 if(VERBOSE_MODE)
   message(STATUS "====================== Summary ======================")
