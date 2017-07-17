@@ -79,7 +79,7 @@ static struct fclib_matrix* random_matrix (int m, int n)
   {
     mat->nz = (rand () % 2 ? -1 : -2); /* csc / csr */
     int k = (mat->nz == -1 ? mat->n : mat->m);
-    MM (mat->p = malloc (sizeof(int)*k+1));
+    MM (mat->p = malloc (sizeof(int)*(k+1)));
     MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     int l = mat->nzmax / k;
     for (mat->p [0] = j = 0; j < k; j ++) mat->p [j+1] = mat->p [j] + l;
