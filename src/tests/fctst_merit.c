@@ -28,7 +28,16 @@
 #include <stdio.h>
 #include <time.h>
 #include "fclib.h"
-#include "fcint.h"
+
+/* useful macros */
+#define ASSERT(Test, ...)\
+  do {\
+  if (! (Test)) { fprintf (stderr, "%s: %d => ", __FILE__, __LINE__);\
+    fprintf (stderr, __VA_ARGS__);\
+    fprintf (stderr, "\n"); exit (1); } } while (0)
+
+#define IO(Call) ASSERT ((Call) >= 0, "ERROR: HDF5 call failed")
+#define MM(Call) ASSERT ((Call), "ERROR: out of memory")
 
 /* allocate matrix info */
 static struct fclib_matrix_info* matrix_info (struct fclib_matrix *mat, char *comment)
@@ -72,7 +81,7 @@ static struct fclib_matrix* random_matrix (int m, int n)
   {
     mat->nz = (rand () % 2 ? -1 : -2); /* csc / csr */
     int k = (mat->nz == -1 ? mat->n : mat->m);
-    MM (mat->p = malloc (sizeof(int)*k+1));
+    MM (mat->p = malloc (sizeof(int)*(k+1)));
     MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     int l = mat->nzmax / k;
     for (mat->p [0] = j = 0; j < k; j ++) mat->p [j+1] = mat->p [j] + l;
