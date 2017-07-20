@@ -34,3 +34,6 @@ How to download the collection of problems ?
 
 * The problems are stored on a github repo [fclib-library](https://github.com/FrictionalContactLibrary/fclib-library) with the help of git-lfs 
 * The [latest tagged releases](https://github.com/FrictionalContactLibrary/fclib-library/releases) of the library of problems
+
+The library comes in two versions: either a header only, available with the inclusion of fclib.h in the sources. It is also possible to compile
+FCLib into a library with cmake

@@ -1,4 +1,4 @@
-To compile and install fclib : 
+To compile and install fclib:
 
 cd SOME_BUILD_DIR
 cmake path_to_fclib -DCMAKE_INSTALL_PREFIX=where_to_install_fclib
