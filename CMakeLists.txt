@@ -32,10 +32,10 @@ IF(APPLE)
 ENDIF(APPLE)
 
 # User defined options
-option(FCLIB_WITH_MERIT_FUNCTIONS "enable merit functions. Default = ON" OFF)
+option(FCLIB_WITH_MERIT_FUNCTIONS "enable merit functions. Default = ON" ON)
 option(FCLIB_HEADER_ONLY "static interface. Default = ON" ON)
 option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = ON" ON)
-option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = ON" OFF)
+option(USE_MPI "compile and link fclib with mpi when this mode is enable.  Default = OFF" OFF)
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
 option(WITH_TESTS "Enable testing. Default = ON" ON)
 option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
@@ -102,13 +102,13 @@ include_directories(${HDF5_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 display(HDF5_INCLUDE_DIRS)
 
-if(FCLIB_WITH_MERIT_FUNCTIONS)
-  add_definitions("-DFCLIB_WITH_MERIT_FUNCTIONS")
+if(NOT FCLIB_HEADER_ONLY)
+  set(FCLIB_NOT_HEADER_ONLY TRUE)
 endif()
 
-if(NOT FCLIB_HEADER_ONLY)
-  add_definitions("-DFCLIB_NOT_HEADER_ONLY")
-endif()
+CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/fclib.h.cmake ${CMAKE_BINARY_DIR}/fclib.h)
+include_directories(${CMAKE_BINARY_DIR})
+install(FILES ${CMAKE_BINARY_DIR}/fclib.h DESTINATION include)
 
 # --- MPI ---
 if(USE_MPI)
@@ -248,13 +248,15 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 # The library, the headers and mod files, the cmake generated files
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
 display(${PROJECT_LIBRARY_NAME}_HDRS)
-set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h;")
+set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib_priv.h;")
+
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
 
 if(FCLIB_WITH_MERIT_FUNCTIONS OR NOT FCLIB_HEADER_ONLY)
   include(InstallPackage)
-  install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_INSTALL_HDRS)
+ install_package(${PACKAGE_NAME} ${PROJECT_LIBRARY_NAME} ${PROJECT_LIBRARY_NAME}_INSTALL_HDRS)
 else()
-  install(FILES ${${PROJECT_LIBRARY_NAME}_INSTALL_HDRS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
+  install(FILES ${${PROJECT_LIBRARY_NAME}_INSTALL_HDRS} DESTINATION ${INCLUDE_INSTALL_DIR})
 endif()
 # ============= Summary =============
 if(VERBOSE_MODE)

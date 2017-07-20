@@ -9,23 +9,20 @@
 # @PACKAGE_NAME@_INCLUDE_DIRS - include directories for ppmcore
 # @PACKAGE_NAME@_EXTRA_INCLUDE_DIRS - path to extra headers needed for @PACKAGE_NAME@ (metis.h ...)
 # @PACKAGE_NAME@_LIBRARY_DIRS - path to @PACKAGE_NAME@ library(ies)
-# @PACKAGE_NAME@_LIBRARIES  - libraries to link against to use ppmcore
+# @PACKAGE_NAME@_LIBRARIES  - libraries to link against to use @PACKAGE_NAME@
 # @PACKAGE_NAME@_USE_XXX - value of option "USE_XXX" (for example USE_MPI, USE_Metis ... = ON or OFF)
 
-# Tell the user where to find ppmcore headers
-# Tell the user project where to find our headers and libraries
-set(@PACKAGE_NAME@_INCLUDE_DIRS "${${PACKAGE_NAME}_INCLUDE_DIRS}")
-set(@PACKAGE_NAME@_EXTRA_INCLUDE_DIRS "${${PACKAGE_NAME}_EXTRA_INCLUDE_DIRS}")
-set(@PACKAGE_NAME@_LIBRARY_DIRS "${${PACKAGE_NAME}_LIB_DIR}")
-set(@PACKAGE_NAME@_MODULE_DIR "${${PACKAGE_NAME}_INCLUDE_DIRS}/Modules")
+@PACKAGE_INIT@
+
+set_and_check(@PACKAGE_NAME@_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+check_required_components(@PACKAGE_NAME@)
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("${${PACKAGE_NAME}_CMAKE_DIR}/@PACKAGE_NAME@LibraryDepends.cmake")
- 
+include("${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_NAME@LibraryDepends.cmake")
+
 # These are IMPORTED targets created by FooBarLibraryDepends.cmake
 set(@PACKAGE_NAME@_LIBRARIES @PROJECT_LIBRARY_NAME@)
 
 # Set all @PACKAGE_NAME@ options
 set(@PACKAGE_NAME@_USE_MPI @USE_MPI@)
-
-

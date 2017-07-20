@@ -17,7 +17,7 @@
 */
 
 
-/*!\file fclib.h
+/*!\file fclib_priv.h
  * -----------------------------------------
  * frictional contact library interface
  * -----------------------------------------
@@ -85,7 +85,11 @@
  */
 
 #ifndef _fclib_h_
-#define _fclib_h_
+#error "do not include fclib_priv.h, but rather fclib.h"
+#endif
+
+#ifndef _fclib_priv_h_
+#define _fclib_priv_h_
 
 #ifndef FCLIB_APICOMPILE
 #define FCLIB_APICOMPILE
@@ -103,7 +107,7 @@
 #define H5Gcreate_vers 2
 #define H5Gopen_vers 2
 
-/**\struct  fclib_info fclib.h
+/**\struct  fclib_info fclib_priv.h
  * This structure allows the user to enter a  problem information  as a title, a short description and known mathematical properties of the problem
  */
 
@@ -117,7 +121,7 @@ struct FCLIB_APICOMPILE fclib_info
   char *math_info;
 };
 
-/**\struct fclib_matrix_info fclib.h
+/**\struct fclib_matrix_info fclib_priv.h
  * This structure allows the user to enter a description for a given
  * matrix (comment, conditionning, determinant, rank.) if they are
  * known.
@@ -134,7 +138,7 @@ struct FCLIB_APICOMPILE fclib_matrix_info  /* matrix information */
   int rank;
 };
 
-/**\struct  fclib_matrix fclib.h
+/**\struct  fclib_matrix fclib_priv.h
  * matrix in compressed row/column or triplet form
  */
 struct FCLIB_APICOMPILE fclib_matrix   /*  */
@@ -157,7 +161,7 @@ struct FCLIB_APICOMPILE fclib_matrix   /*  */
   struct fclib_matrix_info *info;
 };
 
-/**\struct fclib_global fclib.h
+/**\struct fclib_global fclib_priv.h
  * The global frictional contact problem defined by
  *
  * Given
@@ -213,7 +217,7 @@ struct FCLIB_APICOMPILE fclib_global
   /** info on the problem */
   struct fclib_info *info;
 };
-/**\struct fclib_local fclib.h
+/**\struct fclib_local fclib_priv.h
  * The local frictional contact problem defined by
  *
  * given
@@ -266,7 +270,7 @@ struct FCLIB_APICOMPILE fclib_local
   struct fclib_info *info;
 };
 
-/** \struct fclib_solution fclib.h
+/** \struct fclib_solution fclib_priv.h
  *  A solution or a guess for the frictional contact problem.
  *
  * This structure allows to store a solution vector of a guess vector for the

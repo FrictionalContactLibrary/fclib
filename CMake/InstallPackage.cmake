@@ -42,18 +42,19 @@ macro(install_package _PACK _LIB_NAME _HEADERSLIST)
   
   # Install the export set for use with the install-tree
   install(EXPORT ${_PACK}LibraryDepends DESTINATION
-    "${INSTALL_DATA_DIR}/CMake" COMPONENT dev)
+    "${CMAKE_INSTALL_LIBDIR}/cmake/${_PACK}" COMPONENT dev)
   
-  set(${_PACK}_INCLUDE_DIRS "${INSTALL_INCLUDE_DIR}")
-  set(${_PACK}_LIB_DIR "${INSTALL_LIB_DIR}")
-  set(${_PACK}_CMAKE_DIR "${INSTALL_DATA_DIR}/CMake")
-  configure_file(${_PACK}Config.cmake.in
-    "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}Config.cmake")
-  configure_file(${_PACK}ConfigVersion.cmake.in
-    "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}ConfigVersion.cmake" @ONLY)
-  install(FILES
-    "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}Config.cmake"
-    "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}ConfigVersion.cmake"
-    DESTINATION "${${_PACK}_CMAKE_DIR}" COMPONENT dev)
-  
+   include(CMakePackageConfigHelpers)
+  configure_package_config_file(${_PACK}Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${_PACK}Config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${_PACK}
+    PATH_VARS INCLUDE_INSTALL_DIR)
+  write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${_PACK}ConfigVersion.cmake
+    VERSION ${${_PACK}_version}
+    COMPATIBILITY SameMajorVersion )
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${_PACK}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${_PACK}ConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${_PACK} )
+   
 endmacro()
