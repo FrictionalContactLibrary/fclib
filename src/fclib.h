@@ -366,7 +366,6 @@ FCLIB_STATIC int fclib_create_int_attributes_in_info(const char *path,
 #include <hdf5.h>
 #include <hdf5_hl.h>
 #include "fcint.h"
-#include <csparse.h>
 
 /* useful macros */
 #define ASSERT(Test, ...)\
@@ -1225,6 +1224,8 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution
 }
 
 #ifdef FCLIB_WITH_MERIT_FUNCTIONS
+#include "csparse.h"
+
 
 FCLIB_STATIC inline double dnrm2(double * v ,  int n)
 {
