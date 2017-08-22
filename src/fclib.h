@@ -459,14 +459,14 @@ FCLIB_STATIC struct fclib_matrix* read_matrix (hid_t id)
   }
   else if (mat->nz == -1) /* csc */
   {
-    MM (mat->p = malloc (sizeof(int)*mat->n+1));
+    MM (mat->p = malloc (sizeof(int)*(mat->n+1)));
     MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
   }
   else if (mat->nz == -2) /* csr */
   {
-    MM (mat->p = malloc (sizeof(int)*mat->m+1));
+    MM (mat->p = malloc (sizeof(int)*(mat->m+1)));
     MM (mat->i = malloc (sizeof(int)*mat->nzmax));
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
