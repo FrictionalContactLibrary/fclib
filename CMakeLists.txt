@@ -79,6 +79,50 @@ project(${PROJECT_NAME} C)
 # http://public.kitware.com/Bug/view.php?id=11964
 # See also http://www.cmake.org/cmake/help/v3.0/module/GNUInstallDirs.html?highlight=gnuinstalldirs
 include(GNUInstallDirs)
+# Set prefix path for libraries installation
+# --> means that any library target will be installed
+# in CMAKE_INSTALL_PREFIX/_install_lib
+if(${PROJECT_NAME}_INSTALL_LIB_DIR)
+  set(_install_lib ${${PROJECT_NAME}_INSTALL_LIB_DIR})
+else()
+  ASSERT(CMAKE_INSTALL_LIBDIR)
+  set(_install_lib ${CMAKE_INSTALL_LIBDIR})
+  set(${PROJECT_NAME}_INSTALL_LIB_DIR ${_install_lib})
+endif()
+
+
+# --- RPATH stuff ---
+# See https://cmake.org/Wiki/CMake_RPATH_handling
+# Warning: RPATH settings must be defined before install(...) settings.
+if(FORCE_SKIP_RPATH)
+  set(CMAKE_SKIP_BUILD_RPATH TRUE)
+else()
+  set(CMAKE_SKIP_BUILD_RPATH FALSE)
+endif()
+
+# when building, don't use the install RPATH already
+# (but later on when installing)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+
+# when building a binary package, it makes no sense to add this rpath
+if(NOT FORCE_SKIP_RPATH)
+  # the RPATH to be used when installing
+  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+endif(NOT FORCE_SKIP_RPATH)
+
+# don't add the automatically determined parts of the RPATH
+# which point to directories outside the build tree to the install RPATH
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+# The following settings were copied from
+# https://cmake.org/Wiki/CMake_RPATH_handling
+# to avoid the rpath issue that appears on OS X El Capitan
+
+# the RPATH to be used when installing, but only if it's not a system directory
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${_install_lib}")
+endif()
 
 # ============= Doc and website =============
 # Doxygen documentation
@@ -216,32 +260,6 @@ if(FCLIB_WITH_MERIT_FUNCTIONS)
 endif()
 
 enable_testing()
-
-# # =========== RPATH stuff ===========
-# # we follow recommendation of https://cmake.org/Wiki/CMake_RPATH_handling
-
-# =========== RPATH stuff ===========
-# do not skip the full RPATH for the build tree
-if(FORCE_SKIP_RPATH)
-  set(CMAKE_SKIP_BUILD_RPATH TRUE)
-else()
-  set(CMAKE_SKIP_BUILD_RPATH FALSE)
-endif()
-
-# when building, don't use the install RPATH already
-# (but later on when installing)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
-
-# when building a binary package, it makes no sense to add this rpath
-if(NOT FORCE_SKIP_RPATH)
-  # the RPATH to be used when installing
-  ASSERT(CMAKE_INSTALL_LIBDIR)
-  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
-endif(NOT FORCE_SKIP_RPATH)
-
-# don't add the automatically determined parts of the RPATH
-# which point to directories outside the build tree to the install RPATH
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # ============= Prepare install =============
 
