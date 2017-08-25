@@ -1,0 +1,22 @@
+Using nix to build/install fclib:
+
+IN SOURCE_DIR:
+
+nix-env -qaP -f .
+fclib              fclib-1.0.0
+fclib-gcc6         fclib-1.0.0
+fclib-header-only  fclib-1.0.0
+
+==> list fclib available derivations
+
+
+nix-build -A attribute-name
+
+==> build attribute-name (attribute-name being fclib, fclib-gcc6 or fclib-header-only)
+Create a link (@result) in the current dir to fclib in nixstore.
+
+nix-env -f . -iA fclib-gcc6
+
+==> build AND install in your environnment fclib
+
+check for example ~/.nix-profile/lib/ for libfclib.so
