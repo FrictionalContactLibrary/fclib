@@ -365,7 +365,6 @@ FCLIB_STATIC int fclib_create_int_attributes_in_info(const char *path,
 #include <stdio.h>
 #include <hdf5.h>
 #include <hdf5_hl.h>
-#include "fcint.h"
 
 /* useful macros */
 #define ASSERT(Test, ...)\
