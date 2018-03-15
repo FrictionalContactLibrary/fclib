@@ -425,7 +425,7 @@ FCLIB_STATIC void write_matrix (hid_t id, struct fclib_matrix *mat)
     IO (H5LTmake_dataset_int (id, "i", 1, &dim, mat->i));
     IO (H5LTmake_dataset_double (id, "x", 1, &dim, mat->x));
   }
-  else ASSERT (0, "ERROR: unkown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
+  else ASSERT (0, "ERROR: unknown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
 
   if (mat->info)
   {
@@ -470,7 +470,7 @@ FCLIB_STATIC struct fclib_matrix* read_matrix (hid_t id)
     IO (H5LTread_dataset_int (id, "p", mat->p));
     IO (H5LTread_dataset_int (id, "i", mat->i));
   }
-  else ASSERT (0, "ERROR: unkown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
+  else ASSERT (0, "ERROR: unknown sparse matrix type => fclib_matrix->nz = %d\n", mat->nz);
 
   MM (mat->x = malloc (sizeof(double)*mat->nzmax));
   IO (H5LTread_dataset_double (id, "x", mat->x));
