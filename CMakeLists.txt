@@ -39,6 +39,7 @@ option(USE_MPI "compile and link fclib with mpi when this mode is enable. Defaul
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
 option(WITH_TESTS "Enable testing. Default = ON" ON)
 option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
+option(USE_SYSTEM_SUITESPARSE "Use the system-installed SuiteSparse library for CXSparse if one is found." ON)
 
 # cmake project name
 set(PROJECT_NAME fclib)
@@ -213,6 +214,21 @@ if(USE_MPI)
   endif(MPI_COMPILER)
   set(LIBS ${LIBS} ${MPI_LIBRARIES} )
 endif(USE_MPI)
+
+# --- SuiteSparse (for CXSparse) ---
+if(USE_SYSTEM_SUITESPARSE)
+if(FCLIB_WITH_MERIT_FUNCTIONS)
+  find_package(SuiteSparse OPTIONAL_COMPONENTS CXSparse)
+  if (SuiteSparse_CXSparse_FOUND)
+    set(${PROJECT_LIBRARY_NAME}_SRCDIRS "src")
+    set(LIBS ${LIBS} ${CXSparse_LIBRARY})
+    include_directories(${SuiteSparse_INCLUDE_DIRS})
+    message(STATUS "CXSparse: ${CXSparse_LIBRARY}")
+  else()
+    message(STATUS "Using built-in CSparse")
+  endif()
+endif()
+endif()
 
 # ============= Prepare compilation =============
 # Force a default build type if not provided by user

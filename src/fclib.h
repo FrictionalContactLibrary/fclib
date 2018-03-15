@@ -1223,7 +1223,7 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution
 }
 
 #ifdef FCLIB_WITH_MERIT_FUNCTIONS
-#include "csparse.h"
+#include "cs.h"
 
 
 FCLIB_STATIC inline double dnrm2(double * v ,  int n)

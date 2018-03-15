@@ -1,4 +1,4 @@
-# include "csparse.h"
+# include "cs.h"
 
 /* C = alpha*A + beta*B */
 cs *cs_add (const cs *A, const cs *B, double alpha, double beta)
