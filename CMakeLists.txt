@@ -40,6 +40,7 @@ option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
 option(WITH_TESTS "Enable testing. Default = ON" ON)
 option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
 option(USE_SYSTEM_SUITESPARSE "Use the system-installed SuiteSparse library for CXSparse if one is found." ON)
+option(SKIP_PKGCONFIG "Do not configure or install the pkg-config file." OFF)
 
 # cmake project name
 set(PROJECT_NAME fclib)
@@ -50,6 +51,7 @@ set(PACKAGE_NAME "FCLib")
 
 # --- Set a version number for the package ---
 set(${PACKAGE_NAME}_version 3.0.0)
+set(PACKAGE_VERSION ${${PACKAGE_NAME}_version})
 
 # --- The name (without extension) of the lib to be created ---
 set(PROJECT_LIBRARY_NAME ${PROJECT_NAME})
@@ -334,6 +336,22 @@ if(FCLIB_WITH_MERIT_FUNCTIONS OR NOT FCLIB_HEADER_ONLY)
 else()
   install(FILES ${${PROJECT_LIBRARY_NAME}_INSTALL_HDRS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
 endif()
+
+# pkg-config file
+if(NOT SKIP_PKGCONFIG)
+  if(NOT FCLIB_HEADER_ONLY)
+    set(PKGCONFIG_LIBS "-L\${libdir} -l${PROJECT_LIBRARY_NAME}")
+  endif()
+  configure_file(
+    "${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.pc.in"
+    "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc"
+    @ONLY)
+  set(INSTALL_PKGCONFIG_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+    CACHE PATH "Installation directory for pkgconfig (.pc) files")
+  install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc
+    DESTINATION "${INSTALL_PKGCONFIG_DIR}")
+endif()
+
 # ============= Summary =============
 if(VERBOSE_MODE)
   message(STATUS "====================== Summary ======================")
