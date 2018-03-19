@@ -483,13 +483,14 @@ int main (int argc, char **argv)
       ASSERT (compare_local_problems (problem, p), "ERROR: written/read problem comparison failed");
       ASSERT (compare_solutions (solution, s, 0, p->W->m, (p->R ? p->R->n : 0)), "ERROR: written/read solution comparison failed");
 
+#ifdef FCLIB_WITH_MERIT_FUNCTIONS
       printf ("Computing merit function ...\n");
 
       double error1 = fclib_merit_local (problem, MERIT_1, solution);
       double error2 = fclib_merit_local (p, MERIT_1, s);
       printf ("Error for initial problem = %12.8e\n", error1);
       printf ("Error for read problem = %12.8e\n", error2);
-
+#endif
 
       ASSERT (numguess == n, "ERROR: numbers of written and read guesses differ");
       for (i = 0; i < n; i ++)
