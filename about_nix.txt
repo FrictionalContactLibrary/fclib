@@ -3,9 +3,9 @@ Using nix to build/install fclib:
 IN SOURCE_DIR:
 
 nix-env -qaP -f .
-fclib              fclib-1.0.0
-fclib-gcc6         fclib-1.0.0
-fclib-header-only  fclib-1.0.0
+fclib              fclib-3.0.0
+fclib-gcc6         fclib-3.0.0
+fclib-header-only  fclib-3.0.0
 
 ==> list fclib available derivations
 
