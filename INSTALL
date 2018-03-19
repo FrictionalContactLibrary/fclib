@@ -1,37 +1,57 @@
-To compile and install fclib : 
 
-cd SOME_BUILD_DIR
-cmake path_to_fclib -DCMAKE_INSTALL_PREFIX=where_to_install_fclib
-make
-make install
+## To compile and install fclib
 
+    cd SOME_BUILD_DIR
+    cmake path_to_fclib -DCMAKE_INSTALL_PREFIX=where_to_install_fclib
+    make
+    make install
 
-If you want to generate the documentation (ans web site) use -DWITH_DOCUMENTATION=ON
+More options to CMake:
 
+    -DWITH_DOCUMENTATION=ON -- build the documentation and web site
 
-default value for where_to_install_fclib is /usr/local.
+    -DFCLIB_HEADER_ONLY=OFF -- build as a library (otherwise, the
+                               default is that all functions are
+                               contained in a single header)
 
-If hdf5 is not in a standard place, just set var HDF5_ROOT before running cmake. 
-For example: 
-export HDF5_ROOT=/home/install/hdf5
+    -DFCLIB_WITH_MERIT_FUNCTIONS=OFF -- do not build merit functions
 
+    -DFORCE_SKIP_RPATH=ON -- do not use CMake's rpath support
+
+    -DUSE_SYSTEM_SUITESPARSE=OFF -- do not use the system-installed
+                                    SuiteSparse library but instead
+                                    use the one included with fclib
+
+    -DSKIP_PKGCONFIG=ON -- do not generate the fclib.pc file for the
+                           pkg-config utility
+
+The default value for where_to_install_fclib is /usr/local.
+
+If hdf5 is not in a standard place, just set var HDF5_ROOT before running cmake.
+For example:
+
+    export HDF5_ROOT=/home/install/hdf5
 
 To run tests :
 
-make test
+    make test
 
 
-To use FCLib from another project:
+## To use FCLib from another project
 
-add in CMakeLists.txt of the project:
+Add in CMakeLists.txt of the project:
 
-  find_package(FCLib 1.2 REQUIRED)
-  include_directories(${FCLib_INCLUDE_DIRS})
-  set(LIBS ${LIBS} ${FCLib_LIBRARY})
+    find_package(FCLib 1.2 REQUIRED)
+    include_directories(${FCLib_INCLUDE_DIRS})
+    set(LIBS ${LIBS} ${FCLib_LIBRARY})
 
 and run cmake like this:
 
-cmake ... -DFCLib_DIR=where_you_install_fclib/share/CMake/
+    cmake ... -DFCLib_DIR=where_you_install_fclib/share/CMake/
 
-For all functions except merit ones, fclib may be used as a header
-only library.
+Alternatively use pkg-config like so:
+
+    gcc -o myprogram myprogram.c `pkg-config --libs --cflags fclib`
+
+For all functions except merit ones, fclib may be used as a
+header-only library.
