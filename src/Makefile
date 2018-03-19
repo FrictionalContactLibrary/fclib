@@ -6,14 +6,23 @@ else
   DEBUG =  -w -O
 endif
 
-CFLAGS = $(STD) $(DEBUG) $(HDF5INC) $(MPIINC)
+ifneq ($(SUITESPARSE_DIR),)
+  SUITESPARSE_INC = -I$(SUITESPARSE_DIR)
+  LIB += $(SUITESPARSE_LIB) -lm
+endif
 
-LIB = $(HDF5LIB) $(MPILIB)
+CFLAGS = $(STD) $(DEBUG) $(SUITESPARSE_INC) $(DEFS) $(HDF5INC) $(MPIINC)
 
-OBJ =  fclib.o \
-       fcmer.o \
+LIB += $(HDF5LIB) $(MPILIB)
 
-./tests/fctst: ./tests/fctst.o libfclib.a
+OBJ =  fclib.o $(SUITESPARSE_OBJ)
+
+all: ./tests/fctest1 ./tests/fctst_merit
+
+./tests/fctest1: ./tests/fctst.o libfclib.a
+	$(CC) $(PROFILE) -o $@ $< -L. -lfclib $(LIB)
+
+./tests/fctst_merit: ./tests/fctst_merit.o libfclib.a
 	$(CC) $(PROFILE) -o $@ $< -L. -lfclib $(LIB)
 
 libfclib.a: $(OBJ)
@@ -29,11 +38,16 @@ clean:
 ./tests/fctst.o: ./tests/fctst.c 
 	$(CC) $(CFLAGS) -I. -c -o $@ $<
 
-fclib.o: fclib.c fclib.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+./tests/fctst_merit.o: ./tests/fctst_merit.c
+	$(CC) $(CFLAGS) -I. -c -o $@ $<
 
-fcmer.o: fcmer.c fclib.h
+$(SUITESPARSE_OBJ): $(SUITESPARSE_DIR)/csparse.c
+	$(CC) $(CFLAGS) -I. -c -o $@ $<
+
+fclib.o: fclib.c fclib.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 test:
 	./fctst
+
+.PHONY: clean all test
