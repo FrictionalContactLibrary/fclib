@@ -17,9 +17,11 @@ macro(install_package _PACK _LIB_NAME _HEADERSLIST)
     "Installation directory for header files")
   set(INSTALL_DATA_DIR share CACHE PATH
     "Installation directory for data files")
+  set(INSTALL_CMAKE_DIR "${INSTALL_DATA_DIR}/CMake" CACHE PATH
+    "Installation directory for CMake files")
 
   # Make relative paths absolute (needed later on)
-  foreach(p LIB BIN INCLUDE DATA)
+  foreach(p LIB BIN INCLUDE DATA CMAKE)
     set(var INSTALL_${p}_DIR)
     if(NOT IS_ABSOLUTE "${${var}}")
       set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
@@ -39,14 +41,14 @@ macro(install_package _PACK _LIB_NAME _HEADERSLIST)
   
   
   export(TARGETS ${_LIB_NAME} FILE "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}LibraryDepends.cmake")
-  
+
   # Install the export set for use with the install-tree
   install(EXPORT ${_PACK}LibraryDepends DESTINATION
-    "${INSTALL_DATA_DIR}/CMake" COMPONENT dev)
-  
+    "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+
   set(${_PACK}_INCLUDE_DIRS "${INSTALL_INCLUDE_DIR}")
   set(${_PACK}_LIB_DIR "${INSTALL_LIB_DIR}")
-  set(${_PACK}_CMAKE_DIR "${INSTALL_DATA_DIR}/CMake")
+  set(${_PACK}_CMAKE_DIR "${INSTALL_CMAKE_DIR}")
   configure_file(${_PACK}Config.cmake.in
     "${PROJECT_BINARY_DIR}/InstallFiles/${_PACK}Config.cmake")
   configure_file(${_PACK}ConfigVersion.cmake.in
