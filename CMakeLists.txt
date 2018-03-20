@@ -277,7 +277,8 @@ if(HARDCODE_NOT_HEADER_ONLY)
   endif()
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fclib.h
-    COMMAND sed -e '/@@/,/@@/d' ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h >fclib.h
+    COMMAND sed -e '/@@/,/@@/d' ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
+      | sed 's/FCLIB_STATIC //' >fclib.h
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Customising fclib.h")
