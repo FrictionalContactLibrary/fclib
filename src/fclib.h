@@ -91,13 +91,18 @@
 #define FCLIB_APICOMPILE
 #endif
 
-/* the default is to use a header only library */
+/*@@ Define FCLIB_NOT_HEADER_ONLY on the command-line when fclib is
+ * compiled and installed as a library.  The default is to use as a
+ * header-only library. */
+
 #ifndef FCLIB_NOT_HEADER_ONLY
 #define FCLIB_STATIC static
 #define FCLIB_IMPLEMENTATION
 #else
 #define FCLIB_STATIC
 #endif
+
+/*@@*/
 
 /* choose api version */
 #define H5Gcreate_vers 2
@@ -356,6 +361,7 @@ FCLIB_STATIC int fclib_create_int_attributes_in_info(const char *path,
                                                int attr_value);
 
 
+/*@@*/
 /* ========================= implementation =========================*/
 
 #ifdef FCLIB_IMPLEMENTATION
@@ -1363,5 +1369,6 @@ FCLIB_STATIC double fclib_merit_local (struct fclib_local *problem, enum fclib_m
 #endif /* FCLIB_WITH_MERIT_FUNCTIONS */
 
 #endif /* FCLIB_IMPLEMENTATION */
+/*@@*/
 
 #endif /* _fclib_h_ */

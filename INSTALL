@@ -25,6 +25,12 @@ More options to CMake:
     -DSKIP_PKGCONFIG=ON -- do not generate the fclib.pc file for the
                            pkg-config utility
 
+    -DHARDCODE_NOT_HEADER_ONLY=ON -- by default users must specify
+                                     FCLIB_NOT_HEADER_ONLY to use
+                                     fclib as a compiled library, but
+                                     this option puts this define
+                                     right into the installed header.
+
 The default value for where_to_install_fclib is /usr/local.
 
 If hdf5 is not in a standard place, just set var HDF5_ROOT before running cmake.

@@ -41,6 +41,7 @@ option(WITH_TESTS "Enable testing. Default = ON" ON)
 option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only for packaging. Default = OFF" OFF)
 option(USE_SYSTEM_SUITESPARSE "Use the system-installed SuiteSparse library for CXSparse if one is found." ON)
 option(SKIP_PKGCONFIG "Do not configure or install the pkg-config file." OFF)
+option(HARDCODE_NOT_HEADER_ONLY "Pre-define as 'not header-only' in the installed header." OFF)
 
 # cmake project name
 set(PROJECT_NAME fclib)
@@ -268,6 +269,22 @@ foreach(_DIR ${${PROJECT_LIBRARY_NAME}_SRCDIRS})
   endforeach()
 endforeach()
 
+if(HARDCODE_NOT_HEADER_ONLY)
+  if(FCLIB_HEADER_ONLY)
+    message(FATAL_ERROR
+      "HARDCODE_NOT_HEADER_ONLY=${HARDCODE_NOT_HEADER_ONLY} "
+      "and FCLIB_HEADER_ONLY=${FCLIB_HEADER_ONLY} are inconsistent.")
+  endif()
+  add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fclib.h
+    COMMAND sed -e '/@@/,/@@/d' ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h >fclib.h
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Customising fclib.h")
+  list(REMOVE_ITEM ${PROJECT_LIBRARY_NAME}_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h")
+  list(APPEND ${PROJECT_LIBRARY_NAME}_HDRS "${CMAKE_BINARY_DIR}/fclib.h")
+endif()
+
 # We add headers to source files
 list(APPEND ${PROJECT_LIBRARY_NAME}_SRC ${${PROJECT_LIBRARY_NAME}_HDRS})
 
@@ -343,7 +360,11 @@ endif()
 # The library, the headers and mod files, the cmake generated files
 # will be install in CMAKE_INSTALL_PREFIX/lib include and share
 display(${PROJECT_LIBRARY_NAME}_HDRS)
-set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h;")
+if(HARDCODE_NOT_HEADER_ONLY)
+  set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_BINARY_DIR}/fclib.h;")
+else()
+  set(${PROJECT_LIBRARY_NAME}_INSTALL_HDRS "${CMAKE_SOURCE_DIR}/src/fclib.h;")
+endif()
 
 if(FCLIB_WITH_MERIT_FUNCTIONS OR NOT FCLIB_HEADER_ONLY)
   include(InstallPackage)
