@@ -91,6 +91,8 @@
 #define FCLIB_APICOMPILE
 #endif
 
+/*@ CONFIG @*/
+
 /*@@ Define FCLIB_NOT_HEADER_ONLY on the command-line when fclib is
  * compiled and installed as a library.  The default is to use as a
  * header-only library. */

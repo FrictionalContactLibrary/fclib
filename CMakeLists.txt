@@ -275,9 +275,19 @@ if(HARDCODE_NOT_HEADER_ONLY)
       "HARDCODE_NOT_HEADER_ONLY=${HARDCODE_NOT_HEADER_ONLY} "
       "and FCLIB_HEADER_ONLY=${FCLIB_HEADER_ONLY} are inconsistent.")
   endif()
+  set(OPTDEFS FCLIB_NOT_HEADER_ONLY)
+  if(FCLIB_WITH_MERIT_FUNCTIONS)
+    set(OPTDEFS "${OPTDEFS};FCLIB_WITH_MERIT_FUNCTIONS")
+  endif()
+  set(DEFS)
+  foreach(_D ${OPTDEFS})
+    set(DEFS "${DEFS}\\n#ifndef ${_D}\\n#define ${_D}\\n#endif\\n")
+  endforeach()
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fclib.h
-    COMMAND sed -e '/@@/,/@@/d' ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
+    COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
+      | sed 's,/\\*@ CONFIG @\\*/,${DEFS},'
+      | sed '/@@/,/@@/d'
       | sed 's/FCLIB_STATIC //' >fclib.h
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
