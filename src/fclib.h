@@ -93,14 +93,14 @@
 
 /*@ CONFIG @*/
 
-/*@@ Define FCLIB_NOT_HEADER_ONLY on the command-line when fclib is
- * compiled and installed as a library.  The default is to use as a
- * header-only library. */
+/*@@ */
 
-#ifndef FCLIB_NOT_HEADER_ONLY
+#ifdef FCLIB_HEADER_ONLY
+// Header only : so we declare all functions as static functions.
 #define FCLIB_STATIC static
 #define FCLIB_IMPLEMENTATION
 #else
+// In that case FCLIB_STATIC is empty
 #define FCLIB_STATIC
 #endif
 
