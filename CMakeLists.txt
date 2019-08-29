@@ -84,7 +84,7 @@ set(PROJECT_NAME fclib)
 
 # ============= Project setup =============
 project(${PROJECT_NAME} C)
-include(FCLibVersion)
+include(FClibVersion)
 include(fclib_setup)
 
 if(FCLIB_HEADER_ONLY)
