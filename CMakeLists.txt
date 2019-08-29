@@ -16,7 +16,7 @@ endif()
 
 # Set cmake modules directory (i.e. the one which contains all
 # user-defined FindXXX.cmake files among other things)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 # Force out-of-source build
 if ("${CMAKE_SOURCE_DIR}" MATCHES "${CMAKE_BINARY_DIR}")
   message (SEND_ERROR "In source building not supported (not recommanded indeed). You need to :
