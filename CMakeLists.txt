@@ -141,7 +141,7 @@ endif()
   endif()
   
   # - hdf5 -
-  find_package(HDF5  COMPONENTS HL REQUIRED)
+  find_package(HDF5  COMPONENTS C HL REQUIRED)
   target_include_directories(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_INCLUDE_DIRS})
   target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_LIBRARIES})
   target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_HL_LIBRARIES})
