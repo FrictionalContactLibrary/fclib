@@ -66,15 +66,16 @@ if(HARDCODE_NOT_HEADER_ONLY)
   foreach(_D IN LISTS OPTDEFS)
     set(DEFS "${DEFS}\\n#ifndef ${_D}\\n#define ${_D}\\n#endif\\n")
   endforeach()
-  add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fclib.h
+  add_custom_target(fclib_h
     COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
       | sed 's,/\\*@ CONFIG @\\*/,${DEFS},'
       | sed '/@@/,/@@/d'
       | sed 's/FCLIB_STATIC //' >fclib.h
+    BYPRODUCTS ${CMAKE_CURRENT_BINARY_DIR}/fclib.h
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/fclib.h
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Customising fclib.h")
+	set(EXTRA_TARGETS fclib_h)
 endif()
 
 
@@ -158,11 +159,14 @@ endif()
  
 # --- Install headers ---
 if(HARDCODE_NOT_HEADER_ONLY)
-  install(FILES fclib.h DESTINATION include)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/fclib.h DESTINATION include)
 else()
   install(FILES src/fclib.h DESTINATION include) 
 endif()
 target_include_directories(fclib INTERFACE $<INSTALL_INTERFACE:include>)
+if(EXTRA_TARGETS)
+  add_dependencies(fclib ${EXTRA_TARGETS})
+endif()
 
 # ============= Doc and website =============
 if(WITH_DOCUMENTATION)
