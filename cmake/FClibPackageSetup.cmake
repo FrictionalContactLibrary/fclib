@@ -20,7 +20,7 @@ configure_package_config_file(fclib-config.cmake.in ${CMAKE_BINARY_DIR}/fclib-co
 write_basic_package_version_file(
   "${CMAKE_BINARY_DIR}/fclib-config-version.cmake"
   VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
-  COMPATIBILITY ExactVersion
+  COMPATIBILITY SameMajorVersion
   )
 
 if(NOT FCLIB_HEADER_ONLY)
