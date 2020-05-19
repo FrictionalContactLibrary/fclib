@@ -6,7 +6,7 @@
   
 with pkgs;
 
-let  version = "3.0.0" ; in
+let  version = "3.1.0" ; in
  stdenv.mkDerivation rec {
 
  name = "fclib-${version}";

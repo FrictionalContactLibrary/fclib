@@ -3,9 +3,9 @@
 set(PACKAGE_NAME "FCLib")
 # --- Set a version number for the package ---
 set(MAJOR_VERSION 3)
-set(MINOR_VERSION 0)
+set(MINOR_VERSION 1)
 set(PATCH_VERSION 0)
-set(${PACKAGE_NAME}_version 3.0.0)
+set(${PACKAGE_NAME}_version 3.1.0)
 set(PACKAGE_VERSION ${${PACKAGE_NAME}_version})
 # ============= ABI version =============
 ### SOVERSION
