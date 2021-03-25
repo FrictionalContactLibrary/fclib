@@ -220,6 +220,65 @@ struct FCLIB_APICOMPILE fclib_global
   /** info on the problem */
   struct fclib_info *info;
 };
+/**\struct fclib_global_rolling fclib.h
+ * The global rolling frictional contact problem defined by
+ *
+ * Given
+ * <ul>
+ *    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
+ *   <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
+ *   <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
+ *   <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
+ *    <li> a vector \f$w \in {\mathrm{I\!R}}^{m}\f$,</li>
+ *    <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
+ *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
+ *   <li> a vector of coefficients of rolling friction \f$\mu_r \in {\mathrm{I\!R}}^{n_c}\f$
+ *</ul>
+ * the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
+ * \f{eqnarray*}{
+ * \begin{cases}
+ *   M v = {H} {r} + G\lambda + {f} \\ \        \
+ *   G^T v +b =0 \\ \                           \
+ *   \hat u = H^T v + w +\left[
+ *     \left[\begin{array}{c}
+ *       \mu \|u^\alpha_T\|\                   \
+ *       0 \                                    \
+ *       0
+ *     \end{array}\right]^T, \alpha = 1 \ldots n_c
+ * \right]^T \\ \                                    \
+ *   C^\star_{\mu,\mu_r} \ni {\hat u} \perp r \in C_{\mu,\mu_r}
+ * \end{cases}
+ * \f}
+ * where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by
+ * \f{eqnarray*}{
+ * \label{eq:CCC}
+ * C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+ *\f}
+ * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
+ */
+struct FCLIB_APICOMPILE fclib_global_rolling
+{
+  /** the matrix M (see mathematical description below)*/
+  struct fclib_matrix *M;
+  /** the matrix M (see mathematical description below)*/
+  struct fclib_matrix *H;
+  /** the matrix M (see mathematical description below)*/
+  struct fclib_matrix *G;
+  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical description below)*/
+  double *mu;
+  /** the vector \f$\mu\f$ of rolling coefficient of friction (see mathematical description below)*/
+  double *mu_r;
+  /** the vector f (see mathematical description below)*/
+  double *f;
+  /** the vector b (see mathematical description below)*/
+  double *b;
+  /** the vector w (see mathematical description below)*/
+  double *w;
+  /** the dimension , 2 or 3, of the local space at contact (2d or 3d friction contact laws)*/
+  int spacedim;
+  /** info on the problem */
+  struct fclib_info *info;
+};
 /**\struct fclib_local fclib.h
  * The local frictional contact problem defined by
  *
@@ -305,6 +364,10 @@ FCLIB_STATIC int fclib_write_global (struct fclib_global *problem,
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_local (struct fclib_local *problem,
                                     const char *path);
+/** write global rolling problem;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int fclib_write_global_rolling (struct fclib_global_rolling *problem,
+                                             const char *path);
 
 /** write solution;
  * return 1 on success, 0 on failure */
@@ -317,6 +380,7 @@ FCLIB_STATIC int fclib_write_guesses (int number_of_guesses,
                                       struct fclib_solution *guesses,
                                       const char *path);
 
+
 /** read global problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct fclib_global* fclib_read_global (const char *path);
@@ -324,6 +388,11 @@ FCLIB_STATIC struct fclib_global* fclib_read_global (const char *path);
 /** read local problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct fclib_local* fclib_read_local (const char *path);
+
+/** read global rolling problem;
+ * return problem on success; NULL on failure */
+FCLIB_STATIC struct fclib_global_rolling* fclib_read_global_rolling (const char *path);
+
 
 /** read solution;
  * return solution on success; NULL on failure */
@@ -352,6 +421,10 @@ FCLIB_STATIC void fclib_delete_global (struct fclib_global *problem);
 
 /** delete local problem */
 FCLIB_STATIC void fclib_delete_local (struct fclib_local *problem);
+
+/** delete global rolling problem */
+FCLIB_STATIC void fclib_delete_global_rolling (struct fclib_global_rolling *problem);
+
 
 /** delete solutions or guesses */
 FCLIB_STATIC void fclib_delete_solutions (struct fclib_solution *data,
@@ -551,7 +624,50 @@ FCLIB_STATIC void read_global_vectors (hid_t id, struct fclib_global *problem)
     IO (H5LTread_dataset_double (id, "b", problem->b));
   }
 }
+/** write global vectors */
+FCLIB_STATIC void write_global_rolling_vectors (hid_t id, struct fclib_global_rolling *problem)
+{
+  hsize_t dim;
 
+  dim = problem->M->m;
+  ASSERT (problem->f, "ERROR: f must be given");
+  IO (H5LTmake_dataset_double (id, "f", 1, &dim, problem->f));
+
+  dim = problem->H->n;
+  ASSERT (problem->w && problem->mu, "ERROR: w and mu must be given");
+  IO (H5LTmake_dataset_double (id, "w", 1, &dim, problem->w));
+  ASSERT (dim % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
+  dim /= problem->spacedim;
+  IO (H5LTmake_dataset_double (id, "mu", 1, &dim, problem->mu));
+  IO (H5LTmake_dataset_double (id, "mu_r", 1, &dim, problem->mu_r));
+
+  if (problem->G)
+  {
+    dim = problem->G->n;
+    ASSERT (problem->b, "ERROR: b must be given if G is present");
+    IO (H5LTmake_dataset_double (id, "b", 1, &dim, problem->b));
+  }
+}
+
+/** read global vectors */
+FCLIB_STATIC void read_global_rolling_vectors (hid_t id, struct fclib_global_rolling *problem)
+{
+  MM (problem->f = malloc (sizeof(double)*problem->M->m));
+  IO (H5LTread_dataset_double (id, "f", problem->f));
+
+  ASSERT (problem->H->n % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
+  MM (problem->w = malloc (sizeof(double)*problem->H->n));
+  MM (problem->mu = malloc (sizeof(double)*(problem->H->n / problem->spacedim)));
+  IO (H5LTread_dataset_double (id, "w", problem->w));
+  IO (H5LTread_dataset_double (id, "mu", problem->mu));
+  IO (H5LTread_dataset_double (id, "mu_r", problem->mu_r));
+
+  if (problem->G)
+  {
+    MM (problem->b = malloc (sizeof(double)*problem->G->n));
+    IO (H5LTread_dataset_double (id, "b", problem->b));
+  }
+}
 /** write local vectors */
 FCLIB_STATIC void write_local_vectors (hid_t id, struct fclib_local *problem)
 {
@@ -690,6 +806,16 @@ FCLIB_STATIC int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
     if (H5Lexists (file_id, "/fclib_local/R", H5P_DEFAULT))
     {
       IO (H5LTread_dataset_int (file_id, "/fclib_local/R/n", nl));
+    }
+    else *nl = 0;
+  }
+  else if (H5Lexists (file_id, "/fclib_global_rolling", H5P_DEFAULT))
+  {
+    IO (H5LTread_dataset_int (file_id, "/fclib_global_rolling/M/n", nv));
+    IO (H5LTread_dataset_int (file_id, "/fclib_global_rolling/H/n", nr));
+    if (H5Lexists (file_id, "/fclib_global_rolling/G", H5P_DEFAULT))
+    {
+      IO (H5LTread_dataset_int (file_id, "/fclib_global_rolling/G/n", nl));
     }
     else *nl = 0;
   }
@@ -851,6 +977,75 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *probl
 
   return 1;
 }
+
+/** write global problem rolling;
+ * return 1 on success, 0 on failure */
+FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global_rolling (struct fclib_global_rolling *problem, const char *path)
+{
+  hid_t  file_id, main_id, id;
+  hsize_t dim = 1;
+  FILE *f;
+
+  if ((f = fopen (path, "r"))) /* HDF5 outputs lots of warnings when file does not exist */
+  {
+    fclose (f);
+    if ((file_id = H5Fopen (path, H5F_ACC_RDWR, H5P_DEFAULT)) < 0)
+    {
+      fprintf (stderr, "ERROR: opening file failed\n");
+      return 0;
+    }
+
+    if (H5Lexists (file_id, "/fclib_global_rolling", H5P_DEFAULT)) /* cannot overwrite existing datasets */
+    {
+      fprintf (stderr, "ERROR: a global problem has already been written to this file\n");
+      return 0;
+    }
+  }
+  else if ((file_id = H5Fcreate (path, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)) < 0) /* cerate */
+  {
+    fprintf (stderr, "ERROR: creating file failed\n");
+    return 0;
+  }
+
+  IO (main_id = H5Gmake (file_id, "/fclib_global_rolling"));
+
+  ASSERT (problem->spacedim == 3 || problem->spacedim == 5, "ERROR: space dimension must be 3 or 5");
+  IO (H5LTmake_dataset_int (file_id, "/fclib_global_rolling/spacedim", 1, &dim, &problem->spacedim));
+
+  ASSERT (problem->M, "ERROR: M must be given");
+  IO (id = H5Gmake (file_id, "/fclib_global_rolling/M"));
+  write_matrix (id, problem->M);
+  IO (H5Gclose (id));
+
+  ASSERT (problem->H, "ERROR: H must be given");
+  IO (id = H5Gmake (file_id, "/fclib_global_rolling/H"));
+  write_matrix (id, problem->H);
+  IO (H5Gclose (id));
+
+  if (problem->G)
+  {
+    IO (id = H5Gmake (file_id, "/fclib_global_rolling/G"));
+    write_matrix (id, problem->G);
+    IO (H5Gclose (id));
+  }
+
+  IO (id = H5Gmake (file_id, "/fclib_global_rolling/vectors"));
+  write_global_rolling_vectors (id, problem);
+  IO (H5Gclose (id));
+
+  if (problem->info)
+  {
+    IO (id = H5Gmake (file_id, "/fclib_global_rolling/info"));
+    write_problem_info (id, problem->info);
+    IO (H5Gclose (id));
+  }
+
+  IO (H5Gclose (main_id));
+  IO (H5Fclose (file_id));
+
+  return 1;
+}
+
 
 
 
@@ -1063,7 +1258,55 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global* fclib_read_global (const char
 
   return problem;
 }
+/** read global problem;
+ * return problem on success; NULL on failure */
+FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global_rolling* fclib_read_global_rolling (const char *path)
+{
+  struct fclib_global_rolling *problem;
+  hid_t  file_id, main_id, id;
 
+  if ((file_id = H5Fopen (path, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0)
+  {
+    fprintf (stderr, "ERROR: opening file failed\n");
+    return NULL;
+  }
+
+  MM (problem = calloc (1, sizeof (struct fclib_global)));
+
+  IO (main_id = H5Gopen (file_id, "/fclib_global_rolling", H5P_DEFAULT));
+  IO (H5LTread_dataset_int (file_id, "/fclib_global/spacedim", &problem->spacedim));
+
+  IO (id = H5Gopen (file_id, "/fclib_global_rolling/M", H5P_DEFAULT));
+  problem->M = read_matrix (id);
+  IO (H5Gclose (id));
+
+  IO (id = H5Gopen (file_id, "/fclib_global_rolling/H", H5P_DEFAULT));
+  problem->H = read_matrix (id);
+  IO (H5Gclose (id));
+
+  if (H5Lexists (file_id, "/fclib_global_rolling/G", H5P_DEFAULT))
+  {
+    IO (id = H5Gopen (file_id, "/fclib_global_rolling/G", H5P_DEFAULT));
+    problem->G = read_matrix (id);
+    IO (H5Gclose (id));
+  }
+
+  IO (id = H5Gopen (file_id, "/fclib_global_rolling/vectors", H5P_DEFAULT));
+  read_global_rolling_vectors (id, problem);
+  IO (H5Gclose (id));
+
+  if (H5Lexists (file_id, "/fclib_global_rolling/info", H5P_DEFAULT))
+  {
+    IO (id = H5Gopen (file_id, "/fclib_global_rolling/info", H5P_DEFAULT));
+    problem->info = read_problem_info (id);
+    IO (H5Gclose (id));
+  }
+
+  IO (H5Gclose (main_id));
+  IO (H5Fclose (file_id));
+
+  return problem;
+}
 /** read local problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_local* fclib_read_local (const char *path)
@@ -1213,6 +1456,21 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_local (struct fclib_local *probl
   if (problem->s) free (problem->s);
   delete_info (problem->info);
 }
+/** delete global problem */
+FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global_rolling (struct fclib_global_rolling *problem)
+{
+  delete_matrix (problem->M);
+  delete_matrix (problem->H);
+  delete_matrix (problem->G);
+  free (problem->mu);
+  free (problem->mu_r);
+  free (problem->f);
+  if (problem->b) free (problem->b);
+  free (problem->w);
+  delete_info (problem->info);
+}
+
+
 
 /** delete solutions or guesses */
 FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution *data, int count)
