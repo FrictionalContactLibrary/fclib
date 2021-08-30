@@ -16,7 +16,7 @@ endif()
 
 # Set cmake modules directory (i.e. the one which contains all
 # user-defined FindXXX.cmake files among other things)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 # Force out-of-source build
 if ("${CMAKE_SOURCE_DIR}" MATCHES "${CMAKE_BINARY_DIR}")
   message (SEND_ERROR "In source building not supported (not recommanded indeed). You need to :
@@ -35,7 +35,7 @@ endif()
 
 # User defined options
 option(FCLIB_WITH_MERIT_FUNCTIONS "enable merit functions. Default = ON" OFF)
-option(FCLIB_HEADER_ONLY "static interface. Default = ON" ON)
+option(FCLIB_HEADER_ONLY "static interface. Default = ON" OFF)
 option(VERBOSE_MODE "enable verbose mode for cmake exec. Default = ON" ON)
 option(USE_MPI "compile and link fclib with mpi when this mode is enable. Default = ON" OFF)
 option(BUILD_SHARED_LIBS "Enable dynamic library build, default = ON" ON)
@@ -134,18 +134,26 @@ endif()
 
   # --- dependencies ---
 
-  # - mpi -
-  if(WITH_MPI)
-    find_package(MPI REQUIRED)
-    target_include_directories(${PROJECT_NAME} ${LIB_SCOPE} ${MPI_C_INCLUDE_DIRS})
-    target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${MPI_C_LIBRARIES})
-  endif()
-  
+   
   # - hdf5 -
+  set(HDF5_PREFER_PARALLEL TRUE)
   find_package(HDF5  COMPONENTS C HL REQUIRED)
-  target_include_directories(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_INCLUDE_DIRS})
-  target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_LIBRARIES})
-  target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_HL_LIBRARIES})
+  if(HDF5_IS_PARALLEL)
+    set(USE_MPI ON)
+  endif()
+
+  if(${CMAKE_VERSION} VERSION_LESS "3.19")
+    target_include_directories(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_C_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} ${HDF5_HL_LIBRARIES})
+  else()
+    target_link_libraries(${PROJECT_NAME} ${LIB_SCOPE} hdf5::hdf5 hdf5::hdf5_hl) 
+  endif()
+  # - mpi -
+  if(USE_MPI)
+      find_package(MPI REQUIRED)
+      target_link_libraries(${PROJECT_NAME} PRIVATE MPI::MPI_C)
+  endif()
 
   # 
   # --- install lib --
@@ -164,6 +172,7 @@ else()
   install(FILES src/fclib.h DESTINATION include) 
 endif()
 target_include_directories(fclib INTERFACE $<INSTALL_INTERFACE:include>)
+target_include_directories(fclib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 if(EXTRA_TARGETS)
   add_dependencies(fclib ${EXTRA_TARGETS})
 endif()
@@ -184,7 +193,10 @@ if(WITH_TESTS)
   add_executable(fctest1 src/tests/fctst.c)
   add_test(fctest1 fctest1)
   target_link_libraries(fctest1 PRIVATE fclib)
-  target_include_directories(fctest1 PRIVATE src)
+  if(USE_MPI)
+    target_link_libraries(fctest1 PRIVATE MPI::MPI_C)
+  endif()
+
   if(FORCE_SKIP_RPATH)
     set_tests_properties(fctest1 PROPERTIES ENVIRONMENT LD_LIBRARY_PATH=${CMAKE_CURRENT_BINARY_DIR})
   endif()
@@ -196,6 +208,9 @@ if(WITH_TESTS)
     target_link_libraries(fctest_merit PRIVATE fclib)
     target_include_directories(fctest_merit PRIVATE src)
     target_link_libraries(fctest_merit PRIVATE SuiteSparse::CXSparse)
+    if(USE_MPI)
+      target_link_libraries(fctest_merit PRIVATE MPI::MPI_C)
+     endif()
     if(FORCE_SKIP_RPATH)
       set_tests_properties(fctest_merit PROPERTIES ENVIRONMENT LD_LIBRARY_PATH=${CMAKE_CURRENT_BINARY_DIR})
     endif()
