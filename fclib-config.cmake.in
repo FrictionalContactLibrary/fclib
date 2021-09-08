@@ -20,7 +20,7 @@
 # fclib_INCLUDE_DIRS : The final set of include directories listed in one variable for use by client code. It includes both path to fclib headers and path to external libraries headers
 # fclib_LIBRARIES : the libraries to link against to use fclib
 # fclib_EXTERNAL_LIBRARIES : the libraries on which fclib libs depend.
-# fclib_ROOT_DIR : where to find the base directory of fclib
+# fclib_ROOT : where to find the base directory of fclib
 # fclib_FOUND : true if the find process went fine
 # 
 # 
@@ -36,7 +36,7 @@ include(CMakeFindDependencyMacro)
 set(PACKAGE_NAME fclib)
 
 # set path to fclib installation
-set_and_check(fclib_ROOT_DIR "@CMAKE_INSTALL_PREFIX@")
+set_and_check(fclib_ROOT "@CMAKE_INSTALL_PREFIX@")
 
 # Path (relative to fclib install) to cmake extra tools
 set(ConfigPackageLocation @ConfigPackageLocation@)

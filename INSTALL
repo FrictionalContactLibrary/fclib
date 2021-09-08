@@ -47,7 +47,7 @@ To run tests :
 
 Add in CMakeLists.txt of the project:
 
-    find_package(FCLIB 3.1.0 CONFIG REQUIRED)
+    find_package(fclib 3.1.0 CONFIG REQUIRED)
     target_link_libraries(your_target PUBLIC FCLIB::fclib)
   
 
@@ -55,11 +55,11 @@ and run cmake like this:
 
 with cmake > 12.:
 
-    cmake ... -DFCLib_ROOT=where_you_install_fclib
+    cmake ... -Dfclib_ROOT=where_you_install_fclib
 
 For older cmake :
 
-    cmake ... -DFCLib_DIR=where_you_install_fclib/lib/cmake/fclib-3.1.0
+    cmake ... -Dfclib_DIR=where_you_install_fclib/lib/cmake/fclib-3.1.0
 
 (i.e. the path to fclib-config.cmake file)
 
