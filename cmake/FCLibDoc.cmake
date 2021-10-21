@@ -143,7 +143,7 @@ IF (DOXYGEN_FOUND)
     
   ENDIF(DOXY_CONFIG_IN)
   
-  ADD_CUSTOM_TARGET(doc ${DOXYGEN_EXECUTABLE} ${DOXY_CONFIG} WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${RDOXY_CONFIG})
+  ADD_CUSTOM_TARGET(fclib-doc ${DOXYGEN_EXECUTABLE} ${DOXY_CONFIG} WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${RDOXY_CONFIG})
   
   # create a windows help .chm file using hhc.exe
   # HTMLHelp DLL must be in path!
@@ -155,7 +155,7 @@ IF (DOXYGEN_FOUND)
       STRING(REGEX REPLACE "[/]" "\\\\" HHP_FILE ${TMP} )
       # MESSAGE(SEND_ERROR "DBG  HHP_FILE=${HHP_FILE}")
       ADD_CUSTOM_TARGET(winhelp ${HTML_HELP_COMPILER} ${HHP_FILE})
-      ADD_DEPENDENCIES (winhelp doc)
+      ADD_DEPENDENCIES (winhelp fclib-doc)
      
       IF (NOT TARGET_DOC_SKIP_INSTALL)
       # install windows help?
