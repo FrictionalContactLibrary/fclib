@@ -3,9 +3,10 @@ configure_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
   IMMEDIATE @ONLY)
-#add_custom_target(uninstall
-#  echo >> ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
-#  COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+
+add_custom_target(uninstall-fclib
+  echo >> ${CMAKE_CURRENT_BINARY_DIR}/install_manifest.txt
+  COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 
 # ===== Package configuration file ====
 # https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#creating-packages
