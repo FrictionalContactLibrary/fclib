@@ -13,6 +13,7 @@
 <ul>
 <li> The problems are stored on a github repo with the help of git-lfs <a href="https://github.com/FrictionalContactLibrary/fclib-library">   fclib-library </a> </li>
 <li> The release of the library of problems are tagged and can be found <a href="https://github.com/FrictionalContactLibrary/fclib-library/releases">   there </a> </li>
+</ul>
 <br/>
 
     
@@ -27,11 +28,8 @@
   <p>
 <a href="https://hal.inria.fr/hal-00945820v2/document" > Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.<br>
 FCLIB: a collection of discrete 3D Frictional Contact problems. [Technical Report] RT-0444, INRIA. 2014, pp.34.</a>
-<br></br>
 
-<br/>
 </p>
 
-  <br/>
 
 */

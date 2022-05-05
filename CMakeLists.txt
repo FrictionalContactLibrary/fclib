@@ -6,17 +6,17 @@
 # ------ Global cmake Settings -------
 #
 # Set minimum version for cmake
-# We advise 3.12 at least, but 3.7 is authorized since it's the default version on current debian stable.
-cmake_minimum_required(VERSION 3.7)
+# We advise the most recent version of cmake.
+# Use python3 -m pip install cmake to get it.
+cmake_minimum_required(VERSION 3.14)
 
 # policy https://cmake.org/cmake/help/git-stage/policy/CMP0074.html
-if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.12")
-  cmake_policy(SET CMP0074 NEW)
-endif()
+cmake_policy(SET CMP0074 NEW)
 
 # Set cmake modules directory (i.e. the one which contains all
 # user-defined FindXXX.cmake files among other things)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 # Force out-of-source build
 if ("${CMAKE_SOURCE_DIR}" MATCHES "${CMAKE_BINARY_DIR}")
   message (SEND_ERROR "In source building not supported (not recommanded indeed). You need to :
@@ -44,6 +44,8 @@ option(FORCE_SKIP_RPATH "Do not build shared libraries with rpath. Useful only f
 option(USE_SYSTEM_SUITESPARSE "Use the system-installed SuiteSparse library for CXSparse if one is found." ON)
 option(SKIP_PKGCONFIG "Do not configure or install the pkg-config file." OFF)
 option(HARDCODE_NOT_HEADER_ONLY "Pre-define as 'not header-only' in the installed header." OFF)
+
+set(WARNINGS_LEVEL 0 CACHE INTERNAL "Set compiler diagnostics level. 0: no warnings, 1: developer's minimal warnings, 2: strict level, warnings to errors and so on. Default =0")
 
 if(HARDCODE_NOT_HEADER_ONLY AND FCLIB_HEADER_ONLY)
   message(FATAL_ERROR
@@ -84,7 +86,15 @@ set(PROJECT_NAME fclib)
 
 
 # ============= Project setup =============
-project(${PROJECT_NAME} C)
+if(WITH_CXX)
+  project(${PROJECT_NAME} CXX C)
+  set(CMAKE_CXX_STANDARD 17)
+  set(fclib_language CXX)
+else()
+  project(${PROJECT_NAME} C)
+  set(fclib_language C)
+endif()
+set(CMAKE_C_STANDARD 11)
 include(FClibVersion)
 include(fclib_setup)
 
@@ -105,13 +115,15 @@ else()
   if(FCLIB_WITH_MERIT_FUNCTIONS)
     target_compile_definitions(fclib PUBLIC FCLIB_WITH_MERIT_FUNCTIONS)
   endif()
-  
+  set_source_files_properties(src/fclib.c
+    PROPERTIES LANGUAGE ${fclib_language})
+
   set_target_properties(fclib PROPERTIES
     OUTPUT_NAME "fclib"
     VERSION "${${PACKAGE_NAME}_SOVERSION}"
     SOVERSION  "${${PACKAGE_NAME}_SOVERSION_MAJOR}"
-    LINKER_LANGUAGE C)
-
+    LINKER_LANGUAGE ${fclib_language})
+  
   # MSVC extra conf
   if(MSVC)
     option(USING_HDF5_DLLs "WIN ONLY: turn on if the shared library of HDSL is linked" ON)
@@ -128,8 +140,9 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE SuiteSparse::CXSparse)
   endif()
 
-  
+
 endif()
+
 
 
   # --- dependencies ---

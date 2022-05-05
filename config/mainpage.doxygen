@@ -25,13 +25,15 @@ The goal of this work is to set up a collection of 2D and 3D Frictional Contact 
 <p>
 <a href="https://hal.inria.fr/hal-00945820v2/document" >
 FCLIB: a collection of discrete 3D Frictional Contact problems.</a>
-<br> Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.
- [Technical Report] RT-0444, INRIA. 2014, pp.34.<br></br>
- 	    <br></br>	     
-<a href="https://hal.inria.fr/inria-00423530" > Numerical Methods for Nonsmooth Dynamical Systems: Applications in Mechanics and Electronics </a><br></br>
-Vincent Acary, Bernard Brogliato<br></br>
-Springer Verlag, 35, pp.526, 2008, Lecture Notes in Applied and Computational Mechanics, 978-3-540-75391-9 <br></br>
-<br/>
+
+Vincent Acary, Maurice Br&eacute;mond, Tomasz Koziara, Franck P&eacute;rignon.
+ [Technical Report] RT-0444, INRIA. 2014, pp.34.
+
+<a href="https://hal.inria.fr/inria-00423530" > Numerical Methods for Nonsmooth Dynamical Systems: Applications in Mechanics and Electronics </a>
+Vincent Acary, Bernard Brogliato
+
+Springer Verlag, 35, pp.526, 2008, Lecture Notes in Applied and Computational Mechanics, 978-3-540-75391-9
+
 </p>
 
 \section howtodownload How to download  ?
