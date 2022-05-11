@@ -18,71 +18,68 @@
 
 
 /*!\file fclib.h
- * -----------------------------------------
- * frictional contact library interface
- * -----------------------------------------
- *
- * This C API provides functions to read and write Frictional contact
- * problems in HDF5 format Two kind of problem are considered Given
- * <ul>
- *   <li> a symmetric positive semi--definite matrix \f${W} \in
- *   {\mathrm{I\!R}}^{m \times m} \f$ </li>
- *   <li> a vector \f$ {q} \in {\mathrm{I\!R}}^m\f$</li>
- *   <li> a vector of coefficients of friction \f$\mu
- *   \in{\mathrm{I\!R}}^{n_c}\f$</li>
- *</ul>
- * the local FC problem  is to find two vectors \f$u\in{\ensuremath{\mathrm{I\!R}}}^m\f$,
- * the relative local velocity and \f$r\in {\ensuremath{\mathrm{I\!R}}}^m\f$,
- * the contact forces denoted by \f$\mathrm{FC}(W,q,\mu)\f$  such that
- * \f{eqnarray*}{
- * \begin{cases}
- *    \hat u = W r + q +\left[
- *      \left[\begin{array}{c}
- *          \mu^\alpha \|u^\alpha_T\|\         \
- *         0 \                                  \
- *         0
- *        \end{array}\right]^T, \alpha = 1 \ldots n_c
- *    \right]^T \\ \                                \
- *    C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
- * \end{cases}
- * \f}
- * where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by
- * \f{eqnarray*}{
- * \label{eq:CCC}
- * C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
- *\f}
- * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
- * We are also dealing with global  FC problem defined by
- * Given
- * <ul>
- *    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
- *   <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
- *   <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
- *   <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
- *    <li> a vector \f$w \in {\mathrm{I\!R}}^{m}\f$,</li>
- *    <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
- *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
- *</ul>
- * the Global Mixed 3DFC problem is to find four vectors \f$ {v} \in
- * {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in
- * {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$
- * denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$ such that
- * \f{eqnarray*}{
- * \begin{cases}
- *   M v = {H} {r} + G\lambda + {f} \\ \        \
- *   G^T v +b =0 \\ \                           \
- *   \hat u = H^T v + w +\left[
- *     \left[\begin{array}{c}
- *       \mu \|u^\alpha_T\|\                   \
- *       0 \                                    \
- *       0
- *     \end{array}\right]^T, \alpha = 1 \ldots n_c
- * \right]^T \\ \                                    \
- *   C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
- * \end{cases}
- * \f}
- *
- */
+  frictional contact library interface
+  
+  This C API provides functions to read and write Frictional contact
+  problems in HDF5 format Two kind of problem are considered Given
+  
+  - a symmetric positive semi--definite matrix \f$ {W} \in {\mathrm{I\!R}}^{m \times m} \f$
+  - a vector \f$ {q} \in {\mathrm{I\!R}}^m \f$
+  - a vector of coefficients of friction \f$ \mu \in{\mathrm{I\!R}}^{n_c} \f$
+
+  the local FC problem  is to find two vectors \f$ u\in{\ensuremath{\mathrm{I\!R}}}^m \f$,
+  the relative local velocity and \f$ r\in {\ensuremath{\mathrm{I\!R}}}^m \f$,
+  the contact forces denoted by  \f$ \mathrm{FC}(W,q,\mu) \f$   such that
+
+  \f[
+  \begin{cases}
+  \hat u = W r + q +\left[
+  \left[\begin{array}{c}
+  \mu^\alpha \|u^\alpha_T\|\\
+  0 \\
+  0
+  \end{array}\right]^T, \alpha = 1 \ldots n_c
+  \right]^T \\ \\
+  C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+  \end{cases}
+  \f]
+
+  where the Coulomb friction cone for a  contact  \f$ \alpha \f$  is defined by
+  \f[
+  C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+  \f]
+  and the set  \f$ C^{\alpha,\star}_{\mu^\alpha} \f$  is its dual.
+  We are also dealing with global  FC problem defined by
+  Given
+  
+  - a symmetric positive definite matrix  \f$ {M} \in {\mathrm{I\!R}}^{n \times n} \f$
+  - a vector  \f$  {f} \in {\mathrm{I\!R}}^n \f$ ,
+  - a matrix   \f$ {H} \in {\mathrm{I\!R}}^{n \times m} \f$
+  - a matrix   \f$ {G} \in {\mathrm{I\!R}}^{n \times p} \f$
+  - a vector  \f$ w \in {\mathrm{I\!R}}^{m} \f$ ,
+  - a vector  \f$ b \in {\mathrm{I\!R}}^{p} \f$ ,
+  - a vector of coefficients of friction  \f$ \mu \in {\mathrm{I\!R}}^{n_c} \f$ 
+  
+  the Global Mixed 3DFC problem is to find four vectors  \f$  {v} \in {\mathrm{I\!R}}^n \f$,
+  \f$ u\in{\mathrm{I\!R}}^m \f$ ,  \f$ r\in {\mathrm{I\!R}}^m \f$  and  \f$ \lambda \in {\mathrm{I\!R}}^p \f$ 
+  denoted by  \f$ \mathrm{GM3DFC}(M,H,G,w,b,\mu) \f$  such that
+
+  \f[
+  \begin{cases}
+  M v = {H} {r} + G\lambda + {f} \\ \\
+  G^T v +b =0 \\ \\
+  \hat u = H^T v + w +\left[
+  \left[\begin{array}{c}
+  \mu \|u^\alpha_T\|\\
+  0 \\
+  0
+  \end{array}\right]^T, \alpha = 1 \ldots n_c
+  \right]^T \\ \\
+  C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+  \end{cases}
+  \f]
+ 
+*/
 
 #ifndef _fclib_h_
 #define _fclib_h_
@@ -164,41 +161,46 @@ struct FCLIB_APICOMPILE fclib_matrix   /*  */
   struct fclib_matrix_info *info;
 };
 
-/**\struct fclib_global fclib.h
- * The global frictional contact problem defined by
- *
- * Given
- * <ul>
- *    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
- *   <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
- *   <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
- *   <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
- *    <li> a vector \f$w \in {\mathrm{I\!R}}^{m}\f$,</li>
- *    <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
- *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
- *</ul>
- * the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
- * \f{eqnarray*}{
- * \begin{cases}
- *   M v = {H} {r} + G\lambda + {f} \\ \        \
- *   G^T v +b =0 \\ \                           \
- *   \hat u = H^T v + w +\left[
- *     \left[\begin{array}{c}
- *       \mu \|u^\alpha_T\|\                   \
- *       0 \                                    \
- *       0
- *     \end{array}\right]^T, \alpha = 1 \ldots n_c
- * \right]^T \\ \                                    \
- *   C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
- * \end{cases}
- * \f}
- * where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by
- * \f{eqnarray*}{
- * \label{eq:CCC}
- * C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
- *\f}
- * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
- */
+/**
+   The global frictional contact problem defined by
+   
+   Given
+
+   - a symmetric positive definite matrix \f$ {M} \in {\mathrm{I\!R}}^{n \times n} \f$
+   - a vector \f$ {f} \in {\mathrm{I\!R}}^n \f$,
+   - a matrix  \f$ {H} \in {\mathrm{I\!R}}^{n \times m} \f$
+   - a matrix  \f$ {G} \in {\mathrm{I\!R}}^{n \times p} \f$
+   - a vector \f$ w \in {\mathrm{I\!R}}^{m} \f$,
+   - a vector \f$ b \in {\mathrm{I\!R}}^{p} \f$,
+   - a vector of coefficients of friction \f$ \mu \in {\mathrm{I\!R}}^{n_c} \f$
+
+   the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n \f$,
+   \f$ u\in{\mathrm{I\!R}}^m \f$, \f$ r\in {\mathrm{I\!R}}^m \f$ and \f$ \lambda \in {\mathrm{I\!R}}^p \f$ denoted by
+   \f$ \mathrm{GM3DFC}(M,H,G,w,b,\mu) \f$  such that
+ 
+   \f[
+   \begin{cases}
+   M v = {H} {r} + G\lambda + {f} \\ \\
+   G^T v +b =0 \\		      \
+   \hat u = H^T v + w +\left[
+   \left[\begin{array}{c}
+   \mu \|u^\alpha_T\| \\
+   0 \\
+   0
+   \end{array}\right]^T, \alpha = 1 \ldots n_c
+   \right]^T \\ \\
+   C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+   \end{cases}
+   \f]
+
+
+   where the Coulomb friction cone for a  contact \f$ \alpha \f$ is defined by
+
+   \f[
+   C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+   \f]
+   and the set \f$ C^{\alpha,\star}_{\mu^\alpha} \f$ is its dual.
+*/
 struct FCLIB_APICOMPILE fclib_global
 {
   /** the matrix M (see mathematical description below)*/
@@ -220,41 +222,46 @@ struct FCLIB_APICOMPILE fclib_global
   /** info on the problem */
   struct fclib_info *info;
 };
-/**\struct fclib_global_rolling fclib.h
- * The global rolling frictional contact problem defined by
- *
- * Given
- * <ul>
- *    <li> a symmetric positive definite matrix \f${M} \in {\mathrm{I\!R}}^{n \times n}\f$</li>
- *   <li> a vector \f$ {f} \in {\mathrm{I\!R}}^n\f$,</li>
- *   <li> a matrix  \f${H} \in {\mathrm{I\!R}}^{n \times m}\f$</li>
- *   <li> a matrix  \f${G} \in {\mathrm{I\!R}}^{n \times p}\f$</li>
- *    <li> a vector \f$w \in {\mathrm{I\!R}}^{m}\f$,</li>
- *    <li> a vector \f$b \in {\mathrm{I\!R}}^{p}\f$,</li>
- *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
- *   <li> a vector of coefficients of rolling friction \f$\mu_r \in {\mathrm{I\!R}}^{n_c}\f$
- *</ul>
- * the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n\f$, \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{GM3DFC}(M,H,G,w,b,\mu)\f$  such that
- * \f{eqnarray*}{
- * \begin{cases}
- *   M v = {H} {r} + G\lambda + {f} \\ \        \
- *   G^T v +b =0 \\ \                           \
- *   \hat u = H^T v + w +\left[
- *     \left[\begin{array}{c}
- *       \mu \|u^\alpha_T\|\                   \
- *       0 \                                    \
- *       0
- *     \end{array}\right]^T, \alpha = 1 \ldots n_c
- * \right]^T \\ \                                    \
- *   C^\star_{\mu,\mu_r} \ni {\hat u} \perp r \in C_{\mu,\mu_r}
- * \end{cases}
- * \f}
- * where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by
- * \f{eqnarray*}{
- * \label{eq:CCC}
- * C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
- *\f}
- * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
+/**
+   The global rolling frictional contact problem defined by
+   
+   Given
+
+   - a symmetric positive definite matrix  \f$ {M} \in {\mathrm{I\!R}}^{n \times n} \f$-
+   - a vector \f$ {f} \in {\mathrm{I\!R}}^n \f$ ,
+   - a matrix   \f$ {H} \in {\mathrm{I\!R}}^{n \times m} \f$ 
+   - a matrix   \f$ {G} \in {\mathrm{I\!R}}^{n \times p} \f$ 
+   - a vector  \f$ w \in {\mathrm{I\!R}}^{m} \f$ ,
+   - a vector  \f$ b \in {\mathrm{I\!R}}^{p} \f$ ,
+   - a vector of coefficients of friction  \f$ \mu \in {\mathrm{I\!R}}^{n_c} \f$ 
+   - a vector of coefficients of rolling friction  \f$ \mu_r \in {\mathrm{I\!R}}^{n_c} \f$ 
+
+   the Global Mixed 3DFC problem  is to find four vectors \f$ {v} \in {\mathrm{I\!R}}^n \f$,
+   \f$ u\in{\mathrm{I\!R}}^m \f$ , \f$ r\in {\mathrm{I\!R}}^m \f$  and
+   \f$ \lambda \in {\mathrm{I\!R}}^p \f$  denoted by  \f$ \mathrm{GM3DFC}(M,H,G,w,b,\mu) \f$  such that
+
+   \f[
+   \begin{cases}
+   M v = {H} {r} + G\lambda + {f} \\ \\
+   G^T v +b =0 \\ \\
+   \hat u = H^T v + w +\left[
+   \left[\begin{array}{c}
+   \mu \|u^\alpha_T\|\\
+   0 \\
+   0
+   \end{array}\right]^T, \alpha = 1 \ldots n_c
+   \right]^T \\ \\
+   C^\star_{\mu,\mu_r} \ni {\hat u} \perp r \in C_{\mu,\mu_r}
+   \end{cases}
+   \f]
+   
+   where the Coulomb friction cone for a  contact  \f$ \alpha \f$  is defined by
+
+   \f[
+   C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+   \f]
+   
+   and the set  \f$ C^{\alpha,\star}_{\mu^\alpha} \f$  is its dual.
  */
 struct FCLIB_APICOMPILE fclib_global_rolling
 {
@@ -264,9 +271,9 @@ struct FCLIB_APICOMPILE fclib_global_rolling
   struct fclib_matrix *H;
   /** the matrix M (see mathematical description below)*/
   struct fclib_matrix *G;
-  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical description below)*/
+  /** the vector  \f$ \mu \f$  of coefficient of friction (see mathematical description below)*/
   double *mu;
-  /** the vector \f$\mu\f$ of rolling coefficient of friction (see mathematical description below)*/
+  /** the vector  \f$ \mu \f$  of rolling coefficient of friction (see mathematical description below)*/
   double *mu_r;
   /** the vector f (see mathematical description below)*/
   double *f;
@@ -279,38 +286,42 @@ struct FCLIB_APICOMPILE fclib_global_rolling
   /** info on the problem */
   struct fclib_info *info;
 };
-/**\struct fclib_local fclib.h
- * The local frictional contact problem defined by
- *
- * given
- * <ul>
- *   <li> a positive semi--definite matrix  \f${W} \in {\mathrm{I\!R}}^{m \times m}\f$</li>
- *   <li> a matrix  \f${V} \in {\mathrm{I\!R}}^{m \times p}\f$</li>
- *   <li> a matrix  \f${R} \in {\mathrm{I\!R}}^{p \times p}\f$</li>
- *   <li> a vector \f$q \in {\mathrm{I\!R}}^{m}\f$,</li>
- *   <li> a vector \f$s \in {\mathrm{I\!R}}^{p}\f$,</li>
- *   <li> a vector of coefficients of friction \f$\mu \in {\mathrm{I\!R}}^{n_c}\f$
- * </ul>
- * the  Mixed 3DFC problem  is to find three vectors \f$u\in{\mathrm{I\!R}}^m\f$, \f$r\in {\mathrm{I\!R}}^m\f$ and \f$\lambda \in {\mathrm{I\!R}}^p\f$ denoted by \f$\mathrm{M3DFC}(R,V,W,q,s,\mu)\f$  such that
- * \f{eqnarray*}\label{eq:lcp1}
- *\begin{cases}
- *   V^T {r} + R \lambda + s = 0 \\ \           \
- *   \hat u = W {r}    + V\lambda  + q +\left[
- *     \left[\begin{array}{c}
- *       \mu^\alpha \|u^\alpha_T\|\            \
- *       0 \                                    \
- *       0
- *     \end{array}\right]^T, \alpha = 1 \ldots n_c
- * \right]^T \\ \                                    \
- *   C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
- * \end{cases}
- * \f}
- * where the Coulomb friction cone for a  contact \f$\alpha\f$ is defined by
- * \f{eqnarray*}{
- * \label{eq:CCC}
- * C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
- * \f}
- * and the set \f$C^{\alpha,\star}_{\mu^\alpha}\f$ is its dual.
+/**
+   The local frictional contact problem defined by
+   given
+
+   - a positive semi--definite matrix   \f$ {W} \in {\mathrm{I\!R}}^{m \times m} \f$ 
+   - a matrix   \f$ {V} \in {\mathrm{I\!R}}^{m \times p} \f$ 
+   - a matrix   \f$ {R} \in {\mathrm{I\!R}}^{p \times p} \f$ 
+   - a vector  \f$ q \in {\mathrm{I\!R}}^{m} \f$ ,
+   - a vector  \f$ s \in {\mathrm{I\!R}}^{p} \f$ ,
+   - a vector of coefficients of friction  \f$ \mu \in {\mathrm{I\!R}}^{n_c} \f$ 
+
+   the  Mixed 3DFC problem  is to find three vectors  \f$ u\in{\mathrm{I\!R}}^m \f$ ,
+   \f$ r\in {\mathrm{I\!R}}^m \f$  and  \f$ \lambda \in {\mathrm{I\!R}}^p \f$  denoted by
+   \f$ \mathrm{M3DFC}(R,V,W,q,s,\mu) \f$   such that
+
+   \f[
+   \begin{cases}
+   V^T {r} + R \lambda + s = 0 \\ \\
+   \hat u = W {r}    + V\lambda  + q +\left[
+   \left[\begin{array}{c}
+   \mu^\alpha \|u^\alpha_T\|\\
+   0 \\
+   0
+   \end{array}\right]^T, \alpha = 1 \ldots n_c
+   \right]^T \\ \\
+   C^\star_{\mu} \ni {\hat u} \perp r \in C_{\mu}
+   \end{cases}
+   \f]
+   
+   where the Coulomb friction cone for a  contact  \f$ \alpha \f$  is defined by
+
+   \f[
+
+   C_{\mu^\alpha}^{\alpha}  = \{r^\alpha, \|r^\alpha_T \| \leq \mu^\alpha |r^\alpha_N| \}
+   \f]
+   and the set  \f$ C^{\alpha,\star}_{\mu^\alpha} \f$  is its dual.
  */
 struct FCLIB_APICOMPILE fclib_local
 {
@@ -320,7 +331,7 @@ struct FCLIB_APICOMPILE fclib_local
   struct fclib_matrix *V;
   /** the matrix R (see mathematical description below)*/
   struct fclib_matrix *R;
-  /** the vector \f$\mu\f$ of coefficient of friction (see mathematical description below)*/
+  /** the vector  \f$ \mu \f$  of coefficient of friction (see mathematical description below)*/
   double *mu;
   /** the vector q (see mathematical description below)*/
   double *q;
@@ -332,12 +343,12 @@ struct FCLIB_APICOMPILE fclib_local
   struct fclib_info *info;
 };
 
-/** \struct fclib_solution fclib.h
- *  A solution or a guess for the frictional contact problem.
- *
- * This structure allows to store a solution vector of a guess vector for the
- * various frictional contact problems.
- */
+/**
+   A solution or a guess for the frictional contact problem.
+ 
+   This structure allows to store a solution vector of a guess vector for the
+   various frictional contact problems.
+*/
 struct FCLIB_APICOMPILE fclib_solution /* solution data */
 {
   /** global velocity (or position/displacement for quasi-static problems) solution vector */
@@ -346,12 +357,11 @@ struct FCLIB_APICOMPILE fclib_solution /* solution data */
   double *u;
   /** local contact forces  (or impulses) solution vector */
   double *r;
-  /** multiplier for equlity constraints (\f$\lambda\f$) solution vector */
+  /** multiplier for equlity constraints ( \f$ \lambda \f$ ) solution vector */
   double *l;
 };
 
-/** \enum  fclib_merit
- * MERIT_1 is a implementation of the merit function based on the natural map for a SOCCP
+/** MERIT_1 is a implementation of the merit function based on the natural map for a SOCCP
  */
 enum FCLIB_APICOMPILE fclib_merit {MERIT_1, MERIT_2} ; /* merit functions */
 
@@ -363,52 +373,62 @@ extern "C"
 
 
 
-/** write global problem;
- * return 1 on success, 0 on failure */
+/** write global problem
+ *
+ *  \return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_global (struct fclib_global *problem,
                                      const char *path);
 
-/** write local problem;
- * return 1 on success, 0 on failure */
+/** write local problem
+ *
+ *  \return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_local (struct fclib_local *problem,
                                     const char *path);
-/** write global rolling problem;
- * return 1 on success, 0 on failure */
+/** write global rolling problem
+ *
+ *  \return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_global_rolling (struct fclib_global_rolling *problem,
                                              const char *path);
 
-/** write solution;
- * return 1 on success, 0 on failure */
+/** write solution
+ *
+ *  \return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_solution (struct fclib_solution *solution,
                                        const char *path);
 
-/** write initial guesses;
- * return 1 on success, 0 on failure */
+/** write initial guesses
+ *
+ *  \return 1 on success, 0 on failure */
 FCLIB_STATIC int fclib_write_guesses (int number_of_guesses,
                                       struct fclib_solution *guesses,
                                       const char *path);
 
 
-/** read global problem;
- * return problem on success; NULL on failure */
+/** read global problem
+ *
+ *  \return problem on success; NULL on failure */
 FCLIB_STATIC struct fclib_global* fclib_read_global (const char *path);
 
-/** read local problem;
- * return problem on success; NULL on failure */
+/** read local problem
+ *
+ *  \return problem on success; NULL on failure */
 FCLIB_STATIC struct fclib_local* fclib_read_local (const char *path);
 
-/** read global rolling problem;
- * return problem on success; NULL on failure */
+/** read global rolling problem
+ *
+ *  \return problem on success; NULL on failure */
 FCLIB_STATIC struct fclib_global_rolling* fclib_read_global_rolling (const char *path);
 
 
-/** read solution;
- * return solution on success; NULL on failure */
+/** read solution
+ *
+ *  \return solution on success; NULL on failure */
 FCLIB_STATIC struct fclib_solution* fclib_read_solution (const char *path);
 
-/** read initial guesses;
- * return vector of guesses on success; NULL on failure;
- * output number of guesses in the variable pointed by 'number_of_guesses' */
+/** read initial guesses
+ *
+ *  \return vector of guesses on success; NULL on failure
+ *  output number of guesses in the variable pointed by 'number_of_guesses' */
 FCLIB_STATIC struct fclib_solution* fclib_read_guesses (const char *path,
                                                         int *number_of_guesses);
 
@@ -471,7 +491,7 @@ FCLIB_STATIC int fclib_create_int_attributes_in_info(const char *path,
 #define MM(Call) ASSERT ((Call), "ERROR: out of memory")
 
 
-/** make group */
+/* make group */
 static hid_t H5Gmake (hid_t loc_id, const char *name)
 {
   hid_t id;
@@ -486,7 +506,7 @@ static hid_t H5Gmake (hid_t loc_id, const char *name)
 }
 
 
-/** write matrix */
+/* write matrix */
 static void write_matrix (hid_t id, struct fclib_matrix *mat)
 {
   hsize_t dim = 1;
@@ -531,7 +551,7 @@ static void write_matrix (hid_t id, struct fclib_matrix *mat)
   }
 }
 
-/** read matrix */
+/* read matrix */
 static struct fclib_matrix* read_matrix (hid_t id)
 {
   struct fclib_matrix *mat;
@@ -595,7 +615,7 @@ static struct fclib_matrix* read_matrix (hid_t id)
   return mat;
 }
 
-/** write global vectors */
+/* write global vectors */
 static void write_global_vectors (hid_t id, struct fclib_global *problem)
 {
   hsize_t dim;
@@ -619,7 +639,7 @@ static void write_global_vectors (hid_t id, struct fclib_global *problem)
   }
 }
 
-/** read global vectors */
+/* read global vectors */
 static void read_global_vectors (hid_t id, struct fclib_global *problem)
 {
   MM (problem->f = (double*)malloc (sizeof(double)*problem->M->m));
@@ -637,7 +657,7 @@ static void read_global_vectors (hid_t id, struct fclib_global *problem)
     IO (H5LTread_dataset_double (id, "b", problem->b));
   }
 }
-/** write global vectors */
+/* write global vectors */
 static void write_global_rolling_vectors (hid_t id, struct fclib_global_rolling *problem)
 {
   hsize_t dim;
@@ -662,7 +682,7 @@ static void write_global_rolling_vectors (hid_t id, struct fclib_global_rolling 
   }
 }
 
-/** read global vectors */
+/* read global vectors */
 static void read_global_rolling_vectors (hid_t id, struct fclib_global_rolling *problem)
 {
   MM (problem->f = (double*)malloc (sizeof(double)*problem->M->m));
@@ -681,7 +701,7 @@ static void read_global_rolling_vectors (hid_t id, struct fclib_global_rolling *
     IO (H5LTread_dataset_double (id, "b", problem->b));
   }
 }
-/** write local vectors */
+/* write local vectors */
 static void write_local_vectors (hid_t id, struct fclib_local *problem)
 {
   hsize_t dim;
@@ -702,7 +722,7 @@ static void write_local_vectors (hid_t id, struct fclib_local *problem)
   }
 }
 
-/** read local vectors */
+/* read local vectors */
 static void read_local_vectors (hid_t id, struct fclib_local *problem)
 {
   MM (problem->q = (double*)malloc (sizeof(double)*problem->W->m));
@@ -719,7 +739,7 @@ static void read_local_vectors (hid_t id, struct fclib_local *problem)
   }
 }
 
-/** write problem info */
+/* write problem info */
 static void write_problem_info (hid_t id, struct fclib_info *info)
 {
   if (info->title) IO (H5LTmake_dataset_string (id, "title", info->title));
@@ -727,7 +747,7 @@ static void write_problem_info (hid_t id, struct fclib_info *info)
   if (info->math_info) IO (H5LTmake_dataset_string (id, "math_info", info->math_info));
 }
 
-/** read problem info */
+/* read problem info */
 static struct fclib_info* read_problem_info (hid_t id)
 {
   struct fclib_info *info;
@@ -764,7 +784,7 @@ static struct fclib_info* read_problem_info (hid_t id)
   return info;
 }
 
-/** write solution */
+/* write solution */
 static void write_solution (hid_t id, struct fclib_solution *solution, int nv, int nr, int nl)
 {
   hsize_t nv_t = (hsize_t)nv;
@@ -778,7 +798,7 @@ static void write_solution (hid_t id, struct fclib_solution *solution, int nv, i
   IO (H5LTmake_dataset_double (id, "r", 1, &nr_t, solution->r));
 }
 
-/** read solution */
+/* read solution */
 static void read_solution (hid_t id, int nv, int nr, int nl, struct fclib_solution *solution)
 {
   if (nv)
@@ -802,7 +822,7 @@ static void read_solution (hid_t id, int nv, int nr, int nl, struct fclib_soluti
   IO (H5LTread_dataset_double (id, "r", solution->r));
 }
 
-/** read solution sizes */
+/* read solution sizes */
 static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
 {
   if (H5Lexists (file_id, "/fclib_global", H5P_DEFAULT))
@@ -844,7 +864,7 @@ static int read_nvnunrnl (hid_t file_id, int *nv, int *nr, int *nl)
   return 1;
 }
 
-/** delete matrix info */
+/* delete matrix info */
 static void delete_matrix_info (struct fclib_matrix_info *info)
 {
   if (info)
@@ -854,7 +874,7 @@ static void delete_matrix_info (struct fclib_matrix_info *info)
   }
 }
 
-/** delete matrix */
+/* delete matrix */
 static void delete_matrix (struct fclib_matrix *mat)
 {
   if (mat)
@@ -867,7 +887,7 @@ static void delete_matrix (struct fclib_matrix *mat)
   }
 }
 
-/** delete problem info */
+/* delete problem info */
 static void delete_info (struct fclib_info *info)
 {
   if (info)
@@ -925,7 +945,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_create_int_attributes_in_info(const char
 
 /* =========================== interface ============================ */
 
-/** write global problem;
+/* write global problem;
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *problem, const char *path)
 {
@@ -993,7 +1013,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global (struct fclib_global *probl
   return 1;
 }
 
-/** write global problem rolling;
+/* write global problem rolling;
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global_rolling (struct fclib_global_rolling *problem, const char *path)
 {
@@ -1066,7 +1086,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_global_rolling (struct fclib_globa
 
 
 
-/** write local problem;
+/* write local problem;
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem, const char *path)
 {
@@ -1134,7 +1154,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_local (struct fclib_local *problem
   return 1;
 }
 
-/** write solution;
+/* write solution;
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_solution (struct fclib_solution *solution, const char *path)
 {
@@ -1174,7 +1194,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_solution (struct fclib_solution *s
   return 1;
 }
 
-/** write initial guesses;
+/* write initial guesses;
  * return 1 on success, 0 on failure */
 FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_guesses (int number_of_guesses,  struct fclib_solution *guesses, const char *path)
 {
@@ -1224,7 +1244,7 @@ FCLIB_STATIC int FCLIB_APICOMPILE fclib_write_guesses (int number_of_guesses,  s
   return 1;
 }
 
-/** read global problem;
+/* read global problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global* fclib_read_global (const char *path)
 {
@@ -1273,7 +1293,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global* fclib_read_global (const char
 
   return problem;
 }
-/** read global problem;
+/* read global problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global_rolling* fclib_read_global_rolling (const char *path)
 {
@@ -1322,7 +1342,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global_rolling* fclib_read_global_rol
 
   return problem;
 }
-/** read local problem;
+/* read local problem;
  * return problem on success; NULL on failure */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_local* fclib_read_local (const char *path)
 {
@@ -1378,7 +1398,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_local* fclib_read_local (const char *
   return problem;
 }
 
-/** read solution;
+/* read solution;
  * return solution on success; NULL on failure */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_solution (const char *path)
 {
@@ -1405,7 +1425,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_solution (const 
   return solution;
 }
 
-/** read initial guesses;
+/* read initial guesses;
  * return vector of guesses on success; NULL on failure;
  * output numebr of guesses in the variable pointed by 'number_of_guesses' */
 FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_guesses (const char *path, int *number_of_guesses)
@@ -1447,7 +1467,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_solution* fclib_read_guesses (const c
   return guesses;
 }
 
-/** delete global problem */
+/* delete global problem */
 FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global (struct fclib_global *problem)
 {
   delete_matrix (problem->M);
@@ -1460,7 +1480,7 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global (struct fclib_global *pro
   delete_info (problem->info);
 }
 
-/** delete local problem */
+/* delete local problem */
 FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_local (struct fclib_local *problem)
 {
   delete_matrix (problem->W);
@@ -1471,7 +1491,7 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_local (struct fclib_local *probl
   if (problem->s) free (problem->s);
   delete_info (problem->info);
 }
-/** delete global problem */
+/* delete global problem */
 FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global_rolling (struct fclib_global_rolling *problem)
 {
   delete_matrix (problem->M);
@@ -1487,7 +1507,7 @@ FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_global_rolling (struct fclib_glo
 
 
 
-/** delete solutions or guesses */
+/* delete solutions or guesses */
 FCLIB_STATIC void FCLIB_APICOMPILE fclib_delete_solutions (struct fclib_solution *data, int count)
 {
   int i;

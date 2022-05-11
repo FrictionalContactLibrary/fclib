@@ -42,8 +42,8 @@ static struct fclib_matrix_info* matrix_info (struct fclib_matrix *mat, char *co
 {
   struct fclib_matrix_info *info;
 
-  MM (info = malloc (sizeof (struct fclib_matrix_info)));
-  MM (info->comment = malloc (strlen (comment) + 1));
+  MM (info = (fclib_matrix_info*)malloc (sizeof (struct fclib_matrix_info)));
+  MM (info->comment = (char*)malloc (strlen (comment) + 1));
   strcpy (info->comment, comment);
   info->conditioning = rand ();
   info->determinant = rand ();
@@ -58,7 +58,7 @@ static struct fclib_matrix* random_matrix (int m, int n)
   struct fclib_matrix *mat;
   int j;
 
-  MM (mat = malloc (sizeof (struct fclib_matrix)));
+  MM (mat = (fclib_matrix *)malloc (sizeof (struct fclib_matrix)));
   mat->m = m;
   mat->n = n;
   mat->nzmax = (m + n) + m*n / (10 + rand () % 10);
@@ -67,8 +67,8 @@ static struct fclib_matrix* random_matrix (int m, int n)
   if (rand () % 2) /* triplet */
   {
     mat->nz = mat->nzmax;
-    MM (mat->p = malloc (sizeof(int)*mat->nzmax));
-    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
+    MM (mat->p = (int*)malloc (sizeof(int)*mat->nzmax));
+    MM (mat->i = (int*)malloc (sizeof(int)*mat->nzmax));
     for (j = 0; j < mat->nzmax; j ++)
     {
       mat->p [j] = rand () % mat->m;
@@ -79,14 +79,14 @@ static struct fclib_matrix* random_matrix (int m, int n)
   {
     mat->nz = (rand () % 2 ? -1 : -2); /* csc / csr */
     int k = (mat->nz == -1 ? mat->n : mat->m);
-    MM (mat->p = malloc (sizeof(int)*(k+1)));
-    MM (mat->i = malloc (sizeof(int)*mat->nzmax));
+    MM (mat->p = (int*)malloc (sizeof(int)*(k+1)));
+    MM (mat->i = (int*)malloc (sizeof(int)*mat->nzmax));
     int l = mat->nzmax / k;
     for (mat->p [0] = j = 0; j < k; j ++) mat->p [j+1] = mat->p [j] + l;
     for (j = 0; j < mat->nzmax; j ++) mat->i [j] = rand () % k;
   }
 
-  MM (mat->x = malloc (sizeof(double)*mat->nzmax));
+  MM (mat->x = (double*)malloc (sizeof(double)*mat->nzmax));
   for (j = 0; j < mat->nzmax; j ++) mat->x [j] = (double) rand ()  / (double) RAND_MAX;
 
   if (rand ()) mat->info = matrix_info (mat, "A random matrix");
@@ -100,7 +100,7 @@ static double* random_vector (int n)
 {
   double *v;
 
-  MM (v = malloc (sizeof(double)*n));
+  MM (v = (double*)malloc (sizeof(double)*n));
   for (n --; n >= 0; n --) v [n] = (double) rand () / (double) RAND_MAX;
 
   return v;
@@ -111,12 +111,12 @@ static struct fclib_info* problem_info (char *title, char *desc, char *math)
 {
   struct fclib_info *info;
 
-  MM (info = malloc (sizeof (struct fclib_info)));
-  MM (info->title = malloc (strlen (title) + 1));
+  MM (info = (fclib_info*)malloc (sizeof (struct fclib_info)));
+  MM (info->title = (char*)malloc (strlen (title) + 1));
   strcpy (info->title, title);
-  MM (info->description = malloc (strlen (desc) + 1));
+  MM (info->description = (char*)malloc (strlen (desc) + 1));
   strcpy (info->description, desc);
-  MM (info->math_info  = malloc (strlen (math) + 1));
+  MM (info->math_info  = (char*)malloc (strlen (math) + 1));
   strcpy (info->math_info, math);
 
   return info;
@@ -127,7 +127,7 @@ static struct fclib_global* random_global_problem (int global_dofs, int contact_
 {
   struct fclib_global *problem;
 
-  MM (problem = malloc (sizeof (struct fclib_global)));
+  MM (problem = (fclib_global*)malloc (sizeof (struct fclib_global)));
   if (rand () % 2) problem->spacedim = 2;
   else problem->spacedim = 3;
   problem->M = random_matrix (global_dofs, global_dofs);
@@ -151,7 +151,7 @@ static struct fclib_solution* random_global_solutions (struct fclib_global *prob
   struct fclib_solution *sol;
   int i;
 
-  MM (sol = malloc (count * sizeof (struct fclib_solution)));
+  MM (sol = (fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
 
   for (i = 0; i < count; i ++)
   {
@@ -170,7 +170,7 @@ static struct fclib_local* random_local_problem (int contact_points, int neq)
 {
   struct fclib_local *problem;
 
-  MM (problem = malloc (sizeof (struct fclib_local)));
+  MM (problem = (fclib_local*)malloc (sizeof (struct fclib_local)));
   if (rand () % 2) problem->spacedim = 2;
   else problem->spacedim = 3;
   problem->W = random_matrix (problem->spacedim*contact_points, problem->spacedim*contact_points);
@@ -199,7 +199,7 @@ static struct fclib_solution* random_local_solutions (struct fclib_local *proble
   struct fclib_solution *sol;
   int i;
 
-  MM (sol = malloc (count * sizeof (struct fclib_solution)));
+  MM (sol = (fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
 
   for (i = 0; i < count; i ++)
   {

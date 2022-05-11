@@ -164,8 +164,8 @@ endif()
   endif()
   # - mpi -
   if(USE_MPI)
-      find_package(MPI REQUIRED)
-      target_link_libraries(${PROJECT_NAME} PRIVATE MPI::MPI_C)
+      find_package(MPI COMPONENTS ${fclib_language} REQUIRED )
+      target_link_libraries(${PROJECT_NAME} PRIVATE MPI::MPI_${fclib_language})
   endif()
 
   # 
@@ -203,11 +203,13 @@ include(FClibPackageSetup)
 #  ============= Tests =============
 if(WITH_TESTS)
   enable_testing()
+  set_source_files_properties(src/tests/fctst.c
+    PROPERTIES LANGUAGE ${fclib_language})
   add_executable(fctest1 src/tests/fctst.c)
   add_test(fctest1 fctest1)
   target_link_libraries(fctest1 PRIVATE fclib)
   if(USE_MPI)
-    target_link_libraries(fctest1 PRIVATE MPI::MPI_C)
+    target_link_libraries(fctest1 PRIVATE MPI::MPI_${fclib_language})
   endif()
 
   if(FORCE_SKIP_RPATH)
