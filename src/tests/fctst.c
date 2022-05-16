@@ -42,7 +42,7 @@ static struct fclib_matrix_info* matrix_info (struct fclib_matrix *mat, char *co
 {
   struct fclib_matrix_info *info;
 
-  MM (info = (fclib_matrix_info*)malloc (sizeof (struct fclib_matrix_info)));
+  MM (info = (struct fclib_matrix_info*)malloc (sizeof (struct fclib_matrix_info)));
   MM (info->comment = (char*)malloc (strlen (comment) + 1));
   strcpy (info->comment, comment);
   info->conditioning = rand ();
@@ -58,7 +58,7 @@ static struct fclib_matrix* random_matrix (int m, int n)
   struct fclib_matrix *mat;
   int j;
 
-  MM (mat = (fclib_matrix *)malloc (sizeof (struct fclib_matrix)));
+  MM (mat = (struct fclib_matrix *)malloc (sizeof (struct fclib_matrix)));
   mat->m = m;
   mat->n = n;
   mat->nzmax = (m + n) + m*n / (10 + rand () % 10);
@@ -111,7 +111,7 @@ static struct fclib_info* problem_info (char *title, char *desc, char *math)
 {
   struct fclib_info *info;
 
-  MM (info = (fclib_info*)malloc (sizeof (struct fclib_info)));
+  MM (info = (struct fclib_info*)malloc (sizeof (struct fclib_info)));
   MM (info->title = (char*)malloc (strlen (title) + 1));
   strcpy (info->title, title);
   MM (info->description = (char*)malloc (strlen (desc) + 1));
@@ -127,7 +127,7 @@ static struct fclib_global* random_global_problem (int global_dofs, int contact_
 {
   struct fclib_global *problem;
 
-  MM (problem = (fclib_global*)malloc (sizeof (struct fclib_global)));
+  MM (problem = (struct fclib_global*)malloc (sizeof (struct fclib_global)));
   if (rand () % 2) problem->spacedim = 2;
   else problem->spacedim = 3;
   problem->M = random_matrix (global_dofs, global_dofs);
@@ -151,7 +151,7 @@ static struct fclib_solution* random_global_solutions (struct fclib_global *prob
   struct fclib_solution *sol;
   int i;
 
-  MM (sol = (fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
+  MM (sol = (struct fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
 
   for (i = 0; i < count; i ++)
   {
@@ -170,7 +170,7 @@ static struct fclib_local* random_local_problem (int contact_points, int neq)
 {
   struct fclib_local *problem;
 
-  MM (problem = (fclib_local*)malloc (sizeof (struct fclib_local)));
+  MM (problem = (struct fclib_local*)malloc (sizeof (struct fclib_local)));
   if (rand () % 2) problem->spacedim = 2;
   else problem->spacedim = 3;
   problem->W = random_matrix (problem->spacedim*contact_points, problem->spacedim*contact_points);
@@ -199,7 +199,7 @@ static struct fclib_solution* random_local_solutions (struct fclib_local *proble
   struct fclib_solution *sol;
   int i;
 
-  MM (sol = (fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
+  MM (sol = (struct fclib_solution*)malloc (count * sizeof (struct fclib_solution)));
 
   for (i = 0; i < count; i ++)
   {
