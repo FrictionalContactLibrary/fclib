@@ -1309,7 +1309,7 @@ FCLIB_STATIC struct FCLIB_APICOMPILE fclib_global_rolling* fclib_read_global_rol
   MM (problem = (struct fclib_global_rolling*)calloc (1, sizeof (struct fclib_global_rolling)));
 
   IO (main_id = H5Gopen (file_id, "/fclib_global_rolling", H5P_DEFAULT));
-  IO (H5LTread_dataset_int (file_id, "/fclib_global/spacedim", &problem->spacedim));
+  IO (H5LTread_dataset_int (file_id, "/fclib_global_rolling/spacedim", &problem->spacedim));
 
   IO (id = H5Gopen (file_id, "/fclib_global_rolling/M", H5P_DEFAULT));
   problem->M = read_matrix (id);
