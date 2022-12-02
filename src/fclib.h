@@ -691,6 +691,7 @@ static void read_global_rolling_vectors (hid_t id, struct fclib_global_rolling *
   ASSERT (problem->H->n % problem->spacedim == 0, "ERROR: number of H columns is not divisble by the spatial dimension");
   MM (problem->w = (double*)malloc (sizeof(double)*problem->H->n));
   MM (problem->mu = (double*)malloc (sizeof(double)*(problem->H->n / problem->spacedim)));
+  MM (problem->mu_r = (double*)malloc (sizeof(double)*(problem->H->n / problem->spacedim)));
   IO (H5LTread_dataset_double (id, "w", problem->w));
   IO (H5LTread_dataset_double (id, "mu", problem->mu));
   IO (H5LTread_dataset_double (id, "mu_r", problem->mu_r));
