@@ -1627,7 +1627,7 @@ FCLIB_STATIC double fclib_merit_local (struct fclib_local *problem, enum fclib_m
     /* compute V^T {r} + R \lambda + s */
     if (n_e >0)
     {
-      cs * VT = cs_transpose((cs *)V, 0) ;
+      cs * VT = cs_transpose((cs *)V, 1) ;
       tmp = (double *)malloc(n_e*sizeof(double));
       for (i =0; i <n_e; i++) tmp[i] = s[i] ;
       cs_gaxpy(VT, r, tmp);
