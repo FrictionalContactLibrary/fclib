@@ -24,22 +24,20 @@ write_basic_package_version_file(
   COMPATIBILITY SameMajorVersion
   )
 
-if(NOT FCLIB_HEADER_ONLY)
-  export(EXPORT fclibTargets
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/fclibTargets.cmake"
-    NAMESPACE FCLIB::
-    )
-  
-  install(EXPORT fclibTargets
-    NAMESPACE FCLIB::
-    DESTINATION ${ConfigPackageLocation}) 
-endif()
+export(EXPORT fclibTargets
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/fclibTargets.cmake"
+  NAMESPACE fclib::
+  )
+
+install(EXPORT fclibTargets
+  FILE fclibTargets.cmake
+  NAMESPACE fclib::
+  DESTINATION ${ConfigPackageLocation}) 
 
 # install config files
 install(
   FILES ${CMAKE_CURRENT_BINARY_DIR}/fclib-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/fclib-config-version.cmake
   DESTINATION ${ConfigPackageLocation})
-
 
 
 # pkg-config file

@@ -48,7 +48,7 @@ To run tests :
 Add in CMakeLists.txt of the project:
 
     find_package(fclib 3.1.0 CONFIG REQUIRED)
-    target_link_libraries(your_target PUBLIC FCLIB::fclib)
+    target_link_libraries(your_target PUBLIC fclib::fclib)
   
 
 and run cmake like this:
